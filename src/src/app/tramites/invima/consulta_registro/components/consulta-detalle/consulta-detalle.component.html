@@ -1,0 +1,249 @@
+<div class="row">
+    <div class="col-md-8">
+        
+        <div class="main-invima-advice card govco-card col-md-12">
+            <div class="row">
+                    <div class="col-md-6">
+                        <h3>Detalle</h3>
+                    </div>            
+            </div>
+            <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="text-center">Datos Generales del Producto</h3><br>
+                    </div>            
+            </div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="td_modal td_bottom"><strong>Expediente</strong> <br> {{datos?.numeroexpediente }}  </td>
+                        <td class="td_modal td_bottom"><strong>Vencimiento</strong> <br> {{datos?.fechavencimiento.split(' ')[0]}}</td>
+                        <td rowspan="3"><strong>Observaciones</strong> <br> {{datos?.observaciones}} </td>
+                    </tr>
+                    <tr>
+                        <td class="td_modal td_bottom"><strong>Nombre del producto</strong><br>{{datos?.nombreproducto}}</td>
+                        <td class="td_modal td_bottom"><strong>Modalidad</strong><br>{{datos?.modalidad}}</td>
+                    </tr>
+                    <tr>
+                        <td class="td_modal"><strong>Registro sanitario</strong><br>{{datos?.numeroregistrosanitario}}</td>
+                        <td class="td_modal"><strong>Estado registro</strong><br>{{datos?.estado}}</td>
+                    </tr>                                    
+                </tbody>                
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-4 pt-3">   
+            <div class="mr-3 ml-3 mb-3">
+                <button type="button" class="btn btn-round btn-high-mix-govco w-100 area-servicio-item" (click)="retornarPagina()">           
+                    <span class="govco-icon govco-icon-right-arrow-cn icon-reverse-x text-white"></span>
+                    <span class="btn-mix-govco__title--right text-white">Búsqueda general</span>
+                </button>
+            </div>
+            <div>
+                <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>    
+                <app-btn-volver [tramite]="'servicios-y-tramites/T11625'" [type]="'redirect'" ></app-btn-volver>
+            </div>  
+            <div class="mr-3 ml-3 mt-3" *ngIf="!InvimaUtils.getshowButtonDetail">
+                <button class="btn btn-round btn-middle w-100 area-servicio-item" onclick="window.location.href = 'https://www.invima.gov.co/'">Ir al sitio web de la entidad</button>                 
+            </div>
+        </div> 
+    </div>
+</div>
+
+<div id="detail-container-invima" class="row mt-3">  
+    <div class="col-md-12">
+        <div class="card govco-card">
+            <div class="card-body">
+                <div class="main-invima-advice col-md-12" *ngIf="mostrar_datos_interes_producto">
+                        <div class="row">
+                                <div class="col-md-6">
+                                    <h3>Datos de Interés del producto</h3><br>
+                                </div>
+                        </div>    
+                        <table class="table row">
+                                <tbody>
+                                    <tr>
+                                        <td class="td_modal td_bottom"><strong>Forma farmaceutica</strong><br> {{datos?.formaFarmaceutica}}</td>
+                                        <td class="td_modal td_bottom"><strong>Franja</strong><br> {{datos?.franja}}</td>
+                                        <td class="td_modal td_bottom"><strong>Indicaciones</strong> <br>{{datos?.indicaciones}}</td>
+                                        <td class="td_bottom" colspan="2"><strong>Contraindicaciones</strong> <br> {{datos?.contraindicaciones}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_modal">
+                                            <strong>Inserto:</strong>
+                                            <div >
+            
+                                                <label class="chk-govco">
+                                                
+                                                <input type="checkbox" disabled="disabled" [checked]="datos?.inserto && datos?.inserto != 'N' && datos?.inserto != 'false'" />
+                                                <label>
+                                                    
+                                                </label>
+                                                <div class="chk-govco__indicator"></div>
+                                                </label>
+                                            </div>
+                                            </td>
+                                        <td class="td_modal"><strong>Vida útil</strong> <br>{{datos?.vidaUtil}}</td>
+                                        <td class="td_modal"><strong>Condición venta</strong><br>{{datos?.condicionVenta}}</td>
+                                        <td class="td_modal"><strong>Genérico:</strong> 
+                                            <div >
+                                                <label class="chk-govco">
+                                                <input type="checkbox" disabled="disabled" [checked]="datos?.generico && datos?.generico != 'N'"/>
+                                                
+                                                <div class="chk-govco__indicator"></div>
+                                                </label>
+                                            </div>
+                                            </td>
+                                        <td ><strong>Via admin.</strong> <br>{{datos.viasAdministracion}}</td>
+                                    </tr>                                  
+                                </tbody>                
+                        </table>
+                </div>
+                <div class="main-invima-advice col-md-12" *ngIf="datos?.presentacionescum?.length > 0">    
+                    <div class="row">
+                            <div class="col-md-6">
+                                <h3>Presentaciones comerciales</h3><br>
+                            </div>
+                    </div>         
+                    <table class="table row">
+                            <tbody>
+                                <ng-template ngFor let-dato [ngForOf]="datos?.presentacionescum" let-i="index">
+                                    <tr>
+                                        <td class="td_modal td_bottom"><strong>Via admin.</strong><br>Sin datos</td>
+                                        <td class="td_modal td_bottom"><strong>Expediente</strong><br> {{dato?.nroexpediente}}</td>
+                                        <td class="td_modal td_bottom"><strong>Consec</strong><br> {{dato?.consecutivo}} </td>
+                                        <td class="td_modal td_bottom"><strong>Termino</strong><br> {{dato?.termino}}</td>
+                                        <td class="td_modal td_bottom"><strong>Cantidad</strong><br> {{dato?.cantidadUnidades}}</td>
+                                        <td rowspan="2"><strong>Descripción</strong> <br> {{dato?.presentacion}} </td>                                                  
+                                    </tr>
+                                    <tr>
+                                        <td class="td_modal"><strong>Fecha insec</strong><br> {{dato?.fechaInscripcion?.split(' ')[0]}}</td>
+                                        <td class="td_modal"><strong>Estado</strong><br> {{dato?.estado}}</td>
+                                        <td class="td_modal"><strong>Fecha Inac.</strong><br> {{dato?.fechaInactivacion?.split(' ')[0]}}</td>
+                                        <td class="td_modal"><strong>Unidad media</strong><br> {{dato?.unidades}}</td>
+                                        <td class="td_modal"><strong></strong><br> </td>
+                                        <td><strong></strong><br> </td>
+                                    </tr>          
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>                        
+                                </ng-template>   
+                                
+                            </tbody>
+                            
+                    </table>
+                </div>
+                <div class="main-invima-advice col-md-12" *ngIf="datos?.principios?.length > 0">   
+                    <div class="row">
+                            <div class="col-md-6">
+                                <h3>Principios activos</h3><br>
+                            </div>
+                    </div>                                 
+                    <table class="table">
+                            <tbody>
+                                    <tr >
+                                    <td class="td_modal"><strong>Principio</strong></td>
+                                    <td class="td_modal"><strong>Cantidad</strong></td>
+                                    <td class="td_modal"><strong>Unidad de medida</strong></td>
+                                    <td><strong>Concentración dec 677</strong></td>                                                            
+                                    </tr>
+                                    <tr  *ngFor="let principio of  (datos?.principios ? datos.principios : []) ; let i = index" >
+                                    <td class="td_modal">{{principio.principio_activo}}</td>
+                                    <td class="td_modal">{{principio.cantidad}}</td>
+                                    <td class="td_modal">{{principio.unidad_medida}}</td>
+                                    <td>{{datos.concentracion}}</td>                                                            
+                                    </tr>
+                            </tbody>
+                    </table>
+                </div>      
+                        
+                <div class="main-invima-advice col-md-12" *ngIf="datos?.atcs?.length > 0">   
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Clasificación ATC del producto</h3><br>
+                        </div>
+                    </div>                                 
+                    <table class="table">
+                        <tbody>
+                                <tr >
+                                <td class="td_modal"><strong>ATC</strong></td>
+                                <td class="td_modal"><strong>Sustancia química</strong></td>
+                                <td class="td_modal"><strong>Sistema orgánico</strong></td>
+                                <td class="td_modal"><strong>Grupo farmacológico</strong></td>
+                                <td class="td_modal"><strong>Subgrupo farmacológico</strong></td>
+                                <td><strong>Subgrupo químico</strong></td>                                                            
+                                </tr>
+                                <tr  *ngFor="let atc of  (datos?.atcs ? datos.atcs : []) ; let i = index" >
+                                <td class="td_modal">{{atc?.codigo}}</td>
+                                <td class="td_modal">{{atc?.sustancia_quimica}}</td>
+                                <td class="td_modal">{{atc?.sistema_organico}}</td>
+                                <td class="td_modal">{{atc?.grupo_farmacologico}}</td>
+                                <td class="td_modal">{{atc?.subgrupo_farmacologico}}</td>                    
+                                <td>{{atc?.subgrupo_quimico}}</td>                                                            
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>  
+                
+                <div class="main-invima-advice col-md-12" *ngIf="datos?.roles?.length > 0">   
+                    <div class="row">
+                            <div class="col-md-6">
+                                <h3>Roles por productos</h3><br>
+                            </div>
+                    </div>                                 
+                    <table class="table" >
+                            <tbody>
+                                    <ng-template ngFor let-rol [ngForOf]="datos?.roles" let-i="index">
+                                    <tr >
+                                        <td class="td_modal td_bottom"><strong>Rol</strong><br>{{rol?.rol}}</td>
+                                        <td class="td_modal td_bottom"><strong>Tipo.Ident</strong><br>{{rol?.tipoIdentificacion}}</td>
+                                        <td class="td_modal td_bottom"><strong>Identificación</strong><br>{{rol?.numeroIdentificacion}}</td>
+                                        <td class="td_modal td_bottom"><strong>Nombre / Razón social</strong><br>{{rol?.razonSocial}}</td>
+                                        <td><strong>Dirección</strong><br>{{rol?.direccion}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td_modal"><strong>País</strong><br>{{rol?.pais}}</td>
+                                        <td class="td_modal"><strong>Depto</strong><br>{{rol?.departamento}}</td>
+                                        <td class="td_modal"><strong>Ciudad</strong><br>{{rol?.ciudad}}</td>
+                                        <td class="td_modal"><strong>Email</strong><br>{{rol?.email}}</td>                                                            
+                                    </tr>
+                                    <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr>
+                                        <tr>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                            <td> </td>
+                                        </tr> 
+                                    </ng-template>
+                            </tbody>
+                    </table>
+                </div>  
+            </div>
+
+            <div class="modal-footer">
+                    <div *ngIf="_group == null ||  _group == 2 " class="col-md-6 text-left">
+                            <a (click)="descargarPDF()" id="buttonDescargar" class="btn btn-round btn-high">Descargar</a>
+                    </div>
+            </div>
+        </div>  
+    </div>
+</div>
+

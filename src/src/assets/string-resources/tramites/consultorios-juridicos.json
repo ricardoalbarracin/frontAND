@@ -1,0 +1,49 @@
+{
+    "messages": {
+        "advice" : "Recuerde que para ser atendido en el consultorio jurídico, debe ser: persona natural de escasos recursos, con ingresos de hasta 3 SMLMV, mayor de edad, que resida en estratos 1, 2 y 3. El Ministerio de Justicia y del Derecho se exonera de cualquier circunstancia generada entre el consultorio jurídico y el cuidadano.",        
+        "buscar-agenda": {
+            "search-empty": "No hay citas disponibles para esta fecha \n  1. Modifica la fecha ingresada \n  2. Si aún no encuentras lo que buscas, contáctanos"
+        },
+        "iniciar-sesion": {
+            "banner": "El ministerio de justicia requiere que inicies sesión para desarrollar el trámite.\n\nPodrás iniciar sesión en cualquier momento durante el trámite"
+        },
+        "ver-consultorios-juridicos": {
+            "no-disponibilidad": "No hay disponibilidad de turnos para la fecha seleccionada en el consultorio",
+            "error": "No fue posible consultar los turnos para el consultorio seleccionado",
+            "error-title": "Lo sentimos"
+        },
+        "registro-minjusticia-terminos":{
+            "title": "Aviso de privacidad y autorización de datos personales trámites en el SITAC del MRE",
+            "text": "Lorem ipsum dolor sit amet consectetur adipiscing elit cubilia, pulvinar lobortis per placerat sapien imperdiet molestie bibendum, dignissim ante platea phasellus tempus taciti non. Augue fames pretium neque blandit lectus bibendum molestie eu quisque habitant himenaeos tempus facilisi diam, malesuada porta et magnis montes ornare libero nulla ad eros interdum pellentesque maecenas. Velit auctor penatibus luctus non posuere cubilia quisque platea, proin magnis ultrices conubia dis himenaeos pellentesque dictum est, natoque taciti metus dictumst egestas congue tristique. \n\n Duis ornare nam metus euismod id et orci ante sapien litora nunc, pretium pellentesque consequat curabitur molestie turpis primis hendrerit integer dignissim. Hac et massa nascetur porttitor laoreet arcu, maecenas ante felis himenaeos dignissim aptent urna, ultrices velit sagittis eleifend mus. Ante magna volutpat vulputate interdum venenatis integer sem hac, orci tellus suscipit hendrerit rhoncus primis taciti viverra, dapibus fringilla feugiat netus nascetur posuere urna. \n\n Duis ornare nam metus euismod id et orci ante sapien litora nunc, pretium pellentesque consequat curabitur molestie turpis primis hendrerit integer dignissim. Hac et massa nascetur porttitor laoreet arcu, maecenas ante felis himenaeos dignissim aptent urna, ultrices velit sagittis eleifend mus. Ante magna volutpat vulputate interdum venenatis integer sem hac, orci tellus suscipit hendrerit rhoncus primis taciti viverra, dapibus fringilla feugiat netus nascetur posuere urna. \n\n Duis ornare nam metus euismod id et orci ante sapien litora nunc, pretium pellentesque consequat curabitur molestie turpis primis hendrerit integer dignissim. Hac et massa nascetur porttitor laoreet arcu, maecenas ante felis himenaeos dignissim aptent urna, ultrices velit sagittis eleifend mus. Ante magna volutpat vulputate interdum venenatis integer sem hac, orci tellus suscipit hendrerit rhoncus primis taciti viverra, dapibus fringilla feugiat netus nascetur posuere urna. \n\n Duis ornare nam metus euismod id et orci ante sapien litora nunc, pretium pellentesque consequat curabitur molestie turpis primis hendrerit integer dignissim. Hac et massa nascetur porttitor laoreet arcu, maecenas ante felis himenaeos dignissim aptent urna, ultrices velit sagittis eleifend mus. Ante magna volutpat vulputate interdum venenatis integer sem hac, orci tellus suscipit hendrerit rhoncus primis taciti viverra, dapibus fringilla feugiat netus nascetur posuere urna."
+        },
+        "login-modal": {
+            "title": "INICIAR SESIÓN EN MINISTERIO DE JUSTICIA",
+            "forgot-password": "He olvidado mi contraseña",
+            "login-button": "INGRESAR",
+            "login-error": "Se presentó un error al iniciar sesión, intentelo nuevamente"
+        },
+        "registro": {
+            "prerequisitos-title": "Recuerda a la cita debes traer:",
+            "prerequisitos": "1. Dos fotocopias de tu documento de identidad \n2. Una fotocopia de recibo de servicios públicos de los últimos tres meses para acreditar tu dirección de residencia\n3. Fotocopias de los documentos que estén relacionados con la consulta a realizar",
+            "success-title": "Registro exitoso",
+            "success-message": "La solicitud de registro se ha terminado con éxito",
+            "reset-title": "Cancelar registro",
+            "reset-message": "Al cancelar el registro perderás los contenidos diligenciados",
+            "reset-option-success": "SEGUIR EN TRÁMITE",
+            "reset-option": "CANCELAR"
+        },
+        "recuperar-contrasena": {
+            "error": "Las constraseñas ingresadas no coinciden, te recomendamos:\n1. Revisar que los datos ingresados sean idénticos\n2. Que las contraseñas cumplan con las condiciones"
+        },
+        "logout": {
+            "title": "Importante",
+            "message": "En estos momentos hay una sesión iniciada con Ministerio de Justicia, si desea cerrar la sesión con Minjusticia solo debe hacer click en el botón."
+        },
+        "crear-cita": {
+            "default-error": "No fue posible registrar la cita, intentalo nuevamente."
+        },
+        "title-error": "Lo sentimos",
+        "form-error": "Los datos ingresados son incorrectos, te recomendamos:\n1. Revise que los datos ingresados sean los solicitados"
+        
+    }
+}

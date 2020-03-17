@@ -1,0 +1,35 @@
+<div class="row card-header pt-0">
+    <div class="col-12 m-auto p-0">
+        <h3 class="m-0 title-section">Datos de la solicitud</h3>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}">
+        <div class="col-md-12">
+            <div class="form-group" [ngClass]="{'select-govco--error' : invalidForm }">
+                <label class="form-group-govco">Código de verificación *</label>
+                <input class="form-control input-govco" (change)="changeValue($event)"
+                    (keypress)="onKeyValidNumber($event)"
+                    [ngClass]="{'is-invalid' : invalidForm }" type="number" placeholder="Ej: 102039049"
+                    formControlName="documento" />
+                <div *ngIf="invalidForm" class="invalid-feedback invalid-label-dps">
+                    Campo sin diligenciar
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row recaptcha-container">
+                <re-captcha formControlName="recaptcha"></re-captcha>
+
+                <div *ngIf="invalidRecaptcha" class="invalid-label-dps-recaptcha">
+                    Campo sin diligenciar
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="agenda-footer col-md-12 text-center mt-3">
+        <button class="btn btn-round btn-high" (click)="search()">VERIFICAR</button>
+    </div>
+</div>

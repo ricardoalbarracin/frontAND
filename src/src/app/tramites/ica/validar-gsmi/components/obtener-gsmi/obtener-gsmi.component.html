@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="mostrarAlerta">
+    <app-notifications [typeMessage]="tipoAlerta" [message]="mensajeAlerta" [title]="titulo" [show]="mostrarAlerta">
+    </app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card p-2">
+  <div class="card-header pt-4 pb-0">  
+      <h3 class="m-0 title-section">Consulta</h3>
+  </div>
+  <div class="card-body" id="datosGenerarGroupGsmi">
+    <div class="col-12" [formGroup]="generarFormObtenerGsmi" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+      [validate]="invalidForm">
+      <!--datos formulario -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="digitosNumeroGsmi">Últimos tres dígitos del número GSMI *</label>
+            <input class="form-control input-govco" placeholder="Por ejemplo: 123" type="text"
+              formControlName="digitosNumeroGsmi" (change)="limpiar()" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="codigoValidador">Código Validador *</label>
+            <input class="form-control input-govco" placeholder="Por ejemplo: 0123456789" type="text"
+              formControlName="codigoValidador" (change)="limpiar()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="area-note-selago">
+              <em class="content">Si el número de GSMI es:<br> 016-0123456789 solo ingresar 789</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="row recaptcha-container m-3">
+          <div class="form-group">
+            <re-captcha formControlName="recaptcha"></re-captcha>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">            
+        <div class="col-6 button-footer text-right">
+            <button class="btn btn-round btn-middle wb-150" (click)="limpiarFormulario()">LIMPIAR</button>
+        </div>
+        <div class="col-6 button-footer text-left">
+            <button class="btn btn-round btn-high wb-150" (click)="buscar()">GUARDAR</button>
+        </div>
+    </div>
+  </div>
+</div>

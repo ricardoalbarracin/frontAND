@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="invalidForm">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="invalidForm"></app-notifications>
+  </div>
+</div>
+<div class="card govco-card p-5 " id="fna-login-container">
+  <div class="card-header p-0">
+    <h3 class="m-0 title-section">INICIAR SESIÓN EN FNA</h3>
+    <label>Para realizar la consulta debes ser un usuario registrado</label>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 pl-0 mb-3">
+        <div class="content-password">
+          <div class="row col-12">
+            <label class="mb-3">
+              <a (click)="openModal()">
+                <p class="mb-1">Si olvidaste tu clave</p>
+                <p class="mb-1">Aún no tienes clave</p>
+                <p class="mb-1">No te haz registrado</p>
+                <p class="mb-1">Se ha bloqueado la clave</p>
+              </a>
+            </label>
+          </div>
+          <div class="row col-12">
+            <button type="button" class="btn btn-round btn-high m-auto" (click)="openModal()">SOLICITAR CLAVE</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6 px-0" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+        [validate]="invalidForm">
+        <div class="form-group">
+          <label class="form-group-govco">Tipo de documento</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipoDocumento" placeholder="Ej: Cédula de ciudadania"
+            [items]="tiposDocumento"></app-dropdownlist>
+        </div>
+        <div class="form-group">
+          <label for="user" class="form-group-govco">Número de Documento</label>
+          <input class="form-control input-govco" type="text" placeholder="Ej: 102930891"
+            formControlName="NumeroDocumento" pattern="[A-Z0-9]+" />
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-group-govco">Contraseña</label>
+          <app-password 
+            ngDefaultControl 
+            formControlName="password" 
+            [maxLength]="6"
+            [placeholder]="'******'">
+          </app-password>  
+        </div>
+        <div class="row m-3">
+          <!--<re-captcha formControlName="recaptcha"></re-captcha>-->
+          <div class="row recaptcha-container" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}"
+            appInputValidator [validate]="invalidForm">
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha"></re-captcha>
+            </div>
+          </div>
+        </div>
+        <div class="mt-2">
+          <div class="login-btn-container text-center">
+            <button class="btn btn-round btn-high" (click)="login()">INGRESAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

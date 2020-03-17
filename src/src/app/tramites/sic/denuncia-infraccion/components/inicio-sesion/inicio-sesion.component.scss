@@ -1,0 +1,37 @@
+.centrar{
+    text-align: center;
+    display: block;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.estilo1 { 
+    width: 100%;
+    height: 10%;
+    background-color: #e5eefb; 
+  }
+
+.centrado{
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.registro-consulta-footer {
+    text-align: center;
+    button {
+        margin: 10px;
+    }
+}
+.icon-ayuda {
+    margin: 0px!important;
+}
+.link-ayuda {
+    margin-right: 0px!important;
+}
+.footer-options {
+    border-radius: 0 0 1rem 1rem;
+}

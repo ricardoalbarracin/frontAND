@@ -1,0 +1,43 @@
+
+.estado-cancilleria {    
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    padding: 3em;
+    background-position: center;
+}
+
+.tramite {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-1.svg");
+}
+
+.formalizado {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-2.svg");
+}
+
+.pagado {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-3.svg");
+}
+
+.autorizado {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-4.svg");
+}
+
+.oficina {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-5.svg");
+}
+
+.tramitado {
+    background-image: url("../../../../../../assets/images/Estado-Pasaporte-6.svg");
+}
+
+.contenedor-estado-cancilleria {
+    padding-left: 6em;
+}
+
+@media (max-width: 1000px) {
+    .contenedor-estado-cancilleria {
+        padding-left: unset;
+    }
+}

@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="failureRequest">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+  </div>
+</div>
+<div class="row">
+    <div class="col-12 pb-3" *ngIf="downloadSuccess">
+      <app-notifications [typeMessage]="'success'" [title]="'Tu recibo se ha descargado'"
+        [show]="downloadSuccess"></app-notifications>
+    </div>
+  </div>
+<div class="card govco-card" id="fna-consulta-container">
+  <h3>Datos solicitante</h3>
+  <label class="font-weight-bold">{{userData.nombre}}</label>
+  <label>{{descTipoDocumento}} {{userData.documento}}</label>
+</div>
+<br/>
+<div class="card govco-card p-0" id="fna-creditos-container" *ngIf="hasCredits">
+    <div class="row m-3 pt-2">
+      <div class="col-6"><h3>Lista de créditos</h3></div>
+      <div class="col-6 text-right" >Total registros: {{creditsCount}}</div>
+    </div>
+    <table class="table table-fixed">
+      <thead>
+        <tr>
+          <th class="col-2 text-center">Nombre</th>
+          <th class="col-3 text-center">Número de crédito</th>
+          <th class="col-2 text-center">Estado</th>
+          <th class="col-3 text-center">Valor</th>
+          <th class="col-2 text-center">Selecciona</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let credit of creditList; let i = index">
+          <td class="col-2 text-center">{{credit.nombre}}</td>
+          <td class="col-3 text-center">{{credit.numero}}</td>
+          <td class="col-2 text-center">{{estadosCredito[i]}}</td>
+          <td class="col-3 text-center">{{credit.valor| currency }}</td>
+          <td class="col-2 text-center"><input type="checkbox" id="{{'chk'+i}}" (value)="credit.numero" (change)="selectCredit($event, i)" [(ngModel)]="theCheckboxValues[i]" /></td>
+        </tr>
+    </table>    
+    <div class="row">
+      &nbsp;<b>{{theCheckbox}}</b>
+    </div>
+    <div class="row text-center">
+      <div class="col-12"><button class="btn btn-round btn-high" (click)="downloadDocument()">GENERAR RECIBO</button></div>
+    </div>
+    <div class="row">
+      &nbsp;
+    </div>
+</div>

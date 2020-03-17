@@ -1,0 +1,23 @@
+<div class="select-govco">
+    <div ngbDropdown class="d-inline-block bootstrap-select form-control">
+        <button [disabled]="isDisabled" class="btn form-control" ngbDropdownToggle>
+            <span *ngIf="value; else noItem">
+                {{ value }}
+            </span>
+            <ng-template #noItem>
+                <div class="filter-option">
+                    <div class="bs-placeholder">
+                        <div class="filter-option-inner-inner">{{ placeholder }}</div>
+                    </div>
+                </div>             
+            </ng-template>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu">
+            <div class="selector-container" *ngFor='let item of items'>
+                <button type="button" [disabled]="isDisabled" class="dropdown-item  h-100"  (click)="selectItem(item)">
+                    <span>{{ item.text }}</span> 
+                </button>
+            </div>
+        </div>
+    </div>
+</div> 

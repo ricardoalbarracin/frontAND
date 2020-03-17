@@ -1,0 +1,54 @@
+<div>
+    <app-notifications [typeMessage]="currentMessage.type" [message]="currentMessage.message"
+        [title]="currentMessage.title" [show]="invalidForm"></app-notifications>
+</div>
+
+
+<div id="restaurar-contrasena-container">
+    <div class="card govco-card">
+        <div class="card-header">
+            <h3 class="title-section">Restablecer contraseña</h3>
+        </div>
+        <div class="card-body">
+            <div class="row" [formGroup]="passwordForm" [ngClass]="{'invalid-form': passwordInvalid}" appInputValidator [validate]="passwordInvalid">
+                <div class="col-lg-6">
+                    <div class="form-group password-form-control">
+                        <label for="usuario">Contraseña</label>
+                        <input [type]="showPasswordBool.showpassword" class="form-control input-govco" formControlName="password"/>                            
+                    </div>
+                    <label class="chk-govco">
+                        <input type="checkbox"  id="showPassword" (click)="showPassword('password')"/>
+                        <label for="showPassword">
+                            Mostrar contraseña
+                        </label>
+                        <div class="chk-govco__indicator"></div>
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group password-form-control">
+                        <label for="usuario">Confirmar contraseña</label>
+                        <input [type]="showPasswordBool.repeatPassword" class="form-control input-govco" formControlName="repeatPassword"/>                            
+                    </div>
+                    <label class="chk-govco">
+                        <input type="checkbox" id="showPasswordAgain" (click)="showPassword('repeat')"/>
+                        <label for="showPasswordAgain">
+                            Mostrar contraseña
+                        </label>
+                        <div class="chk-govco__indicator"></div>
+                    </label>
+                </div>
+                <div class="row recaptcha-container col-12" >
+                    <div class="form-group">
+                        <re-captcha formControlName="recaptcha"></re-captcha>    
+                    </div>
+                </div>  
+            </div>
+            <div class="row d-flex justify-content-center">                        
+                <div class="col-lg-6 update-password-button ">
+                    <button id="set-password-btn" class="btn btn-round btn-high wb-150" (click) = "passwordClick()">Enviar</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>    
+</div>

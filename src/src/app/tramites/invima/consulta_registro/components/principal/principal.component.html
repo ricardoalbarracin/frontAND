@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-9 tramite-area">
+    <div class="row">
+      <div class="col-12">
+          <app-notifications [typeMessage]="'error'" [message]="messages.busquedavacia" [title]="'Lo sentimos'" [show]="invimaUtils.getError"></app-notifications>
+      </div>
+    </div> 
+
+    <div [formGroup]="consultaForm" [ngClass]="{'invalid-form' : invalidForm}">
+      <div class="card govco-card col-md-12 pb-2 pt-2">      
+        <div class="card-body">
+          <div class="row" id="tipoconsultaGroup">
+            <h3 class="col-md-4 m-auto">1. Tipo de búsqueda </h3>
+            <div class="col-md-4">
+              <div class="m-auto">
+                <label class="radiobutton-govco mb-0">
+                  <input type="radio" (click)="inactiveDetail()" id="documento" value="REG" formControlName="opcion"/>
+                  <span>Registro</span>
+                  <div class="radiobutton-govco__indicator"></div>
+                </label>                  
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="m-auto">
+                <label class="radiobutton-govco mb-0">
+                  <input type="radio" (click)="inactiveDetail()" id="registro" value="ATC" formControlName="opcion"/>
+                  <span>Clasificación ATC</span>
+                  <div class="radiobutton-govco__indicator"></div>
+                </label>                                    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-invima-advice card govco-card col-md-12" *ngIf="consultaForm?.value?.opcion == 'REG'">
+          <app-consulta-registro (invocador)="llamado()"></app-consulta-registro>
+      </div>
+      <div class="main-invima-advice card govco-card col-md-12" *ngIf="consultaForm?.value?.opcion == 'ATC'">          
+          <app-consulta-atc (invocador)="llamado()"></app-consulta-atc>
+      </div>   
+    </div>
+  </div>
+  <div class="col-md-3 area-servicio">       
+      <div class="mb-3" *ngIf="invimaUtils?.getshowButtonDetail"> 
+          <button type="button" class="btn btn-round btn-high-mix-govco w-100" (click)="retornarPagina()">           
+            <span class="govco-icon govco-icon-right-arrow-cn icon-reverse-x text-white"></span>
+            <span class="btn-mix-govco__title--right text-white">Búsqueda general</span>
+          </button>
+      </div>
+      <div class="mb-3">
+          <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>    
+          <app-btn-volver [tramite]="'servicios-y-tramites/T11625'" [type]="'redirect'" ></app-btn-volver>
+      </div>  
+      <div *ngIf="!invimaUtils?.getshowButtonDetail">
+          <button class="btn btn-round btn-middle w-100" onclick="window.location.href = 'https://www.invima.gov.co/web/guest/canales-de-atencion'">Contacta al INVIMA</button>                 
+      </div> 
+  </div> 
+</div>
+
+<div class="row">
+  <div class="main-invima-advice card govco-card col-md-12 p-4" *ngIf="invimaUtils.getDetail">
+      <app-consulta-general></app-consulta-general>
+  </div>
+</div>

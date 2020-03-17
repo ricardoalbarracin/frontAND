@@ -1,0 +1,18 @@
+{
+    "messages": {
+        "title-error": "Lo sentimos",
+        "recaptcha-error": "Se presentó un error al verificar la información del recaptcha, vuelva a intentarlo",
+        "form-error": "No encontramos resultados para la búsqueda realizada, te recomendamos:\n 1. Revisar los datos ingresados.\n2. Si aún no encuentras lo que buscas, contáctanos",
+        "form-success": "Solicitud realizada con éxito. Se enviará al correo diligenciado en un plazo no mayor a 24 horas",
+        "term-error": "Debe aceptar los terminos y condiciones para realizar la solicitud",
+        "apostilla-message": "Si el usuario debe realizar el proceso de apostilla del certificado debe remitirse a la Cancillería",
+        "apostilla-message-button": "Puntos de atención",
+        "cancilleria-url": "https://www.cancilleria.gov.co/tramites_servicios/apostilla_legalizacion_en_linea",
+        "privacidad-url": "https://www.mintransporte.gov.co/publicaciones/165/politicas_de_privacidad/",
+        "form": {
+            "title-datos-personales": "Datos personales",
+            "title-datos-destino": "Datos de destino de la certificación",
+            "title-autorizacion": "Autorización de tratamiento de datos"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<div id="sicContainer" class="row">
+  <app-tramite-detail class="col-md-12" [name]="'denuncia-infraccion'" [owner]="'sic'">
+  </app-tramite-detail>
+
+  <div class="col-md-9 tramite-area">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-3 area-servicio">
+    <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>
+    <app-btn-volver [tramite]="'servicios-y-tramites/T11625'" [type]="'redirect'"></app-btn-volver>
+  </div>
+  <div class="row" *ngIf="sicUtilsService.getdesplegarGrilla">
+    <div class="col-md-12 p-4">
+      <app-grilla-consulta></app-grilla-consulta>
+    </div>
+  </div>
+</div>

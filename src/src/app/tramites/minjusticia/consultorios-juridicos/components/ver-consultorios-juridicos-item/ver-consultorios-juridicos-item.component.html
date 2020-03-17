@@ -1,0 +1,33 @@
+<h3 class="title-consultorio">{{consultorio.ConsultorioNombre}}</h3>
+<div class="col-12">
+    <div class="ml-2 mb-2 direccion-consultorio">
+        <div class="row icon-detail">
+            <div class="govco-icon govco-icon-building"></div>
+            <strong class="mt-auto mb-auto">Dirección</strong>
+        </div>
+        <div class="pl-3">
+            {{consultorio.ConsultorioDireccion }}
+        </div>
+    </div>
+    <div class="ml-2 mb-2 telefono-consultorio">
+        <div class="row icon-detail">
+            <div class="govco-icon govco-icon-telephone item-detail"></div>
+            <strong class="mt-auto mb-auto">Teléfono</strong>
+        </div>
+        <div class="pl-3">
+            {{ consultorio.ConsultorioTelefono }}
+        </div>
+    </div>
+    <div class="ml-2 email-consultorio">
+        <div class="row icon-detail">
+            <div class="govco-icon govco-icon-email item-detail"></div>
+            <strong class="mt-auto mb-auto">Correo electrónico</strong>
+        </div>
+        <div class="pl-3">
+            {{ consultorio.ConsultorioEmail }}
+        </div>
+    </div>
+    <div class="consultorio-btn mb-2 mt-3" *ngIf="showButton">
+        <button class="btn btn-round btn-high btn-consultorio" (click)="select()">VER AGENDA</button>
+    </div>
+</div> 

@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-12 pb-3" *ngIf="failConsulta == true">
+        <app-notifications [typeMessage]="currentMessage.type" [message]="currentMessage.message" [title]="currentMessage.title" [show]="invalidForm || successForm"></app-notifications>
+    </div>
+</div>
+<div class="card govco-card p-0 pt-3">
+    <div class="card-header">
+        <h3 class="result-section">Consultar estado de la solicitud</h3>
+    </div>
+    <div class="card-body pt-0">
+        <!--Datos de la solicitud-->
+        <div [formGroup]="consultarEstado" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+            [validate]="invalidForm">
+            <h3 class="m-0 title-section">Datos del documento</h3>
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <label for="numeroDocumento" class="form-group-govco">Número de documento *</label>
+                        <input class="form-control input-govco" type="number" placeholder="Ej: 102039049"
+                            formControlName="numeroDocumento" />
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="numeroSolicitud" class="form-group-govco">Número de solicitud *</label>
+                        <input class="form-control input-govco" type="number" placeholder="Ej: 10293"
+                            formControlName="numeroSolicitud" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group select-govco col-lg-6">
+                        <label for="tipoDocumento" class="form-group-govco">Tipo de documento *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="tipoDocumento"
+                            placeholder="Ej: Cédula de ciudadania" [items]="listTipoDocumento"></app-dropdownlist>
+                    </div>
+                </div>
+                <div class="row m-4">
+                    <div class="col-md-12">
+                        <div class="row recaptcha-container">
+                            <re-captcha formControlName="recaptcha"></re-captcha>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 button-footer text-right">
+                <button class="btn btn-round btn-middle wb-150" (click)="regresar()">REGRESAR</button>
+            </div>
+            <div class="col-6 button-footer text-left">
+                <button class="btn btn-round btn-high" (click)="consultar()">CONSULTAR</button>
+            </div>
+        </div>
+    </div>
+</div>

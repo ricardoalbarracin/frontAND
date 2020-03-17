@@ -1,0 +1,120 @@
+<div id="solicitar-certificado-container">
+    <div class="row">
+        <div class="col-12 pb-3" *ngIf="invalidForm || successForm">
+            <app-notifications [typeMessage]="currentMessage.type" [message]="currentMessage.message" [title]="currentMessage.title" [show]="invalidForm || successForm"></app-notifications>
+        </div>
+    </div> 
+
+    <div class="row" [formGroup]="solicitudForm" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+        <div class="col-md-12 mb-3">
+            <div class="card govco-card">
+                <div class="card-header p-0 pr-2">
+                    <div class="d-flex bd-highlight mb-1">
+                        <div class="p-2 bd-highlight">
+                            <h3 class="title-section mb-0">{{messages.titleDatosPersonales}}</h3>
+                        </div>
+                        <div class="ml-auto p-2 bd-highlight">
+                            <div class="d-flex">
+                                <div class="govco-icon govco-icon-peso-col-cn icon-sin-costo"></div>
+                                <label class="form-group-govco btn-symbolic-govco_title btn-symbolic-govco_title--right m-auto pl-1">Trámite sin costo</label>
+                            </div>
+                        </div>
+                    </div>                                
+                </div>
+                <div class="card-body pt-2 pl-2 pr-0">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="primerNombre" class="form-group-govco">Primer nombre *</label>
+                                <input class="form-control input-govco" type="text" formControlName="primerNombre" maxlength="50"/>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="segundoNombre" class="form-group-govco">Segundo nombre</label>
+                                <input class="form-control input-govco" type="text" formControlName="segundoNombre" maxlength="50"/>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="primerApellido" class="form-group-govco">Primer apellido *</label>
+                                <input class="form-control input-govco" type="text" formControlName="primerApellido" maxlength="50"/>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="segundoApellido" class="form-group-govco">Segundo apellido</label>
+                                <input class="form-control input-govco" type="text" formControlName="segundoApellido" maxlength="50"/>
+                            </div>  
+                            <div class="form-group col-lg-6 select-govco mb-3">
+                                <label for="tipoDocumento" class="form-group-govco">Tipo de documento *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="tipoDocumento" placeholder = "Por ejemplo: Cédula" [items]="list.tiposDocumento"></app-dropdownlist>               
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="numeroIdentificacion" class="form-group-govco">Número de documento *</label>
+                                <input class="form-control input-govco" type="text" formControlName="numeroIdentificacion" maxlength="16" pattern="^[0-9]*$"/>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="correoElectronico" class="form-group-govco">Email *</label>
+                                <input class="form-control input-govco" type="text" formControlName="correoElectronico" maxlength="256" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                            </div>                      
+                        </div>
+                    </div>       
+                </div>         
+            </div>
+        </div>
+        <div class="col-md-12 mb-3">
+            <div class="card govco-card">
+                <div class="card-header pt-1 pl-2">     
+                    <h3 class="title-section mb-0">{{messages.titleDatosDestino}}</h3>
+                </div>
+                <div class="card-body pt-3 pl-2 pr-0">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-lg-6 select-govco mb-3">
+                                <label for="tipoEntidadDestino" class="form-group-govco">Tipo de entidad de destino *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="tipoEntidadDestino" placeholder = "Por ejemplo: Consulado" [items]="list.entidades"></app-dropdownlist>
+                            </div>
+                            <div class="form-group col-lg-6 select-govco mb-3">
+                                <label for="paisDestino" class="form-group-govco">País de destino *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="paisDestino" 
+                                    placeholder = "Por ejemplo: Afganistan" 
+                                    [items]="list.paises" 
+                                    [selected]="paisSelected" 
+                                    [isDisabled]="paisReadOnly">
+                                </app-dropdownlist>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card govco-card">
+                <div class="card-header pt-1 pl-2">     
+                    <h3 class="title-section mb-0">{{messages.titleAutorizacion}}</h3>
+                </div>
+                <div class="card-body pt-3 pl-2 pr-0">
+                    <div class="col-lg-12">
+                        <label class="chk-govco">
+                            <input type="checkbox"  id="showPassword" (click)="aceptarTerminos()"/>
+                            <label for="showPassword" class="govco-register-terminos">
+                                <i>Autorizo al ministerio de transporte para el uso de mis datos personales
+                                según los términos y condiciones, disponibles</i><a class="btn-low" (click)="showTerms()">
+                                    AQUÍ
+                                </a>                            
+                            </label>
+                            <div class="chk-govco__indicator"></div>
+                        </label>                                
+                    </div>
+                    <div class="col-md-12 m-4" >
+                        <div class="row recaptcha-container" >
+                            <div class="form-group">
+                                <re-captcha formControlName="recaptcha"></re-captcha>    
+                            </div>
+                        </div>     
+                    </div>
+                    <div class="col-md-12 solicitud-footer">
+                        <button class="btn btn-round btn-middle wb-150" (click)="resetForm()" >Limpiar</button>
+                        <button id="save-user" class="btn btn-round btn-high wb-150" (click)="solicitar()" >Solicitar</button>
+                    </div>
+                </div>
+                
+            </div>            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="card govco-card">
+    <div class="card-body">
+        <div [formGroup]="pagoPseForm">
+            <h3>Resumen</h3>                       
+
+                <div class="row">
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="col-3 text-center">Dirección</th>
+                                <th class="col-2 text-center">Estado</th>
+                                <th class="col-2 text-center">Circulo</th>
+                                <th class="col-3 text-center">Matrícula</th>
+                                <th class="col-2 text-center">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-3text-center">Cabecera Urbana Pantanillo</td>
+                                <td class="col-2 text-center">Abejorral</td>
+                                <td class="col-2 text-center">Disponible</td>
+                                <td class="col-3 text-center">1-0938474950398394</td>
+                                <td class="col-2 text-center">$ 15.900</td>                                    
+                            </tr>
+                            <tr>
+                                <td class="col-3 text-center">Cabecera Urbana Pantanillo</td>
+                                <td class="col-2 text-center">Abejorral</td>
+                                <td class="col-2 text-center">Disponible</td>
+                                <td class="col-3 text-center">1-0938474950398394</td>
+                                <td class="col-2 text-center">$ 15.900</td>                                    
+                            </tr>
+                            <tr>
+                                <td class="col-3 text-center">Cabecera Urbana Pantanillo</td>
+                                <td class="col-2 text-center">Abejorral</td>
+                                <td class="col-2 text-center">Disponible</td>
+                                <td class="col-3 text-center">1-0938474950398394</td>
+                                <td class="col-2 text-center">$ 15.900</td>                                    
+                            </tr>
+                            <tr>
+                                <td class="col-3 text-center">Cabecera Urbana Pantanillo</td>
+                                <td class="col-2 text-center">Abejorral</td>
+                                <td class="col-2 text-center">Disponible</td>
+                                <td class="col-3 text-center">1-0938474950398394</td>
+                                <td class="col-2 text-center">$ 15.900</td>                                    
+                            </tr>
+                            <tr>
+                                <td class="col-3 text-center">Cabecera Urbana Pantanillo</td>
+                                <td class="col-2 text-center">Abejorral</td>
+                                <td class="col-2 text-center">Disponible</td>
+                                <td class="col-3 text-center">1-0938474950398394</td>
+                                <td class="col-2 text-center">$ 15.900</td>                                    
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            <h3>Información personal</h3>
+
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-12">
+                        <span>
+                            {{pagoPseForm.controls.infoPersonal.value}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content: space-between;">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="cancelar()">CANCELAR</button>
+            </div>
+            <div class="p-2">
+                <button class="btn btn-round btn-round" (click)="cancelar()">PAGAR</button>
+            </div>
+            
+
+        </div>
+    </div>
+</div>

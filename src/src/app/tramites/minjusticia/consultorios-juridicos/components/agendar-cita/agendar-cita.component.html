@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-12 pb-3">
+        <app-notifications [typeMessage]="'error'" [message]="message" [title]="'Lo sentimos'" [show]="error">
+        </app-notifications>
+    </div>
+</div>
+
+<div class="card govco-card pb-0">
+    <div class="card-header pl-0 pt-1">
+        <h3 class="title-section">Verificar información de la cita</h3>
+    </div>
+
+    <div class="card-body pt-0 pl-0" *ngIf="consultorio != undefined">
+        <div class="row">
+            <div class="col-md-6">
+                <app-ver-consultorios-juridicos-item [consultorio]="consultorio" [showButton]="false">
+                </app-ver-consultorios-juridicos-item>
+            </div>
+            <div id="cita-detail" class="col-md-6 pt-4 mt-2">
+                <div class="row" [formGroup]="agenda" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+                    [validate]="invalidForm">
+                    <div class="col-12">
+                        <div class="pl-4 mb-2">
+                            <strong>Día</strong>
+                            <div class="pt-1">
+                                {{ fecha }}
+                            </div>
+                        </div>
+                        <div class="pl-4 mb-2 pt-1">
+                            <strong>Hora</strong>
+                            <div class="pt-1">
+                                {{ consultorio.horario.DisponibilidadHora }}
+                            </div>
+                        </div>
+                        <div class="pl-4 mb-2 pt-1">                            
+                            <div class="form-group">
+                                <strong>Tema</strong>
+                                <app-dropdownlist ngDefaultControl placeholder="Ej. Arrendamientos" [items]="temasList"
+                                    formControlName="tema" class="pt-1">
+                                </app-dropdownlist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center text-center mt-4">
+            <div class='row'>
+                <div class="col-lg-6 mb-3">
+                    <button class="btn btn-round btn-middle wb-150" (click)="cancel()">RECHAZAR</button>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <button class="btn btn-round btn-high  wb-150" (click)="save()">AGENDAR</button>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>

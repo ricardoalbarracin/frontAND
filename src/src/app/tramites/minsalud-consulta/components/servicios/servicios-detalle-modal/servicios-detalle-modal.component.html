@@ -1,0 +1,222 @@
+<div class="modal-header">
+                <h3 class="m-0 modal-title">INFORMACIÓN DETALLADA DEL REGISTRO</h3>
+                <button type="button" class="close" data-dismis="modal" aria-hidden="true" (click)="closeModal()">
+                        <em class="material-icons">clear</em>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="modal-subtitle">
+                            <label class="modal-detail-title m-0">Nombre del prestador: Superintendencia EPS SAS</label>
+                </div>
+                <div class="modal-detail">
+                        <div class="row form-group">
+                                <div class="col-sm form-group">
+                                        <strong><label>Tipo de documento</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.tipo_documento}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Número de documento</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.numero_documento}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Naturaleza Jurídica</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.naturaleza_juridica}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Código del prestador</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.codigo_prestador}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Clase de prestador</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.clase_prestador}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Empresa social del estado</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.ese}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Nivel de atención del prestador</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.nivel_atencion}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Caracter territorial</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.caracter_territorial}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <h2 class="modal-detail-title">Datos de la sede</h2>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Departemento sede</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.departamento_sede}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Municipio sede</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.municipio_sede}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Código de la sede</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.codigo_sede}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Nombre de la sede</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.nombre_sede}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <h2 class="modal-detail-title">Datos del servicio</h2>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Grupo</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.grupo_capacidad}}</label>
+                                       
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Número distintivo de habitación de servicio</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.numero_distintivo}}</label>
+                                       
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <strong><label>Servicio</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.serv_nombre}}</label>
+                                        
+                                </div>
+                                <div class="col-sm form-group">
+                                        <strong><label>Fecha apertura del servicio</label></strong><br>
+                                        <label class="label-detail-govco">{{concultaService.registroSeleccionado.fecha_apertura}}</label>
+                                        
+                                </div>
+                        </div>
+                        <div class="row">
+                                        <div class="col-md-12">
+                                                <h2 class="modal-detail-title">Modalidad</h2>
+                                        </div>
+                                </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.ambulatorio" disabled="true"  />
+                                                        <span>Intramural: ambulatorio</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.domiciliario" disabled="true"  />
+                                                        <span>Extramural: domiciliario</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.centro_referencia" disabled="true"  />
+                                                        <span>Telemedicina: Centro Referencia</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>
+                                </div>
+                                
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.hospitalario" disabled="true"  />
+                                                        <span>Intramural: Hospitalario</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label> 
+                                        </div>
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.otras_extramural" disabled="true"  />
+                                                        <span>Extramural: Otras</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.institucion_remisora" disabled="true"  />
+                                                        <span>Telemedicina: Institución remisora</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label> 
+                                        </div>
+                                </div>
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.unidad_movil" disabled="true"  />
+                                                        <span>Extramural: Unidad movil</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                        <strong><label>Complejidad</label></strong><br>
+                                </div>
+                        </div>
+                        <div class="row">
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.complejidad_baja" disabled="true"  />
+                                                        <span>Baja</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div>                               
+                                </div>
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.complejidad_media" disabled="true"  />
+                                                        <span>Media</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div> 
+                                </div>
+                                <div class="col-sm form-group">
+                                        <div>
+                                                <label class="chk-govco">
+                                                        <input  type="checkbox" [checked]="concultaService.registroSeleccionado.complejidad_alta" disabled="true"  />
+                                                        <span>Alta</span>
+                                                        <div class="chk-govco__indicator"></div>
+                                                </label>
+                                        </div> 
+                                </div>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 text-right">
+                        <a (click)="closeModal()" class="btn btn-round btn-middle">Regresar</a>
+                </div>
+                <div class="col-md-6 text-left">
+                        <a (click)="closeModalConDescarga()" class="btn btn-round btn-high">Descargar Información</a>
+                </div>
+            </div>

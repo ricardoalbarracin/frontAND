@@ -1,0 +1,9 @@
+{
+    "messages": {
+        "200generarCertificado" : "Certificado descargado",
+        "404generarCertificado" : "No encontramos resultados para la búsqueda realizada, te recomendamos: \n  1. Revisar los datos ingresados.  \n  2. Si aún no encuentras lo que buscas, contáctanos.",
+        "0generarCertificado" : "El servicio no se encuentra disponible en este momento, te recomendamos: \n 1. Intentarlo más tarde. \n 2. Recargar la página.",
+        "habilitarPopUpNavegador" : "Por favor deshabilite el bloqueo de Pop-Up e intente de nuevo.",
+        "camposObligatorios" : "Los datos ingresados son incorrectos, te recomendamos:  \n  1. Revisar que los datos ingresados sean los solicitados."
+    }
+}

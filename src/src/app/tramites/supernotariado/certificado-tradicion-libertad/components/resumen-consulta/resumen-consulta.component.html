@@ -1,0 +1,104 @@
+<div class="card govco-card">
+    <div class="card-body">
+        <div [formGroup]="resumenConsultaForm">
+            <div class="row">
+
+                <h3>Resumen de consulta</h3>
+                    <div class="col-md-12 mt-3 mb-3">
+                        <span>
+                            {{resumenConsultaForm.controls.encabezado.value}}
+                        </span>
+                    </div>
+
+                        <div class="col-md-12 mt-3 mb-3">
+                            <div class="row mx-auto">
+                                <table class="table-resumen-consulta">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-6"><strong>Tipo de búsqueda</strong></th>
+                                            <th class="col-6"><strong>Pin</strong></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="col-6">{{tipoConsulta}}</td>
+                                            <!-- <td class="col-6">2. Consulta por Nombres y/o Apellidos</td>
+                                            <td class="col-6">3. Consulta por Razón Social</td>
+                                            <td class="col-6">4. Consulta por # CHIP o Matricula Catastral</td> -->
+                                            <td class="col-6">1234578900000000000088888</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    <div class="col-md-12 mt-1 mb-3">
+                        <div class="card govco-card mt-1">
+                            <span>
+                                {{resumenConsultaForm.controls.cuerpo.value}}
+                            </span>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h3>Resultados</h3>
+                </div>
+                <div class="col-6 text-right">1 RESULTADO</div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 ">
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="col-1 text-center"><br></th>
+                                <th class="col-2 text-center">Ciudad</th>
+                                <th class="col-3 text-center">Matrícula</th>
+                                <th class="col-2 text-center">Dirección</th>
+                                <th class="col-4 text-center">CHIP o Matricula Catastral</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-1 text-center"> <strong>1</strong></td>
+                                <td class="col-2 text-center">Bogotá</td>
+                                <td class="col-3 text-center">1002-6AB0000000123</td>
+                                <td class="col-2 text-center">Calle 1 # 56 -76</td>
+                                <td class="col-4 text-center">AAA701228TB0000000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Comentario</h3>
+                    <p>Si no estas de acuerdo con los resultados de la consulta podrás escribir un comentario para que la entidad lo procese.</p>
+                    <div class="textarea-govco">
+                        <textarea class="form-control" rows="5" placeholder="Escribe aquí tu opinión" id="textarea-example" maxlength="300"></textarea>			 
+                    </div> 
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content: space-between;">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="nuevaBusqueda()">NUEVA BÚSQUEDA</button>
+            </div>
+
+            <div class="p-2">
+                <button type="button" class="btn btn-round btn-high-mix-govco">
+                    <span class="btn-mix-govco__title--left mx-3 text-white">DESCARGAR</span>
+                    <span class="govco-icon govco-icon-down-arrow-cn text-white"></span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

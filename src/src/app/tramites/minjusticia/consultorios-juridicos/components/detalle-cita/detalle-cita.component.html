@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-12 pb-2">
+        <app-logout-minjusticia [show]="true"></app-logout-minjusticia>
+    </div>
+</div> 
+
+<div class="row">
+    <div class="col-12 pb-3">
+        <app-notifications [typeMessage]="'success'" [message]="''" [title]="'Tu cita ha sido agendada'" [show]="true"></app-notifications>
+    </div>
+</div> 
+
+<div class="card govco-card pl-1 pr-1">
+    <div class="card-body" *ngIf="consultorio != undefined">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <h3>Mis datos</h3>
+                <div class="row m-2" id="datosPersonales" *ngIf="!error">
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <strong><label>Mi nombre</label></strong>
+                                <br/>
+                                <label>{{ username }}</label>     
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <strong><label>Número de documento</label></strong>
+                                <br/>
+                                <label>{{ document }}</label>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-2" *ngIf="error">
+                    <app-notifications [typeMessage]="'error'" [message]="this.messages.currentMessage" [title]="'Lo sentimos'" [show]="error"></app-notifications>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3>Información de la cita</h3>
+                <div class="row m-2">
+                    <div class="col-md-6">
+                        <app-ver-consultorios-juridicos-item 
+                            [consultorio] ="consultorio"
+                            [showButton]="false">
+                        </app-ver-consultorios-juridicos-item>
+                    </div>
+                    <div id="cita-detail" class="col-md-6 pt-4">
+                        <div class="list-group" >
+                            <div class="list-group-item">
+                                <strong><label>Día</label></strong>
+                                <br/>
+                                <label>{{ fecha }}</label> 
+                            </div>
+                            <div class="list-group-item">
+                                <strong><label>Hora</label></strong>
+                                <br/>
+                                <strong><label>{{ consultorio.horario.DisponibilidadHora }}</label></strong>
+                            </div>
+                            <div class="list-group-item ">
+                                <label><strong>Tema</strong></label>    
+                                <br/>
+                                <label>{{ consultorio.Tema }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>           
+    </div>
+
+    <div class="card-footer p-0">
+        <div class=row>
+            <div class="col-md-12 agendar-cita-footer">
+                <button class="btn btn-round btn-high" (click)="continue()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

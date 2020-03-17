@@ -1,0 +1,16 @@
+
+<div id="minjusticiaContainer" class="row">
+    <app-tramite-detail class="col-md-12"
+        [name] = "'consultorios-juridicos'"
+        [owner] = "'minjusticia'"
+        [id] = "'S007'">
+    </app-tramite-detail>
+
+    <div class="col-md-9 tramite-area">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-md-3 area-servicio">
+        <govco-area-servicios module="Tramites" itemid="S007" step="2"></govco-area-servicios>   
+        <app-btn-volver [tramite]="'servicios-y-tramites/S007'" [type]="'redirect'"></app-btn-volver>        
+    </div>
+</div>

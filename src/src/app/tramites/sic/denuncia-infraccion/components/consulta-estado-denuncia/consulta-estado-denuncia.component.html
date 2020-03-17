@@ -1,0 +1,30 @@
+<div class="card govco-card col-md-12">
+    <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+        [ngClass]="{'invalid-form' : invalidForm}">
+        <div class="row card-header pt-0">
+            <h3 class="m-0 title-section">Consulta por año y número de radicado</h3>
+        </div>
+        <div class="card-body pt-0">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Año *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="anyo" placeholder="Seleccione"
+                        [items]="listaAnyo">
+                    </app-dropdownlist>
+                </div>
+
+                <div class="col-md-6 form-group select-govco">
+                    <label for="selector-normal" class="form-group-govco">Número de radicado *</label>
+                    <input class="form-control input-govco" formControlName="numero_radicado" maxlength="10" minlength="4"
+                        placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class=" col-md-12 registro-consulta-footer">
+                <button class="btn btn-round btn-middle" (click)="nueva_consulta()">NUEVA CONSULTA</button>
+                <button id="save-user" class="btn btn-round btn-high" (click)="consultar()">CONSULTAR</button>
+            </div>
+        </div>
+    </div>
+</div>

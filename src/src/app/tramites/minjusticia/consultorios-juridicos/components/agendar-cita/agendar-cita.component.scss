@@ -1,0 +1,24 @@
+#cita-detail{
+    .list-group{    
+        .list-group-item {
+            margin-left: 0.5rem;
+            border: none!important;
+            margin-top: 0.2rem;
+            margin-bottom: 0.2rem;
+            padding: 0rem;
+    
+            label {
+                margin:0px;
+            }
+        }
+    }
+}
+
+.agendar-cita-footer {
+    text-align: center;
+    margin-top: 1.8rem;
+
+    button {
+        margin: 10px;
+    }
+}

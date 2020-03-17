@@ -1,0 +1,26 @@
+.list-group{    
+    .list-group-item {
+        margin-left: 0.5rem;
+        border: none!important;
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        padding: 0rem;
+
+        label {
+            margin:0px;
+        }
+    }
+}
+
+.card-footer {
+    border: none;
+    background-color: transparent;
+
+    .agendar-cita-footer {
+        text-align: center;
+
+        button {
+            margin: 10px;
+        }
+    }
+}

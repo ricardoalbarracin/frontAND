@@ -1,0 +1,29 @@
+<div class="card govco-card centrar_registros">
+    <div class="card-header pt-0">
+        <h3 class="title-section">Datos contra quien se presenta la alerta</h3>
+    </div>
+    <div [formGroup]="seleccionForm" [ngClass]="{'invalid-form' : invalidForm}">
+        <div class="card-body pt-0">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-6 m-auto">
+                        <label class="form-group-govco m-0">
+                            Selecciona el tipo de persona contra quien presenta la denuncia*
+                        </label>                        
+                    </div>
+                    <div class="col-md-6 form-group select-govco">
+                        <label class="normal-font" for="selector-normal">Tipo de persona</label>
+                        <app-dropdownlist ngDefaultControl formControlName="opcion" placeholder="Ingrese un valor" [items]="listaTipoPersona">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="seleccionForm?.value.opcion.value == 1">
+            <app-datos-denunciado-persona-natural></app-datos-denunciado-persona-natural>
+        </div>    
+        <div *ngIf="seleccionForm?.value.opcion.value == 2">
+            <app-datos-denunciado-persona-juridica></app-datos-denunciado-persona-juridica>
+        </div>
+    </div>
+</div>  

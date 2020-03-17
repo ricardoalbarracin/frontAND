@@ -1,0 +1,26 @@
+<div class="govco-table govco-table-simple">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th
+                scope="col"
+                *ngFor="let header of hContent; let j = index"
+                [class]="hContent[j].class !== undefined ? hContent[j].class: hContent[j].hidden ? 'hidden': 'th-govco'">
+                    {{header.content}}
+                </th>
+            </tr>
+        </thead>
+        <tbody class="scroll-light-govco">
+            <tr *ngFor="let row of bContent; let i = index">
+                <td
+                *ngFor="let content of row; let j = index"
+                [class]="bConfig.length > 0 && (hContent[j].hidden === undefined || hContent[j].hidden === false) ? bConfig[j].class : hContent[j].hidden ? 'hidden' : 'td-govco'">
+                    <a *ngIf="content.type === 'link'" [href]="content.link" [class]="content.class">{{content.content | dateMask: bConfig[j]}}</a>
+                    <button *ngIf="content.type === 'link-event'" (click)="content.event($event, row, i)" [class]="content.class">{{content.content | dateMask: bConfig[j]}}</button>
+                    <button *ngIf="content.type === 'button'" (click)="content.event($event, row, i)" [class]="content.class">{{content.content | dateMask: bConfig[j] }}</button>
+                    <div *ngIf="content.type !== 'link' && content.type !== 'button' && content.type !== 'link-event'"  [class]="content.class" >{{content.content | dateMask: bConfig[j]}}</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

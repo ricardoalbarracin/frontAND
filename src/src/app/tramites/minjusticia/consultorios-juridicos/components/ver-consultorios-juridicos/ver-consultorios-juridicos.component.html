@@ -1,0 +1,27 @@
+<div id="ver-consultorios-juridicos-container" class="card govco-card">
+    <div class="card-header pl-1 pr-1 pt-0">
+        <h3 class="m-0 title-section">Seleccione el consultorio jurídico</h3>
+    </div>
+
+    <div class="card-body pt-0">
+        <div id="section-consultorios" class="row">
+            <div class="col-md-6 list-consultorios overflow-auto pl-0">
+                <div class="list-consultorios-item p-1" *ngFor="let item of consultoriosJuridicos"
+                    [id]="'consultorio-' + item.id">
+                    <app-ver-consultorios-juridicos-item [consultorio]="item" [showButton]="true"
+                        (clickEvent)="selectConsultorio($event)">
+                    </app-ver-consultorios-juridicos-item>
+                    <hr class="mt-2 mb-2"/>
+                </div>
+            </div>
+            <div class="col-md-6 pt-2">
+                <agm-map [mapTypeId]="'roadmap'" [latitude]='defaultUbication.latitude'
+                    [longitude]='defaultUbication.longitude'>
+                    <agm-marker *ngFor="let marker of mapMarkups" [latitude]="marker.lat" [longitude]="marker.lng"
+                        [opacity]="marker.alpha">
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</div>

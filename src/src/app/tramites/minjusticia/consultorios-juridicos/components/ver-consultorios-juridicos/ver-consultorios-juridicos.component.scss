@@ -1,0 +1,20 @@
+#ver-consultorios-juridicos-container{
+    h4 {
+        margin-bottom:1.3rem;
+    }
+    #section-consultorios{
+        .list-consultorios {            
+            overflow:auto;
+            height: 600px;
+        }
+    }    
+
+    agm-map {
+        height: 600px!important;
+        width: 100%; 
+    }
+
+    .consultorio-selected {
+        border: 1px #007bff solid;
+    }
+}

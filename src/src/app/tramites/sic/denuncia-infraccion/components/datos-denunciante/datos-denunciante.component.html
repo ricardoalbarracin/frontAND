@@ -1,0 +1,82 @@
+<div>
+    <div class="card govco-card col-md-12 centrar_registros">
+        <h3>Mis datos</h3>
+        <br>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>Señor (a)</strong></td>
+                        <td>{{responsePersona.persona.natural.primerNombre + "  " +responsePersona.persona.natural.segundoNombre + " " + responsePersona.persona.natural.primerApellido + " " + responsePersona.persona.natural.segundoApellido}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de identificación</strong></td>
+                        <td>{{tipo}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Identificación</strong></td>
+                        <td>{{responsePersona.persona.numeroDocumento}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dirección</strong></td>
+                        <td>{{responsePersona.persona.direcciones[0].descripcion}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teléfono celular</strong></td>
+                        <td>{{celular}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>País</strong></td>
+                        <td>{{pais}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Región</strong></td>
+                        <td>{{region}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ciudad</strong></td>
+                        <td>{{ciudad}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correo electrónico</strong></td>
+                        <td>{{correo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+
+    <div class="main-invima-advice card govco-card col-md-12">
+        <div [formGroup]="seleccionForm" [ngClass]="{'invalid-form' : invalidForm}">
+            <div class="card-header pb-0">            
+                <div class="row">
+                    <h3 class="col-md-8 top_margin">¿Asignará un apoderado para esta denuncia?</h3>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="radiobutton-govco">
+                                <input type="radio" id="si" value="si" formControlName="opcion" />
+                                <span class="span_normal">Si</span>
+                                <div class="radiobutton-govco__indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="radiobutton-govco">
+                                <input type="radio" id="no" value="no" formControlName="opcion" />
+                                <span class="span_normal">No</span>
+                                <div class="radiobutton-govco__indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="seleccionForm?.value?.opcion == 'si'">                
+                <app-datos-denunciante-apoderado></app-datos-denunciante-apoderado>
+            </div>
+            <div class="row" *ngIf="seleccionForm?.value?.opcion == 'no'">
+                <div class=" col-md-12 registro-consulta-footer">
+                    <a class="btn btn-round btn-high" (click)="accion_continuar()">CONTINUAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

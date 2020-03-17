@@ -1,0 +1,11 @@
+{
+    "messages": {
+        "validateErrors": "Los datos ingresados son incorrectos, te recomendamos:  \n  1. Revisar que los datos ingresados sean los solicitados.",
+        "noCredits": "No tienes créditos vigentes con el FNA",
+        "loginFailed": "El Usuario o contraseña son incorrectos.  \n Vuelve a intentarlo o haz click en Solicitar Clave para reestablecerla.",
+        "failureRequest": "Se produjo un error al procesar la solicitud",
+        "loginFailedAttempts": "Lo sentimos Los datos ingresados son incorrectos,  después de 3 intentos fallidos tu cuenta será desactivada.\n  1. Te recomendamos revisar los datos ingresados\n  2. Si continúas con el problema contáctanos."
+    }
+}
+
+

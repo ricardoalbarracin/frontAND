@@ -1,0 +1,38 @@
+#icbf-login-container{
+
+  .login-register {
+      text-align: center;
+
+  }
+
+  .minjusticia-login-form {
+      padding: 10px;
+
+      .form-group{
+          label {
+              font-weight: bold;
+          }
+      }
+  }
+
+  .login-btn-container {
+      margin: auto;
+      text-align: center;
+      margin-top: 1.0rem;
+  }
+
+  .adviceMessage {
+      margin-top: 2rem;
+      padding-top: 0.6rem!important;
+      padding-bottom: 0.6rem!important;
+      text-align: justify;
+  }
+  a {
+      color: #007bff;
+      cursor: pointer;
+  }
+}
+
+.center{
+  text-align: center;
+}

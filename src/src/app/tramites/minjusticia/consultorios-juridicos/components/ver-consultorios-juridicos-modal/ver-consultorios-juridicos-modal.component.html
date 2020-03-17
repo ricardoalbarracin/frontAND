@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h3>AGENDA DISPONIBLE DEL CONSULTORIO</h3>
+</div>
+
+<div class="modal-body">    
+    <div class="row">
+        <div class="col-md-6">
+            <app-ver-consultorios-juridicos-item 
+                [consultorio] ="consultorio"
+                [showButton]="false">
+            </app-ver-consultorios-juridicos-item>
+        </div>
+        <div class="col-md-6">
+            <agm-map class="agm-map"
+                [mapTypeId]="'roadmap'"
+                [latitude]='defaultUbication.latitude' 
+                [longitude]='defaultUbication.longitude'>
+                    <agm-marker
+                        [latitude]="defaultUbication.latitude"
+                        [longitude]="defaultUbication.longitude "
+                        [opacity]="1">
+                    </agm-marker> 
+            </agm-map>
+        </div>
+    </div>
+    <!--Listado de disponibilidad-->
+    <div class="row disponibilidad-container">        
+        <div  class="col-md-12">
+            <h3>Selecciona el horario:</h3>
+            <label>{{ fechaDisponibilidad }}</label>
+            <div class="row mt-1">
+                <div class="col-md-4 btn-cita" *ngFor="let item of horarios" >
+                    <button 
+                        [ngClass]="getItemClass(item)"
+                        (click)="selectItem(item)">
+                        {{item.DisponibilidadHora}}
+                    </button>
+                </div>
+
+                <div class="col-md-12">
+                    <app-notifications [typeMessage]="messages.type" [message]="messages.message" [title]="messages.title" [show]="noResult"></app-notifications>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer disponibilidad-footer justify-content-center">
+    <div class="row">
+        <div class="col-lg-6 mb-3">
+            <button class="btn btn-round btn-middle wb-150" (click)="closeModal()">Volver</button>
+        </div>
+        <div class="col-lg-6 mb-3">
+            <button class="btn btn-round btn-high select-consultorio-modal  wb-150" (click)="agendar()">Continuar</button>
+        </div>
+    </div>
+</div>

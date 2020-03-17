@@ -1,0 +1,204 @@
+.table-header-blu-gov-co{
+    thead{
+        background: #004884;
+        color: white;
+        position: relative;
+    }
+    thead th {
+        color: white;
+        font-weight: normal;
+        position: relative;
+    }
+    thead th, tbody td{
+        padding: .75rem;
+    }
+    tbody tr{
+        border-bottom: #c2c2c2 solid 1px;
+    }
+    td.state-success {
+        color: #069169;
+    }
+    td p{
+        margin:0px;
+    }
+    td p.text-success::before {
+        content: "\e061";
+        font-family: 'Material Icons',sans-serif;
+        font-weight: normal;
+        vertical-align: middle;
+    }
+    td p.text-danger::before {
+        content: "\e061";
+        font-family: 'Material Icons',sans-serif;
+        font-weight: normal;
+        vertical-align: middle;
+    }
+    td.state-success::before {
+        content: "☻ ";
+        color: #069169;
+    }
+    thead th:first-child{
+        &:after{
+            content: "";
+            width: 2.25rem;
+            height: 100%;
+            background: #004884;
+            position: absolute;
+            top: 0px;
+            left: -2.25rem;
+        }
+    }
+    thead th:last-child{
+        &::before
+        {
+            content: "";
+            width: 2.25rem;
+            height: 100%;
+            background: #004884;
+            position: absolute;
+            top: 0px;
+            right: -2.25rem;
+        }
+    }
+}
+.see-downloads p{
+    margin-right: 30px;
+    &::after {
+        position: absolute;
+        top: -5px;
+        right: 15px;
+        margin: 0;
+        margin-left: 15px;
+        font-family: "Govco Icon" ,sans-serif;
+        font-size: 1.5rem;
+        content: "" !important;
+        color: #3772ff !important;
+        border-width: 0px;
+        border-style: solid;
+        border-color: rgb(240, 243, 251);
+        border-image: initial;
+      }
+}
+.container-table-concept-gov-co{
+    padding: .75rem;
+    background-color: #e5eefb;
+    .table-concept-gov-co{
+        tr{
+            
+            padding: 0;
+            list-style: none;
+            border-bottom: 2px solid #004884;
+            p{
+                margin: 0px;
+            }
+            u{
+                text-decoration: none;
+                &::after{
+                    transform: rotate(90deg);
+                    margin-left: 5px;
+                    font-family: "Govco Icon" ,sans-serif;
+                    font-size: 1.5rem;
+                    content: "\e968";
+                    display: inline-flex;
+                }
+            }
+        }
+
+    }
+}
+.card-govco{
+    
+    .table {
+      border-bottom: #c2c2c2 solid 1px;
+    }
+    .table thead {
+      background: #004884;
+      color: white;
+    }
+
+
+  }
+  .mod-download{
+    .card-header {
+      background: transparent;
+      border: 0px;
+      display: flex;
+      padding: 0.5rem 1.25rem;
+    }
+    .card-header.open {
+      border-bottom: 3px solid #004884;
+    }
+    .see-information {
+      margin-left: auto;
+      padding: 0;
+      margin-right: 20px;
+    }
+    .see-information::after {
+      position: absolute;
+      top: -5px;
+      right: -30px;
+      margin: 0;
+      margin-left: 15px;
+      font-family: "Govco Icon" ,sans-serif;
+      font-size: 1.5rem;
+      content: "" !important;
+      color: #3772ff !important;
+      border-width: 0px;
+      border-style: solid;
+      border-color: rgb(240, 243, 251);
+      border-image: initial;
+    }
+    .card-header .see-information.collapsed::after {
+      content: "";
+      transform: scale(1);
+    }
+    .card-header.open .see-information::after {
+      content: "";
+      transform: scale(-1);
+    }
+  }
+  .btn-download {
+    margin-left: auto;
+    padding: 0;
+    margin-right: 25px;
+    &::after {
+      position: absolute;
+      top: -5px;
+      right: -54px;
+      transform: rotate(90deg);
+      margin-left: 15px;
+      font-family: "Govco Icon" ,sans-serif;
+      font-size: 1.5rem;
+      width: 100% !important;
+      content: "\e968" !important;
+      color: #3772ff !important;
+      border-width: 0px;
+      border-style: solid;
+      border-color: rgb(240, 243, 251);
+      border-image: initial;
+    }
+  }
+  li.download-item {
+    padding: 0;
+    list-style: none;
+    border-bottom: 2px solid #004884;
+    &:last-child {
+      border-bottom: none;
+    }
+    .wrapper-item-list {
+      width: 100%;
+      display: flex;
+      padding: 8px 0;
+    }
+  }
+  .card-header-info {
+    width: 100%;
+    display: flex;
+    margin: 0rem auto;
+  }
+  .ml-auto {
+    margin-left: auto;
+  }
+  #collapseDownload .card-body {
+    background-color: #e5eefb !important;
+  }

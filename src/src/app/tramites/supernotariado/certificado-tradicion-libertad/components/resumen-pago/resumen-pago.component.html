@@ -1,0 +1,118 @@
+<div class="card govco-card">
+    <div class="card-body">
+        <div [formGroup]="resumenPagoForm">
+            <h3>Resumen pagado</h3>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="card govco-card mt-3">
+                        <span>
+                            {{resumenPagoForm.controls.infoUno.value}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="card govco-card mt-3">
+                        <span>
+                            {{resumenPagoForm.controls.infoDos.value}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card govco-card mt-4">
+    <div class="card-body">
+        <div [formGroup]="resumenPagoForm">
+            <h3>Información de transacción</h3>
+
+            <div class="col-md-12 mt-4 mb-3">
+                <div class="row">
+                    <table class="table table-fixed">
+                        <tbody>
+                            <tr class="m-b">
+                                <td class="col-4 text-center m-r n-t">
+                            <tr><strong>Medio de pago</strong></tr>
+                            <tr>Pagos en línea PSE</tr>
+                            </td>
+                            <td class="col-4 text-center m-r n-t">
+                                <tr><strong>Código de transacción</strong></tr>
+                                <tr>12345456</tr>
+                            </td>
+                            <td class="col-4 text-center n-t">
+                                <tr><strong>Valor individual</strong></tr>
+                                <tr>$15.900</tr>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center m-r">
+                            <tr><strong>Fecha</strong></tr>
+                            <tr>00-00-0000</tr>
+                            </td>
+                            <td class="col-4 text-center m-r">
+                                <tr><strong>CUS</strong></tr>
+                                <tr>12345567889</tr>
+                            </td>
+                            <td class="col-4 text-center">
+                                <tr><strong>Valor total</strong></tr>
+                                <tr>$75.900</tr>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h3>Certificados Adquiridos</h3>
+
+            <div class="col-md-12 mt-4">
+                <div class="row">
+                    <table class="table table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="col-1 text-center"><br></th>
+                                <th class="col-2 text-center">Ciudad</th>
+                                <th class="col-3 text-center">Matrícula</th>
+                                <th class="col-2 text-center">Dirección</th>
+                                <th class="col-4 text-center">CHIP o Matricula Catastral</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-1 text-center"> <strong>1</strong></td>
+                                <td class="col-2 text-center">Bogotá</td>
+                                <td class="col-3 text-center">1002-6AB0000000123</td>
+                                <td class="col-2 text-center">Calle 1 # 56 -76</td>
+                                <td class="col-4 text-center">AAA701228TB0000000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content:space-evenly;">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="Terminar()">Terminar</button>
+            </div>
+
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="descargarRecibo()">Descargar recibo pago</button>
+            </div>
+
+            <div class="p-2">
+                <button type="button" class="btn btn-round btn-high-mix-govco area-servicio-item">
+                    <span class="btn-mix-govco__title--left text-white">DESCARGAR TODOS</span>
+                    <span class="btn-mix-govco__icon govco-icon govco-icon govco-icon-down-arrow-p text-white"></span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

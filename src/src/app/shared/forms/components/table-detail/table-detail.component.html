@@ -1,0 +1,52 @@
+<div class="row clearfix table-detail p-3 pb-0" *ngIf="showDetail || showDetail === undefined">
+    <div class="float-left" id="table-title-external"></div>
+    <div class="total-itmes float-left" *ngIf="showTotal || showTotal === undefined">
+        <h3>Resultados</h3>
+        <span>Total: {{total | async}}</span>  
+    </div>
+    <div class="page-size float-right">
+        <label>Mostrar</label>
+        <app-dropdownlist-simple [items]="pageList" placeholder="Mostrar registros" [selected]="selected" (clickEvent)="getPageSize($event)" ngDefaultControl></app-dropdownlist-simple>
+    </div>
+</div>
+<div class="row clearfix table-detail" id="table-detail-external"></div>
+<div class="row mt-3">
+    <div class="govco-table govco-table-detail">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th
+                      scope="col"
+                      *ngFor="let title of hContent; let j = index"
+                      [class]="hContent[j].class !== undefined ? hContent[j].class: hContent[j].hidden ? 'hidden': 'th-govco'">
+                        {{title.content}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of content | async; let i = index">
+                    <td
+                    *ngFor="let content of row; let j = index"
+                    [class]="bConfig.length > 0 && (hContent[j].hidden === undefined || hContent[j].hidden === false) ? bConfig[j].class : hContent[j].hidden ? 'hidden' : 'td-govco'">
+                        <a *ngIf="content.type === 'link'" [href]="content.link" [class]="content.class">{{content.content | dateMask: bConfig[j]}}</a>
+                        <button *ngIf="content.type === 'link-event'" (click)="content.event($event, row, i)" [class]="content.class">{{content.content | dateMask: bConfig[j]}}</button>
+                        <button *ngIf="content.type === 'button'" (click)="content.event($event, row, i)" [class]="content.class">{{content.content | dateMask: bConfig[j] }}</button>
+                        <div *ngIf="content.type !== 'link' && content.type !== 'button' && content.type !== 'link-event'"  [class]="content.class" >{{content.content | dateMask: bConfig[j]}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="div-pagination-item" >
+        <div class="container-paginacion">
+            <ngb-pagination [collectionSize]="total | async" [(page)]="service.page" [pageSize]="service.pageSize" [maxSize]="4" [boundaryLinks]="true">
+                <ng-template ngbPaginationEllipsis>...</ng-template>
+                <ng-template ngbPaginationFirst><p class="p-title p-home">Inicio</p></ng-template>
+                <ng-template ngbPaginationLast><p class=" p-title p-last">Fin</p></ng-template>
+                <ng-template ngbPaginationPrevious><p class="p-title p-back">Anterior</p></ng-template>
+                <ng-template ngbPaginationNext><p class="p-title p-next">Siguiente</p></ng-template>
+                <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+            </ngb-pagination>
+        </div>
+    </div>
+</div>

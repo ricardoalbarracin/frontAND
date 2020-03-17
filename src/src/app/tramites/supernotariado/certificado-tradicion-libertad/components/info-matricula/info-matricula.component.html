@@ -1,0 +1,56 @@
+<div class="card govco-card mt-4">
+    <div class="card-body">
+        <div [formGroup]="infoMatriculaForm">
+                <h3>Información matrícula seleccionada</h3>
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-12">
+                        <p>
+                            {{infoMatriculaForm.controls.encabezado.value}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-fixed">
+                            <tbody>
+                                <tr>
+                                    <td class="col-4 text-center m-r n-t">
+                                <tr><strong>Dirección</strong></tr>
+                                <tr>Cabecera Urbana Pantanillo</tr>
+                                </td>
+                                <td class="col-4 text-center m-r n-t">
+                                    <tr><strong>Círculo</strong></tr>
+                                    <tr>Abejorral</tr>
+                                </td>
+                                <td class="col-4 text-center n-t">
+                                    <tr><strong>Estado</strong></tr>
+                                    <tr>Disponible</tr>
+                                </td>
+                                </tr>                                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content:space-between">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="cancelar()">CANCELAR</button>
+            </div>
+
+            <div class="p-2">
+                <button type="button" class="btn btn-round btn-high-mix-govco area-servicio-item">
+                    <span class="btn-mix-govco__title--left text-white">AGREGAR AL CARRITO</span>
+                    <span class="btn-mix-govco__icon govco-icon govco-icon govco-icon-shop-car text-white"></span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+<div>
+    <app-notifications [typeMessage]="currentMessage.type" [message]="currentMessage.message"
+        [title]="currentMessage.title" [show]="invalidForm"></app-notifications>
+</div>
+
+<div class="card govco-card">
+    <div class="card-header pl-1 pr-1 pt-0">
+        <h3 class="m-0 title-section">Crear cuenta en Ministerio de Justicia</h3>
+    </div>
+    <div id="registroMinjusticiaDiv" class="card-body pt-3" [formGroup]="signInForm"
+        [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+        <div class="row mb-4">
+            <!--nombres y apellidos-->
+            <div id="nombresApellidosGroup" class="w-100">
+                <h3 class="mb-3">Nombres y apellidos</h3>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="primerNombre">Primer nombre</label>
+                            <input class="form-control input-govco" type="text" formControlName="primerNombre"
+                                placeholder="Ej: Roberto" maxlength="50"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="segundoNombre">Segundo nombre</label>
+                            <input class="form-control input-govco" type="text" formControlName="segundoNombre"
+                                placeholder="Ej: Roberto" maxlength="50"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="primerApellido">Primer apellido</label>
+                            <input class="form-control input-govco" type="text" formControlName="primerApellido"
+                                placeholder="Ej: Roberto" maxlength="50"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="segundoApellido">Segundo apellido</label>
+                            <input class="form-control input-govco" type="text" formControlName="segundoApellido"
+                                placeholder="Ej: Roberto" maxlength="50"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--datos personales-->
+            <div class="datosPersoonalesGroup w-100">
+                <h3 class="mb-3 mt-2">Datos personales</h3>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="form-group col-lg-6 select-govco">
+                            <label class="form-group-govco" for="tipoDocumento">Tipo de documento</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoDocumento"
+                                [items]="paramsList.tipoDocumento" placeholder="Por ejemplo: Cédula de ciudadanía">
+                            </app-dropdownlist>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label  class="form-group-govco" for="numeroDocumento">Número de documento</label>
+                            <input class="form-control input-govco" type="number" formControlName="numeroDocumento" maxlength="16" pattern="^[0-9]*$"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="email">Correo electrónico</label>
+                            <input class="form-control input-govco" type="text" formControlName="email" maxlength="256" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="form-group-govco" for="telefono">Teléfono</label>
+                            <input class="form-control input-govco" type="number" formControlName="telefono" />
+                        </div>
+                        <div class="form-group col-lg-6 mb-3a">
+                            <div class="select-govco">
+                                <label class="form-group-govco" for="departamento">Departamento</label>
+                                <app-dropdownlist ngDefaultControl formControlName="departamento"
+                                    [items]="paramsList.departamento" placeholder="Por ejemplo: Meta">
+                                </app-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6 mb-3">
+                            <div class="select-govco">
+                                <label class="form-group-govco" for="municipio">Municipio</label>
+                                <app-dropdownlist ngDefaultControl formControlName="municipio"
+                                    [items]="paramsList.municipio" placeholder="Por ejemplo: Villavicencio">
+                                </app-dropdownlist>
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <div></div>
+                            <label class="form-group-govco" for="direccion">Dirección</label>
+                            <input class="form-control input-govco" type="text" formControlName="direccion" maxlength="200"/>
+                        </div>
+                        <div class="form-group col-lg-6 select-govco mb-3">
+                            <label class="form-group-govco" for="estrato">Estrato</label>
+                            <app-dropdownlist ngDefaultControl formControlName="estrato" [items]="paramsList.estrato"
+                                placeholder="Por ejemplo: Alto">
+                            </app-dropdownlist>
+                        </div>
+                        <div class="form-group col-lg-6 mb-3">
+                            <label class="form-group-govco" for="ingresos">Ingresos</label>
+                            <app-dropdownlist ngDefaultControl formControlName="ingresos" [items]="paramsList.ingresos"
+                                placeholder="Por ejemplo: Alto">
+                            </app-dropdownlist>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group password-form-control">
+                                <label class="form-group-govco" for="contrasena">Contraseña</label>
+                                <input id="contrasena" class="form-control input-govco"
+                                    [type]="showPasswordBool.showpassword" formControlName="contrasena" maxlength="100"/>
+                            </div>
+                            <label class="chk-govco">
+                                <input type="checkbox" id="showPassword" (click)="showPassword('password')" />
+                                <label for="showPassword">
+                                    Mostrar contraseña
+                                </label>
+                                <div class="chk-govco__indicator"></div>
+                            </label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group password-form-control">
+                                <label class="form-group-govco" for="repContrasena">Contraseña</label>
+                                <input id="repContrasena" class="form-control input-govco"
+                                    [type]="showPasswordBool.repeatPassword" formControlName="repContrasena" maxlength="100"/>
+                            </div>
+                            <label class="chk-govco">
+                                <input type="checkbox" id="showPasswordAgain" (click)="showPassword('repeat')" />
+                                <label for="showPasswordAgain">
+                                    Mostrar contraseña
+                                </label>
+                                <div class="chk-govco__indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 ml-3 mr-3 mb-3">
+                <label class="chk-govco">
+                    <input type="checkbox" id="okTerminos" />
+                    <label class="govco-register-terminos">
+                        <em>
+                            Al registrar tu cuenta confirmas que has leido y aceptas la
+                            <a class="okterminos-link" (click)="showTerms()">
+                                Politica de privacidad y Condiciones de uso
+                            </a> de LegalApp
+                        </em>
+                    </label>
+                    <div class="chk-govco__indicator"></div>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <div class="row recaptcha-container">
+                    <div class="form-group">
+                        <re-captcha formControlName="recaptcha"></re-captcha>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class=" col-md-12 registro-minjusticia-footer">
+                <button class="btn btn-round btn-middle wb-150" (click)="reset()">CANCELAR</button>
+                <button id="save-user" class="btn btn-round btn-high" (click)="save()">REGISTRARME</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <div class="area-note-selago p-3">
+        <p><strong class="title mb-4">{{ messages.prerequisitosTitle }}</strong></p>
+        <em class="content wspace-preline"> {{ messages.prerequisitos }}</em>
+    </div>
+</div>

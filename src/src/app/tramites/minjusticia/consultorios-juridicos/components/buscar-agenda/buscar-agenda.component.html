@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-12 pb-3" *ngIf="invalidForm">
+        <app-notifications [typeMessage]="'error'" [message]="currentMessage" [title]="'Lo sentimos'"
+            [show]="invalidForm"></app-notifications>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card govco-card">
+            <div class="card-header pl-1 pr-1 pt-0">
+                <h3 class="m-0 title-section">Seleccionar lugar y fecha</h3>
+            </div>
+            <div class="card-body">
+                <div class="row" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+                    [validate]="invalidForm">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Ciudad</label>
+                            <app-dropdownlist ngDefaultControl formControlName="ciudad"
+                                placeholder="Por ejemplo: Villavicencio" [items]="listCities"></app-dropdownlist>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Fecha</label>
+                            <input class="form-control input-govco" placeholder="dd/mm/yyyy" formControlName="fecha"
+                                name="dp" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"
+                                [minDate]="currentDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="agenda-footer col-md-12">
+                    <button class="btn btn-round btn-high wb-150" (click)="search()">BUSCAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-4">
+    <div class="area-note-selago p-3">
+        <p><strong class="title mb-4">Advertencia</strong></p>
+        <em class="content">{{messages.advice}}</em>
+    </div>
+</div>

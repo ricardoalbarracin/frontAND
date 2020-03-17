@@ -1,0 +1,78 @@
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-govco" (scroll)="hiddenMenu($event)">
+  <!--Nivel 1 - Sección de notificaciones -->
+  <div class="navbar-nav navbar-notifications">
+    <div class="alert alert-warning">
+      <div class="container p-0">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true" (click)="hiddenNotification()"><i class="material-icons page-icon-close">clear</i></span>
+        </button>
+        <a href="/inicio#textarea-escribe-aqui-tu-opinion">
+          <strong class="page-alert-text">
+            Estamos construyendo este espacio para ti y tu opinión nos ayuda a crecer
+          </strong>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--Nivel 2 - Sección de navegación -->
+  <div class="navbar-container">
+    <div class="navbar-logo float-left">
+      <a class="navbar-brand" href="http://190.60.233.154/">
+        <img src="https://govco-551ef.firebaseapp.com/assets/images/logo.png" width="auto" height="30" alt="Logo Gov.co">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapsible" aria-controls="navbarCollapsible" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse navbar-first-menu float-right">
+      <div class="nav-primary">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Trámites y servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.gov.co/participacion">Participación</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.gov.co/informacion">Entidades</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-item-primary">
+        <div class="form-inline form-search-bar my-2 my-lg-0">
+          <input class="form-control mr-sm-2 search-navbar"
+          type="search"
+          placeholder="Buscar"
+          aria-label="Search"
+          name="searchTerm"
+          [(ngModel)]="searchTerm"
+          (focus)="searchFocus()"
+          (focusout)="searchOutFocus()"
+          (keyup.enter) = "searchGovCo()">
+          <span class="govco-icon govco-icon-search-cn icon-search"></span>
+        </div>
+        <span class="govco-icon govco-icon-language-en-n lang-govco ml-3 mr-0" (click)="changeLang()"></span>
+      </div>
+    </div>
+  </div>
+  <!--Nivel 3 - Sección de menú flotante-->
+  <div class="nav-secondary govco-content" id="nav-secondary">
+    <div class="container">
+      <div class="collapse navbar-collapse navbar-first-menu">
+        <ul class="navbar-nav ml-auto mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Trámites y servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.gov.co/participacion">Participación</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.gov.co/informacion">Entidades</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="page-header clear-filter page-header-hidden"> </div>

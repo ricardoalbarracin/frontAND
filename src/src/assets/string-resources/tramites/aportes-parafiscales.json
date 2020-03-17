@@ -1,0 +1,15 @@
+{
+    "messages": {
+        "advice" : "Señor usuario, de conformidad con lo dispuesto en las normas vigentes sobre protección de datos personales, el ICBF solicita su autorización para la recolección y tratamiento de sus datos personales a fin de realizar caracterización poblacional y medición de calidad de servicio mediante encuesta, en cumplimiento de la misión institucional y funciones legales. Para mayor información lo invitamos a consultar nuestra política de tratamiento de datos personales en nuestra página web ",
+        "generate-info": "Los documentos generados a través de esta página tienen un código de verificación con el cual el interesado podrá validar su autenticidad a través de esta opción que estará disponible por 30 días.",
+        "generate-info-copy": "Queda bajo su responsabilidad la descarga, verificación y validación que la información corresponda al certificado generado en esta página.",
+        "searchEmpty": "Los datos ingresados son incorrectos, te recomendamos:  \n  1. Revisar que los datos ingresados sean los solicitados.",
+        "emailSend": "Luego de realizar este registro, se validarán los datos y se enviará una confirmación al correo electrónico que indicó en este formulario de registro",
+        "forgotPassword": "Su contraseña será enviada al correo electrónico que registró en el momento de la inscripción",
+        "help": "Si es persona natural ingrese su cédula, si es empresa digite su NIT sin dígito de verificación en el campo Aportante",
+        "failureRequest": "No encontramos resultados para la búsqueda realizada, te recomendamos: \n  1. Revisar los datos ingresados.  \n  2. Si aún no encuentras lo que buscas, contáctanos.",
+        "password": "La contraseña debe tener mínimo 10 caracteres relacionado números, letras mayúsculas y minúsculas en cualquier proporción, así como no puede tener caracteres especiales y espacios."
+    }
+}
+
+

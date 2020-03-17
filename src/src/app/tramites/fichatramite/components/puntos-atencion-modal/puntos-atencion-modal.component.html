@@ -1,0 +1,71 @@
+<div class="puntos-atencion-tramite">
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-7 col-12">
+                <ng-container *ngIf="puntosAtencion">
+                <h2>Puntos de Atención</h2>
+            </ng-container>
+            <ng-container *ngIf="normatividad">
+                <h2 class="titulo_popuptramite">Legislación Asociada</h2>
+            </ng-container>
+            </div>            
+        
+        <div class="col-md-5 col-12">
+            <div class="buscador">
+                <input class="form-control" type="text" aria-label="Buscar" placeholder="Buscar" [(ngModel)]="serchText">
+                <span class="govco-icon govco-icon-search-cn"></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="close" (click)="closeModal()"><em class="material-icons">clear</em></button>
+</div>
+<div class="modal-body">    
+    <div class="row">
+        <div class="col-md-12">
+                <table class="table table-responsive" *ngIf="puntosAtencion">
+                        
+                            <ng-container  *ngFor="let punto of puntosAtencion |filter:serchText | paginate: { itemsPerPage: 5, currentPage: p}; let i = index">
+                                <thead *ngIf="i == 0" >
+                                    <th class="textofilas" ><strong>Punto</strong></th>
+                                    <th class="textofilas" ><strong>Departamento / Municipio</strong></th>
+                                    <th class="textofilas" ><strong>Dirección</strong></th>
+                                    <th class="textofilas" ><strong>Horario</strong></th>
+                                    <th class="textofilas" ><strong>Teléfono</strong></th>
+                                    <th class="textofilas" ><strong>Ver Mapa</strong></th>
+                                </thead>
+                            </ng-container>
+                            <tbody>
+                            <ng-container  *ngFor="let punto of puntosAtencion |filter:serchText | paginate: { itemsPerPage: 5, currentPage: p}; let i = index">
+                                 <tr>
+                                    <td>{{ punto.PuntoAtencionNombre }}</td>
+                                    <td>{{ punto.Departamento }} / {{ punto.Municipio }}</td>
+                                    <td>{{ punto.PuntoAtencionDireccion }}</td>
+                                    <td>{{ punto.HorarioAtencion }}</td>
+                                    <td>{{ punto.PuntoAtencionTelefono }}</td>
+                                    <td>
+                                        <a target="_blank" href="http://maps.google.com/maps?ll={{ punto.Latitud.replace(',','.') }},{{ punto.Longitud.replace(',','.') }} ">
+                                            <span class="govco-icon govco-icon-pin"></span>
+                                        </a></td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+
+                    <table class="table"  *ngIf="normatividad">
+                            <tbody>
+                                <ng-container  *ngFor="let normas of normatividad |filter:serchText | paginate: { itemsPerPage: 6, currentPage: p}; let i = index">
+                                    <ng-container *ngIf="i%2==0">
+                                     <tr >
+                                    </ng-container>
+                                        <td style="width: 50%;" class="textofilas">{{ normas.TipoNorma }} {{ normas.NumeroNorma }} de {{ normas.AnoNorma }} ({{ normas.Articulos }})
+                                        <img src="assets/icon-fichatramite/save.svg" class="iconodisponible" style="float:right;" alt="Save" >
+                                        </td>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>                    
+        </div>
+    </div>
+</div>
+</div>

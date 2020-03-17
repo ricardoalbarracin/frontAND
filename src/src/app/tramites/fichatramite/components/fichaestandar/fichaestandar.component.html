@@ -1,0 +1,18 @@
+<div *ngIf="dataBase">
+    <div class="col-md-12">
+        <h2>{{ dataBase.NombreEstandarizado }}</h2>
+        <p>{{ dataBase.Proposito }}</p>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group select-govco">
+            <label for="lugar"><strong>¿Donde quieres realizar el trámite?</strong></label>           
+            <select  (change)="idMunicipio($event.target.value)" class="form-control" id="lugar" name="lugar" required>
+                <option value="" selected disabled>Seleccione un Municipio - Departamento</option>
+                <ng-container *ngFor="let puntos of dataBase.Puntos">
+                    <option value="{{ puntos.IdTramiteMunicipio }}">{{ puntos.MunicipioNombre }} - {{ puntos.DepartamentoNombre }}</option>
+                </ng-container>
+            </select>
+        </div>     
+    </div>
+
+</div>

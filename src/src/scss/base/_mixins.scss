@@ -1,0 +1,79 @@
+@import "../base/colors";
+
+@mixin displayInlineBloack($display, $element: false) {
+  @if $element {
+    display: $display;
+  }
+}
+
+@mixin spriteUrl($spr-url){
+  background-image: url($spr-url)!important;
+  background-repeat: no-repeat;
+}
+@mixin spritePosition($value-x: 0, $value-y: 0){
+  background-position: (-1*$value-x)+px (-1*$value-y)+px;
+}
+@mixin optionSelect($background-color: #fff,
+$background-hover-color: #fff, 
+$text-color: #fff, 
+$border-color: #fff){
+  width: 100%;
+  background-color: $background-color!important;    
+  .dropdown-item,
+  li {
+    width: 100%;
+    margin: 0;
+    a,
+    a:hover,
+    a:active,
+    a:focus {
+      box-shadow: none !important;
+      background-color: transparent;
+      margin: 0 15px!important;
+    }
+    &:not(:first-child) {
+      a {
+        border-top: 0.8px solid $border-color;
+      }
+    }
+    &:hover,
+    &:active,
+    &:focus {
+      margin-bottom: -2px;
+      background-color: $background-hover-color;
+      box-shadow: none !important;
+      color: white !important;
+      font-weight: bold !important;
+      a,
+      a:hover,
+      a:active,
+      a:focus {
+        box-shadow: none !important;
+        background-color: transparent;
+        color: white !important;
+        font-weight: 600 !important;
+      }
+    }
+
+    &.disabled {
+      a {
+        color: $color-silver!important;
+      }
+      &:hover,
+      &:active,
+      &:focus{
+        a {
+          color: $color-silver !important;
+        }
+      }
+    }
+  }
+  .dropdown-item,
+  li > a {
+      color: $text-color;
+      font-size: 0.8rem;
+      margin: 0 2%;
+      padding-right: 0;
+      padding-left: 0;
+  }
+} 

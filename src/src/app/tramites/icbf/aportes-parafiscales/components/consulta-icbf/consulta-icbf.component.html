@@ -1,0 +1,33 @@
+<div class="row" id="messageConsulta">
+  <div class="col-12 pb-3">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+    <app-notifications [typeMessage]="'success'" [title]="'Tu certificado ha sido verificado con éxito, por favor espera unos segundos su descarga ...'"
+    [show]="mensajeDescarga"></app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card">
+  <div class="center">
+    <h3>Consulta de certificado por código de verificación</h3>
+    <label>Ingresa el código de verificación para consultar una planilla</label>
+  </div>
+  <div class="card-body">
+    <div class="row" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="form-group col-lg-6 input-center">
+            <label for="codigo" class="form-group-govco">Código de verificación</label>
+            <input class="form-control input-govco" type="text" formControlName="codigo" (change)="setStep(2)" maxlength="10"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row certificado-afiliacion-footer">
+      <div class=" col-md-12 aportes-parafiscales-footer">
+        <button class="btn btn-round btn-high" (click)="consultar()">CONSULTAR</button>
+      </div>
+    </div>
+
+  </div>
+</div>

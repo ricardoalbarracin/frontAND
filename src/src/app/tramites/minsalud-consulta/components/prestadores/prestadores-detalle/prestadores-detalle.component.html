@@ -1,0 +1,23 @@
+
+
+
+<div>
+        <app-tables [tableType]="'detail'" [hContent]="tDetail.Header" [bContent]="tDetail.Body" [hConfig]="tDetail.ConfigHeader" [bConfig]="tDetail.ConfigBody"></app-tables>
+</div>
+
+<p>{{concultaService.cantidadRegistros}}</p>
+<p>{{concultaService.cantidadRegistrosOtro}}</p>
+
+<a *ngIf="1 === 0" (click)="abrirPopup()" class="btn btn-round btn-high">Abrir popup</a>
+
+<div class="row clearfix text-center">
+<div class="col-md-12">
+        <br>
+        <p>Puedes descargar la totalidad de los resultados encontrados</p>
+</div>
+</div>
+<div class="row clearfix text-center">
+<div class="col-md-12">
+        <a (click)="descargarResultados()" class="btn btn-round btn-high">Descargar resultados</a>
+</div>
+</div>

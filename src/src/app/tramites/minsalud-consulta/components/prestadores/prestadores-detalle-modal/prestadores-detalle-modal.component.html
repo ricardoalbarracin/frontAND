@@ -1,0 +1,148 @@
+<div class="modal-header">
+        <h3 class="m-0 modal-title">INFORMACIÓN DETALLADA DEL REGISTRO</h3>
+        <button type="button" class="close" data-dismis="modal" aria-hidden="true" (click)="closeModal()">
+                <em class="material-icons">clear</em>
+        </button>
+</div>
+<div class="modal-body">
+        <div class="modal-subtitle">
+                <label class="modal-detail-title m-0">Nombre del prestador: Suramericana EPS SAS</label>
+        </div>
+        <div class="modal-detail">
+                <div class="row form-group">
+                        <div class="col-sm form-group">
+                                <strong><label>Tipo de documento</label></strong><br>
+                                <label class="label-detail-govco">
+                                        {{concultaService.registroSeleccionado.tipo_documento!==''?concultaService.registroSeleccionado.tipo_documento:"No registra"}}
+                                </label>
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Número de documento</label></strong><br>
+                                <label class="label-detail-govco">
+                                        {{concultaService.registroSeleccionado.numero_documento!==''?concultaService.registroSeleccionado.numero_documento:"No registra"}}
+                                </label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Naturaleza Jurídica</label></strong><br>
+                                <label class="label-detail-govco">
+                                        {{concultaService.registroSeleccionado.naturaleza_juridica!==''?concultaService.registroSeleccionado.naturaleza_juridica:"No registra"}}                                                
+                                </label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Departamento</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.departamento_prestador}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Municipio</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.municipio_prestador}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Código del prestador</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.codigo_prestador}}</label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Nombre de prestador</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.nombre_prestador}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Clase de prestador</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.clase_prestador}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Empresa social del estado</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.ese}}</label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Dirección</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.direccion}}</label>
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Teléfono</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.telefono}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Fax</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.fax}}</label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Correo electrónico</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.correo_electronico}}</label>
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Razón social</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.razon_social}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Representante legal</label></strong><br>
+                                <label class="label-detail-govco"></label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Nivel atención prestador</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.nivel_atencion}}</label>
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Carácter territorial</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.caracter_territorial}}</label>
+
+                        </div>
+                        <div class="col-sm form-group">
+                                <strong><label>Fecha de inscripción</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.fecha_radicacion}}</label>
+
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm form-group">
+                                <strong><label>Fecha de vencimiento</label></strong><br>
+                                <label
+                                        class="label-detail-govco">{{concultaService.registroSeleccionado.fecha_vencimiento}}</label>
+                        </div>
+                </div>
+        </div>
+
+</div>
+<div class="modal-footer">
+        <div class="col-md-6 text-right">
+                <a (click)="closeModal()" class="btn btn-round btn-middle">Regresar</a>
+        </div>
+        <div class="col-md-6 text-left">
+                <a (click)="closeModalConDescarga()" class="btn btn-round btn-high">Descargar
+                        Información</a>
+        </div>
+</div>

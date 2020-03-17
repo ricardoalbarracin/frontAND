@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12 pb-3">
+        <app-notifications [typeMessage]="'error'" [message]="messages.busquedavacia" [title]="'Lo sentimos'"></app-notifications>
+    </div> 
+</div> 
+<div class="row" [formGroup]="consultaForm" [ngClass]="{'invalid-form' : invalidForm}">
+    <div class="card govco-card col-md-12">      
+        <div class="card-body">
+          <div class="row" id="tipoconsultaGroup">
+            <h3 class="col-md-5">1. Tipo de búsqueda </h3>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="radiobutton-govco">
+                  <input type="radio" (click)="inactiveDetail()" id="documento" value="REG" formControlName="opcion"/>
+                  <span class="span_normal">Registro</span>
+                  <div class="radiobutton-govco__indicator"></div>
+                </label>                  
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="radiobutton-govco">
+                  <input type="radio" (click)="inactiveDetail()" id="registro" value="ATC" formControlName="opcion"/>
+                  <span class="span_normal">Clasificación ATC</span>
+                  <div class="radiobutton-govco__indicator"></div>
+                </label>                                    
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

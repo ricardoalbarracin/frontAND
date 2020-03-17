@@ -1,0 +1,15 @@
+<div class="col-md-12">
+    <iframe [src]='sanitizer.bypassSecurityTrustResourceUrl(data.URL_TRAMITE)' height="600px" width="100%" title="Tramite"></iframe>
+    <div class="tramiteCard">
+        <div class="row">
+            <div class="col-md-8 p-2 center">
+                <govco-area-servicios module="TramitesEmbebidos" itemid="numero" ></govco-area-servicios>
+            </div>
+            <div class="col-md-4 p-2 center">
+                    <a href="/ficha-tramite/T{{data.NUMERO}}" class="btn btn-round btn-high ">Volver a información general</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+

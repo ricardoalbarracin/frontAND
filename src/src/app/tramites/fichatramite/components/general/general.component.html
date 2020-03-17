@@ -1,0 +1,17 @@
+<div class="col-md-12">
+
+    <embebidos *ngIf="embebido == true" [data]="dataEmbebidos"></embebidos>
+
+    <div *ngIf="tramite.tipo == '601'">
+        <app-ficha-especifica *ngIf="tramite.tipo" [informacionFicha]="tramite" (propagar)="redireccionador($event)">
+        </app-ficha-especifica>
+    </div>
+    <div *ngIf="tramite.tipo == '602'">
+        <ficha-estandar [tipoFicha]="tramite.tipo"  (propagar)="redireccionador($event)">
+        </ficha-estandar>
+    </div>
+    <div *ngIf="tramite.tipo == '603'">
+        <ficha-no-suite  [tipoFicha]="tramite.tipo"></ficha-no-suite>
+    </div>
+
+</div>

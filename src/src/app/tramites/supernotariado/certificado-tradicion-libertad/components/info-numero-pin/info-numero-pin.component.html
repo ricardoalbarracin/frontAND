@@ -1,0 +1,105 @@
+<div class="card govco-card mt-4">
+    <div class="card-body">
+        <div [formGroup]="infoNumeroPinForm">
+                <h3>Información número de PIN</h3>
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-12">
+                        <p>
+                            {{infoNumeroPinForm.controls.encabezado.value}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-fixed">
+                            <tbody>
+                                <tr>
+                                    <td class="col-4 text-left m-r n-t">
+                                <tr><strong>Pin</strong></tr>
+                                <tr>AB0099918923940984739</tr>
+                                </td>
+                                <td class="col-4 text-left m-r n-t">
+                                    <tr><strong>Oficina de registro</strong></tr>
+                                    <tr>Titiribí</tr>
+                                </td>
+                                <td class="col-4 text-left n-t">
+                                    <tr><strong>Matrícula</strong></tr>
+                                    <tr>01-AB9839R84949058002</tr>
+                                </td>
+                                </tr>                                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                    <div class="row">
+                        <div class="card govco-card">
+                            <span>
+                                {{infoNumeroPinForm.controls.infoGeneral.value}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="col-md-12 mt-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-fixed">
+                            <tbody>
+                                <tr>
+                                    <td class="col-4 text-left m-r n-t">
+                                <tr><strong>Fecha de transacción</strong></tr>
+                                <tr>01/02/2004 14:00pm</tr>
+                                </td>
+                                <td class="col-4 text-left m-r n-t">
+                                    <tr><strong>Inicio de generación</strong></tr>
+                                    <tr>01/02/2004 08:00pm</tr>
+                                </td>
+                                <td class="col-4 text-left n-t">
+                                    <tr><strong>Finalización de generación</strong></tr>
+                                    <tr>01/02/2014 16:00pm</tr>
+                                </td>
+                                </tr>                                                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                        <div class="col-lg-12">
+                                <strong>Descargables</strong>                              
+                            </div>
+                    <div class="col-lg-12">                         
+                        <a href="/" class="btn-symbolic-govco">Nombre del documento</a>                        
+                    </div>
+                </div>
+            </div>              
+
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content:space-between">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="nuevaValidacion()">NUEVA VALIDACIÓN</button>
+            </div>
+
+            <div class="p-2">
+                <button type="button" class="btn btn-round btn-high-mix-govco">
+                    <span class="btn-mix-govco__title--left mx-3 text-white">DESCARGAR</span>
+                    <span class="govco-icon govco-icon-down-arrow-cn text-white"></span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

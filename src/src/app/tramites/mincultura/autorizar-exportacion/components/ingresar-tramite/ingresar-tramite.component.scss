@@ -1,0 +1,15 @@
+.option-left {
+    text-align: left;
+}
+.option-right {
+    text-align: right;
+}
+
+@media only screen and (max-device-width : 768px) {
+    .option-left {
+        text-align: center;
+    }
+    .option-right {
+        text-align: center;
+    }
+}

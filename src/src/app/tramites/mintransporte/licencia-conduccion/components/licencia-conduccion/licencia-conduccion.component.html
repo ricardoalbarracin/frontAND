@@ -1,0 +1,18 @@
+
+<div id="licencia-conduccion-container" class="row">
+    <app-tramite-detail class="col-md-12"
+        [name] = "'licencia-conduccion'"
+        [owner] = "'mintransporte'" 
+        [id] = "'S002'"
+    >
+    </app-tramite-detail>
+
+    <div class="col-md-9 tramite-area">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-md-3 area-servicio">
+        <govco-area-servicios module="TramitesNoSuit" itemid="S002" step="2"></govco-area-servicios>            
+        <app-apostilla></app-apostilla>
+        <app-btn-volver [tramite]="'servicios-y-tramites/S002'" [type]="'redirect'" ></app-btn-volver>
+    </div>
+</div>

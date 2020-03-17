@@ -1,0 +1,249 @@
+
+<app-tramite-detail [name]="'consulta'" [owner]="'minsalud'"></app-tramite-detail>
+<div class="tramite-container row">
+    <div class="col-md-9 tramite-area">
+        <div class="card-body p-0 mb-3" *ngIf="concultaService.invalidForm">
+            <app-notifications [typeMessage]="'error'" [message]="errorMessage.message" [title]="errorMessage.title"
+                [show]='concultaService.invalidForm'>
+            </app-notifications>
+        </div>
+        <div class="card-body p-0 mb-3" *ngIf="successDownload && concultaService.descargaCompleta">
+            <app-notifications [typeMessage]="'success'" [message]="" [title]="successMessage" [show]='successDownload' class="mb-2"></app-notifications>                
+        </div>
+        <div class="main-minsalud-advice">
+            <div class="card govco-card p-0">
+                    <div class="card-body p-0">
+                    <article id="Tabs">
+                        <h3 class="pt-3 pl-3 pb-2 title-section">Consultar registro actual prestadores</h3>
+                        <div id="div-tabs">
+                            <div id="div-tabs-item" class="p-0">
+                                <div class="tabs-govco">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li *ngFor="let opcionLoop of concultaService.opciones; let first = first;"
+                                            [ngClass]="{firstItem: first}" role="presentation" class="nav-item"
+                                            [class.active]="concultaService.opcionSeleccionada===opcionLoop">
+                                            <a (click)="concultaService.seleccionarHistoria(opcionLoop)"
+                                                class="nav-link" data-toggle="tab" role="tab"
+                                                [class.active]="opcionLoop===concultaService.opciones[1]"
+                                                aria-selected="opcionLoop===concultaService.opciones[1]">{{opcionLoop}}</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content pt-3">
+                                        <div *ngIf="concultaService.opcionSeleccionada === concultaService.opciones[1]"
+                                            role="tabpanel" class="tab-pane active" id="one">
+                                            <div [formGroup]="formGroup">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Número de documento</label>
+                                                                <input formControlName="numero_documento"
+                                                                    maxlength="12" numbersOnly
+                                                                    class="form-control input-govco">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Naturaleza jurídica</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="naturaleza_juridica"
+                                                                    [items]="concultaService.listaNaturalezaJuridica">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="title-section mt-3 mb-4">Datos Generales del Prestador</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Departamento</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="departamento_prestador"
+                                                                    [items]="concultaService.listaDepartamento"
+                                                                    (change)="cargarMunicipios()"
+                                                                    >
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Municipio</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="municipio_prestador"
+                                                                    [items]="concultaService.listaMunicipioFiltrado">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Código del prestador</label>
+                                                                <input maxlength="12" numbersOnly numbersOnly
+                                                                    class="form-control input-govco"
+                                                                    formControlName="codigo_prestador" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Clase del prestador</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="clase_prestador"
+                                                                    [items]="concultaService.listaClasePrestador">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Empresa social del estado</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="ese"
+                                                                    [items]="concultaService.listaEmpresaSocialEstado">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Nivel de atención del prestador</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="nivel_atencion"
+                                                                    [items]="concultaService.listaNivelAtencionPrestador">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Carácter territorial</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="caracter_territorial"
+                                                                    [items]="concultaService.listaCaracterTerritorial">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h3 class="title-section mt-3 mb-4">Datos de la sede</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Departamento</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="departamento_sede"
+                                                                    [items]="concultaService.listaDepartamento"
+                                                                    (change)="cargarMunicipios2()"
+                                                                    >
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Municipio</label>                                                                    
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="municipio_sede"
+                                                                    [items]="concultaService.listaMunicipioFiltrado2">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Código de la sede</label>
+                                                                <input maxlength="12" numbersOnly
+                                                                    class="form-control input-govco"
+                                                                    formControlName="codigo_sede">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Sede principal</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="sede_principal"
+                                                                    [items]="concultaService.listaSedePrincipal">
+                                                                </app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Nombre de la sede</label>
+                                                                <input class="form-control input-govco" maxlength="200"
+                                                                    formControlName="nombre_sede">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="form-group-govco">Zona</label>
+                                                                <app-dropdownlist ngDefaultControl
+                                                                    formControlName="zona"
+                                                                    [items]="concultaService.listaZona"></app-dropdownlist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-4">
+                                                        <div class="col-md-12">
+                                                            <div class="row recaptcha-container">
+                                                                <div class="form-group">
+                                                                    <re-captcha formControlName="recaptcha">
+                                                                    </re-captcha>
+                                                                    <div *ngIf="concultaService.invalidRecaptcha"
+                                                                        class="text-danger">
+                                                                        Campo sin diligenciar.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row pb-3">
+                                                        <div class="col-6 text-right">
+                                                            <button class="btn btn-round btn-middle wb-150" (click)="limpiar()">LIMPIAR</button>
+                                                        </div>
+                                                        <div class="col-6 text-left">
+                                                            <button id="save-user" class="btn btn-round btn-high wb-150" (click)="buscar()">BUSCAR</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 area-servicio">
+        <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>
+        <app-btn-volver [tramite]="'servicios-y-tramites/T24609'" [type]="'redirect'"></app-btn-volver>
+    </div>
+</div>
+<div class="table-container">
+    <div *ngIf="concultaService.mostrarDetalle" class="mt-3">
+        <div *ngIf="concultaService.opcionSeleccionada === concultaService.opciones[1]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <div>
+                <app-tables [tableType]="'detail'" [hContent]="concultaService.tDetail.Header"
+                    [bContent]="concultaService.tDetail.Body" [hConfig]="concultaService.tDetail.ConfigHeader"
+                    [bConfig]="concultaService.tDetail.ConfigBody"></app-tables>
+            </div>
+            <div class="row clearfix text-center">
+                <div class="col-md-12">
+                    <br>
+                    <p>Puedes descargar la totalidad de los resultados encontrados</p>
+                </div>
+            </div>
+            <div class="row clearfix text-center">
+                <div class="col-md-12">
+                    <a (click)="descargarResultados()" class="btn btn-round btn-high">Descargar resultados</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

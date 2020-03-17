@@ -1,0 +1,9 @@
+{
+    "messages": {
+        "advice" : "Ten en cuenta:  podrás realizar este trámite virtual, si el certificado académico fue expedido después del año 2010.  Para estudios anteriores dirígete personalmente a tu centro de formación.",
+        "adobe"  : "Ten en cuenta que para visualizar los certificados requieres de la aplicación Adobe Reader, si no la tienes la puedes descargar ",
+        "registry": "Número de Registro aquel suministrado en su Centro de Formación",
+        "searchEmpty": "Los datos ingresados son incorrectos, te recomendamos:  \n  1. Revisar que los datos ingresados sean los solicitados."
+
+    }
+}

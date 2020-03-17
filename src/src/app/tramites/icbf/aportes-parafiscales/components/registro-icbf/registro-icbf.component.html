@@ -1,0 +1,168 @@
+<div class="row">
+  <div class="col-12 pb-3">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card">
+
+  <h3>Regístrate</h3>
+  <div class="card-body">
+      <div class="row" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+        [validate]="invalidForm">
+      <div class="w-100" id="identificacionGroup">
+          <label><strong>Identificación</strong></label>
+        <div>
+            <div class="row">
+            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                <label for="primerNombre" class="form-group-govco">Número de documento</label>
+                <input class="form-control input-govco" type="text" placeholder="Ej: 1023939490"
+                  formControlName="identificacion" maxlength="16"/>
+              </div>
+            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                <label for="email" class="form-group-govco">Correo electrónico</label>
+                <input class="form-control input-govco" type="text" placeholder="Ej: correo@mail.com"
+                  formControlName="email" maxlength="256"/>
+              </div>
+            <div class="form-group col-lg-6 col-md-12 col-sm-12">
+                <small>{{ messages.help }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <div class="w-100" id="datosPlanillasGroup">
+        <label><strong>Datos de la planilla</strong></label>
+        <div>
+          <div class="row">
+                <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <label for="planilla" class="form-group-govco">Número de planilla de pago</label>
+              <input class="form-control input-govco" type="text" placeholder="Ej: 1023939490"
+                formControlName="planilla" maxlength="12" />
+            </div>
+              <div class="form-group col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label class="form-group-govco">Código operador</label>
+                <app-dropdownlist ngDefaultControl formControlName="codigoOperador" placeholder="Ej: 0293904"
+                  [items]="codigosOperadores"></app-dropdownlist>
+              </div>
+              </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+              <div class="form-group">
+                <label for="mesPeriodo" class="form-group-govco">Mes</label>
+                <app-dropdownlist ngDefaultControl formControlName="mesPeriodo" placeholder="Ej: Enero"
+                  [items]="periodos"></app-dropdownlist>
+              </div>
+            </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+              <div class="form-group">
+                <label for="anoPeriodo" class="form-group-govco">Año</label>
+                <app-dropdownlist ngDefaultControl formControlName="anoPeriodo" placeholder="Ej: 2019"
+                  [items]="anioPeriodos" [selected] = 'anioActual'></app-dropdownlist>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="w-100" id="informacionCuentaGroup">
+      <label><strong>Información de la cuenta</strong></label>
+      <div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 ">
+              <div class="form-group">
+                <small>{{ messages.password }}</small>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group mb-0">
+                <label for="password" class="form-group-govco">Contraseña</label>
+                <input class="form-control input-govco" [type]="typeButton" placeholder="Ej: 1023939490"
+                  formControlName="contrasena" maxlength="15"/>                
+              </div>
+              <label class="chk-govco">
+                <input type="checkbox" id="showPassword" (click)="checkShowPassword()" />
+                <label for="showPassword" class="form-group-govco">
+                  Mostrar contraseña
+                </label>
+                <div class="chk-govco__indicator"></div>
+              </label>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group mb-0">
+                <label for="contrasenaConfirmacion" class="form-group-govco">Confirmar contraseña</label>
+                <input class="form-control input-govco" [type]="typeButtonConfirmation" placeholder="Ej: 1023939490"
+                  formControlName="contrasenaConfirmacion" maxlength="15"/>                
+              </div>
+              <label class="chk-govco">
+                <input type="checkbox" id="showPasswordConfirmation" (click)="checkShowPasswordConfirmation()" />
+                <label for="showPasswordConfirmation" class="form-group-govco">
+                  Mostrar contraseña
+                </label>
+                <div class="chk-govco__indicator"></div>
+              </label>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                <label for="primerNombre" class="form-group-govco">Pregunta de recordación</label>
+                <input class="form-control input-govco" type="text" placeholder="Ej: 1023939490"
+                  formControlName="preguntaRecordacion" maxlength="256"/>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="form-group">
+                <label for="primerNombre" class="form-group-govco">Respuesta</label>
+                <input class="form-control input-govco" type="text" placeholder="Ej: 1023939490"
+                  formControlName="respuesta" maxlength="256"/>
+              </div>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="row">
+                  <div class="form-group col-lg-12 col-md-12 col-sm-12 justify">
+                    <small>
+                      {{ messages.advice }} <app-tratamiento-datos-modal
+                        [name]="'Política de Tratamiento de Datos Personales'"
+                        [enlace]="'https://www.icbf.gov.co/sites/default/files/politica_de_tratamiento_de_datos_personales.pdf'">
+                      </app-tratamiento-datos-modal>
+                    </small>
+                  </div>
+                  <div class="form-group col-lg-12 col-md-12 col-sm-12 ">
+                    <label class="chk-govco">
+                      <input type="checkbox" id="terminosCondiciones" formControlName="autorizacionDatos" />
+                      <label for="terminosCondiciones">
+                        Acepto el uso y tratamiento de mis datos personales
+                      </label>
+                      <div class="chk-govco__indicator"></div>
+                    </label>
+                  </div>
+                  <div class="form-group col-lg-12 col-md-12 col-sm-12 ">
+                    <div class="row recaptcha-container">
+                      <div class="form-group">
+                        <re-captcha formControlName="recaptcha"></re-captcha>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-lg-12 col-md-12 col-sm-12  terminos-container">
+                    <small>
+                      {{ messages.emailSend }}
+                    </small>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-auto">
+      <div class="aportes-parafiscales-footer text-center">
+        <button class="btn btn-round btn-middle" (click)="limpiar()">Limpiar</button>
+        <button class="btn btn-round btn-high" (click)="registrar()">Enviar</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

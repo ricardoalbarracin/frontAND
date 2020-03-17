@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="607.911" height="72.301" viewBox="0 0 607.911 72.301">
+  <g id="Grupo_5341" data-name="Grupo 5341" transform="translate(-10501 -261)">
+    <rect id="Rectángulo_1682" data-name="Rectángulo 1682" width="246" height="4" rx="2" transform="translate(10520.5 277)" fill="#0b457f"/>
+    <rect id="Rectángulo_1684" data-name="Rectángulo 1684" width="292" height="4" rx="2" transform="translate(10779.411 277)" fill="#bababa"/>
+    <circle id="Elipse_79" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(10520.5 261)" fill="#0b457f"/>
+    <circle id="Elipse_79-2" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(10639.615 261)" fill="#0b457f"/>
+    <circle id="Elipse_79-3" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(10751.193 261)" fill="#3772ff"/>
+    <circle id="Elipse_79-4" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(10849.771 261)" fill="#bababa"/>
+    <circle id="Elipse_79-5" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(10941.349 261)" fill="#bababa"/>
+    <circle id="Elipse_79-6" data-name="Elipse 79" cx="17.5" cy="17.5" r="17.5" transform="translate(11054.411 261)" fill="#bababa"/>
+    <text id="En_trámite" data-name="En trámite" transform="translate(10501 329.301)" fill="#0b457f" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="0" y="0">En trámite</tspan></text>
+    <text id="Formalizado" transform="translate(10612.875 329.301)" fill="#0b457f" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="0" y="0">Formalizado</tspan></text>
+    <text id="Pagado" transform="translate(10768.117 329.301)" fill="#3772ff" font-size="14" font-family="Montserrat-Bold, Montserrat" font-weight="700"><tspan x="-28.07" y="0">Pagado</tspan></text>
+    <text id="Autorizado" transform="translate(10867.091 329.301)" fill="#bababa" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="-38.248" y="0">Autorizado</tspan></text>
+    <text id="En_oficina" data-name="En oficina" transform="translate(10916.911 315.301)" fill="#bababa" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="6.846" y="14">En oficina</tspan></text>
+    <text id="Tramitado" transform="translate(11035.911 329.301)" fill="#bababa" font-size="14" font-family="Montserrat-Regular, Montserrat"><tspan x="0" y="0">Tramitado</tspan></text>
+  </g>
+</svg>

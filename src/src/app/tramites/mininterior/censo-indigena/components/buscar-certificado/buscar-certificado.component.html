@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="mostrarAlerta">
+    <app-notifications [typeMessage]="tipoAlerta" [message]="mensajeAlerta" [title]="titulo" [show]="mostrarAlerta">
+    </app-notifications>
+  </div>
+</div>
+<div class="card govco-card p-3 mb-3">
+  <div class="card-body pt-0">
+    <div class="row" id="tipoBusquedaForm">
+      <h3 class="col-md-4 mb-auto mt-auto title-section">1. Tipo de consulta</h3>
+      <div class="col-md-4">
+        <div class="mt-1">
+          <label class="radiobutton-govco">
+            <input type="radio" name="radio" id="generar" name="flag" value="generar" formControlName="flag"
+              (click)="onItemChange('generar')" [defaultChecked]="true" />
+            <label for="documento" class="form-group-govco">Generar certificado</label>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mt-1">
+          <label class="radiobutton-govco">
+            <input type="radio" name="radio" id="validar" name="flag" value="validar" formControlName="flag"
+            (click)="onItemChange('validar')">
+            <label for="registro" class="form-group-govco">Validar certificado</label>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="flag == 'generar'">
+      <div class="area-note-selago">
+        <div><strong class="title">Importante:</strong></div>
+        <em class="content">{{ noticeMessage }}</em>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="content-tipo-consulta">
+  <div class="card govco-card" id="datosGenerarGroup" *ngIf="flag == 'generar'">
+    <div class="row card-header pt-0">
+      <div class="col-12 m-auto p-0">
+          <h3 class="m-0 title-section">Datos de la solicitud</h3>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row" [formGroup]="generarCensoForm" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+        [validate]="invalidForm">
+        <!--datos formulario -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="tipoDocumento">Tipo de documento *</label>
+            <app-dropdownlist ngDefaultControl (change)="actualizarDocumento()" formControlName="tipoDocumento"
+              placeholder="Por ejemplo: Cédula Ciudadanía" [items]="tiposDocumentos"></app-dropdownlist>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="numeroDocumento">Número de documento *</label>
+            <input class="form-control input-govco" (change)="limpiar()" placeholder="Por ejemplo: 10293080" type="text"
+              formControlName="numeroDocumento" />
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="row recaptcha-container">
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha"></re-captcha>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class=" col-md-12 generar-censo-indigena-footer">
+          <button class="btn btn-round btn-high" (click)="generar()">GENERAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card govco-card" id="datosValidarGroup" *ngIf="flag == 'validar'">
+    <div class="row card-header pt-0">
+      <div class="col-12 m-auto p-0">
+          <h3 class="m-0 title-section">Datos de la solicitud</h3>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="row" [formGroup]="validarCensoForm" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+        [validate]="invalidForm">
+        <!--datos formulario -->
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="form-group-govco" for="idCertificado">Pin de validación *</label>
+            <input class="form-control input-govco" (change)="limpiar()"
+              placeholder="Por ejemplo: 2121ae6d-be76-4ae0-99eb-d1c488b6a1db" type="text"
+              formControlName="idCertificado" />
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="row recaptcha-container">
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha"></re-captcha>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class=" col-md-12 generar-censo-indigena-footer">
+          <button class="btn btn-round btn-high" (click)="validar()">VERIFICAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

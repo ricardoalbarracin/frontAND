@@ -1,0 +1,239 @@
+@import "../base/colors";
+.ficha_detalles{
+    .text-intro {
+        text-align: center;
+        margin-top: 1em;
+        h3{ 
+            font-weight: normal;
+            font-size: 1.5em;
+        }
+    }
+    .nav-tabs {
+        border-bottom: none !important;
+        .nav-link {
+            border: 1px solid #dee2e6;
+            background: #E5EEFB;
+        }
+    }    
+    .tab-content {
+        border-radius: 0 30px 30px;         
+        padding: 1.5em;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    }
+    .card {
+        border: none !important;
+        border-radius: 30px;        
+        .card-header {            
+            background-color: #fff;
+            border: none !important;  
+            border-radius: 30px;
+            padding: 0;
+        }        
+        button.collapsed{
+            .icon::before {
+                font-family: "Govco Icon";
+                font-size: 2rem;
+                content: '\e902';
+            }
+        }
+        button {
+            border-bottom: 2px solid #dee2e6;      
+            border-radius: 0;      
+            margin: 0;
+            width: 100%;
+            white-space: normal;
+            text-align: left;
+            font-size: 1em;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer !important;
+            color: $color-dark-blue;
+            &:hover{
+                background-color: #E5EFFB;
+                text-decoration: none !important;
+                border-bottom: 2px solid #dee2e6;
+            }            
+            &:not(.collapsed){
+                background-color: $color-dark-blue !important;
+                color: #fff !important;
+                text-decoration: none !important;
+                border-bottom: 2px solid $color-dark-blue ;
+                .icon::before {
+                    font-family: "Govco Icon";
+                    font-size: 2rem;
+                    content: '\e92d';
+                    color: #fff;
+                }
+            }
+            h3 {
+                padding: 1em 1.5em 1em 0;
+                margin: 0;
+                font-size: 1em;
+            }            
+        }
+        .card-body {
+            background: #E5EFFD !important;
+            h4 {
+                font-size: 1em;
+            }
+            .condicion-panel {
+                background: #fff;
+                padding: 1.2em;
+                border-radius: 0.5em;
+                border: 3px solid #FFAB00;
+                margin: 1em 0;
+                p {
+                    font-style: italic;;
+                }
+            }
+            .documento-panel {
+                margin: 1em 0;
+                .documento-descripcion {
+                    //border-bottom: 1px solid #004884;
+                    padding-bottom: 1em;
+                }
+            }
+        }
+    }       
+    .puntos-btn {
+        width: 100%;
+    }
+    .excepciones {
+        .accordion{
+            .card {
+                border-radius: 0 !important;    
+                border: none !important;      
+                .card-header {
+                    border: none !important;  
+                    border-radius: 0 !important;
+                }
+                button.collapsed {
+                    .icon::before{
+                        font-family: "Govco Icon";
+                        font-size: 2rem;
+                        content: '\e919';
+                        color: $color-dodger-blue;
+                    }
+                }
+                button {                    
+                    border-radius: 0 !important;
+                    border-bottom: 1px solid $color-dark-blue;      
+                    cursor: pointer !important;
+                    background: #E5EFFD;                   
+                    &:hover, &:not(.collapsed), &:active, &:focus{
+                        border: none;
+                        background: #E5EFFD !important;
+                        border-bottom: 1px solid $color-dark-blue;   
+                    }
+                    &:not(.collapsed){                        
+                        .icon::before {
+                            font-family: "Govco Icon";
+                            font-size: 2rem;
+                            content: '\e914';
+                            color: $color-dodger-blue;
+                        }
+                    }
+                    h3 {
+                        padding: 1.5em;
+                        margin: 0;
+                    }
+                    p {
+                        color: $color-dodger-blue !important;
+                    }
+                    .govco-icon-simpler-arrow::before{
+                        color: $color-dodger-blue !important;
+                    }               
+                }
+            }
+        }
+    }
+}
+.govco-table-basic {
+    table {
+        tbody {
+            tr {
+                td {
+                    a{
+                        color: #007BFF !important;
+                        &:hover {
+                            text-decoration: underline !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+} 
+.tramiteCard {
+    border-radius: 30px;         
+    padding: 2em;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    margin-top: 2em !important;
+    h3{
+        font-weight: normal;
+        font-size: 1.5em;
+    }    
+}
+.govco-icon-plus{
+    &::before{
+        color: #007bff;
+    }
+}
+.modal-content {
+    padding: 0 !important;
+}
+.modal-lg {
+    max-width: 1000px !important;
+    .puntos-atencion-tramite {
+        h2{
+            font-weight: normal;
+        }
+        .buscador {
+            display: flex;
+            align-items: center;
+            position: relative;
+            input{
+                border-radius: 2em;
+            }
+            .govco-icon-search-cn {
+                position: absolute;
+                right: 0.1em;
+            }              
+        }
+        table {
+            thead {
+                border-top: 2px solid $color-dodger-blue;
+                background: $color-hawkes-blue;
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+                th {
+                    border: none;
+                    padding: 1rem;
+                }                
+            }
+            tbody {     
+                tr {
+                    border-bottom: 3px solid $color-silver;
+                    td {                    
+                        padding: 1rem;
+                        font-size: 0.9rem !important;
+                        font-weight: 600 !important;
+                    }
+                }           
+            }
+        }
+    }
+}
+.card-header .collapse .icon::before{
+    font-family: "Govco Icon";
+    font-size: 2rem;
+    content: '\e902';
+    color: red;
+}

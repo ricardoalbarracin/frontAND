@@ -1,0 +1,60 @@
+
+<app-logout-icbf></app-logout-icbf>
+
+<div class="row">
+  <div class="col-12 pb-3">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+    <app-notifications [typeMessage]="'success'" [title]="'Tu certificado ha sido generado con éxito, por favor espera unos segundos su descarga ...'"
+    [show]="mensajeDescarga"></app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card">
+  <div>
+    <h3>Generar certificado</h3>
+  </div>
+  <div class="card-body">
+    <div class="row" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="form-group col-lg-6 col-md-12 col-sm-12 input-center">
+            <label for="vigencia" class="form-group-govco">Seleccione una vigencia</label>
+              <app-dropdownlist ngDefaultControl formControlName="vigencia" placeholder = "Ej: 2019" [items]="vigencias" (change)="setStep(3)"></app-dropdownlist>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-12 terminos-container">
+        <div class="row">
+          <label class="chk-govco pr-4">
+            <input type="checkbox" id="terminosCondiciones" formControlName="autorizacionDatos"/>
+            <label for="terminosCondiciones" class="text-justify font-weight-normal font-italic">
+                He leído y acepto los términos y condiciones del certificado de aportantes, disponibles
+                <app-terminos-modal [name]="'AQUÍ'" [enlace]="'https://certificadosaportantes.icbf.gov.co/Certificado/Documentos/Terminos_y_Condiciones_PilaWeb.pdf'"></app-terminos-modal>
+            </label>
+            <div class="chk-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class=" col-md-12 aportes-parafiscales-footer">
+        <button class="btn btn-round btn-high" (click)="generar()">GENERAR CERTIFICADO</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card govco-card adviceMessage">
+    <div class="card-body card-body p-2 text-justify">
+        <label><strong>Recuerda:</strong></label><br/>
+        <p class="font-italic">{{ messages.advice }}</p>
+        <p class="font-italic">{{ messages.adviceInfo }}</p>
+    </div>
+  </div>
+
+</div>
+
+
+

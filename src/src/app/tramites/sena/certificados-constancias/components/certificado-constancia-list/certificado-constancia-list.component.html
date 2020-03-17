@@ -1,0 +1,51 @@
+
+<div class="mb-3" *ngIf="descarga">
+  <app-notifications [typeMessage]="'success'" [title]="'Tu certificado ha sido descargado'" [show]="descarga"></app-notifications>
+</div>
+
+<div class="card govco-card col-md-12">
+  <div class="card-header pl-2 pb-0 pt-0">
+      <h3 class="result-section">Resultado de búsqueda </h3>
+      <h3 class="title-section pt-2">Datos del solicitante</h3>
+  </div>
+  <div class="card-body">
+    <div class="row" id="tipoBusquedaGroup">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nombres y Apellidos</label>
+              <div>
+                {{nombreAprendiz}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Número de identificación</label>
+              <div> {{datosSolicitante.documento}} </div>
+            </div>
+          </div>
+        </div>
+        <p class="area-note-selago mt-3">
+          <em class="content">
+            {{ noticeMessage }} <a href="https://get.adobe.com/es/reader/" ><strong>AQUÍ</strong></a>
+          </em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-sena-advice">
+  <div class="card govco-card" id="datosSolicitanteGroup">
+    <div class="card-header pl-4 pb-0 pt-0">
+      <h3 class="result-section">Selecciona los datos a descargar</h3>
+      <p *ngIf="!certificadosConstancias"><em>Loading...</em></p>
+    </div>
+
+    <div class="card-body">
+        <app-tables [tableType]="'simple'" [hContent]="tSimple.Header" [bContent]="tSimple.Body" [bConfig]="tSimple.ConfigBody" (click)="msgDescargar()"></app-tables>
+    </div>
+  </div>
+</div>

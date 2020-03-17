@@ -1,0 +1,10 @@
+<div class="row" *ngIf="data">
+    <div class="col-12">
+        <h3>{{data.NombreEstandarizado}}</h3>
+        <p>{{ data.Proposito }}</p>
+
+        <ng-container *ngIf="data.PaginaWeb" >
+            <h3 class="nombreinstitucion"><a href="{{data.PaginaWeb}}" target="_blank">{{ data.Entidad }}</a></h3>
+        </ng-container>
+    </div>
+</div>

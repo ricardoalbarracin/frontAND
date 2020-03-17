@@ -1,0 +1,22 @@
+<td class="tg-0lax">
+    <h3 class="title-section pl-3">¿Qué quieres hacer hoy?</h3>
+</td>   
+<div id="div-tabs">
+    <div id="div-tabs-item" class="pl-3 pt-3">
+        <div class="row" *ngIf="service.paso === 2">
+            <div class="col-md-6 option-right">
+                <a class="btn btn-round btn-middle w-75 mt-3" (click)="consultarSolicitud()">Consultar solicitud</a>
+            </div>
+            <div class="col-md-6 option-left">
+                <app-iniciar-sesion></app-iniciar-sesion>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="service.paso === 5">
+            <div class="col-md-12 text-center">
+                <app-iniciar-sesion></app-iniciar-sesion>
+            </div>
+        </div>
+
+    </div>
+</div>

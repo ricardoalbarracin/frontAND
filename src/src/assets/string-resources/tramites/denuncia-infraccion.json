@@ -1,0 +1,15 @@
+{
+    "messages": {
+        "warning_definicion_denuncia": "Una denuncia es informar a la autoridad competente sobre un hecho que se considera violatorio de la ley y para realizar la investigación correspondiente se necesita aportar la información y los documentos necesarios. \n\n\nAl presentar su denuncia por este medio, esta se radica ante la <strong>Superintendencia de industria y comercio</strong> y no es necesario que envíe esta solicitud vía fax, correo electrónico o radicarla en las instalaciones de la SIC.",
+        "warning_solicitud_soportada": "Recuerde que si su solicitud está debidamente soportada, será más ágil el trámite de la misma.\n\nLos soportes podrán ser cualquier pieza de publicidad u otro medio de transmisión de información tales como: folletos, revistas, volantes, avisos, mensajes, pautas comerciales,contratos, entre otros.",
+        "warning_inicio":"Como consumidor de un bien o servicio puede poner en conocimiento de la dirección de investigaciones de protección al consumidor hechos que considere que pongan en riesgo los derechos de un grupo de consumidores",
+        "warning_enviar_solicitud":"¿Deseas continuar con el envío de la solicitud?",
+        "error_modal_sin_resultados":"El número de documento y tipo de documento, NO EXISTEN, ¿Deseas continuar con el registro?",
+        "error_reestablecer_password":"Las contraseñas ingresadas no coinciden, te recomendamos:\n1. Revisar que los datos ingresados sean idénticos\n2. Que las contraseñas cumplan con las condiciones.",
+        "error_login":"Los datos ingresados son incorrectos, te recomendamos:\n1. Revisar que los datos ingresados sean los solicitados.",
+        "warning_confirma_correo":"¿Está seguro que éste es su correo electrónico:\n",
+        "succesfull_envio_correo":"Se ha enviado un correo de confirmación al correo\nregistrado:\n ",
+        "modal_aviso_privacidad":"Aviso de privacidad y autorización para el tratamiento de datos personales trámites en el SITAC del MRE",
+        "warning_envio_exitoso":"Se ha enviado un mensaje con información a seguir para la recuperación de su usuario y clave al correo %. Por favor, revise su buzón de entrada y siga las instrucciones."
+    }
+}

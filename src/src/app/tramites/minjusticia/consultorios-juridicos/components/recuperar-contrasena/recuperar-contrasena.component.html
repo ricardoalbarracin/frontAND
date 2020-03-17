@@ -1,0 +1,41 @@
+<div>
+    <app-notifications [typeMessage]="currentMessage.type" [message]="currentMessage.message"
+        [title]="currentMessage.title" [show]="invalidForm"></app-notifications>
+</div>
+
+<div class="recuperar-contrasena-container">   
+    <div class="row">
+        <div class="col-lg-12">
+            <app-notifications [typeMessage]="'error'" [message]="messages.errorForm" [title]="messages.errorFormTitle" [show]="userInvalid"></app-notifications>
+        </div>
+        <div class="col-lg-12">
+            <app-notifications [typeMessage]="'error'" [message]="messages.errorPassword" [title]="messages.errorFormTitle" [show]="passwordInvalid"></app-notifications>
+        </div>        
+    </div>
+
+    <div class="card govco-card">
+        <h3 class="title-section">Restablecer contraseña</h3>
+        <div class="card-body">
+            <div id="usr-restaurar-contrasena">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-6" [formGroup]="user" [ngClass]="{'invalid-form': userInvalid}" appInputValidator [validate]="userInvalid">
+                        <div class="form-group">
+                            <label for="username">Usuario</label>
+                            <input type="text" class="form-control input-govco" formControlName="username" placeholder="Por ejemplo: Número de cedula"/>
+                        </div>
+                        <div class="row recaptcha-container" >
+                            <div class="form-group">
+                                <re-captcha formControlName="recaptcha"></re-captcha>    
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">                        
+                    <div class="col-lg-6 update-password-button " >
+                        <button id="set-user-btn" class="btn btn-round btn-high" (click) = "userClick()">Enviar</button>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+</div>

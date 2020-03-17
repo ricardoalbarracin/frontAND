@@ -1,0 +1,342 @@
+<div class="row" >
+    <div class="col-12">
+
+        <ngb-tabset >
+            <ngb-tab *ngFor="let itemAudiencia of data">
+                <ng-template ngbTabTitle ><strong (click)="eventoTabAudiencia(itemAudiencia)" >{{itemAudiencia.detalle}}</strong></ng-template>
+                <ng-template ngbTabContent>
+                    <div class="text-intro">
+                        <h3>Información General del Trámite</h3>
+                        <p>Para realizar el trámite debes seguir <strong>los siguientes pasos:</strong></p>
+                    </div>
+
+                    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                        <ngb-panel *ngFor="let momento of itemAudiencia.momentos; let i = index">
+                            <ng-template ngbPanelTitle >
+                                <h3 (click)="dataDetalleMomentoAudiencia(itemAudiencia.detalle, momento.Orden)">{{i+1}}. {{ momento.Descripcion }}</h3>
+                                <div class="icon"></div>
+                            </ng-template>
+                            <ng-template ngbPanelContent>
+
+                                <div *ngFor="let accion of momento.acciones | keyvalue">
+                                    <div *ngIf="accion.key === 'VERIFICACION_INST'">
+                                        <app-accion-verificacion [data]="accion.value"></app-accion-verificacion>
+                                    </div>
+
+                                    <div *ngIf="accion.key === 'PAGO'">
+                                       <app-accion-pago [data]="accion.value"></app-accion-pago>
+                                    </div>
+
+                                    <div *ngIf="accion.key === 'SOLICITUD'">
+                                        <app-accion-solicitud [data]="accion.value"></app-accion-solicitud>
+                                    </div>
+
+                                    <div *ngIf="accion.key === 'DOCUMENTO'">
+                                        <app-accion-documento [data]="accion.value"></app-accion-documento>
+                                    </div>
+
+                                    <div *ngIf="accion.key === 'FORMULARIO'">
+                                        <app-accion-fomulario [data]="accion.value"></app-accion-fomulario>
+                                    </div>
+
+                                    <div *ngIf="accion.key === 'EXCEPCION'">
+                                        <app-accion-excepcion [data]="accion.value"></app-accion-excepcion>
+                                    </div>
+                                </div>
+
+
+                            </ng-template>
+                        </ngb-panel>
+                      </ngb-accordion>
+
+                </ng-template>
+            </ngb-tab>
+
+
+          </ngb-tabset>
+        <!-- <ngb-tabset *ngIf="audiencias">
+            <ngb-tab *ngFor="let audiencia of audiencias">
+                <ng-template ngbTabTitle ><strong (click)="tipoAudienciafuncion(audiencia.tipoaudiencia)">{{audiencia.tipoaudiencia}}</strong></ng-template>
+                <ng-template ngbTabContent >
+                    <div class="text-intro">
+                        <h3>Información General del Trámite</h3>
+                        <p>Para realizar el trámite debes seguir <strong>los siguientes pasos:</strong></p>
+                    </div>
+                        <ngb-accordion #acc="ngbAccordion">
+                        <ngb-panel *ngFor="let ordenAudiencia of ordenAudiencias; let i= index" >
+                            <ng-template ngbPanelTitle >
+                            <h3 (click)="dataMomentoAudiencia(audiencia.tipoaudiencia, ordenAudiencia.Orden, i)">{{i+1}}. {{ ordenAudiencia.Descripcion }}</h3>
+                            <div class="icon"></div>
+                            </ng-template>
+                            <ng-template ngbPanelContent >
+                                <ng-container *ngIf="extractFromJson(ordenAudiencia.Informacion); let data">
+                                    <div *ngFor="let items of data">
+                                        <div *ngIf="items.subtitulo == 'Condiciones'" class="condicion-panel">
+                                            <h4 class="titulocondicion">{{items.subtitulo}}</h4>
+                                            <div *ngFor="let condicion of items.descripcion">
+                                                <p class="leyendadocumento">{{condicion}}</p>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="items.subtitulo == 'Formulario'" class="documento-panel">
+                                            <h4 class="titulocondicion">{{items.subtitulo}}</h4>
+                                            <div *ngFor="let formulario of items.descripcion">
+                                                <p class="nombredocumento">{{formulario.nombre}}
+                                                    <a *ngIf="formulario.descarga == null" href="{{formulario.url}}">
+                                                        <img class="iconodisponible" src="assets/icon-fichatramite/transaccional.svg" alt="transaccional">
+                                                    </a>
+                                                    <a *ngIf="formulario.descarga != null" href="{{formulario.descarga}}">
+                                                        <img class="iconodisponible" src="assets/icon-fichatramite/descarga.svg" alt="descarga">
+                                                    </a>
+                                                </p>
+                                                <p *ngIf="formulario.descripcion != null" class="leyendadocumento">
+                                                    Anotación adicional: {{formulario.descripcion}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="items.subtitulo == 'Documento'" class="documento-panel">
+                                            <h4 class="titulocondicion">{{items.subtitulo}}</h4>
+                                            <div *ngFor="let documento of items.descripcion" class="documento-descripcion">
+                                                <p class="nombredocumento">{{documento.nombre}}</p>
+                                                <p class="infoadicional">
+                                                    Cantidad: {{documento.cantidadDoc}}
+                                                    {{documento.unidadCantidad}}
+                                                    {{documento.observacionCantidad}}
+                                                </p>
+                                                <p *ngIf="documento.descripcion != null" class="leyendadocumento">
+                                                    Anotaciones adicionales: {{documento.descripcion}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="items.subtitulo == 'Canal de atención'" class="canal-panel">
+                                            <h4 class="titulocondicion">{{items.subtitulo}}</h4>
+                                            <div *ngFor="let canales of items.descripcion">
+                                                <div *ngFor="let canal of canales; let i = index">
+                                                    <p *ngIf="i == 0" class="leyendadocumento">{{canal.descripcion}} </p>
+                                                    </div>
+                                                <div class="govco-table govco-table-basic">
+                                                    <table class="table table-striped">
+                                                        <ng-container  *ngFor="let canalTipo of canales; let i = index">
+                                                            <thead *ngIf="i == 0" >
+                                                                <th scope="col">Medio</th>
+                                                                <th scope="col">Detalle</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'PRESENCIAL'">
+                                                                    <td>Presencial</td>
+                                                                    <td>
+                                                                        <a (click)="showModal({tipo: 'puntos', data: canalTipo.canal.puntosAtencion})">
+                                                                            Ver puntos de atención
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'WEB'">
+                                                                    <td>Web</td>
+                                                                    <td>
+                                                                        <a href="{{ canalTipo.canal.canal.UrlCanalWeb }}">
+                                                                            {{canalTipo.canal.canal.NombreCanalWeb}}
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </ng-container>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="items.subtitulo == 'Pago'">
+                                            <h4 class="titulocondicion">{{items.subtitulo}}</h4>
+                                            <div *ngFor="let pagos of items.descripcion">
+                                                <p class="leyendadocumento">{{pagos.DescripcionMomento}}</p>
+                                                <p class="leyendadocumento font-weight-bold">Descripción del pago</p>
+                                                <div class="govco-table govco-table-basic">
+                                                    <table class="table table-striped">
+                                                        <ng-container  *ngFor="let descripcion of pagos.DescripcionPago; let i = index">
+                                                            <thead *ngIf="i == 0" >
+                                                                <th><strong>Descripción</strong></th>
+                                                                <th><strong>Tipo Moneda</strong></th>
+                                                                <th><strong>Tipo Valor</strong></th>
+                                                                <th><strong>Cantidad</strong></th>
+                                                                <th><strong>Valor</strong></th>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{{ descripcion.nombreDescripcion }}</td>
+                                                                    <td>{{ descripcion.moneda }}</td>
+                                                                    <td>{{ descripcion.tipoValor }}</td>
+                                                                    <td>{{ descripcion.cantidadSmlv }}</td>
+                                                                    <td>{{ descripcion.valor }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </ng-container>
+                                                    </table>
+                                                </div>
+                                                <ng-container *ngIf="pagos.EntidadRecaudadora.length > 0">
+                                                    <p class="leyendadocumento font-weight-bold">Información medios de pago</p>
+                                                    <div class="govco-table govco-table-basic">
+                                                        <table class="table table-striped">
+                                                            <ng-container  *ngFor="let entidad of pagos.EntidadRecaudadora; let i = index">
+                                                                <thead *ngIf="i == 0" >
+                                                                    <th><strong>Entidad recaudadora</strong></th>
+                                                                    <th><strong>Tipo cuenta</strong></th>
+                                                                    <th><strong>Numero de Cuenta</strong></th>
+                                                                    <th><strong>Nombre de Cuenta</strong></th>
+                                                                    <th><strong>Codigo de Recaudo</strong></th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="textofilas" >{{ entidad.nombreEntidad }}</td>
+                                                                        <td class="textofilas" >{{ entidad.tipoCuenta }}</td>
+                                                                        <td class="textofilas" >{{ entidad.numeroCuenta }}</td>
+                                                                        <td class="textofilas" >{{ entidad.nombreCuenta }}</td>
+                                                                        <td class="textofilas" >{{ entidad.codigoRecaudo }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </ng-container>
+                                                        </table>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="extractFromJson(ordenAudiencia.Excepcion); let dataExcepciones">
+                                        <div *ngIf="dataExcepciones.length > 0">
+                                            <p class="font-weight-bold"><em class="material-icons">stars</em>Se identifica con alguno de estos casos, adicionalmente debe:</p>
+                                            <div class="excepciones">
+                                                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+                                                        <ngb-panel *ngFor="let excepciones of dataExcepciones; let i= index" id="{{i}}">
+                                                                <ng-template ngbPanelTitle >
+                                                                    <p>{{i+1}}. {{ excepciones.TituloAcordeon }}</p>
+                                                                    <div class="icon"></div>
+                                                                </ng-template>
+                                                                    <ng-template ngbPanelContent>
+                                                                        <ng-container *ngFor="let contenido of excepciones.Contenido">
+                                                                            <div *ngIf="contenido.subtitulo == 'Condiciones'">
+                                                                                <h4 class="titulocondicion">{{contenido.subtitulo}}</h4>
+                                                                                <p class="leyendadocumento">{{contenido.descripcion}}</p>
+                                                                            </div>
+                                                                            <div *ngIf="contenido.subtitulo == 'Documento'">
+                                                                                <h4 class="titulocondicion">{{contenido.subtitulo}}</h4>
+                                                                                <p class="nombredocumento">{{contenido.descripcion.nombre}}</p>
+                                                                                <p>
+                                                                                    Cantidad: {{contenido.descripcion.cantidadDoc}}
+                                                                                    {{contenido.descripcion.unidadCantidad}}
+                                                                                    {{contenido.descripcion.observacionCantidad}}
+                                                                                </p>
+                                                                                <p *ngIf="contenido.descripcion.descripcion != null" class="leyendadocumento">
+                                                                                    Anotaciones adicionales: {{contenido.descripcion.descripcion}}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div *ngIf="contenido.subtitulo == 'Formulario'">
+                                                                                <h4 class="titulocondicion">{{contenido.subtitulo}}</h4>
+                                                                                <p class="nombredocumento">{{contenido.descripcion.nombre}}
+                                                                                    <a *ngIf="contenido.descripcion.descarga == null" href="{{contenido.descripcion.url}}">
+                                                                                        <img class="iconodisponible" src="assets/icon-fichatramite/transaccional.svg" alt="transaccional">
+                                                                                    </a>
+                                                                                    <a *ngIf="contenido.descripcion.descarga != null" href="{{contenido.descripcion.descarga}}">
+                                                                                        <img class="iconodisponible" src="assets/icon-fichatramite/descarga.svg" alt="descarga">
+                                                                                    </a>
+                                                                                </p>
+                                                                                <p *ngIf="contenido.descripcion.descripcion != null" class="leyendadocumento">
+                                                                                    Anotación adicional: {{contenido.descripcion.descripcion}}
+                                                                                </p>
+                                                                            </div>
+                                                                            <div *ngIf="contenido.subtitulo == 'Canal de atención'" class="canal-panel">
+                                                                                <h4 class="titulocondicion">{{contenido.subtitulo}}</h4>
+                                                                                <ng-container *ngFor="let canal of contenido.descripcion; let i = index">
+                                                                                    <p *ngIf="i == 0" class="leyendadocumento">{{canal.descripcion}} </p>
+                                                                                </ng-container>
+                                                                                <table class="tablainterna">
+                                                                                    <tbody>
+                                                                                        <ng-container  *ngFor="let canalTipo of contenido.descripcion; let i = index">
+                                                                                            <tr *ngIf="i == 0" >
+                                                                                                <td class="textofilas" style="width: 83px;"><strong>Medio</strong></td>
+                                                                                                <td class="textofilas" style="width: 450px;"><strong>Detalle</strong></td>
+                                                                                            </tr>
+                                                                                            <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'PRESENCIAL'">
+                                                                                                <td class="textofilas" style="width: 83px;"><strong>Presencial</strong></td>
+                                                                                                <td class="textofilas" style="width: 450px;">
+                                                                                                    <a (click)="showModal({tipo: 'puntos', data:  canalTipo.canal.puntosAtencion})">
+                                                                                                        <strong>Ver puntos de atención</strong>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'WEB'">
+                                                                                                <td class="textofilas" style="width: 83px;"><strong>Web</strong></td>
+                                                                                                <td class="textofilas" style="width: 450px;">
+                                                                                                    <a href="{{ canalTipo.canal.canal.UrlCanalWeb }}">
+                                                                                                        <strong>{{canalTipo.canal.canal.NombreCanalWeb}}</strong>
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </ng-container>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div *ngIf="contenido.subtitulo == 'Pago'">
+                                                                                <h4 class="titulocondicion">{{contenido.subtitulo}}</h4>
+
+                                                                                    {{ pagos | json}}
+                                                                                    <p class="leyendadocumento">{{contenido.descripcion.DescripcionMomento}}</p>
+                                                                                    <p class="leyendadocumento">Descripción del pago</p>
+
+                                                                                    <table class="tablainterna">
+                                                                                        <tbody>
+                                                                                            <ng-container  *ngFor="let descripcion of contenido.descripcion.DescripcionPago; let i = index">
+                                                                                                <tr *ngIf="i == 0" >
+                                                                                                    <td class="textofilas" style="width: 83px;"><strong>Descripción</strong></td>
+                                                                                                    <td class="textofilas" style="width: 450px;"><strong>Tipo Moneda</strong></td>
+                                                                                                    <td class="textofilas" style="width: 450px;"><strong>Tipo Valor</strong></td>
+                                                                                                    <td class="textofilas" style="width: 450px;"><strong>Cantidad</strong></td>
+                                                                                                    <td class="textofilas" style="width: 450px;"><strong>Valor</strong></td>
+                                                                                                </tr>
+                                                                                                    <tr>
+                                                                                                    <td class="textofilas" >{{ descripcion.nombreDescripcion }}</td>
+                                                                                                    <td class="textofilas" >{{ descripcion.moneda }}</td>
+                                                                                                    <td class="textofilas" >{{ descripcion.tipoValor }}</td>
+                                                                                                    <td class="textofilas" >{{ descripcion.cantidadSmlv }}</td>
+                                                                                                    <td class="textofilas" >{{ descripcion.valor }}</td>
+                                                                                                </tr>
+                                                                                            </ng-container>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <ng-container *ngIf="contenido.descripcion.EntidadRecaudadora.length > 0">
+                                                                                        <p class="leyendadocumento">Información medios de pago</p>
+                                                                                        <table class="tablainterna">
+                                                                                            <tbody>
+                                                                                                <ng-container  *ngFor="let entidad of contenido.descripcion.EntidadRecaudadora; let i = index">
+                                                                                                    <tr *ngIf="i == 0" >
+                                                                                                        <td class="textofilas" style="width: 83px;"><strong>Entidad recaudadora</strong></td>
+                                                                                                        <td class="textofilas" style="width: 450px;"><strong>Tipo cuenta</strong></td>
+                                                                                                        <td class="textofilas" style="width: 450px;"><strong>Numero de Cuenta</strong></td>
+                                                                                                        <td class="textofilas" style="width: 450px;"><strong>Nombre de Cuenta</strong></td>
+                                                                                                        <td class="textofilas" style="width: 450px;"><strong>Codigo de Recaudo</strong></td>
+                                                                                                    </tr>
+                                                                                                        <tr>
+                                                                                                        <td class="textofilas">{{ entidad.nombreEntidad }}</td>
+                                                                                                        <td class="textofilas">{{ entidad.tipoCuenta }}</td>
+                                                                                                        <td class="textofilas">{{ entidad.numeroCuenta }}</td>
+                                                                                                        <td class="textofilas">{{ entidad.nombreCuenta }}</td>
+                                                                                                        <td class="textofilas">{{ entidad.codigoRecaudo }}</td>
+                                                                                                    </tr>
+                                                                                                </ng-container>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </ng-container>
+
+                                                                            </div>
+                                                                        </ng-container>
+                                                                    </ng-template>
+                                                            </ngb-panel>
+                                                </ngb-accordion>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-template>
+                        </ngb-panel>
+                    </ngb-accordion>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset> -->
+    </div>
+</div>

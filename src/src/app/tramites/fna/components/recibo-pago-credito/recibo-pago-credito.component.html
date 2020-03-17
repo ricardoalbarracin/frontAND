@@ -1,0 +1,12 @@
+<div id="fnaContainer" class="row">
+  <app-tramite-detail class="col-md-12" [name]="'recibo-pago-credito'" [owner]="'fna'" [id]="'6292'">
+  </app-tramite-detail>
+
+  <div class="col-md-9 tramite-area">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-3 area-servicio">
+    <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>
+    <app-btn-volver [tramite]="'servicios-y-tramites/T6292'" [type]="'redirect'"></app-btn-volver>
+  </div>
+</div>

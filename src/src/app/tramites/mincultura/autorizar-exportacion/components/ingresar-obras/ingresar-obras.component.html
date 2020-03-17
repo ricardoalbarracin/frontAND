@@ -1,0 +1,329 @@
+<div [formGroup]="registerForm" *ngIf="service.paso === 3 ">
+        <h2  class="tg-0lax">Ingresar obra</h2>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Grupo*</p>
+                    <select class="form-control" formControlName="grupo" [ngClass]="{ 'is-invalid': submitted && f.grupo.errors }" >
+                        <option value=""></option>
+                        <option value="1">Opcion 1</option>
+                    </select>
+                    <div *ngIf="submitted && f.grupo.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Subgrupo*</p>
+                    <select class="form-control" formControlName="subgrupo" [ngClass]="{ 'is-invalid': submitted && f.subgrupo.errors }" >
+                            <option value=""></option>
+                            <option value="1">Opcion 1</option>
+                        </select>
+                        <div *ngIf="submitted && f.subgrupo.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                </div>                
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Categoria*</p>
+                    <select class="form-control" formControlName="categoria" [ngClass]="{ 'is-invalid': submitted && f.categoria.errors }" >
+                            <option value=""></option>
+                            <option value="1">Opcion 1</option>
+                        </select>
+                        <div *ngIf="submitted && f.categoria.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Autor*</p>
+                    <input class="form-control input-govco" formControlName="autor" [ngClass]="{ 'is-invalid': submitted && f.autor.errors }" >
+                    <div *ngIf="submitted && f.autor.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Titulo*</p>
+                    <input class="form-control input-govco" formControlName="titulo" [ngClass]="{ 'is-invalid': submitted && f.titulo.errors }">
+                    <div *ngIf="submitted && f.titulo.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Firmado*</p>
+                    <select class="form-control" formControlName="firmado" [ngClass]="{ 'is-invalid': submitted && f.firmado.errors }" >
+                        <option value=""></option>
+                        <option value="1">Opcion 1</option>
+                    </select>
+                    <div *ngIf="submitted && f.firmado.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Año elaboración</p>
+                    <input class="form-control input-govco" >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Época*</p>
+                    <select class="form-control" ></select>
+                </div>                
+            </div>
+        </div>
+        
+        <br>
+        <h2  class="tg-0lax">Dimensiones</h2>
+        <p>Para tomar las medidas de los bienes guiese por las gráficas. Las dimensiones deben darse según el sistema métrico decimal, en centimetros. (cms) <strong>Ver instructivo de medidas bienes</strong></p>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Alto (cms)</p>
+                    <input class="form-control input-govco" >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Ancho (cms)</p>
+                    <input class="form-control input-govco" >
+                </div>                
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Largo (cms)</p>
+                    <input class="form-control input-govco" >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Profundidad (cms)</p>
+                    <input class="form-control input-govco" >
+                </div>                
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Espesor (cms)</p>
+                    <input class="form-control input-govco" >
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Cantidad: Número de copias del bien</p>
+                    <input class="form-control input-govco" >
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" >
+            <div class="col-md-12 text-center">
+                <div  class="form-group text-center">
+                    <img src="assets/images/src-mincultura-medidas.png" alt="Medidas MinCultura.png">
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-12">
+                <div  class="form-group" >
+                    <br>
+                    <p>Observaciones</p>
+                    <div id="div-textarea-item" class="pt-3">
+                            <div class="textarea-govco">       
+                            <div class="div-character" id="divtextarea-example">
+                                <textarea class="form-control" rows="5" placeholder="Escribe aquí tu opinión" id="textarea-example" maxlength="300"></textarea><div class="div-count-character"><span class="hidden span-message-character" id="messagetextarea-example">Alcanzó el máximo de carácteres permitidos</span><span class="float-right pr-3 span-count-character" id="counttextarea-example">300</span></div>
+                            </div>
+                            </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <br>
+        <h2  class="tg-0lax">Fotografías</h2>
+        <p>Con el fin de recordar a los usuarios que los archivos a subir solo deben corresponder a archivos con extensión tipo imágen, así mismo debe implementar la validación para garantizar el cumplimiento de esta solicitud.</p>
+        <div class="row"  text-right >
+            <div class="col-md-12  text-right ">
+                <a class="btn btn-round btn-high">AGREGAR</a>
+            </div>
+        </div>
+        <p class="tg-0lax"><strong>Adjuntos</strong></p>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group" >
+                    <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.JPEG</p>
+                </div>
+            </div>
+            <div class="col-md-6  text-right">
+                <div  class="form-group  text-right">
+                    <u>Eliminar</u>
+                </div>                
+            </div>
+        </div>
+        
+        
+        <br>
+        <h2  class="tg-0lax">Propietario</h2>
+        <div class="row" >
+            <div class="col-md-12">
+                <div  class="form-group">
+                    <p>Nombre*</p>
+                    <input class="form-control" formControlName="propietarioNombre" [ngClass]="{ 'is-invalid': submitted && f.propietarioNombre.errors }">
+                    <div *ngIf="submitted && f.propietarioNombre.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Tipo de documento*</p>
+                    <select class="form-control" formControlName="tipoDocumento" [ngClass]="{ 'is-invalid': submitted && f.tipoDocumento.errors }" >
+                        <option value=""></option>
+                        <option value="1">Opcion 1</option>
+                    </select>
+                    <div *ngIf="submitted && f.tipoDocumento.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div  class="form-group">
+                    <p>Número de documento*</p>
+                    <input class="form-control" formControlName="numeroDocumento" [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento.errors }" >
+                    <div *ngIf="submitted && f.numeroDocumento.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>                
+            </div>
+        </div>
+
+        <div class="row m-4" *ngIf="1===1">
+            <div class="col-md-12">
+                <div class="row recaptcha-container">
+                    <div class="form-group">
+                        <re-captcha formControlName="formControlRecaptcha" [ngClass]="{ 'is-invalid': submitted && f.formControlRecaptcha.errors }">
+                        </re-captcha>
+                        <div *ngIf="submitted && f.formControlRecaptcha.errors"
+                            class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<br>
+<br>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <a (click)="cancelar()" class="btn btn-round btn-middle">Actualizar</a>
+    </div>
+    <div class="col-md-6 text-center">
+        <a  (click)="open(content)" class="btn btn-round btn-high">Agregar obra</a>
+    </div>
+</div>
+
+
+<ng-template #content let-modal class="modal-fit">
+        <div class="modal-body text-center">
+            <div id="modal-content-type-alert" class="modal-content-success text-center">
+                <div class="alert-icon text-center">
+                    <em class="material-icons">check_circle</em>
+                </div>
+                <div id="modal-content-title" class="modal-content-title content-govco modal-content-success text-center">Guardado</div>
+                <p id="modal-content-txt" class="modal-content-txt content-govco">La obra ha sido guardada con éxito</p>
+                <p id="modal-content-1" class="modal-content-txt content-govco">Tu número de obra es</p>
+                <p id="modal-content-2" class="modal-content-txt content-govco">001</p>
+                <p id="modal-content-3" class="modal-content-txt content-govco">Verifique la información y el anexo. Solo una fotografía por obra. Su solicitud aún no ha iniciado trámite ante el ministerio, debe completar los requisitos, agregar obras y presionar el botón "Enviar al ministerio".</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                    <a (click)="closeModal()" class="btn btn-round btn-high">ENTENDIDO</a>
+            </div>
+        </div>
+    </ng-template>
+</div>
+
+
+
+<br>
+<br>
+<h2  class="tg-0lax">Resumen de obras agregadas</h2>
+<div class="row" >
+    <div class="col-md-6">
+        <div  class="form-group">
+            <p><strong>Consecutivo</strong></p>
+            <p>1</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div  class="form-group">
+            <p><strong>Titulo</strong></p>
+            <p>Titulo 1</p>
+        </div>                
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-6">
+        <div  class="form-group">
+            <p><strong>Año declaración</strong></p>
+            <p>2019</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div  class="form-group">
+            <p><strong>Registro fotografico</strong></p>
+            <p>1</p>
+        </div>                
+    </div>
+</div>
+<div class="row" >
+    <div class="col-md-12">
+        <div  class="form-group">
+            <p><u>Editar</u></p>
+        </div>
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-md-12 text-center">
+            <a class="btn btn-round btn-high" (click)="guardar(content)">ENVIAR AL MINISTERIO</a>
+    </div>
+</div>
+
+
+<ng-template #content let-modal class="modal-fit">
+    <div class="modal-body text-center">
+        <div id="modal-content-type-alert" class="modal-content-success text-center">
+                <em class="material-icons color-green" style="font-size: 50px">check_circle</em>
+                <h2 class="color-green">Enviado</h2>
+            <p id="modal-content-txt" class="modal-content-txt content-govco">La solicitud ha sido enviada con éxito</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+                <a (click)="closeModal()" class="btn btn-round btn-high">ENTENDIDO</a>
+        </div>
+    </div>
+</ng-template>

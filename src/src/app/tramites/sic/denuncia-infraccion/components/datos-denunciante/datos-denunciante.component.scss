@@ -1,0 +1,43 @@
+.centrar_registros {
+    text-align: center;
+  }
+
+  .main-invima-advice {
+    margin-top: 1rem;
+  
+    .govco-card {
+        padding: 1rem!important;
+        text-align: justify;
+    }
+  
+  }
+
+.top_margin{
+  margin-top: 0.5rem;
+}
+
+.registro-consulta-footer {
+  text-align: center;
+
+  button {
+      margin: 10px;
+  }
+}
+
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 0.5px;
+}
+table{
+  margin: 0 auto;
+  text-align: left;  
+}
+
+td{
+  padding: 10px 40px 0px 0px;
+}

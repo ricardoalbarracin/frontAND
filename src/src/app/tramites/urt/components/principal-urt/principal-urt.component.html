@@ -1,0 +1,33 @@
+<div *ngIf="!activeRespueta">
+  <div class="card govco-card col-md-12">
+    <div class="row card-header pt-0">
+      <div class="col-12 m-auto p-0">
+        <h3 class="m-0 title-section">Datos del ciudadano</h3>
+      </div>
+    </div>
+    <div class="card-body p-1">
+      <div class="col-12">
+        <h3>Nombre y apellido</h3>
+        <div>Juan Ambrosio Perez</div>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="container-preguntas">
+        <div class="row card-header pt-0" *ngIf="activePregunta && preguntaNumero > 0">
+          <div class="col-12 m-auto p-0">
+            <h3 class="m-0 title-section">Para consultar el estado de tus solicitudes, primero responde algunas preguntas:</h3>
+          </div>
+        </div>
+        <app-lista-opciones *ngIf="!activePregunta" (activePregunta)="activarPreguntas()"></app-lista-opciones>
+        <app-urt-pregunta-radio *ngIf="activePregunta && preguntaNumero == 1"> </app-urt-pregunta-radio>
+        <app-urt-pregunta-abierta *ngIf="activePregunta && preguntaNumero == 2"></app-urt-pregunta-abierta>
+        <app-urt-pregunta-imagen *ngIf="activePregunta && preguntaNumero == 3"></app-urt-pregunta-imagen>
+      </div>
+      <div *ngIf="activePregunta && preguntaNumero <= 3" class="agenda-footer col-md-12 text-center p-2">
+        <button (click)="siguientePregunta($evetn)" class="btn btn-round btn-high">ENVIAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-respuesta-urt *ngIf="activeRespueta"></app-respuesta-urt>

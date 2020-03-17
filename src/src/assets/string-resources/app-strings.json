@@ -1,0 +1,159 @@
+{
+    "client-side-recaptcha-key": "6LftKb8UAAAAABrg3vJUFkzrrkh2Qx8ZeiB_MWy7",
+    "page-title": "Trámites y servicios",
+    "tramites": {
+        "minjusticia": {
+            "name": "Ministerio de Justicia",
+            "consultorios-juridicos": {
+                "title": "Agendamiento de citas para consultorios juridicos",
+                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+            }
+        },
+        "mininterior": {
+            "name": "Ministerio Del Interior",
+            "censo-indigena": {
+                "title": "Consulta de la información censal de las comunidades y resguardos indígenas y/o certificación de pertenencia",
+                "detail": "Verificar en línea la información censal de la población de comunidades y resguardos indígenas y certificar la pertenencia en el censo de las comunidades y resguardos indígenas."
+            }
+        },
+        "minsalud": {
+            "name": "Ministerio de salud",
+            "consulta": {
+                "title": "Consulta de prestadores de servicios de salud",
+                "detail": " Disponer la información de los prestadores inscritos y de los servicios de salud habilitados en el país, con el fin de facilitar al público el acceso en línea sobre esta materia."
+            }
+        },
+        "sena": {
+            "name": "SERVICIO NACIONAL DE APRENDIZAJE",
+            "certificados-constancias": {
+                "title": "Expedición certificado(s) Documentos Académicos",
+                "detail": "Expedir los documentos académicos como: certificados de aprobación, constancias de participación, certificados de formación profesional, títulos, actas y constancias académicas finales de los aprendices que culminaron satisfactoriamente su formación profesional en el SENA."
+            }
+        },
+        "icbf": {
+            "name": "INSTITUTO COLOMBIANO DE BIENESTAR FAMILIAR",
+            "aportes-parafiscales": {
+                "title": "Expedición estado(s) de cuenta de aportes parafiscales",
+                "detail": "Obtener un certificado de los pago de los aportes parafiscales realizados por los aportantes."
+            }
+        },
+        "dps": {
+            "name": "Departamento Administrativo Para La Prosperidad Social",
+            "consulta": {
+                "title": "Consulta del estado de vinculación a la estrategia UNIDOS",
+                "detail": "Verificar el estado de inscripción en la estrategia UNIDOS"
+            }
+        },
+        "urt": {
+            "name": "Unidad de Restitución de Tierras",
+            "consulta": {
+                "title": "Solicitud de inscripción en el registro de tierras despojadas",
+                "detail": "Obtener la inscripción en el registro de tierras despojadas y abandonadas forzosamente, que permita posteriormente acudir ante los jueces para obtener la restitución jurídica y material del predio o en el caso de las comunidades étnicas reclamar sus derechos territoriales que fueron objeto de despojo o abandono forzoso por causa del conflicto armado interno y/o por factores subyacentes y vinculados a este."
+            }
+         },
+        "mincultura": {
+            "name": "Ministerio de cultura",
+            "consulta": {
+                "title": "Autorizar exportación de bienes culturales",
+                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+            }
+        },
+        "contraloria": {
+            "name": "Contraloría general de la republica",
+            "antecedentes-fiscales": {
+                "title": "Certificado de antecedentes",
+                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+            }
+        },
+        "dian": {
+            "name": "UNIDAD ADMINISTRATIVA ESPECIAL DIRECCIÓN DE IMPUESTOS Y ADUANAS NACIONALES",
+            "rut": {
+                "title": "Solicitar copia del RUT",
+                "detail": "La copia del RUT se solicita tan solo con el tipo y número de documento. Por seguridad la copia la recibirá en el correo electrónico que haya registrado ante la DIAN. Nota: En caso de no recibir el correo en la bandeja de entrada, por favor revise en Spam o correo no deseado."
+            }
+        },
+        "cancilleria": {
+            "name": "Ministerio de Relaciones Exteriores",
+            "tramitar-pasaporte": {
+                "title": "Pasaporte Electrónico",
+                "detail": "Documento que identifica a los Colombianos en el Exterior NOTA: Ningún colombiano podrá ser portador de más de un pasaporte colombiano vigente, no importa la clase de documento"
+            }
+        },
+        "invima": {
+            "name": "Instituto Nacional De Vigilancia De Medicamentos Y Alimentos",
+            "consulta-registro-sanitario": {
+                "title": "Consultas Públicas del Instituto Nacional de Vigilancia de Medicamentos y Alimentos",
+                "detail": "Ofrecer información en el sitio web referente a cualquier producto registrado en la Base de Datos del INVIMA (vigente o nó), así mismo podrá consultar actos administrativos para notificarse, registros concedidos por periodo, suspendidos, cancelados, negados, establecimientos certificados, entidades protegidas, información de Código Único de Medicamentos, información decreto de transparencia, estado de los trámites radicados y verificación de documentos con firma digital."
+            }
+        },
+        "mintransporte": {
+            "name": "Ministerio de transporte de Colombia",
+            "licencia-conduccion": {
+                "title": "Solicitar certificado de licencias de conducción",
+                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+            }
+        },
+        "colpensiones": {
+          "name": "ADMINISTRADORA COLOMBIANA DE PENSIONES - COLPENSIONES",
+          "certificado-afiliacion": {
+              "title": "Certificado de afiliación al Régimen de Prima Media",
+              "detail": "Documento que acredita que el ciudadano se encuentra afiliado al (RPM) Régimen de Prima Media con Prestación Definida administrado por COLPENSIONES, en el cual registra el nombre, tipo y número de documento, estado y fecha de afiliación, así como los traslados de régimen, si es el caso."
+          }
+        },
+        "fna": {
+            "name": "Fondo Nacional del Ahorro",
+            "recibo-pago-credito": {
+                "title": "Consulta en línea del recibo de pago de crédito",
+                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+            }
+      },
+      "supernotariado": {
+        "name": "Superintendencia de notariado y registro",
+        "certificado-tradicion-libertad": {
+            "title": "Certificado de tradición y libertad de inmuebles",
+            "detail": "Es conocer la situación jurídica de los bienes inmuebles sometidos a registro y su tradición"
+        }
+        },
+        "sic": {
+            "name": "Superintendencia de industria y comercio",
+            "denuncia-infraccion": {
+                "title": "Denuncia o queja por posible infracción a las normas de protección al consumidor",
+                "detail": "Poner en conocimiento de la administración hechos tendientes a iniciar las averiguaciones preliminares correspondientes, a fin de determinar si existe una infracción a las normas de protección al consumidor."
+            }
+    },
+      "ica": {
+        "name": "Instituto Colombiano Agropecuario",
+        "validar-gsmi": {
+            "title": "Validación de Guía sanitaria de movilización interna",
+            "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo."
+        },
+        "descargar-rspp": {
+          "title": "Descargar certificado de registro sanitario del predio pecuario",
+          "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo."
+        }
+      }
+    },
+    "messages": {
+        "back-to-home": {
+            "title": "Volver a información general",
+            "modal-message": "Al volver a información perderás los contenidos diligenciados",
+            "option-go-back": "IR A INFORMACIÓN",
+            "option-keep": "SEGUIR EN TRÁMITE"
+        },
+        "input-validation": {
+            "empty-input": "Campo sin diligenciar",
+            "invalid-input": "Campo diligenciado incorrectamente"
+        },
+        "reset-form-modal": {
+            "title": "Limpiar formulario",
+            "body": "Al limpiar el formulario perderás los datos ingresados",
+            "btn-clean": "Limpiar",
+            "btn-cancel": "Cancelar"
+        }
+    },
+    "regexp": {
+        "numeric": "^[0-9]*$",
+        "email": "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+
+    }
+}

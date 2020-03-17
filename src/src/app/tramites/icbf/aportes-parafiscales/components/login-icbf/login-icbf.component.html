@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-12">
+    <app-notifications [typeMessage]="'error'" [message]="messages.failureRequest" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card" id="icbf-login-container">
+  <div class="center">
+    <h3>INICIAR SESIÓN EN ICBF</h3>
+    <label>Para confirmar tu cita debes ser un usuario</label>
+  </div>
+  <div class="card-body">
+    <div class="row mx-auto">
+      <div class="col col-lg-6 col-md-12 col-sm-12 login-register d-flex align-items-center
+      justify-content-center mt-3 order-last order-lg-first order-xl-first">
+        <button type="button" class="btn btn-round btn-high m-auto" (click)="signIn()">REGISTRARME</button>
+      </div>
+
+      <div class="col col-lg-6 col-md-12 col-sm-12 order-fist order-lg-last order-xl-last" [formGroup]="form" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+
+        <div class="w-100 form-group">
+          <label for="user" class="form-group-govco">Aportante</label>
+          <input class="form-control input-govco" type="text" formControlName="user" (change)="setStep(2)"  maxlength="16"/>
+        </div>
+        <div class="w-100">
+          <small>{{ messages.help }}</small>
+        </div>
+        <div class="w-100">
+          <div class="form-group mb-0">
+            <label for="password" class="form-group-govco">Contraseña</label>
+            <input class="form-control input-govco" [type]="typeButton" formControlName="password" (change)="setStep(2)"  maxlength="15"/>
+          </div>
+          <label class="chk-govco">
+            <input type="checkbox" id="showPassword" (click)="checkShowPassword()"/>
+            <label for="showPassword">
+              Mostrar contraseña
+            </label>
+            <div class="chk-govco__indicator"></div>
+          </label>
+        </div>
+
+        <div class="login-btn-container">
+            <button class="btn btn-round btn-high" (click)="login()">INGRESAR</button>
+        </div>
+        <div class="login-btn-container">
+            <a (click)="forgotPassword()">He olvidado mi contraseña</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<app-consulta-icbf></app-consulta-icbf>

@@ -1,0 +1,8 @@
+{
+    "messages": {
+        "error-title": "Lo sentimos",
+        "error-form": "1. Verifique que los datos diligenciados sean correctos",
+        "error-request": "Se produjo un error al procesar la solicitud",
+        "success": "Certificado generado con éxito"
+    }
+}

@@ -1,0 +1,25 @@
+.list-group{    
+    .list-group-item {
+        margin-left: 0.5rem;
+        border: none!important;
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        padding: 0rem;
+
+        label {
+            margin:0px;
+        }
+
+        .item-detail {
+            display: inline-block;
+        }
+    }
+}
+
+.consultorio-btn {
+    text-align: center;
+    margin-top: 1rem;
+}
+.icon-detail {
+    line-height: 1;
+}

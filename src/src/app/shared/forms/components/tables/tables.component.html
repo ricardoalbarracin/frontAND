@@ -1,0 +1,7 @@
+<div class="col-md-12">
+    <app-table-basic *ngIf="tableType==='basic'" [hContent]='hContent'  [bContent]='bContent' [bConfig]="bConfig"></app-table-basic>
+    <app-table-simple *ngIf="tableType==='simple'" [hContent]='hContent'  [bContent]='bContent' [bConfig]="bConfig"></app-table-simple>
+    <app-table-detail *ngIf="tableType==='detail'" [showTotal]='showTotal' [showDetail]='showDetail' [hContent]='hContent'  [bContent]='bContent' [bConfig]="bConfig"></app-table-detail>
+    <app-table-filter *ngIf="tableType==='filter'" [hContent]='hContent'  [bContent]='bContent' [bConfig]="bConfig" [fConfig]="fConfig"></app-table-filter>
+    <app-table-complete *ngIf="tableType==='complete'"></app-table-complete>
+</div>

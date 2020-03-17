@@ -1,0 +1,30 @@
+.main-dps-advice {
+    margin-top: 2rem;
+
+    .govco-card {
+        padding: 1rem!important;
+        text-align: justify;
+    }
+}
+
+
+ .ng-invalid + label {
+    border-color: red;
+    color: red;
+} 
+
+.succes-toast-dps{
+    border-radius: 10px;
+    position: relative;
+    pointer-events: auto;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 5px 15px;
+    color: #FFFFFF;
+    opacity: 1;
+    margin-bottom:22px;
+}
+
+.radiobutton-govco{
+    border-bottom: none !important;
+}

@@ -1,0 +1,41 @@
+<ng-container *ngIf="dataBase">
+    <div class="col-md-12">
+        <h4  class="titulotramite">{{dataBase.Nombre}}</h4>
+        <p>{{dataBase.Descripcion}}</p>
+        <p class="urlEntidadNoSuit"><b>{{dataBase.NombreEntidad}}</b></p>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="tramiteCard">
+                <h3>Objetivo del trámite</h3>
+                <p>{{dataBase.Proposito}}</p>
+                <h3>Resultado</h3>
+                <p>{{dataBase.ResultadoOtroServicio}}</p>
+            </div>
+            <div class="tramiteCard" *ngIf="consideraciones.length > 0">
+                <h3>Recuerde</h3>
+                <ng-container *ngFor="let consideracion of consideraciones">
+                    <p>{{ consideracion.CondicionesAdicionales }}</p>
+                </ng-container>
+            </div>
+            <div class="tramiteCard" *ngIf="puntosAtencion.length > 0">
+                <p class="labeltramiteabout">Ten en cuenta sobre este trámite</p>
+                <div class="row">
+                    <div class="p-2">
+                            <a (click)="showModal(puntosAtencion)" class="btn btn-round btn-high">Ver puntos de atención</a>
+                    </div>
+                    <div class="p-2">
+                            <a href="{{dataBase.UrlServicioEnLinea}}" class="btn btn-round btn-high">Realizar trámite en línea</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" *ngIf="dataBase">
+            <!-- <a href="{{dataBase.UrlServicioEnLinea}}">
+                <img  src="assets/icon-fichatramite/tramitelinea.png">
+            </a> -->
+            <govco-area-servicios module="TramitesNoSuit" itemid="numero"></govco-area-servicios>
+        </div>
+    </div>
+</ng-container>

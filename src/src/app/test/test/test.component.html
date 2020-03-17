@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Componentes CDN - GOV.CO</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <div class="card govco-card">
+            <div class="card-header">
+                <h2>Notificaciones</h2>
+            </div>
+            <div class="card-body">
+                <app-notifications [typeMessage]="'success'" [message]="'Mensaje de prueba'" [title]="'Lo sentimos'" [show]='true' class="mb-2"></app-notifications>
+                <app-notifications [typeMessage]="'info'" [message]="'Mensaje de prueba'" [title]="'Lo sentimos'" [show]='true' class="mb-2"></app-notifications>
+                <app-notifications [typeMessage]="'warning'" [message]="'Mensaje de prueba'" [title]="'Lo sentimos'" [show]='true' class="mb-2"></app-notifications>
+                <app-notifications [typeMessage]="'error'" [message]="'Mensaje de prueba'" [title]="'Lo sentimos'" [show]='true' class="mb-2"></app-notifications>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mb-3">
+        <div class="card govco-card">
+            <div class="card-header">
+                <h2>Alertas</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <button (click)="getAlert('error')" class="btn btn-high">Alert error</button>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="getAlert('warning')" class="btn btn-high">Alert warning</button>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="getAlert('success')" class="btn btn-high">Alert success</button>
+                    </div>                    
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <button (click)="getAlert('info')" class="btn btn-high">Alert info</button>
+                    </div>
+                    <div class="col-4">
+                        <button (click)="getAlert('maintenance')" class="btn btn-high">Alert maintenance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mb-3">
+        <div class="card govco-card">
+            <div class="card-header">
+                <h2>Tablas</h2>
+            </div>
+            <div class="card-body">
+                <div class="row"><h2>Tabla básica</h2></div>
+                <app-tables [tableType]="'basic'" [hContent]="tBasic.Header" [bContent]="tBasic.Body"  [bConfig]="tBasic.ConfigBody"></app-tables>
+                <div class="row"><h2>Tabla Simple</h2></div>
+                <app-tables [tableType]="'simple'" [hContent]="tSimple.Header" [bContent]="tSimple.Body" [bConfig]="tSimple.ConfigBody"></app-tables>
+                <div class="row"><h2>Tabla Detail</h2></div>
+                <app-tables 
+                [tableType]="'detail'" 
+                [hContent]="tDetail.Header" 
+                [bContent]="tDetail.Body" 
+                [bConfig]="tDetail.ConfigBody"
+                [showDetail]="true"></app-tables>
+                <div class="row"><h2>Tabla Filters</h2></div>
+                <app-tables [tableType]="'filter'" [hContent]="tFilter.Header" [bContent]="tFilter.Body" [bConfig]="tFilter.ConfigBody" [fConfig]="tFilter.ConfigFilter"></app-tables>
+            </div>
+        </div>
+    </div>
+</div>

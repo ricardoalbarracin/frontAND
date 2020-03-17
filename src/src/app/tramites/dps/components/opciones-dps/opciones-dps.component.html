@@ -1,0 +1,44 @@
+<div class="row">
+   <app-notifications *ngIf="activoMensajeSuccess" class="col-12 " [typeMessage]="'success'" [message]="''" [title]="'Certificado generado'" [show]="true"></app-notifications>
+    <app-notifications *ngIf="activoMensajeSuccessValidado"  class="col-12 " [typeMessage]="'success'" [message]="''" [title]="'Certificado validado'" [show]="true"></app-notifications>
+  
+    <div class="col-12 pb-3" *ngIf="invalidForm">
+        <app-notifications [typeMessage]="'error'" [message]="mensajeMostrar" [title]="'Lo sentimos'"
+            [show]="invalidForm"></app-notifications>
+    </div>
+</div>
+
+<div class="card govco-card p-3 mb-3">
+    <div class="card-body pt-0 pb-0">
+        <div class="row" id="tipoBusquedaForm">
+            <h3 class="col-md-4 mb-auto mt-auto title-section">1. Tipo de consulta</h3>
+            <div class="col-md-4">
+                <div class="mt-1">
+                    <label class="radiobutton-govco">
+                        <input type="radio" (click)="opcion='generar'" (change)="changeValue($event)" name="radio"
+                            checked="checked" id="radioGenerarCertificado" />
+                        <span for="documento" class="form-group-govco">Generar certificado</span>
+                        <div class="radiobutton-govco__indicator"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mt-1">
+                    <label class="radiobutton-govco">
+                        <input type="radio" (click)="opcion='validar'" name="radio" id="radioValidarCertificado" />
+                        <span for="registro" class="form-group-govco">Validar certificado</span>
+                        <div class="radiobutton-govco__indicator"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="opcion == 'generar'" class="card govco-card col-12 pb-3">
+    <app-vinculacion-form (mensajeError)="showError($event)" (showSuccess)="changeSuccess($event)">
+    </app-vinculacion-form>
+</div>
+
+<div *ngIf="opcion == 'validar'" class="card govco-card col-12 pb-3">
+    <app-verificar-form (mensajeError)="showError($event)" (showSuccess)="changeSuccessValidado($event)"></app-verificar-form>
+</div>

@@ -1,0 +1,19 @@
+<div id="toast-container-body" *ngIf="show">
+    <div [class]="toast.class" aria-live="polite">
+        <button class="toast-close-button" role="button" *ngIf="showClose">
+            <i class="material-icons icon">clear</i>
+        </button>
+        <div class="d-flex bd-highlight">
+            <div [class]="toast.iconClass"></div>
+            <div class="toast-title flex-fill bd-highlight">{{title}}</div>
+        </div>
+        <div class="row pt-2">
+            <div [class] = "desingAction.contentClass">
+                <div class="toast-message" *ngIf="message">{{message}}</div>
+            </div>
+            <div [class] = "desingAction.actionClass">
+                <button type="button" *ngFor="let action of actions" (click)="action.event()" [class]="action.class">{{action.title}}</button>                
+            </div>    
+        </div>    
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.modal-header {
+    text-align: center;
+}
+
+#minjusticia-login-container{    
+    .login-register {
+        text-align: center; 
+        border-right: 1px solid;               
+    }
+
+    .minjusticia-login-form {
+        padding: 10px;
+
+        .form-group{
+            label {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .login-btn-container {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .adviceMessage {
+        margin-top: 2rem;
+        padding-top: 0.6rem!important;
+        padding-bottom: 0.6rem!important;
+        text-align: justify;
+    }
+    a {
+        color: #007bff;
+        cursor: pointer;
+        text-decoration: underline!important;
+    }
+}

@@ -1,0 +1,33 @@
+<div id="minsaludContainer" >
+    <div *ngIf="consultaService.mostrarDetalle || 1===0">
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[0]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-prestadores-detalle></app-minsalud-consulta-prestadores-detalle>
+        </div>
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[1]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-sedes-detalle></app-minsalud-consulta-sedes-detalle>
+        </div>
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[2]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-servicios-detalle></app-minsalud-consulta-servicios-detalle>
+        </div>
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[3]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-capacidad-detalle></app-minsalud-consulta-capacidad-detalle>
+        </div>
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[4]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-seguridad-detalle></app-minsalud-consulta-seguridad-detalle>
+        </div>
+        <div *ngIf="consultaService.opcionSeleccionada === concultaService.opciones[5]" role="tabpanel"
+            class="tab-pane active" id="one">
+            <app-minsalud-consulta-sanciones-detalle></app-minsalud-consulta-sanciones-detalle>
+        </div>
+    </div>
+    <div *ngIf="consultaService.mostrarDetalleSinResultados" class="col-md-12">
+        <ngb-alert class="text-center" (close)="consultaService.mostrarDetalleSinResultados=false" type="danger">
+            <strong>No hay resultados para la consulta</strong><br />
+        </ngb-alert>
+    </div>
+</div>

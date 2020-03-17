@@ -1,0 +1,119 @@
+<div class="row">
+        <div class="col-12 pb-3">
+            <ngb-alert type="danger" *ngIf="invalidForm == true">
+                <strong>Lo sentimos</strong><br />
+                <p>
+                    Los datos ingresados son incorrectos, te recomendamos:<br />
+                    1. revise que los datos ingresados sean los solicitados
+                </p>
+            </ngb-alert>
+        </div>
+    </div>
+    
+    <div class="card govco-card">
+        <div class="card-body">
+            <div class="row" [formGroup]="verSolicitudPasaporteForm" [ngClass]="{'invalid-form' : invalidForm}"
+                appInputValidator [validate]="invalidForm">
+                <!--Datos del solicitante-->
+                <div id="datosSolicitanteGroup">
+                    <div class="row col-md-12">
+                        <h3 class="col-md-6">Datos del solicitante</h3>
+                        <a class="col-md-6" (click)="showAyuda()" style="cursor: pointer;">
+                            <h3 class="text-right">Ayuda <span class="govco-icon govco-icon-info-cn"></span></h3>
+                        </a>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group select-govco col-lg-6">
+                                <label for="tipoDocumento">Tipo de documento *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="tipoDocumento"
+                                    placeholder="Ej: Cédula de ciudadania" [items]="listTipoDocumento"></app-dropdownlist>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="fechaExpedicion">Fecha de expedición *</label>
+                                <input class="form-control input-govco" type="datetime" placeholder="dd-mm-aaaa"
+                                    formControlName="fechaExpedicion" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="numeroDocumento">Número de documento *</label>
+                                <input class="form-control input-govco" type="number" placeholder="Ej: 102039049"
+                                    formControlName="numeroDocumento" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="email">Correo electrónico *</label>
+                                <input class="form-control input-govco" type="email" placeholder="Ej: correo@mail.com"
+                                    formControlName="email" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="confirmacionEmail">Confirmación de correo electrónico *</label>
+                                <input class="form-control input-govco" type="email" placeholder="Ej: correo@mail.com"
+                                    formControlName="confirmacionEmail" />
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="margen-top">Datos del pasaporrte actual</h3>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="numeroPasaporte">Número del pasaporte *</label>
+                                <input class="form-control input-govco" type="text" placeholder="Ej: AV00000"
+                                    formControlName="numeroPasaporte" />
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="fechaExpedicionPasaporte">Fecha de expedición del pasaporte*</label>
+                                <input class="form-control input-govco" type="datetime" placeholder="dd-mm-aaaa"
+                                    formControlName="fechaExpedicionPasaporte" />
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="digitoVerificacion">Digito de verificación (Últimos 2 dígitos OCR) *</label>
+                                <input class="form-control input-govco" type="number" placeholder="Ej: 37"
+                                    formControlName="digitoVerificacion" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card govco-card govco-register-advice">
+        <div class="card-body">
+            <div class="row" [formGroup]="verSolicitudPasaporteForm" [ngClass]="{'invalid-form' : invalidForm}"
+                appInputValidator [validate]="invalidForm">
+                <!--Datos del solicitante-->
+                <div id="datosSolicitudGroup">
+                    <h3>Datos de la solicitud</h3>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="form-group select-govco col-lg-6">
+                                <label for="tipoPasaporte">Tipo de pasaporte a solicitar *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="tipoPasaporte"
+                                    placeholder="Ej: Pasaporte electrónico" [items]="listTipoPasaporte"></app-dropdownlist>
+                            </div>
+                            <div class="form-group select-govco col-lg-6">
+                                <label for="motivoSolicitud">Motivo de la solicitud *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="motivoSolicitud"
+                                    placeholder="Ej: Cambio" [items]="listMotivoSolicitud"></app-dropdownlist>
+                            </div>
+                            <div class="form-group select-govco col-lg-6">
+                                <label for="oficinaSolicitud">Oficina de la solicitud *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="oficinaSolicitud"
+                                    placeholder="Ej: Bogotá, Oficina 1" [items]="listOficinas"></app-dropdownlist>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                                <div class=" col-md-12 button-footer">
+                                    <button class="btn btn-round btn-middle" (click)="clean()">Regresar</button>
+                                    <button class="btn btn-round btn-high" (click)="save()">Pagar</button>
+                                </div>
+                            </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>

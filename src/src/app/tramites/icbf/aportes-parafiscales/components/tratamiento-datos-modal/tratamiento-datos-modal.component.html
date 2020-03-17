@@ -1,0 +1,9 @@
+<a (click)="open(content)"><strong>{{name}}</strong></a>
+
+<ng-template #content class="modal fade govco-modal-large show" tabindex="-1" role="dialog" style="display: block; z-index: 4;" aria-modal="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="close()" aria-hidden="true">
+            <em class="material-icons">clear</em></button>
+      </div>
+      <iframe src="https://www.icbf.gov.co/sites/default/files/politica_de_tratamiento_de_datos_personales.pdf" title="pdf" id="pdf"></iframe>
+</ng-template>

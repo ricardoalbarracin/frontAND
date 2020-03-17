@@ -1,0 +1,21 @@
+
+#apostilla-section {
+    margin-bottom: 1rem;
+
+    .card-header {
+        background: none;
+        border-bottom: none!important;
+        text-align: justify;
+    }
+
+    .card-footer {
+        background: none;        
+        border-top: none!important;
+        text-align: center;
+    }
+
+    a {
+        color: #007bff;
+        cursor: pointer;
+    }
+}

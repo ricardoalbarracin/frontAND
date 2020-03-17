@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <div class="alert-govco-maintenance" id="modal-maintenance" *ngIf="isMaintenance"></div>
+    <button type="button" class="close" (click)="dismiss()" aria-hidden="true" *ngIf="showDismiss"><i class="material-icons">clear</i></button>    
+</div>
+
+<div class="modal-body text-center">
+    <div id="modal-content-type-alert" [class]="classes.content">
+        <div class="alert-icon">
+            <span [class]="classes.iconModal"></span>
+        </div>
+        <div id="modal-content-title" [class]="classes.title">{{ title}}</div>
+    </div>
+    <div id="modal-content-txt" class="modal-content-txt content-govco">{{ text }}</div>
+</div>
+
+<div class="modal-footer justify-content-center" id="modal-options">
+    <button type="button" *ngFor="let item of options" class="btn" (click)="closeModal(item)" [class] = "classes.btn + item.styleClass">
+        {{item.name}}
+    </button>
+</div>

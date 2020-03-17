@@ -1,0 +1,52 @@
+<div class="card govco-card">
+    <div class="card-body">
+        <div [formGroup]="generarCertificadoForm" [ngClass]="{'invalid-form' : invalidDatosForm}" appInputValidator
+            [validate]="invalidDatosForm">
+            <h3>Generación de Certificados de Tradición y Libertad</h3>
+
+            <div class="row">
+                <div class="form-group col-lg-12">
+                    <span>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Turpis egestas
+                    </span>
+                </div>
+            </div>
+
+            <div class="row mt-4" style="justify-content: center;">
+                <div class="col-lg-12 d-flex" style="justify-content: space-between;">
+                    <div class="form-group select-govco col-lg-5">
+                        <label for="oficinaRegistro">Oficina de Registro *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="oficinaRegistro"
+                            [items]="listOficinasRegistro">
+                        </app-dropdownlist>
+                    </div>
+                    <div class=" col-lg-6">
+                        <label>Número de Matrícula</label>
+                        <div class="row col-lg-12" style="padding-right: 0%;">
+                            <input class="form-control input-govco col-lg-2" type="number"
+                                name="indexMatricula" />
+                            <span class="col-lg-1">-</span>
+                            <input class="form-control input-govco col-lg-8" type="number"
+                                name="numeroMatricula" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4" style="justify-content: center;">
+                <div class="col-md-6">
+                    <div class="row recaptcha-container">
+                        <re-captcha formControlName="recaptcha"></re-captcha>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-md-12 button-footer justify-content-between" >
+            <button class="btn btn-round btn-middle" (click)="buscarOficinaRegistro()">BUSCAR OFICINA DE REGISTRO</button>
+            <button class="btn btn-round btn-high" (click)="buscar()">BUSCAR</button>
+        </div>
+    </div>
+</div>

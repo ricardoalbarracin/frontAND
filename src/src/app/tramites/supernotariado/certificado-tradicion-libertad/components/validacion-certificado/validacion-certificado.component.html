@@ -1,0 +1,52 @@
+<div class="card govco-card">
+    <div class="card-body">
+        <!--Datos de la solicitud-->
+        <div [formGroup]="validacionCertificadoForm" [ngClass]="{'invalid-form' : invalidDatosForm}" appInputValidator
+            [validate]="invalidDatosForm">
+            <div class="row col-md-12">
+                <h3 class="col-md-6">Validación de Certificado</h3>
+                <a class="col-md-6" (click)="funcion()" style="cursor: pointer;">
+                    <h3 class="text-right">¿Dónde está el PIN? <span class="govco-icon govco-icon-info-cn"></span></h3>
+                </a>
+            </div>
+
+            <div class="row col-md-12">
+                <span class="mt-3">
+                    A continuación puede realizar el proceso de validación de certificados de tradición y libertad, por
+                    favor ingrese la información solicitada.
+                </span>
+
+                <div class="col-lg-12 card govco-card mt-4">
+                    <p>
+                        Recuerde que esta opción NO es para la generación de certificados de libertad Pagados mediante
+                        Baloto/Efecty. En esta sección puede sacar copias de certificados de libertad ya generados por
+                        la
+                        plataforma web no mayor a 30 días, con el PIN que aparece en la parte superior del mismo
+                    </p>
+                </div>
+            </div>
+
+            <div class="row mt-4" style="justify-content: center;">
+                <div class="form-group col-lg-6">
+                    <label for="pinCertificado">PIN del Certificado</label>
+                    <input class="form-control input-govco" type="number" formControlName="pinCertificado" />
+                </div>
+            </div>
+
+            <div class="row mt-4" style="justify-content: center;">
+                <div class="col-md-6">
+                    <div class="row recaptcha-container">
+                        <re-captcha formControlName="recaptcha"></re-captcha>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4" style="justify-content: center;">
+                <div class="col-lg-6 d-flex" style="justify-content: space-between;">
+                    <button class="btn btn-round btn-middle" (click)="cancelar()">CANCELAR</button>
+                    <button class="btn btn-round btn-high" (click)="buscar()">BUSCAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

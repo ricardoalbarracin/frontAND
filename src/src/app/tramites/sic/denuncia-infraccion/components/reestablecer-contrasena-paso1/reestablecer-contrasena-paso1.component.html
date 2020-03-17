@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-12 pb-3" *ngIf="mensajeEnviado">
+        <app-notifications [typeMessage]="'warning'" [show]="mensajeEnviado" [message]="messages.warning_envio_exitoso"
+            [title]="'Importante'"></app-notifications>
+    </div>
+</div>
+<div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm" [ngClass]="{'invalid-form' : invalidForm}">
+    <div class="card govco-card col-md-12">
+        <div class="row card-header pt-0">
+            <div class="col-8 m-auto p-0">
+                <h3 class="m-0 title-section">Restablecer contraseña</h3>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="card-body pt-2">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label style="font-weight: 500 !important;" for="nuevo_password">Correo electrónico *</label>
+                    <input class="form-control input-govco" maxlength="100" formControlName="correo" placeholder="Ej:correo@mail.com" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Tipo de documento *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="tipo_documento" (change)="setValidator()" placeholder="Seleccione"
+                        [items]="listaTipoDocumento">
+                    </app-dropdownlist>
+                </div>
+
+                <div class="col-md-6 form-group select-govco">
+                    <label for="selector-normal" class="form-group-govco">Número documento *</label>
+                    <input class="form-control input-govco" minlength="4" maxlength="15"
+                        formControlName="numero_documento" placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class=" col-md-12 registro-consulta-footer">
+                    <button id="save-user" class="btn btn-round btn-high" (click)="enviar()">ENVIAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

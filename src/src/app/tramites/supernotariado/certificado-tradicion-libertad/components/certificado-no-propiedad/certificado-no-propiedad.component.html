@@ -1,0 +1,118 @@
+<div class="card govco-card mt-4">
+    <div class="card-body">
+        <div [formGroup]="certificadoNoPropiedadForm">
+                <h3>Certificado de no propiedad</h3>
+                <h3 class="mt-3">Resumen de la consulta</h3>
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-12">
+                        <p>
+                            {{certificadoNoPropiedadForm.controls.encabezado.value}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-4 mb-3">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-fixed">
+                            <tbody>
+                                <tr class="m-b">
+                                    <td class="col-6 text-left m-r n-t">
+                                <tr><strong>Servicio</strong></tr>
+                                <tr>Certificado especial de no propiedad</tr>
+                                </td>
+                                <td class="col-6 text-left n-t">
+                                    <tr><strong>Pin</strong></tr>
+                                    <tr>1234578900000000000088888</tr>
+                                </td>
+                                </tr>
+
+                                <tr class="m-b">
+                                    <td class="col-6 text-left m-r">
+                                <tr><strong>Recibo/Referencia</strong></tr>
+                                <tr>0239402890</tr>
+                                </td>
+                                <td class="col-6 text-left">
+                                    <tr><strong>Valor</strong></tr>
+                                    <tr>10700</tr>
+                                </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="col-6 text-left m-r">
+                                <tr><strong>Fecha de consulta</strong></tr>
+                                <tr>21-00-0000. 00:00:00 am/pm</tr>
+                                </td>
+                                <td class="col-6 text-left">
+                                    <tr><strong></strong></tr>
+                                    <tr></tr>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-3">
+                    <div class="row">
+                        <div class="card govco-card">
+                            <span>
+                                {{certificadoNoPropiedadForm.controls.infoGeneral.value}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row mt-5">
+                    <div class="col-6">
+                        <h3>Resultados</h3>
+                    </div>
+                    <div class="col-6 text-right">1 RESULTADO</div>
+                </div>
+
+            <div class="col-md-12 mt-3">
+
+                    <div class="row">
+                        <table class="table table-fixed">
+                            <thead>
+                                <tr>
+                                    <th class="col-1 text-center"><br></th>
+                                    <th class="col-3 text-center">Ciudad</th>
+                                    <th class="col-4 text-center">Matrícula</th>
+                                    <th class="col-4 text-center">Dirección</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="col-1 text-center"> <strong>1</strong></td>
+                                    <td class="col-3 text-center">Bogotá</td>
+                                    <td class="col-4 text-center">1002-6AB0000000123</td>
+                                    <td class="col-4 text-center">Calle 1 # 56 -76</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                </div>
+
+        </div>
+    </div>
+    <div class="row mt-4" style="justify-content: center;">
+        <div class="col-lg-6 pl-3 d-flex" style="justify-content:space-between">
+            <div class="p-2">
+                <button class="btn btn-round btn-middle" (click)="nuevaBusqueda()">NUEVA BÚSQUEDA</button>
+            </div>
+
+            <div class="p-2">
+                <button type="button" class="btn btn-round btn-high-mix-govco area-servicio-item">
+                    <span class="btn-mix-govco__title--left text-white">DESCARGAR TODOS</span>
+                    <span class="btn-mix-govco__icon govco-icon govco-icon govco-icon-down-arrow-p text-white"></span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

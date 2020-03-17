@@ -1,0 +1,36 @@
+<h4 class="titulocondicion">Canal de atención</h4>
+<!-- <p class="leyendadocumento">{{data.VerificacionInstDescripcion}}</p> -->
+<div *ngFor="let canales of data">
+    <p>{{canales.Excepcion}}</p>
+    <!-- <div *ngFor="let canal of canales; let i = index">
+        <p *ngIf="i == 0" class="leyendadocumento">{{canal.descripcion}} </p>
+    </div>
+    <div class="govco-table govco-table-basic">
+        <table class="table table-striped">
+            <ng-container  *ngFor="let canalTipo of canales; let i = index">
+                <thead *ngIf="i == 0" >
+                    <th scope="col">Medio</th>
+                    <th scope="col">Detalle</th>
+                </thead>
+                <tbody>
+                    <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'PRESENCIAL'">
+                        <td>Presencial</td>
+                        <td>
+                            <a (click)="showModal({tipo: 'puntos', data: canalTipo.canal.puntosAtencion})">
+                                Ver puntos de atención
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="canalTipo.canal.canal.TipoCanal == 'WEB'">
+                        <td>Web</td>
+                        <td>
+                            <a href="{{ canalTipo.canal.canal.UrlCanalWeb }}">
+                                {{canalTipo.canal.canal.NombreCanalWeb}}
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-container>
+        </table>
+    </div> -->
+</div>

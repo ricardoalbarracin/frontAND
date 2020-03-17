@@ -1,0 +1,36 @@
+@import "../../../../../../scss/base/_colors.scss";
+
+.table-fixed tbody {
+    height: auto;
+    overflow-y: auto;
+    width: 100%;
+    }
+    .table-fixed thead,
+    .table-fixed tbody,
+    .table-fixed tr,
+    .table-fixed td,
+    .table-fixed th {
+    display: block;
+    }
+    .table-fixed tr:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    }
+    .table-fixed tbody td,
+    .table-fixed thead > tr > th {
+    float: left;
+    }
+
+.m-r{  
+    border-right: 2px solid $color-dark-blue;
+}
+
+.m-b{  
+  border-bottom: 2px solid $color-dark-blue;
+}
+
+.n-t{
+  border-top: none;
+}

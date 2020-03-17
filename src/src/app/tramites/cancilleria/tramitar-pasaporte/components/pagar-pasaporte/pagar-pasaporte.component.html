@@ -1,0 +1,139 @@
+<div class="card govco-card p-0 mb-3">
+    <div class="card-body pt-4">
+        <!--Datos de la solicitud-->
+        <div id="datosSolicitudGroup" [formGroup]="pagoPasaporteForm" class="pt-2">
+            <div class="detalle-solicitud">           
+                <h3 class="m-0 title-section">Solicitud</h3>
+                <div class="col-md-12">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <strong>Nombres y Apellidos</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.nombresApellidos.value}}
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong>Tipo de pasaporte</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.tipoPasaporte.value}}
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <strong>Tipo de documento</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.tipoDocumento.value}}
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col-lg-6 featured-text-govco">
+                            <strong>Solcitud</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.solicitud.value}}
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <strong>Número de docuemento</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.numeroDocumento.value}}
+                                </label>
+                            </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <strong>Oficina</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.oficina.value}}
+                                </label>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <strong>Nacionalidad</strong>
+                            <p class="mb-0 mt-1">
+                                <label>
+                                    {{pagoPasaporteForm.controls.nacionalidad.value}}
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detalle-pago">
+                <h3 class="m-0 title-section">Información de pago</h3>
+                <div class="col-md-12">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-lg-6">
+                            <strong>Total a pagar</strong>
+                            <p class="mb-0 mt-1">
+                            <label> 
+                                ${{pagoPasaporteForm.controls.totalPago.value}}<small>{{pagoPasaporteForm.controls.centavos.value}}</small>
+                            </label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card govco-card p-0 ">
+    <div class="card-body pt-4 mb-3">
+        <div id="datosPago">
+            <h3 class="m-0 title-section">Pagar</h3>
+            <div class="col-md-12">
+                <div class="row mt-3 mb-3">
+                    <div class="col-lg-6">
+                        <strong>Selecciona la forma de pago:</strong>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-0 mt-1">En línea <br /> A través de Pagos Seguros en línea - PSE</div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn btn-round btn-high" style="width: 163px; height: 41px;"
+                            (click)="pagoPse()">IR A PSE</button>
+                    </div>
+                    <hr style="border-radius: 5px;" class="m-3" />
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-0 mt-1">En línea <br /> Con pago de tarjeta de crédito</div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn btn-round btn-high" style="width: 163px; height: 41px;"
+                            (click)="pagoTc()">PAGAR</button>
+                    </div>
+                    <hr style="border-radius: 5px;" class="m-3" />
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-0 mt-1">Presencial <br /> Sucursal bancaria o cajero servibanca</div>
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn btn-round btn-high" style="width: 163px; height: 41px;">VER MÁS</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

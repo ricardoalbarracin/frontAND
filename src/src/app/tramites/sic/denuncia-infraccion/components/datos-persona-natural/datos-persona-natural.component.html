@@ -1,0 +1,304 @@
+<div class="row" [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm" [ngClass]="{'invalid-form' : invalidForm}">
+    <div class="card govco-card col-md-12">
+        <div class="row card-header pt-0 pl-4">
+            <div class="col-8 m-auto p-0">
+                <h3 class="m-0 title-section">Datos persona Natural</h3>
+            </div>
+            <div class="col-4">
+                <a class="btn-symbolic-govco d-flex">
+                </a>
+            </div>
+        </div>
+        <div class="card-body pt-0 pl-2">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Tipo de documento *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+                        [items]="listaTipoDocumento">
+                    </app-dropdownlist>
+                </div>
+
+                <div class="col-md-6 form-group select-govco">
+                    <label for="selector-normal" class="form-group-govco">Número documento *</label>
+                    <input class="form-control input-govco" formControlName="numero_documento"
+                        placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="primer_nombre" class="form-group-govco">Primer Nombre *</label>
+                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_nombre" placeholder="Ej: Jose" />
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="segundo_nombre" class="form-group-govco">Segundo Nombre *</label>
+                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_nombre"
+                        placeholder="Ej: Hernando" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="primer_apellido" class="form-group-govco">Primer Apellido *</label>
+                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_apellido" placeholder="Ej: Gómez" />
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="segundo_apellido" class="form-group-govco">Segundo Apellido *</label>
+                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_apellido"
+                        placeholder="Ej: Restrepo" />
+                </div>
+            </div>
+            <div class="area-note-selago">
+                <strong class="title">Importante</strong><br>
+                <i class="content">A esta dirección serán enviados todos los comunicados
+                    relacionados con los trámites que realice.</i>
+            </div>
+
+            <div class="row mt-3" *ngIf="mostrarDireccion">
+                <div class="col-md-6 col-lg-6 form-group">
+                    <label class="form-group-govco">Dirección de Correspondencia *</label>
+                    <div *ngIf="mostrarDireccion">{{direccionCorrespondencia}}</div>
+                    <div *ngIf="!mostrarDireccion" class="d-flex">
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="form-group-govco">Información complementaria *</label>
+                    <div *ngIf="mostrarDireccion">{{informacionComplementaria}}</div>
+                </div>
+            </div>
+
+            <br>           
+            <div *ngIf="!mostrarDireccion" class="row mb-3">
+                <div class="col-md-5 direccion-inline pr-1 mt-3">
+                    <div class="pw-25 mr-2">
+                        <app-dropdownlist ngDefaultControl 
+                            formControlName="calle_cra"
+                            [items]="listaCalleCarrera" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>   
+                    <div class="pw-30 mr-2">                
+                        <input class="form-control input-govco" 
+                                formControlName="primer_valor_calle_cra"
+                                placeholder="000" 
+                                maxlength="3" 
+                                (focusout) = "agregarDireccionDefinitiva()" />
+                    </div>
+                    <div class="pw-25 mr-2">
+                        <app-dropdownlist ngDefaultControl formControlName="calle_letra"
+                            [items]="listaCalleLetra" (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                    <div class="pw-25 mr-2">
+                        <app-dropdownlist ngDefaultControl 
+                            formControlName="calle_bis"
+                            [items]="listaBis" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+                <div class="col-md-2 direccion-inline pr-1 mt-3">                    
+                    <div class="pw-50 mr-2">
+                        <app-dropdownlist ngDefaultControl 
+                            formControlName="calle_bis_letra"
+                            [items]="listaCalleLetra" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                    <div class="pw-50 mr-2">
+                        <app-dropdownlist ngDefaultControl 
+                            formControlName="calle_sufijo"
+                            [items]="listaSufijoCardinal" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+                <div class="col-md-5 direccion-inline pr-1 mt-3">
+                    <label class="m-auto pr-2">#</label>
+                    <div class="pw-25 mr-2">  
+                        <input class="form-control input-govco" 
+                            formControlName="segundo_valor_calle_cra"
+                            placeholder="000"
+                            maxlength="3"
+                            (focusout) = "agregarDireccionDefinitiva()"/>
+                    </div>
+                    <div class="pw-25 mr-2">
+                        <app-dropdownlist ngDefaultControl
+                            formControlName="calle_letra_segundo"
+                            [items]="listaCalleLetra" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                
+                    <label class="m-auto pr-2">-</label>
+                    <div class="pw-25 mr-2">      
+                        <input class="form-control input-govco" 
+                        formControlName="tercer_valor_calle_cra"
+                        placeholder="000" maxlength="3" 
+                        (focusout) = "agregarDireccionDefinitiva()"/>
+                    </div>
+                    <div class="pw-25 mr-2">
+                        <app-dropdownlist ngDefaultControl 
+                            formControlName="calle_sufijo_tercer"
+                            [items]="listaSufijoCardinal" 
+                            (change) = "agregarDireccionDefinitiva()">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row" *ngIf="!mostrarDireccion">
+                <div *ngIf="mostrarDireccion">Ej: Edificio Bávaro, apto 504 torre 2</div>
+                <div class="col-md-5 form-group" *ngIf="!mostrarDireccion">
+                    <label class="form-group-govco">Información complementaria *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="informacion_complementaria"
+                        placeholder="Ej: Piso, Oficina, Apto, Torre" [items]="listaInformacionComplementaria">
+                    </app-dropdownlist>
+                </div>
+
+                <div class="col-md-5 form-group" *ngIf="!mostrarDireccion">
+                    <label class="form-group-govco">Máximo 2 Complementos</label>
+                    <input class="form-control input-govco" formControlName="informacion_complementaria2"
+                        placeholder="" />
+                </div>
+
+                <div class="col-md-2 form-group align-right" style="padding: 37px 1.5%;" *ngIf="!mostrarDireccion">
+                        <a (click)="agregarComplementos()" class="align-right btn-low">Agregar</a>
+                </div>
+            </div>
+            <div class="row" *ngIf="!mostrarDireccion">
+                <div class="col-md-12 form-group">
+                    <label class="form-group-govco">Dirección definitiva</label>
+                    <input class="form-control input-govco" formControlName="direccion_definitiva" />
+                </div>
+            </div>
+
+
+            <div class="align-right" *ngIf="mostrarDireccion">
+                <a (click)="OcultarDireccion()" class="btn-low">Cambiar Dirección</a>
+            </div>
+            <div class="align-right" *ngIf="!mostrarDireccion">
+                <a (click)="limpiarDireccion()" class="btn-low separate">Limpiar</a>
+                <a (click)="guardarDireccionDefinitiva()" class="btn-low">Guardar</a>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Teléfono fijo y extensión</label>
+                    <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="telefono_fijo"
+                        placeholder="Ej: 031 6228108" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Teléfono celular *</label>
+                    <input class="form-control input-govco" minlength="1" maxlength="10" formControlName="celular" placeholder="Ej: 300 382 2704" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Fax</label>
+                    <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="fax" placeholder="Ej: 0000000" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="pais" class="form-group-govco">País *</label>
+                    <app-dropdownlist ngDefaultControl (change)="cargarListaDepartamento()" formControlName="pais"
+                        placeholder="Seleccione" [items]="listaPais">
+                    </app-dropdownlist>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="departamento" class="form-group-govco">Departamento *</label>
+                    <app-dropdownlist ngDefaultControl (change)="cargarListaCiudad()" formControlName="departamento"
+                        placeholder="Seleccione" [items]="listaDepartamento">
+                    </app-dropdownlist>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="ciudad" class="form-group-govco">Ciudad *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="ciudad" placeholder="Seleccione"
+                        [items]="listaCiudad">
+                    </app-dropdownlist>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="educacion" class="form-group-govco">Último grado de educación obtenido *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="educacion" placeholder="Seleccione"
+                        [items]="listaEscolaridad">
+                    </app-dropdownlist>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="genero" class="form-group-govco">Género *</label>
+                    <app-dropdownlist ngDefaultControl formControlName="genero" placeholder="Seleccione"
+                        [items]="listaGenero">
+                    </app-dropdownlist>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="fecha_nacimiento" class="form-group-govco">Fecha de nacimiento *</label>
+                        <input class="form-control input-govco" placeholder="DD/MM/YYYY" formControlName="fecha_nacimiento"
+                        name="dp" [readonly]="true" ngbDatepicker #d="ngbDatepicker" maxlength="10" minlength="10" [maxDate]="maxDate" (click)="d.toggle()"  />                                                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Grupo Étnico</label>
+                    <app-dropdownlist ngDefaultControl formControlName="etnico" placeholder="Seleccione"
+                        [items]="listaEtnico">
+                    </app-dropdownlist>
+                </div>
+            </div>
+            <div class="area-note-selago"> <strong class="title">Importante</strong><br>
+                <i class="content">La dirección de correo electrónico permite que la
+                    Superintendencia de Industria y Comercio tenga un medio de comunicación más directo con usted, por
+                    ese
+                    motivo ingrese un correo electrónico válido donde recibir las comunicaciones de la SIC.</i>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="sustancia" class="form-group-govco">Correo electrónico *</label>
+                    <input class="form-control input-govco" formControlName="correo" placeholder="Ej:correo@mail.com" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card govco-card main-invima-advice col-md-12">
+        <div class="card-body">
+            <div class="row">
+                <label> Aviso de privacidad y autorización para el <strong><u>tratamiento de datos
+                            personales</u></strong>
+                    trámites en el SITAC del MRE</label>
+            </div>
+            <div class="row">
+                <div id="checkbox-active">
+                    <label class="chk-govco">
+                        <input formControlName="selector" type="checkbox" />
+                        <label >Consiento que mis datos personales sean transferidos en los términos que
+                            señala el presente aviso de privacidad *
+                        </label>
+                        <div class="chk-govco__indicator"></div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row recaptcha-container">
+                        <div class="form-group">
+                            <re-captcha formControlName="recaptcha"></re-captcha>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-12 registro-consulta-footer">
+                    <button class="btn btn-round btn-middle wb-150" (click)="limpiar()">LIMPIAR</button>
+                    <button id="save-user" class="btn btn-round btn-high" (click)="siguiente()">SIGUIENTE PASO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

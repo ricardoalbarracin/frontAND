@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="mostrarAlerta">
+    <app-notifications [typeMessage]="tipoAlerta" [message]="mensajeAlerta" [title]="titulo"
+      [show]="mostrarAlerta"></app-notifications>
+  </div>
+</div>
+
+<div class="card govco-card ">
+  <div class="row card-header pt-0 pb-0">
+      <div class="col-12 m-auto p-0">
+          <h3 class="m-0 title-section">Datos personales</h3>
+      </div>
+  </div>
+  <div class="card-body" id="datosGenerarGroupRut">
+      <div class="row" [formGroup]="generarFormObtenerCopia" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm" >
+        <!--datos formulario -->
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="tipoDocumento">Tipo de documento *</label>
+            <app-dropdownlist ngDefaultControl (change)="actualizarDocumento()" formControlName="tipoDocumento" placeholder = "Por ejemplo: Cédula Ciudadanía" [items]="tiposDocumentos"></app-dropdownlist>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco" for="numeroDocumento">Número de documento *</label>
+            <input class="form-control input-govco"
+              placeholder="Por ejemplo: 10293080" type="text" formControlName="numeroDocumento" (change)="limpiar()" />
+          </div>
+        </div>
+
+        <div class="col-md-12" >
+            <div class="row recaptcha-container mt-3" >
+                <div class="form-group">
+                    <re-captcha formControlName="recaptcha"></re-captcha>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="busqueda-footer col-md-12">
+          <button class="btn btn-round btn-high" (click)="search()">GENERAR</button>
+      </div>
+  </div>
+</div>

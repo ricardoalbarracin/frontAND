@@ -1,0 +1,12 @@
+<div id="toast-container-body" *ngIf="isVisible">
+    <div [class]="toast.class" aria-live="polite">
+        <button *ngIf="isVisibleButtonClose" class="toast-close-button" role="button" (click)="closeNotification()">
+            <i class="material-icons icon">clear</i>
+        </button>
+        <div class="d-flex bd-highlight">
+            <div [class]="toast.iconClass"></div>
+            <div class="toast-title flex-fill bd-highlight">{{title}}</div>
+        </div>
+        <div class="toast-message pt-2" *ngIf="message" [innerHtml]="messageHtml"></div>
+    </div>
+</div>

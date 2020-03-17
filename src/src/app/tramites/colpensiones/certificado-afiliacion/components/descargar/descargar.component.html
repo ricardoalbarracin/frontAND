@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-12 pb-3" *ngIf="mensajeDescarga || mensajeEnvioCorreo || failureRequest">
+    <app-notifications [typeMessage]="'success'" [title]="'Certificado descargado'" [show]="mensajeDescarga">
+    </app-notifications>
+    <app-notifications [typeMessage]="'success'" [title]="'El certificado ha sido enviado al correo'"
+      [show]="mensajeEnvioCorreo"></app-notifications>
+    <app-notifications [typeMessage]="'error'" [message]="messages.searchEmpty" [title]="'Lo sentimos'"
+      [show]="failureRequest"></app-notifications>
+  </div>
+</div>
+
+
+<div class="card govco-card col-md-12 p-3 mb-3">
+  <div class="card-body p-0">
+    <div class="row" id="tipoBusquedaForm" [formGroup]="tipoBusquedaForm">
+      <h3 class="col-lg-5 mb-auto mt-auto title-section">Recibe tu certificado</h3>
+      <div class="col-lg-4">
+        <div class="mt-1">
+          <label class="radiobutton-govco">
+            <input type="radio" id="documento" value="EMAIL" formControlName="tipoConsulta" (change)="setStep(2)">
+            <span id="colpensiones-email" for="documento" class="form-group-govco">
+                Correo electrónico
+            </span>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="mt-1">
+          <label class="radiobutton-govco">
+            <input type="radio" id="registro" value="DESCARGA" formControlName="tipoConsulta" [checked]='true'
+              (change)="setStep(2)">
+            <span for="registro" class="form-group-govco">Descarga</span>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card govco-card col-md-12 p-0" id="datosSolicitanteGroup">
+  <div class="card-header pt-4 pb-0">
+    <h3 class="m-0 title-section">Datos personales</h3>
+  </div>
+  <div class="card-body">
+    <div class="col-12 mb-3" [formGroup]="descargaForm" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+      [validate]="invalidForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco">Tipo de documento *</label>
+            <app-dropdownlist ngDefaultControl formControlName="tipoDocumento" [items]="tiposDocumento"
+              (change)="changeTipoDocumento()"></app-dropdownlist>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-group-govco">Número de documento *</label>
+            <input class="form-control input-govco" [type]="typeInput" formControlName="documento"
+              (change)="setStep(2)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-12 pb-3">
+      <div class="area-note-selago" *ngIf="tipoBusquedaForm.value.tipoConsulta == 'EMAIL'">
+        <div class="row" [formGroup]="emailForm" [ngClass]="{'invalid-form' : invalidForm}" appInputValidator
+          [validate]="invalidForm">
+          <div class="col-md-12">
+            <h3>Recibe por correo</h3>
+            <em class="content">Tu certifici class="content">Tu certificado puede ser enviado a tu correo tan solo ingresando tu dirección de
+              correo.</em>
+            <div class="form-group container-email">
+              <label class="form-group-govco" for="email">Correo electrónico *</label>
+              <input class="form-control input-govco" type="text" formControlName="email" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row recaptcha-container" [formGroup]="recaptchaForm" [ngClass]="{'invalid-form' : invalidForm}"
+        appInputValidator [validate]="invalidForm">
+        <div class="form-group">
+          <re-captcha formControlName="recaptcha"></re-captcha>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-12 certificado-afiliacion-footer">
+        <button class="btn btn-round btn-high" (click)="consultar()" [disabled]="disabled">CONSULTAR
+
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1004 @@
+<div [formGroup]="registerForm" *ngIf="service.pasoIngresar === 1">
+    <div class="card govco-card mb-3">
+        <div class="ingresar-solicitud">
+            <h3 class="title-section">Ingresar solicitud</h3>
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Tipo de solicitante *</label>
+                            <!-- <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.tipoSolicitante.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div> -->
+
+                            <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.departamento.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Tipo de documento*</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.tipoDocumento.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Número de documento*</label>
+                            <input class="form-control input-govco" numbersOnly formControlName="numeroDocumento"
+                                [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento.errors }">
+                            <div *ngIf="submitted && f.numeroDocumento.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Confirmar número de documento*</label>
+                            <input class="form-control input-govco" numbersOnly formControlName="numeroDocumento2"
+                                [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento2.errors }">
+                            <div *ngIf="submitted && f.numeroDocumento2.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Nombre o razón social*</label>
+                            <input class="form-control input-govco" formControlName="nombreRazonSocial"
+                                [ngClass]="{ 'is-invalid': submitted && f.nombreRazonSocial.errors }">
+                            <div *ngIf="submitted && f.nombreRazonSocial.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">País de expedición*</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.paisExpedicion.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="anexos">
+            <h3 class="title-section">Anexos</h3>
+            <div class="col-12 mt-3">
+                <p>Según el "Tipo de documento" seleccionado en la casilla del solicitante adjunte: Fotocopia de la
+                    cédula de ciudadanía (por ambas caras) o pasaporte (donde está la fotografía) o cédula de
+                    extranjería o
+                    tarjeta de identidad, y en caso persona jurídicas, la identificación del representante legal de la
+                    entidad y la
+                    identificación de la entidad con su Nit, Extensiones válidas: JPEG, PDF y PNG.
+                </p>
+                <div class="nota-anexos mt-3 mb-3">
+                    <div id="toast-container-body">
+                        <div class="toast-info p-3" aria-live="polite">
+                            <div class="d-flex bd-highlight">
+                                <div class="toast-title note-title">Nota</div>
+                            </div>
+                            <div class="toast-message">
+                                <p class="m-0">Si marcó exhibición o estudio científico, y los bienes son de propiedad
+                                    pública, anexe
+                                    los siguientes documentos complementarios <a class="btn-low">Ver documento</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="adjunto">
+                    <div class="form-group">
+                        <label class="form-group-govco">Descripción*</label>
+                        <div id="div-textarea-item">
+                            <div class="textarea-govco">
+                                <div class="div-character" id="divtextarea-example">
+                                    <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
+                                        id="textarea-example" maxlength="255" formControlName="descripcion"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
+                                    </textarea>
+                                    <div class="div-count-character"><span class="hidden span-message-character"
+                                            id="messagetextarea-example">Alcanzó el máximo de carácteres
+                                            permitidos</span><span class="float-right pr-3 span-count-character"
+                                            id="counttextarea-example">255</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && f.descripcion.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-right ">
+                            <a class="btn btn-round btn-high">AGREGAR</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="tg-0lax">Adjuntos</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.PDF</p>
+                                    <p>Descripcion de archivo</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6  text-right">
+                                <div class="form-group  text-right">
+                                    <button type="button" class="close" aria-label="Close">
+                                        <i _ngcontent-ryh-c4="" class="material-icons page-icon-close align-middle">clear</i>
+                                        <u>Eliminar</u>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card govco-card mb-3">
+        <h3 class="title-section">Datos de ubicación</h3>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Departamento *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.departamento.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Municipio *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.municipio.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Teléfono *</label>
+                        <input class="form-control input-govco" numbersOnly formControlName="telefono"
+                            [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+                        <div *ngIf="submitted && f.telefono.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Dirección *</label>
+                        <input class="form-control input-govco" formControlName="direccion"
+                            [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }">
+                        <div *ngIf="submitted && f.direccion.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Correo electrónico *</label>
+                        <input class="form-control input-govco" formControlName="correo"
+                            [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
+                        <div *ngIf="submitted && f.correo.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Confirmación de correo electrónico *</label>
+                        <input class="form-control input-govco" formControlName="correo2"
+                            [ngClass]="{ 'is-invalid': submitted && f.correo2.errors }">
+                        <div *ngIf="submitted && f.correo2.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="aplica-interes col-12">
+                    <p class="title">Solo aplica para bienes de interés cultural del ámbito nacional</p>
+                    <p>
+                        <span class="title">Teléfono:</span>
+                        <i class="content">
+                            Ingrese el indicativo del país, de la ciudad, del municipio y el número
+                            telefónico. Ejemplo +57 (1) 342 4100. No ingresar datos del operador de larga distancia (09,
+                            07 o 05), solo el
+                            indicativo local entre paréntesis y el número de contacto.
+                        </i>
+                        <br>
+                        <span class="title">Correo electrónico:</span>
+                        <i class="content">
+                            Ingrese solo una (1) dirección de correo. Debe incluirse de la manera
+                            estándar, el taxto en minúsculas y sin tíldes. Ejemplo: correo@mincultura.gov.co
+                        </i>
+                        <br>
+                        <span class="title">Dirección:</span>
+                        <i class="content">
+                            Este dato debe incluirse con las palabras calle, carrera, transversal, diagonal, etc.
+                            completas y debe utilizarse el signo # (si aplica) y un guion. Si el nombre del barrio hace
+                            parte de
+                            la dirección, debe incluirse completo y sin abreviaturas.
+                        </i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card govco-card mb-3">
+        <h3 class="title-section">Requiere intermediario</h3>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="radiobutton-govco">
+                            <input type="radio" name="radio" formControlName="requiereIntermediario"
+                                [(ngModel)]="requiereIntermediarioValor" value="SI" />
+                            <span>SI</span>
+                            <div class="radiobutton-govco__indicator"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="radiobutton-govco">
+                            <input type="radio" name="radio" formControlName="requiereIntermediario"
+                                [(ngModel)]="requiereIntermediarioValor" value="NO" />
+                            <span>NO</span>
+                            <div class="radiobutton-govco__indicator"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="requiereIntermediarioValor === 'SI'">
+                    <br>
+                    <h2 class="tg-0lax">Intermediario</h2>
+                    <p>Aplica solo cuando la solicitud es tramitada por un tercero (persona natural, empresa de
+                        mudanzas,
+                        agencia o
+                        sociedad de intermediación aduanera SIA), en este caso diligencia los datos que siguen a
+                        continuación,
+                        siguiendo las mismas pautas para el solicitante, en caso contrario no diligencie este item.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Tipo de documento*</p>
+                                <select formControlName="intermediarioTipoDocumento" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI' }">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Número de documento*</p>
+                                <input class="form-control input-govco" numbersOnly
+                                    formControlName="intermediarioNumeroDocumento"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioNumeroDocumento.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.intermediarioNumeroDocumento.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Confirmar número de documento*</p>
+                                <input class="form-control input-govco" numbersOnly
+                                    formControlName="intermediarioNumeroDocumento2"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioNumeroDocumento2.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.intermediarioNumeroDocumento2.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p>Nombre</p>
+                                <input class="form-control input-govco">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>País de expedición*</p>
+                                <select formControlName="intermediarioPais" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI' }">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.intermediarioPais.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Departamento*</p>
+                                <select formControlName="intermediarioDepartamento" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioDepartamento.errors && requiereIntermediarioValor === 'SI' }">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.intermediarioDepartamento.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Municipio*</p>
+                                <select formControlName="intermediarioMunicipio" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioMunicipio.errors && requiereIntermediarioValor === 'SI' }">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.intermediarioMunicipio.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <h2 class="tg-0lax">Anexos</h2>
+                    <p>Según el "Tipo de documento" seleccionado en la casilla del solicitante adjunte: Fotocopia de la
+                        cédula
+                        de
+                        ciudadanía (por ambas caras) o pasaporte (donde está la fotografía) o cédula de extranjería o
+                        tarjeta de
+                        identidad, y en caso persona jurídicas, la identificación del representante legal de la entidad
+                        y la
+                        identificación de la entidad con su Nit, Extensiones válidas: JPEG, PDF y PNG.</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <br>
+                                <p>Descripción</p>
+                                <div id="div-textarea-item" class="pt-3">
+                                    <div class="textarea-govco">
+                                        <div class="div-character" id="divtextarea-example">
+                                            <textarea class="form-control" rows="5"
+                                                placeholder="Escribe aquí tu descripción" id="textarea-example"
+                                                maxlength="300"></textarea>
+                                            <div class="div-count-character"><span class="hidden span-message-character"
+                                                    id="messagetextarea-example">Alcanzó el máximo de carácteres
+                                                    permitidos</span><span class="float-right pr-3 span-count-character"
+                                                    id="counttextarea-example">300</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" text-right>
+                        <div class="col-md-6  text-left">
+                            <a class="btn btn-round btn-middle">Seleccionar archivo</a>
+                        </div>
+                        <div class="col-md-6  text-right ">
+                            <a class="btn btn-round btn-high">AGREGAR</a>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="tg-0lax">Adjuntos:</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.PDF</p>
+                                <p>Descripcion de archivo</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6  text-right">
+                            <div class="form-group  text-right">
+                                <button type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    <u>Eliminar</u>
+                                </button>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <h2 class="tg-0lax">Datos de ubicación</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Departamento*</p>
+                                <select formControlName="ubicacionDepartamento" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionDepartamento.errors  && requiereIntermediarioValor === 'SI'}">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.ubicacionDepartamento.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Municipio*</p>
+                                <select formControlName="ubicacionMunicipio" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionMunicipio.errors  && requiereIntermediarioValor === 'SI'}">
+                                    <option value=""></option>
+                                    <option value="1">Opcion 1</option>
+                                </select>
+                                <div *ngIf="submitted && f.ubicacionMunicipio.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Teléfono</p>
+                                <input class="form-control input-govco" numbersOnly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Dirección</p>
+                                <input class="form-control input-govco">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <p>Correo electrónico*</p>
+                                <input class="form-control input-govco" formControlName="ubicacionCorreo"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionCorreo.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.ubicacionCorreo.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-group-govco">Confirmación de correo electrónico*</label>
+                                <input class="form-control input-govco" formControlName="ubicacionCorreo2"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionCorreo2.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.ubicacionCorreo2.errors && requiereIntermediarioValor === 'SI'"
+                                    class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>Solo aplica para bienes de interés cultural del ámbito nacional</strong></p>
+                    <p><strong>Teléfono: </strong>Ingrese el indicativo del país, de la ciudad, del municipio y el
+                        número
+                        telefónico. Ejemplo +57 (1) 342 4100. No ingresar datos del operador de larga distancia (09, 07
+                        o 05),
+                        solo
+                        el indicativo local entre paréntesis y el número de contacto.</p>
+                    <p><strong>Correo electrónico: </strong>Ingrese solo una (1) dirección de correo. Debe incluirse de
+                        la
+                        manera
+                        estándar, el taxto en minúsculas y sin tíldes. Ejemplo: correo@mincultura.gov.co</p>
+                    <p><strong>Dirección: </strong>Este dato debe incluirse con las palabras calle, carrera,
+                        transversal,
+                        diagonal,
+                        etc. completas y debe utilizarse el signo # (si aplica) y un guion. Si el nombre del barrio hace
+                        parte
+                        de la
+                        dirección, debe incluirse completo y sin abreviaturas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card govco-card mb-3">
+        <div class="ingresar-solicitud">
+            <h3 class="title-section">Intermediario</h3>
+            <div class="col-12 mt-3">
+                <p>
+                    Aplica solo cuando la solicitud es tramitada por un tercero (persona natural, empresa de mudanzas agencias o sociedades de intermediaciòn aduanera SIA), en este caso diligencie los datos que siguen a continuación siguiendo las misma pautas dadas para el solicitante, en caso contrario no diligencie este item.
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Tipo de documento*</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.tipoDocumento.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Número de documento*</label>
+                            <input class="form-control input-govco" numbersOnly formControlName="numeroDocumento"
+                                [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento.errors }">
+                            <div *ngIf="submitted && f.numeroDocumento.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Confirmar número de documento*</label>
+                            <input class="form-control input-govco" numbersOnly formControlName="numeroDocumento2"
+                                [ngClass]="{ 'is-invalid': submitted && f.numeroDocumento2.errors }">
+                            <div *ngIf="submitted && f.numeroDocumento2.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-group-govco">Nombre *</label>
+                            <input class="form-control input-govco" formControlName="nombreRazonSocial"
+                                [ngClass]="{ 'is-invalid': submitted && f.nombreRazonSocial.errors }">
+                            <div *ngIf="submitted && f.nombreRazonSocial.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">País de expedición*</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.paisExpedicion.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Departamento *</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.paisExpedicion.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-group-govco">Municipio *</label>
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            </app-dropdownlist>
+                            <div *ngIf="submitted && f.paisExpedicion.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="anexos">
+            <h3 class="title-section">Anexos</h3>
+            <div class="col-12 mt-3">
+                <p>Según el "Tipo de documento" seleccionado en la casilla del solicitante adjunte: Fotocopia de la
+                    cédula de ciudadanía (por ambas caras) o pasaporte (donde está la fotografía) o cédula de
+                    extranjería o
+                    tarjeta de identidad, y en caso persona jurídicas, la identificación del representante legal de la
+                    entidad y la
+                    identificación de la entidad con su Nit, Extensiones válidas: JPEG, PDF y PNG.
+                </p>
+                <div class="nota-anexos mt-3 mb-3">
+                    <div id="toast-container-body">
+                        <div class="toast-info p-3" aria-live="polite">
+                            <div class="d-flex bd-highlight">
+                                <div class="toast-title note-title">Nota</div>
+                            </div>
+                            <div class="toast-message">
+                                <p class="m-0">Si marcó exhibición o estudio científico, y los bienes son de propiedad
+                                    pública, anexe
+                                    los siguientes documentos complementarios <a class="btn-low">Ver documento</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="adjunto">
+                    <div class="form-group">
+                        <label class="form-group-govco">Descripción*</label>
+                        <div id="div-textarea-item">
+                            <div class="textarea-govco">
+                                <div class="div-character" id="divtextarea-example">
+                                    <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
+                                        id="textarea-example" maxlength="255" formControlName="descripcion"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
+                                    </textarea>
+                                    <div class="div-count-character"><span class="hidden span-message-character"
+                                            id="messagetextarea-example">Alcanzó el máximo de carácteres
+                                            permitidos</span><span class="float-right pr-3 span-count-character"
+                                            id="counttextarea-example">255</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && f.descripcion.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-right ">
+                            <a class="btn btn-round btn-high">AGREGAR</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="tg-0lax">Adjuntos:</div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.PDF</p>
+                                    <p>Descripcion de archivo</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6  text-right">
+                                <div class="form-group  text-right">
+                                    <button type="button" class="close" aria-label="Close">
+                                        <i _ngcontent-ryh-c4="" class="material-icons page-icon-close align-middle">clear</i>
+                                        <u>Eliminar</u>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h3 class="title-section">Datos de ubicación</h3>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Departamento *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.departamento.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Municipio *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.municipio.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Teléfono *</label>
+                        <input class="form-control input-govco" numbersOnly formControlName="telefono"
+                            [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }">
+                        <div *ngIf="submitted && f.telefono.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Dirección *</label>
+                        <input class="form-control input-govco" formControlName="direccion"
+                            [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }">
+                        <div *ngIf="submitted && f.direccion.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Correo electrónico *</label>
+                        <input class="form-control input-govco" formControlName="correo"
+                            [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
+                        <div *ngIf="submitted && f.correo.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Confirmación de correo electrónico *</label>
+                        <input class="form-control input-govco" formControlName="correo2"
+                            [ngClass]="{ 'is-invalid': submitted && f.correo2.errors }">
+                        <div *ngIf="submitted && f.correo2.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="aplica-interes col-12">
+                    <p class="title">Solo aplica para bienes de interés cultural del ámbito nacional</p>
+                    <p>
+                        <span class="title">Teléfono:</span>
+                        <i class="content">
+                            Ingrese el indicativo del país, de la ciudad, del municipio y el número
+                            telefónico. Ejemplo +57 (1) 342 4100. No ingresar datos del operador de larga distancia (09,
+                            07 o 05), solo el
+                            indicativo local entre paréntesis y el número de contacto.
+                        </i>
+                        <br>
+                        <span class="title">Correo electrónico:</span>
+                        <i class="content">
+                            Ingrese solo una (1) dirección de correo. Debe incluirse de la manera
+                            estándar, el taxto en minúsculas y sin tíldes. Ejemplo: correo@mincultura.gov.co
+                        </i>
+                        <br>
+                        <span class="title">Dirección:</span>
+                        <i class="content">
+                            Este dato debe incluirse con las palabras calle, carrera, transversal, diagonal, etc.
+                            completas y debe utilizarse el signo # (si aplica) y un guion. Si el nombre del barrio hace
+                            parte de
+                            la dirección, debe incluirse completo y sin abreviaturas.
+                        </i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="card govco-card mb-3">
+
+        <h3 class="title-section">Destino</h3>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">País *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="destinoPais" [items]="data.pais">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.destinoPais.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="!(colombiaSeleccionado())">
+                    <div class="form-group">
+                        <label class="form-group-govco">Ciudad *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="destinoCiudad" [items]="data.pais">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.destinoCiudad.errors && !(colombiaSeleccionado())"
+                            class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="colombiaSeleccionado()">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Departamento *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="destinoDepartamento" [items]="data.pais">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.destinoDepartamento.errors && colombiaSeleccionado()"
+                            class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Municipio *</label>
+                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.pais">
+                        </app-dropdownlist>
+                        <div *ngIf="submitted && f.destinoMunicipio.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Dirección *</label>
+                        <input class="form-control input-govco" formControlName="destinoDireccion"
+                            [ngClass]="{ 'is-invalid': submitted && f.destinoDireccion.errors }">
+                        <div *ngIf="submitted && f.destinoDireccion.errors" class="text-danger">
+                            Campo sin diligenciar.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Fines de exportación</label>
+                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.pais">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Entidad destino</label>
+                        <input class="form-control input-govco">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Teléfono</label>
+                        <input class="form-control input-govco" numbersOnly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="title-section mt-3">Tiempo de permanencia fuera del país</h3>
+        <div class="col-12 mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-group-govco">Días</label>
+                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        </app-dropdownlist>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p>- En caso de que su solicitud sea con fines de exposición o investigación diligencie el tiempo de
+                        permanencia.
+                    </p>
+                    <p>- En caso de que se trate de una salida temporal el tiempo de permanencia no podrá exceder los
+                        tres
+                        años.</p>
+                    <p>En caso de que su solicitud sea con fines de excibición al público o estudio científico y
+                        programas
+                        de
+                        intercambio entre entidades estatales y extranjeras.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="chk-govco">
+                        <input type="checkbox" checked="checked" id="checkbox_1" formControlName="autoriza"
+                            [ngClass]="{ 'is-invalid': submitted && f.autoriza.errors }">
+                        <label for="checkbox_1">
+                            Autorizo al ministerio de cultura para el uso de los datos aqui consignados. Para conocer mas
+                            sobre la
+                            política de datos personales pueden ingresar <strong>aquí</strong>
+                        </label>
+                        <div class="chk-govco__indicator"></div>
+                    </label>
+                    <div *ngIf="submitted && f.autoriza.errors" class="text-danger">
+                        Campo sin diligenciar.
+                    </div>
+                </div>
+            </div>
+            <div class="row m-4" *ngIf="1===1">
+                <div class="col-md-12">
+                    <div class="row recaptcha-container">
+                        <div class="form-group">
+                            <re-captcha formControlName="formControlRecaptcha"
+                                [ngClass]="{ 'is-invalid': submitted && f.formControlRecaptcha.errors }">
+                            </re-captcha>
+                            <div *ngIf="submitted && f.formControlRecaptcha.errors" class="text-danger">
+                                Campo sin diligenciar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <a (click)="volver()" class="btn btn-round btn-middle">Cancelar</a>
+            </div>
+            <div class="col-md-6 text-center">
+                <a (click)="open(content)" class="btn btn-round btn-high">Guardar</a>
+            </div>
+        </div>
+
+        <ng-template #content let-modal class="modal fade govco-modal-medium show" tabindex="-1" role="dialog"
+            style="display: block; z-index: 4; padding-right: 17px;" aria-modal="true">
+            <div>
+                <div class="modal-dialog alert-govco modal-medium modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <em class="material-icons color-green" style="font-size: 50px">check_circle</em>
+                            <div id="modal-content-title"
+                                class="modal-content-title content-govco modal-content-success text-center">Guardado
+                            </div>
+                            <p id="modal-content-txt" class="modal-content-txt content-govco">La solicitud ha sido
+                                guardada
+                                con éxito</p>
+                            <p id="modal-content-txt" class="modal-content-txt content-govco">Tu número de solicitud es
+                            </p>
+                            <p id="modal-content-txt" class="modal-content-txt content-govco">0175-2018</p>
+                            <p id="modal-content-txt" class="modal-content-txt content-govco">Tu solicitud aún no ha
+                                iniciado trámite ante el ministerio, debe completar los requisitos, agregar obras y
+                                presionar el botón enviar al ministerio.</p>
+                            <a (click)="closeModal()" class="btn btn-round btn-high">ENTENDIDO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>
+<div *ngIf="service.paso === 3 || service.paso === 4">
+    <br>
+    <h2 class="tg-0lax">Resumen de la solicitud</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <p><strong>Fecha</strong></p>
+                <p>20-02-2018</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <p><strong>Estado</strong></p>
+                <p>Guardada</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <p><strong>No. de radicación</strong></p>
+                <p>0175-2018</p>
+            </div>
+        </div>
+    </div>
+</div>

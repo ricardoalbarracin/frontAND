@@ -1,0 +1,93 @@
+
+<div class="mb-3" *ngIf="requestFailure">
+  <app-notifications 
+  [typeMessage]="'error'" 
+  [message]="messages.searchEmpty" 
+  [title]="'Lo sentimos'"
+  [show]="requestFailure" 
+  class="mb-3"></app-notifications>
+</div>
+
+<div class="card govco-card col-md-12 pt-4 pb-4">
+  <div class="card-body p-0 pl-3">
+    <div class="row" id="tipoBusquedaGroup" [formGroup]="tipoConsultaForm">
+      <h3 class="col-md-4 m-auto">1. Tipo de búsqueda </h3>
+      <div class="col-md-5">
+        <div class="m-auto">
+          <!-- Documento de identidad -->
+          <label class="radiobutton-govco mb-0">
+            <input type="radio" id="documento" value="DOC" formControlName="tipoConsulta" [checked]='true'>
+            <label for="documento" class="form-group-govco">Documento de identidad</label>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>    
+      <div class="col-md-3">
+          <div class="m-auto">
+          <!-- Regsitro -->
+          <label class="radiobutton-govco mb-0">
+            <input type="radio" id="registro" value="REG" formControlName="tipoConsulta">
+            <label for="registro" class="form-group-govco">Registro</label>
+            <div class="radiobutton-govco__indicator"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card govco-card main-sena-advice col-md-12" id="datosSolicitanteGroup">
+  <div class="card-header pl-2 pb-0">
+      <h3 class="title-section">Datos del solicitante</h3>
+  </div>     
+  <div class="card-body">
+    <div class="row" *ngIf="tipoConsultaForm.value.tipoConsulta != 'REG'" [formGroup]="documentoForm"
+      [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-group-govco">Tipo de documento</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipoDocumento" [items]="tiposDocumento">
+          </app-dropdownlist>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-group-govco">Número de identificación</label>
+          <input class="form-control input-govco" type="text" formControlName="documento" />
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="tipoConsultaForm.value.tipoConsulta == 'REG'" [formGroup]="registroForm"
+      [ngClass]="{'invalid-form' : invalidForm}" appInputValidator [validate]="invalidForm">
+      <div class="col-md-6 input-center mb-3">
+        <div class="form-group">
+          <label class="form-group-govco">Número de registro</label>
+          <input class="form-control input-govco" type="text" formControlName="registro" />
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="tipoConsultaForm.value.tipoConsulta == 'REG'">
+      <p class="center">
+        {{ messages.registry }}
+      </p>
+    </div>    
+    <p class="area-note-selago mt-3">
+      <em class="content">
+          {{ messages.advice }}
+      </em>          
+    </p>
+    <div class="col-md-12">
+      <div class="row recaptcha-container" [formGroup]="recaptchaForm" [ngClass]="{'invalid-form' : invalidForm}"
+        appInputValidator [validate]="invalidForm">
+        <div class="form-group">
+          <re-captcha formControlName="recaptcha"></re-captcha>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="certificado-constancia-footer col-md-12">
+        <button class="btn btn-round btn-high" (click)="consultar()">BUSCAR</button>
+      </div>
+    </div>
+  </div>
+</div>

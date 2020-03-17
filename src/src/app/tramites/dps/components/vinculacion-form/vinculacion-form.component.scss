@@ -1,0 +1,42 @@
+::-webkit-input-placeholder { /* Edge */
+    color: #93adc7 !important;
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #93adc7 !important;
+  }
+  
+  .input-govco::placeholder {
+    color: #93adc7 !important;
+  }
+
+  .input-disabled-select {
+    color: #93adc7 !important;
+  }
+
+  .btn-middle{
+    margin-top:10px;
+  }
+
+  select:required:invalid {
+    color:#93adc7 !important;
+  }
+
+  .invalid-label-dps{
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+    font-style: italic;
+  }
+
+  .invalid-label-dps-recaptcha{
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545 !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-style: italic;
+  }
+  .label-dps-input{
+    font-weight: normal !important;
+  }
