@@ -281,7 +281,7 @@ export class ConsultaGeneralComponent implements OnInit {
 
 
   private openModal(data: any) {
-    this.router.navigate(["/servicios-y-tramites/invima/revision-informacion-consulta-productos/T11625/detalle"], 
+    this.router.navigate(["/invima/revision-informacion-consulta-productos/T11625/detalle"], 
     {state:
       {
         expediente: data.content,

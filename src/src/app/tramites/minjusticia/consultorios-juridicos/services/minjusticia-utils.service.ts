@@ -11,7 +11,7 @@ export class MinjusticiaUtilsService {
   citaData: any;
 
   //Url usada para redirigir dentro de la app
-  private tramiteUrlBase = "servicios-y-tramites/minjusticia/agendamiento-consultorios/S007";
+  private tramiteUrlBase = "tramites-y-servicios/minjusticia/agendamiento-consultorios/S007";
 
   private baseUrl: string = "AgendamientoConsultorios/";
   private divipolaUrl: string = "ObtenerDivipola";

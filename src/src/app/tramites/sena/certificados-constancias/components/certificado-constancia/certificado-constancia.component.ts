@@ -88,7 +88,7 @@ export class CertificadoConstanciaComponent implements OnInit {
           this.senaUtils.setListCertificadosConstancias(this.certificadosConstancias);
           // Salida
           this.setStep("3")
-          this.router.navigate(['servicios-y-tramites/SENA/certificados-y-constancias-academicas/T1033/list']);
+          this.router.navigate(['/SENA/certificados-y-constancias-academicas/T1033/list']);
         }
       },
       // Failure response
