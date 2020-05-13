@@ -35,7 +35,7 @@ export class BreadCrumbComponent implements OnInit {
         }
 
         this.breadCrumb = [{
-          name: "Servicios y trámites",
+          name: "Trámites y servicios",
           url: "/"
         }, ...this.breadCrumb.reverse()];
       });

@@ -29,7 +29,7 @@ export class LogoutIcbfComponent implements OnInit {
 
   logout = () => {
     this.userService.userLoggedOut();
-    this.router.navigate(['/servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760']);
+    this.router.navigate(['/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760']);
 
   }
 

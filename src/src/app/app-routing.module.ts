@@ -11,14 +11,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/minjusticia/agendamiento-consultorios/S007",
+    path: "minjusticia/agendamiento-consultorios/S007",
     loadChildren: () => import("./tramites/minjusticia/consultorios-juridicos/consultorios-juridicos.module").then(m => m.ConsultoriosJuridicosModule),
     data: {
       title: jsonStrings.tramites.minjusticia["consultorios-juridicos"].title
     }
   },
   {
-    path: "censoindigena",
+    path: "min-interior/Consulta-del-censo-indigena-de-Colombia/T20962",
     loadChildren: () => import("./tramites/mininterior/censo-indigena/censo-indigena.module").then(m => m.CensoIndigenaModule),
     data: {
       title: jsonStrings.tramites.mininterior["censo-indigena"].title
@@ -32,14 +32,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/SENA/certificados-y-constancias-academicas/T1033",
+    path: "SENA/certificados-y-constancias-academicas/T1033",
     loadChildren: () => import("./tramites/sena/certificados-constancias/sena.module").then(m => m.SenaModule),
     data: {
       title: "Certificados y constancias académicas"
     }
   },
   {
-    path: "servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760",
+    path: "ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760",
     loadChildren: () => import("./tramites/icbf/aportes-parafiscales/aportes-parafiscales.module").then(m => m.AportesParafiscalesModule),
     data: {
       title: "Estado de cuenta"
@@ -53,7 +53,7 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/dps/consulta-estado-vinculacion/T45250",
+    path: "dps/consulta-estado-vinculacion/T45250",
     loadChildren: () => import("./tramites/dps/dps.module").then(m => m.DpsModule),
     data: {
       title: jsonStrings.tramites.dps["consulta"].title
@@ -67,14 +67,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/contraloria/certificado-de-antecedentes/T17084",
+    path: "contraloria/certificado-de-antecedentes/T17084",
     loadChildren: () => import("./tramites/contraloria/antecedentes-fiscales/antecedentes-fiscales.module").then(m => m.AntecedentesFiscalesModule),
     data: {
       title: jsonStrings.tramites.contraloria["antecedentes-fiscales"].title
     }
   },
   {
-    path: "servicios-y-tramites/invima/revision-informacion-consulta-productos/T11625",
+    path: "invima/revision-informacion-consulta-productos/T11625",
     loadChildren: () => import("./tramites/invima/invima.module").then(m => m.InvimaModule),
     data: {
       title: "Consulta de Registro Sanitario"
@@ -95,14 +95,14 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/mintransporte/certificado-licencia-conduccion/S002",
+    path: "mintransporte/certificado-licencia-conduccion/S002",
     loadChildren: () => import("./tramites/mintransporte/licencia-conduccion/licencia-conduccion.module").then(m => m.LicenciaConduccionModule),
     data: {
       title: jsonStrings.tramites.mintransporte["licencia-conduccion"].title
     }
   },
   {
-    path: "servicios-y-tramites/colpensiones/certificado-afiliacion-regimen-prima-media/S003",
+    path: "colpensiones/certificado-afiliacion-regimen-prima-media/S003",
     loadChildren: () => import("./tramites/colpensiones/certificado-afiliacion/certificado-afiliacion.module").then(m => m.CertificadoAfiliacionModule),
     data: {
       title: "Descargar certificado de afiliación"
@@ -116,7 +116,7 @@ const routes: Routes = [
     }
   },
   {
-    path: "servicios-y-tramites/fna/consulta-linea-impresion-recibo-pago-credito/T6292",
+    path: "fna/consulta-linea-impresion-recibo-pago-credito/T6292",
     loadChildren: () => import("./tramites/fna/fna.module").then(m => m.FnaModule),
     data: {
       title: jsonStrings.tramites.fna["recibo-pago-credito"].title

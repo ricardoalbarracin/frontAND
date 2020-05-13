@@ -232,7 +232,7 @@ export class RegistroIcbfComponent implements OnInit {
           'Hemos enviado una confirmación al correo electrónico registrado',
           'success',
           () => {
-            this.router.navigate(['/servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760']);
+            this.router.navigate(['/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760']);
           });
       },
       // Failure response
