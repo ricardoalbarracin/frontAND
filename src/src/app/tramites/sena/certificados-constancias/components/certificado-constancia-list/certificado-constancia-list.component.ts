@@ -33,7 +33,7 @@ export class CertificadoConstanciaListComponent implements OnInit {
     this.noticeMessage = jsonStrings.messages.adobe;
     this.datosSolicitante = this.senaUtils.getDatosSolicitante();
     if (!this.datosSolicitante) {
-      this.router.navigate(['servicios-y-tramites/SENA/certificados-y-constancias-academicas/T1033/']);
+      this.router.navigate(['/SENA/certificados-y-constancias-academicas/T1033/']);
     }
     this.certificadosConstancias = this.senaUtils.getListCertificadosConstancias();
     if (this.datosSolicitante.registro !== undefined && this.datosSolicitante.registro !== '' && this.datosSolicitante.registro != null) {

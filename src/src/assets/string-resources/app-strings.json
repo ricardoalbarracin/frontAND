@@ -61,8 +61,8 @@
         "contraloria": {
             "name": "Contraloría general de la republica",
             "antecedentes-fiscales": {
-                "title": "Certificado de antecedentes",
-                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+                "title": "Certificado de antecedentes de responsabilidad fiscal",
+                "detail": "Obtener el documento expedido por la Contraloría General de la República, en el que se certifica si la persona natural o jurídica está o no incluida en el Boletín de Responsables Fiscales, por haberse dictado fallo con responsabilidad fiscal en su contra y no haber cumplido la obligación contenida en él."
             }
         },
         "dian": {
@@ -103,8 +103,8 @@
         "fna": {
             "name": "Fondo Nacional del Ahorro",
             "recibo-pago-credito": {
-                "title": "Consulta en línea del recibo de pago de crédito",
-                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+                "title": "Consulta en línea e impresión de recibo de pago de crédito",
+                "detail": "Brindar al afiliado la posibilidad de consultar en línea e imprimir facturas de créditos"
             }
       },
       "supernotariado": {
