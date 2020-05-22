@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule} from '@angular/router';
 import { TemplateComponent } from './template/template.component';
@@ -24,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   providers: [
     LoadingService,
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }    
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CoreModule { }

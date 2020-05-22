@@ -141,7 +141,7 @@ export class LoginFnaComponent implements OnInit {
         this.responseModel.result.tipoDocumento = this.form.value.tipoDocumento.value;
         // Almacena la informacion del usuario localmente
         this.UserService.setUserLoggedIn(this.responseModel.result);
-        this.router.navigate(['servicios-y-tramites/fna/consulta-linea-impresion-recibo-pago-credito/T6292/consulta-recibo']);
+        this.router.navigate(['/fna/consulta-linea-impresion-recibo-pago-credito/T6292/consulta-recibo']);
       },
       // Failure response
       error => {
