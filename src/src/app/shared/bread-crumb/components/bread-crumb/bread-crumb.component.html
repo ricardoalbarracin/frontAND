@@ -1,14 +1,14 @@
 <nav class="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item breadcrumb-home">         
-            <a href="http://190.60.233.154/">
-                <span class="govco-icon govco-icon-home-n"></span>
-            </a>            
+        <li class="breadcrumb-item">
+            <a href="/">
+                Inicio
+            </a>
         </li>
         <li *ngFor="let item of breadCrumb; let j= index" [class]="breadCrumb.length-1 === j ? 'breadcrumb-item active':'breadcrumb-item'">
             <div class="image-icon">
                 <div class="breadcrumb breadcrumb-separator"></div>
-                <a class="breadcrumb-text" [routerLink]="[item.url]">{{ item.name | wordLimit: 3 }}</a>
+                <a class="breadcrumb-text" [routerLink]="[item.url]">{{ item.name | wordLimit:3 }}</a>
             </div>
         </li>
     </ol>

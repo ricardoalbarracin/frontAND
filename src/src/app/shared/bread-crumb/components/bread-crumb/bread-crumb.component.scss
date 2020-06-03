@@ -1,0 +1,18 @@
+.breadcrumb {
+    .breadcrumb-item {
+        span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .breadcrumb-text {
+            margin-top: 2px;
+            color: #004FBF;
+            &::first-letter{
+                text-transform: capitalize;
+            }
+        }
+        .govco-icon {
+            font-size: 1.1rem;
+        }
+    }
+  }

@@ -82,7 +82,7 @@ export class LoginIcbfComponent implements OnInit {
         this.failureRequest = false;
         const u: User = {username: this.form.value.user};
         this.userService.setUserLoggedIn(u);
-        window.location.href = '/servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/generar-certificado';
+        window.location.href = '/tramites-y-servicios/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/generar-certificado';
       },
       // Failure response
       error => {
@@ -100,11 +100,11 @@ export class LoginIcbfComponent implements OnInit {
   }
 
   forgotPassword() {
-    this.router.navigate(['/servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/forgot-password']);
+    this.router.navigate(['/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/forgot-password']);
   }
 
   signIn() {
-    this.router.navigate(['/servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/registro']);
+    this.router.navigate(['/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/registro']);
   }
 
 }

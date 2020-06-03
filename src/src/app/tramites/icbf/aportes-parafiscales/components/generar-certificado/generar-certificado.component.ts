@@ -44,7 +44,7 @@ export class GenerarCertificadoComponent implements OnInit {
       failureRequest: ''
     };
     if (!this.userService.getUserLoggedIn()) {
-      this.router.navigate(['servicios-y-tramites/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/']);
+      this.router.navigate(['/ICBF/expedicion-estado-cuenta-aportes-parafiscales/T7760/']);
     }
     this.getInformativos();
     this.getVigencias();

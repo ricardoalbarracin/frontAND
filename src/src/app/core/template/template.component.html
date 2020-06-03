@@ -1,10 +1,18 @@
 <!--Elemento de carga del componente-->
-<div class="page">
-   
-    <app-accessibility></app-accessibility>
-    <app-back-to-top [acceleration]="2" [animate]="true" [scrollDistance]="50" [speed]="50">
-    </app-back-to-top>
-    <app-header></app-header>
-    <app-main></app-main>
-    <app-footer></app-footer>
-</div>
+<govco-header-2 menuoptions='[
+      {"name":"Trámites y servicios", "url":"/ficha-tramites-y-servicios/", "state":"active", "isMobile":"true"},
+      {"name":"Tu Opinión Cuenta", "url":"/tu-opinion-cuenta/", "isMobile":"true"},
+      {"name":"Entidades", "url":"/entidades/", "isMobile":"true", "withNotification":"true"},
+      {"name":"Portal Territorial", "url":"https://www.gov.co/territorial/", "isMobile":"true"},
+      {"name":"Sobre Nosotros", "url":"/sobre-nosotros/", "isMobile":"true"}
+    ]' ishome="true" isbeta="false">
+</govco-header-2>
+<section class="body">
+    <govco-accesibility-bar></govco-accesibility-bar>
+    <!--<div class="container">-->
+        <app-main></app-main>
+    <!--</div>-->
+    <router-outlet></router-outlet>
+</section>
+<govco-back-to-top></govco-back-to-top>
+<govco-footer></govco-footer>
