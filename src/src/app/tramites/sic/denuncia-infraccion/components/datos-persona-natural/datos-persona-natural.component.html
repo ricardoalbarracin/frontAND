@@ -12,14 +12,14 @@
         <div class="card-body pt-0 pl-2">
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Tipo de documento *</label>
+                    <label  class="form-group-govco">Tipo de documento *</label>
                     <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
                         [items]="listaTipoDocumento">
                     </app-dropdownlist>
                 </div>
 
                 <div class="col-md-6 form-group select-govco">
-                    <label for="selector-normal" class="form-group-govco">Número documento *</label>
+                    <label class="form-group-govco">Número documento *</label>
                     <input class="form-control input-govco" formControlName="numero_documento"
                         placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
                 </div>
@@ -27,22 +27,22 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="primer_nombre" class="form-group-govco">Primer Nombre *</label>
-                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_nombre" placeholder="Ej: Jose" />
+                    <input id="primer_nombre" class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_nombre" placeholder="Ej: Jose" />
                 </div>
                 <div class="col-md-6 form-group">
-                    <label for="segundo_nombre" class="form-group-govco">Segundo Nombre *</label>
-                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_nombre"
+                    <label for="segundo_nombre" class="form-group-govco">Segundo Nombre</label>
+                    <input id="segundo_nombre" class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_nombre"
                         placeholder="Ej: Hernando" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="primer_apellido" class="form-group-govco">Primer Apellido *</label>
-                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_apellido" placeholder="Ej: Gómez" />
+                    <input id="primer_apellido" class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="primer_apellido" placeholder="Ej: Gómez" />
                 </div>
                 <div class="col-md-6 form-group">
-                    <label for="segundo_apellido" class="form-group-govco">Segundo Apellido *</label>
-                    <input class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_apellido"
+                    <label for="segundo_apellido" class="form-group-govco">Segundo Apellido</label>
+                    <input id="segundo_apellido"class="form-control input-govco" minlength="2" maxlength="25" oninput="this.value=this.value.toUpperCase()" formControlName="segundo_apellido"
                         placeholder="Ej: Restrepo" />
                 </div>
             </div>
@@ -65,21 +65,21 @@
                 </div>
             </div>
 
-            <br>           
+            <br>
             <div *ngIf="!mostrarDireccion" class="row mb-3">
                 <div class="col-md-5 direccion-inline pr-1 mt-3">
                     <div class="pw-25 mr-2">
-                        <app-dropdownlist ngDefaultControl 
+                        <app-dropdownlist ngDefaultControl
                             formControlName="calle_cra"
-                            [items]="listaCalleCarrera" 
+                            [items]="listaCalleCarrera"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
-                    </div>   
-                    <div class="pw-30 mr-2">                
-                        <input class="form-control input-govco" 
+                    </div>
+                    <div class="pw-30 mr-2">
+                        <input class="form-control input-govco"
                                 formControlName="primer_valor_calle_cra"
-                                placeholder="000" 
-                                maxlength="3" 
+                                placeholder="000"
+                                maxlength="3"
                                 (focusout) = "agregarDireccionDefinitiva()" />
                     </div>
                     <div class="pw-25 mr-2">
@@ -88,33 +88,33 @@
                         </app-dropdownlist>
                     </div>
                     <div class="pw-25 mr-2">
-                        <app-dropdownlist ngDefaultControl 
+                        <app-dropdownlist ngDefaultControl
                             formControlName="calle_bis"
-                            [items]="listaBis" 
+                            [items]="listaBis"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
                     </div>
                 </div>
-                <div class="col-md-2 direccion-inline pr-1 mt-3">                    
+                <div class="col-md-2 direccion-inline pr-1 mt-3">
                     <div class="pw-50 mr-2">
-                        <app-dropdownlist ngDefaultControl 
+                        <app-dropdownlist ngDefaultControl
                             formControlName="calle_bis_letra"
-                            [items]="listaCalleLetra" 
+                            [items]="listaCalleLetra"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
                     </div>
                     <div class="pw-50 mr-2">
-                        <app-dropdownlist ngDefaultControl 
+                        <app-dropdownlist ngDefaultControl
                             formControlName="calle_sufijo"
-                            [items]="listaSufijoCardinal" 
+                            [items]="listaSufijoCardinal"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
                     </div>
                 </div>
                 <div class="col-md-5 direccion-inline pr-1 mt-3">
                     <label class="m-auto pr-2">#</label>
-                    <div class="pw-25 mr-2">  
-                        <input class="form-control input-govco" 
+                    <div class="pw-25 mr-2">
+                        <input class="form-control input-govco"
                             formControlName="segundo_valor_calle_cra"
                             placeholder="000"
                             maxlength="3"
@@ -123,22 +123,22 @@
                     <div class="pw-25 mr-2">
                         <app-dropdownlist ngDefaultControl
                             formControlName="calle_letra_segundo"
-                            [items]="listaCalleLetra" 
+                            [items]="listaCalleLetra"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
                     </div>
-                
+
                     <label class="m-auto pr-2">-</label>
-                    <div class="pw-25 mr-2">      
-                        <input class="form-control input-govco" 
+                    <div class="pw-25 mr-2">
+                        <input class="form-control input-govco"
                         formControlName="tercer_valor_calle_cra"
-                        placeholder="000" maxlength="3" 
+                        placeholder="000" maxlength="3"
                         (focusout) = "agregarDireccionDefinitiva()"/>
                     </div>
                     <div class="pw-25 mr-2">
-                        <app-dropdownlist ngDefaultControl 
+                        <app-dropdownlist ngDefaultControl
                             formControlName="calle_sufijo_tercer"
-                            [items]="listaSufijoCardinal" 
+                            [items]="listaSufijoCardinal"
                             (change) = "agregarDireccionDefinitiva()">
                         </app-dropdownlist>
                     </div>
@@ -182,33 +182,33 @@
             <br>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Teléfono fijo y extensión</label>
+                    <label  class="form-group-govco">Teléfono fijo y extensión</label>
                     <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="telefono_fijo"
                         placeholder="Ej: 031 6228108" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Teléfono celular *</label>
+                    <label class="form-group-govco">Teléfono celular *</label>
                     <input class="form-control input-govco" minlength="1" maxlength="10" formControlName="celular" placeholder="Ej: 300 382 2704" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Fax</label>
+                    <label  class="form-group-govco">Fax</label>
                     <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="fax" placeholder="Ej: 0000000" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="pais" class="form-group-govco">País *</label>
-                    <app-dropdownlist ngDefaultControl (change)="cargarListaDepartamento()" formControlName="pais"
+                    <app-dropdownlist id="pais" ngDefaultControl (change)="cargarListaDepartamento()" formControlName="pais"
                         placeholder="Seleccione" [items]="listaPais">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="departamento" class="form-group-govco">Departamento *</label>
-                    <app-dropdownlist ngDefaultControl (change)="cargarListaCiudad()" formControlName="departamento"
+                    <app-dropdownlist id="departamento" ngDefaultControl (change)="cargarListaCiudad()" formControlName="departamento"
                         placeholder="Seleccione" [items]="listaDepartamento">
                     </app-dropdownlist>
                 </div>
@@ -216,13 +216,13 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="ciudad" class="form-group-govco">Ciudad *</label>
-                    <app-dropdownlist ngDefaultControl formControlName="ciudad" placeholder="Seleccione"
+                    <app-dropdownlist id="ciudad" ngDefaultControl formControlName="ciudad" placeholder="Seleccione"
                         [items]="listaCiudad">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="educacion" class="form-group-govco">Último grado de educación obtenido *</label>
-                    <app-dropdownlist ngDefaultControl formControlName="educacion" placeholder="Seleccione"
+                    <app-dropdownlist id="educacion" ngDefaultControl formControlName="educacion" placeholder="Seleccione"
                         [items]="listaEscolaridad">
                     </app-dropdownlist>
                 </div>
@@ -230,20 +230,20 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="genero" class="form-group-govco">Género *</label>
-                    <app-dropdownlist ngDefaultControl formControlName="genero" placeholder="Seleccione"
+                    <app-dropdownlist id="genero" ngDefaultControl formControlName="genero" placeholder="Seleccione"
                         [items]="listaGenero">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="fecha_nacimiento" class="form-group-govco">Fecha de nacimiento *</label>
-                        <input class="form-control input-govco" placeholder="DD/MM/YYYY" formControlName="fecha_nacimiento"
-                        name="dp" [readonly]="true" ngbDatepicker #d="ngbDatepicker" maxlength="10" minlength="10" [maxDate]="maxDate" (click)="d.toggle()"  />                                                
+                        <input id="fecha_nacimiento" class="form-control input-govco" placeholder="DD/MM/YYYY" formControlName="fecha_nacimiento"
+                        name="dp" [readonly]="true" ngbDatepicker #d="ngbDatepicker" maxlength="10" minlength="10" [maxDate]="maxDate" (click)="d.toggle()"  />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Grupo Étnico</label>
-                    <app-dropdownlist ngDefaultControl formControlName="etnico" placeholder="Seleccione"
+                    <label for="grupo_etnico" class="form-group-govco">Grupo Étnico</label>
+                    <app-dropdownlist id="grupo_etnico" ngDefaultControl formControlName="etnico" placeholder="Seleccione"
                         [items]="listaEtnico">
                     </app-dropdownlist>
                 </div>
@@ -257,8 +257,8 @@
             <br>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Correo electrónico *</label>
-                    <input class="form-control input-govco" formControlName="correo" placeholder="Ej:correo@mail.com" />
+                    <label for="correo" class="form-group-govco">Correo electrónico *</label>
+                    <input id="correo" class="form-control input-govco" formControlName="correo" placeholder="Ej:correo@mail.com" />
                 </div>
             </div>
         </div>
@@ -273,16 +273,16 @@
             </div>
             <div class="row">
                 <div id="checkbox-active">
-                    <label class="chk-govco">
-                        <input formControlName="selector" type="checkbox" />
-                        <label >Consiento que mis datos personales sean transferidos en los términos que
-                            señala el presente aviso de privacidad *
-                        </label>
-                        <div class="chk-govco__indicator"></div>
-                    </label>
+                  <label class="checkbox-govco">
+                    <input formControlName="selector" type="checkbox" id="checkbox_simple_solo" />
+                    <label for="checkbox_simple_solo">Consiento que mis datos personales sean transferidos en los términos que
+                      señala el presente aviso de privacidad *</label>
+                    <div class="chk-govco__indicator"></div>
+                  </label>
                 </div>
             </div>
-            <div class="row">
+
+          <div class="row">
                 <div class="col-md-12">
                     <div class="row recaptcha-container">
                         <div class="form-group">

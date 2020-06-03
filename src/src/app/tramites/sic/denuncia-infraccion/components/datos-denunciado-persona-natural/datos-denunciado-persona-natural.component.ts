@@ -1,9 +1,12 @@
+/* tslint:disable:no-string-literal */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
-import { DatosDenunciadoPersonaNaturalForm } from './datos-denunciado-persona-natural-form'
+import { DatosDenunciadoPersonaNaturalForm } from './datos-denunciado-persona-natural-form';
 import { Router } from '@angular/router';
-import { SicUtilsService } from '../../services/sic-utils.service'
-import { Persona, Natural, DireccionesEntity, EmailsEntity, TelefonosEntity, responseService } from '../../models/sic-models'
+import { SicUtilsService } from '../../services/sic-utils.service';
+import { DenunciadoEmpresa, DireccionesEntity,
+  EmailsEntity, TelefonosEntity, Denunciado,
+  RepresentanteDenunciado, NaturalApoderado } from '../../models/sic-models';
 
 @Component({
   selector: 'app-datos-denunciado-persona-natural',
@@ -19,8 +22,10 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
   listaPais: any = [];
   listaDepartamento: any = [];
   listaCiudad: any = [];
-  persona: Persona;
-  natural: Natural;
+  natural: NaturalApoderado;
+  denunciado: Denunciado;
+  denunciadoEmpresa: DenunciadoEmpresa;
+  representanteLegal: RepresentanteDenunciado;
   direcciones: DireccionesEntity[];
   mail: EmailsEntity[];
   telefono: TelefonosEntity[];
@@ -53,20 +58,22 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
     this.findInvalidControls();
     if (this.seleccionSolucionForm.isValid()) {
       this.registrarPersona();
-    }
-    else {
+    } else {
       this.invalidForm = true;
       return;
     }
   }
 
   setValidator() {
-    if (this.seleccionForm.value.tipo_documento.value == 'PA') {
-      this.seleccionForm.get('numero_documento').setValidators([Validators.required, Validators.minLength(4), Validators.maxLength(12), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$')])
+    if (this.seleccionForm.value.tipo_documento.value === 'PA') {
+      this.seleccionForm.get('numero_documento').setValidators([Validators.required,
+        Validators.minLength(4), Validators.maxLength(12),
+        Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$')]);
       this.seleccionForm.get('numero_documento').updateValueAndValidity();
-    }
-    else {
-      this.seleccionForm.controls['numero_documento'].setValidators([Validators.required, Validators.minLength(4), Validators.maxLength(12), Validators.pattern('^[0-9]+$')])
+    } else {
+      this.seleccionForm.controls['numero_documento'].setValidators([Validators.required,
+        Validators.minLength(4), Validators.maxLength(12),
+        Validators.pattern('^[0-9]+$')]);
       this.seleccionForm.controls['numero_documento'].updateValueAndValidity();
     }
   }
@@ -76,7 +83,7 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
   }
 
   cargarListaDepartamento() {
-    this.seleccionForm.controls["departamento"].reset();
+    this.seleccionForm.controls['departamento'].reset();
     this.sicUtils.getListaRegion(this.seleccionForm.value.pais.value)
       .subscribe((data: any[]) => {
         if (data.length > 0) {
@@ -89,7 +96,7 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
   }
 
   cargarListaCiudad() {
-    this.seleccionForm.controls["ciudad"].reset();
+    this.seleccionForm.controls['ciudad'].reset();
     this.sicUtils.getListaCiudad(this.seleccionForm.value.departamento.value)
       .subscribe((data: any[]) => {
         if (data.length > 0) {
@@ -102,8 +109,8 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
   }
 
   cargarListasGenericas() {
-    //Tipo de documento
-    this.sicUtils.getListaGenericas("TIPO_DOCUMENTO_PERSONA")
+    // Tipo de documento
+    this.sicUtils.getListaGenericas('TIPO_DOCUMENTO_PERSONA')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaTipoDocumento = data;
@@ -113,8 +120,8 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
       }
       );
 
-    //Pais
-    this.sicUtils.getListaGenericas("PAIS")
+    // Pais
+    this.sicUtils.getListaGenericas('PAIS')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaPais = data;
@@ -126,54 +133,63 @@ export class DatosDenunciadoPersonaNaturalComponent implements OnInit {
   }
 
   registrarPersona() {
-    this.natural = {
-      saludo: "ES",
-      primerNombre: this.seleccionForm.value.primer_nombre,
-      segundoNombre: this.seleccionForm.value.segundo_nombre,
-      primerApellido: this.seleccionForm.value.primer_apellido,
-      segundoApellido: this.seleccionForm.value.segundo_apellido
-    }
+    this.denunciadoEmpresa = {
+      descripcion: '',
+      digitoVerificacion: '',
+      razonsocial: ''
+    };
     this.mail = [{
-      tipo: "PE",
+      tipo: 'PE',
       descripcion: this.seleccionForm.value.correo
-    }]
-    this.telefono = [];
-    if (this.seleccionForm.value.celular.length > 0)
-      this.telefono.push({ tipo: "CE", numero: this.seleccionForm.value.celular });
-    if (this.seleccionForm.value.telefono_fijo.length > 0)
-      this.telefono.push({ tipo: "FI", numero: this.seleccionForm.value.telefono_fijo });
-    if (this.seleccionForm.value.celular.length == 0 && this.seleccionForm.value.telefono_fijo.length == 0)
-      this.telefono.push({ tipo: "FI", numero: "0" });
+    }];
+    this.telefono = [{
+      tipo: 'CE',
+      numero: this.seleccionForm.value.celular
+    },
+    {
+      tipo: 'FI',
+      numero: this.seleccionForm.value.telefono_fijo
+    },
+    {
+    tipo: 'FX',
+    numero: this.seleccionForm.value.fax
+    }
+    ];
     this.direcciones = [{
       codigoPais: this.seleccionForm.value.pais.value,
-      tipo: "EL",
+      tipo: 'PE',
       descripcion: this.seleccionForm.value.direccion,
       codigoCiudad: this.seleccionForm.value.ciudad.value,
       codigoRegion: this.seleccionForm.value.departamento.value,
       telefonos: this.telefono
-    }]
-    this.persona = {
-      tipoPersona: "NA",
+    }];
+    this.natural = {
+      primerApellido: this.seleccionForm.value.primer_apellido,
+      primerNombre: this.seleccionForm.value.primer_nombre,
+      segundoApellido: this.seleccionForm.value.segundo_apellido,
+      segundoNombre: this.seleccionForm.value.segundo_nombre
+    };
+    this.representanteLegal = {
+      id: '0',
+      direcciones: this.direcciones,
+      emails: this.mail,
+      natural: this.natural ,
       numeroDocumento: this.seleccionForm.value.numero_documento,
       tipoDocumento: this.seleccionForm.value.tipo_documento.value,
-      natural: this.natural,
-      emails: this.mail,
-      direcciones: this.direcciones
-    }
-    console.error(this.persona);
-    this.sicUtils.postRegistrarPersona(this.persona)
-      .subscribe((data: responseService) => {
-        if (data.persona != null) {
-          this.router.navigate(['/sic/conducta_alerta']);
-        }
-        else {
-          console.error(data);
-          return;
-        }
-      }, (error) => {
-        console.error(error);
-      }
-      );
-  }
+      tipoPersona: 'NA',
 
+    }
+    this.denunciado = {
+      id: '0',
+      empresa: this.denunciadoEmpresa,
+      numeroDocumento: this.seleccionForm.value.numero_documento,
+      tipoDocumento: this.seleccionForm.value.tipo_documento.value,
+      tipoPersona: 'NA',
+      emails: this.mail,
+      direcciones: this.direcciones,
+      representanteLegal: this.representanteLegal,
+    };
+    sessionStorage.setItem('Denunciado', JSON.stringify(this.denunciado));
+    this.router.navigate(['/sic/conducta_alerta']);
+  }
 }

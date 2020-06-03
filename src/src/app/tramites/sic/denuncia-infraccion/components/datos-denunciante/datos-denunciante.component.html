@@ -46,7 +46,7 @@
 
     <div class="main-invima-advice card govco-card col-md-12">
         <div [formGroup]="seleccionForm" [ngClass]="{'invalid-form' : invalidForm}">
-            <div class="card-header pb-0">            
+            <div class="card-header pb-0">
                 <div class="row">
                     <h3 class="col-md-8 top_margin">¿Asignará un apoderado para esta denuncia?</h3>
                     <div class="col-md-2">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="seleccionForm?.value?.opcion == 'si'">                
+            <div *ngIf="seleccionForm?.value?.opcion == 'si'">
                 <app-datos-denunciante-apoderado></app-datos-denunciante-apoderado>
             </div>
             <div class="row" *ngIf="seleccionForm?.value?.opcion == 'no'">

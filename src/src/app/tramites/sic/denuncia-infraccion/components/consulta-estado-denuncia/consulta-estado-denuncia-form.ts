@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class ConsultaEstadoDenunciaForm {
     public form: FormGroup;
@@ -11,9 +11,13 @@ export class ConsultaEstadoDenunciaForm {
 
     buildForm() {
         this.form = this.formBuilder.group({
-            anyo: ['',Validators.required],
-            numero_radicado: ['',[Validators.minLength(4), Validators.maxLength(10), Validators.required,Validators.pattern('^[0-9]+$')]],                    
-            numero_documento: ['',[Validators.pattern('^[0-9]+$')]],
+          anyo: ['', Validators.required],
+          numero_radicado: ['', [
+            Validators.minLength(4),
+            Validators.maxLength(10),
+            Validators.required,
+            Validators.pattern('^[0-9]+$')]
+          ],
         });
     }
 
@@ -28,5 +32,4 @@ export class ConsultaEstadoDenunciaForm {
     isValid() {
         return this.form.valid;
     }
-
 }

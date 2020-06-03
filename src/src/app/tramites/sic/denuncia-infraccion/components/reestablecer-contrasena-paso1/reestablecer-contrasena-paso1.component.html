@@ -16,19 +16,19 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label style="font-weight: 500 !important;" for="nuevo_password">Correo electrónico *</label>
-                    <input class="form-control input-govco" maxlength="100" formControlName="correo" placeholder="Ej:correo@mail.com" />
+                    <input id="nuevo_password" class="form-control input-govco" maxlength="100" formControlName="correo" placeholder="Ej:correo@mail.com" />
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Tipo de documento *</label>
+                    <label  class="form-group-govco">Tipo de documento *</label>
                     <app-dropdownlist ngDefaultControl formControlName="tipo_documento" (change)="setValidator()" placeholder="Seleccione"
                         [items]="listaTipoDocumento">
                     </app-dropdownlist>
                 </div>
 
                 <div class="col-md-6 form-group select-govco">
-                    <label for="selector-normal" class="form-group-govco">Número documento *</label>
+                    <label class="form-group-govco">Número documento *</label>
                     <input class="form-control input-govco" minlength="4" maxlength="15"
                         formControlName="numero_documento" placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
                 </div>

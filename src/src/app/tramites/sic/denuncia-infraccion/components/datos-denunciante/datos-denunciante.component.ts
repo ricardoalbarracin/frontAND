@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DatosDenuncianteForm } from './datos-denunciante-form'
-import { Router } from '@angular/router'
-import { SicUtilsService } from '../../services/sic-utils.service'
-import { responseService, requestUsuarioxID } from '../../models/sic-models'
+import { DatosDenuncianteForm } from './datos-denunciante-form';
+import { Router } from '@angular/router';
+import { SicUtilsService } from '../../services/sic-utils.service';
+import { responseService, requestUsuarioxID } from '../../models/sic-models';
 
 @Component({
   selector: 'app-datos-denunciante',
@@ -27,6 +27,7 @@ export class DatosDenuncianteComponent implements OnInit {
   listaPais: any = [];
   listaDepartamento: any = [];
   listaCiudad: any = [];
+  invalidForm: any;
 
   constructor(private router: Router, private sicUtils: SicUtilsService) { }
 
@@ -37,38 +38,44 @@ export class DatosDenuncianteComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    //obtener el tipo de documento    
-    for (let item of this.listaTipoDocumento)
+    // obtener el tipo de documento
+    for (const item of this.listaTipoDocumento) {
       if (item.value == this.responsePersona.persona.tipoDocumento) {
         this.tipo = item.text;
         break;
       }
+    }
 
-    //obtener el pais    
-    for (let item of this.listaPais)
+    // obtener el pais
+    for (const item of this.listaPais) {
       if (item.value == this.responsePersona.persona.direcciones[0].codigoPais) {
         this.pais = item.text;
         break;
       }
+    }
 
-    //obtener el departamento
-    for (let item of this.listaDepartamento)
+    // obtener el departamento
+    for (const item of this.listaDepartamento) {
       if (item.value == this.responsePersona.persona.direcciones[0].codigoRegion) {
         this.region = item.text;
         break;
       }
-    //obtener la ciudad
-    for (let item of this.listaCiudad)
+    }
+    // obtener la ciudad
+    for (const item of this.listaCiudad) {
       if (item.value == this.responsePersona.persona.direcciones[0].codigoCiudad) {
         this.ciudad = item.text;
         break;
       }
+    }
 
-    if (this.responsePersona.persona.direcciones[0].telefonos.length > 0)
+    if (this.responsePersona.persona.direcciones[0].telefonos.length > 0) {
       this.celular = this.responsePersona.persona.direcciones[0].telefonos[0].numero;
+    }
 
-    if (this.responsePersona.persona.emails.length > 0)
+    if (this.responsePersona.persona.emails.length > 0) {
       this.correo = this.responsePersona.persona.emails[0].descripcion;
+    }
   }
 
   buildForm() {
@@ -79,14 +86,15 @@ export class DatosDenuncianteComponent implements OnInit {
     this.router.navigate(['/sic/datos_denuncio']);
   }
 
-  consultarPersona() {    
+  consultarPersona() {
     this.usuarioId = {
       id: sessionStorage.getItem('user')
-    }
+    };
     this.sicUtils.postConsultarPersona(this.usuarioId).subscribe(
       // Success response
       response => {
         this.responsePersona = response;
+
         this.cargarListasGenericas();
         this.cargarListaCiudad(this.responsePersona.persona.direcciones[0].codigoRegion);
         this.cargarListaDepartamento(this.responsePersona.persona.direcciones[0].codigoPais);
@@ -99,8 +107,8 @@ export class DatosDenuncianteComponent implements OnInit {
   }
 
   cargarListasGenericas() {
-    //Tipo de documento
-    this.sicUtils.getListaGenericas("TIPO_DOCUMENTO_PERSONA")
+    // Tipo de documento
+    this.sicUtils.getListaGenericas('TIPO_DOCUMENTO_PERSONA')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaTipoDocumento = data;
@@ -110,8 +118,8 @@ export class DatosDenuncianteComponent implements OnInit {
       }
       );
 
-    //Pais
-    this.sicUtils.getListaGenericas("PAIS")
+    // Pais
+    this.sicUtils.getListaGenericas('PAIS')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaPais = data;

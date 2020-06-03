@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { AdjuntaDocumentoForm} from './adjunta-documento-form'
-import { Router} from '@angular/router'
+import {FormGroup, Validators} from '@angular/forms';
+import { AdjuntaDocumentoForm} from './adjunta-documento-form';
+import { Router} from '@angular/router';
 import jsonStrings from '@stringResources/tramites/denuncia-infraccion.json';
-import { HttpClient } from '@angular/common/http';
-import { throwMatDuplicatedDrawerError } from '@angular/material';
+import {Adjuntos} from '../../models/sic-models';
+import {FileUploader, FileUploaderOptions} from 'ng2-file-upload';
 
 @Component({
   selector: 'app-adjunta-documento',
@@ -12,14 +12,24 @@ import { throwMatDuplicatedDrawerError } from '@angular/material';
   styleUrls: ['./adjunta-documento.component.scss']
 })
 export class AdjuntaDocumentoComponent implements OnInit {
+  submitted = false;
+  isError = true;
+  public uploader: FileUploader = new FileUploader({
+    disableMultipart: false,
+    maxFileSize: 5242880,
+    queueLimit : 5
+  });
 
+
+  public  vadjunto: any[] = [];
+  adjuntos: Adjuntos[] ;
+  observacion: string;
+  constructor(private router: Router) { }
   seleccionForm: FormGroup;
-  seleccionSolucionForm : AdjuntaDocumentoForm;
+  seleccionSolucionForm: AdjuntaDocumentoForm;
   messages: any;
-  buttonDisabled : boolean = true
-  invalidForm: boolean;
+  invalidForm = false;
 
-  constructor(private router:Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new AdjuntaDocumentoForm();
@@ -30,11 +40,9 @@ export class AdjuntaDocumentoComponent implements OnInit {
   }
 
   buildForm() {
-    this.seleccionForm = this.seleccionSolucionForm.getForm();    
+    this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
-
-
-  public findInvalidControls() {
+public findInvalidControls() {
     const invalid = [];
     const controls = this.seleccionForm.controls;
     for (const name in controls) {
@@ -44,63 +52,61 @@ export class AdjuntaDocumentoComponent implements OnInit {
     }
     return invalid;
   }
-
-  accion_continuar(){
+  setValidator() {
+    // tslint:disable-next-line:triple-equals
+    if (this.seleccionForm.value.opcion == 'no') {
+      this.seleccionForm.get('observacion').setValidators([Validators.required, Validators.minLength(20)]);
+    }
+    // tslint:disable-next-line:triple-equals
+    if (this.seleccionForm.value.opcion == 'si') {
+      this.seleccionForm.get('adjuntos').setValidators([Validators.required]);
+    }
+  }
+  get f() { return this.seleccionForm.controls; }
+  continuar() {
+    this.submitted = true;
+    this.isError = false;
+    if (this.seleccionForm.invalid) {
+      return;
+    }
+    this.accion_continuar();
+  }
+  accion_continuar() {
     this.findInvalidControls();
     if (this.seleccionSolucionForm.isValid()) {
       this.router.navigate(['/sic/enviar_solicitud']);
-    }
-    else {
+    } else {
       this.invalidForm = true;
       return;
-    }     
+    }
+    this.observacion = this.seleccionForm.value.observacion;
+    sessionStorage.setItem('observacion', (this.observacion));
   }
-
-  accion_anterior(){
+  accion_anterior() {
     this.router.navigate(['/sic/conducta_alerta']);
   }
 
-
-  ///////
-  
-  fileData: File = null;
-  previewUrl:any = null;
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
-   
-  fileProgress(fileInput: any) {
-      this.fileData = <File>fileInput.target.files[0];
-      this.buttonDisabled = false;
-      this.preview();
-  }
- 
-  preview() {
-    // Show preview 
-    var mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
- 
-    var reader = new FileReader();      
-    reader.readAsDataURL(this.fileData); 
-    reader.onload = (_event) => { 
-      this.previewUrl = reader.result; 
+  public onFileSelected(File): void {
+    console.log('Ajout des fichiers dans le tableau');
+    for (let cpt = 0; cpt < File.length; cpt++) {
+      const currentFile = File[cpt];
+      currentFile.numeroAdjunto = cpt;
+      let variable: any;
+      variable = {};
+      const reader = new FileReader();
+      reader.readAsDataURL(currentFile);
+      reader.onload = (event) => {
+        variable.contenidoArchivo_BASE64 = reader.result;
+        variable.numeroAdjunto = this.vadjunto.length;
+        variable.nombreArchivo = currentFile.name;
+        this.vadjunto.push(variable);
+        console.log(this.vadjunto);
+        sessionStorage.setItem('adjuntos', JSON.stringify(this.vadjunto)); // salida para enviar al servicio
+      };
     }
   }
-   
-  onSubmit() {
-      const formData = new FormData();
-      formData.append('file', this.fileData);
-      this.http.post('url/to/your/api', formData)
-        .subscribe(res => {
-          console.log(res);
-          //this.uploadedFilePath = res.data.filePath;
-          alert('SUCCESS !!!');
-        }) 
+  sessionRemove() {
+    sessionStorage.removeItem('adjuntos');
+    this.vadjunto = [];
   }
-
-
-  ///////
-
-
 }

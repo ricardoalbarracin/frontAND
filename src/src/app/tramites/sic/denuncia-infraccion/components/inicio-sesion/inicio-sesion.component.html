@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 pb-3" *ngIf="invalidForm">
-        <app-notifications [typeMessage]="'error'" [show]="invalidForm" [message]="mensaje_error"
+        <app-notifications [typeMessage]="'error'" [show]="invalidForm" [message]="ErrorMessage"
             [title]="'Lo sentimos'">
         </app-notifications>
     </div>
@@ -14,7 +14,7 @@
                 <h3 class="m-0">Inicio de sesión</h3>
             </div>
             <div class="col-4">
-                <a class="btn-symbolic-govco d-flex">                    
+                <a class="btn-symbolic-govco d-flex">
                 </a>
             </div>
         </div>
@@ -24,7 +24,7 @@
                     [validate]="invalidForm">
                     <div class="form-group">
                         <label for="Username" class="form-group-govco">Usuario *</label>
-                        <input class="form-control input-govco" type="text" formControlName="username" minlength="4" maxlength="20" />
+                        <input id="Username" class="form-control input-govco" type="text" formControlName="username" minlength="4" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="password" class="form-group-govco">Contraseña *</label>
@@ -33,13 +33,14 @@
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    <label class="chk-govco mt-0">
-                        <input type="checkbox" id="showPassword" (click)="checkShowPassword()" />
-                        <label class="form-group-govco">
-                            Mostrar contraseña
-                        </label>
-                        <div class="chk-govco__indicator"></div>
-                    </label>
+
+                  <label class="checkbox-govco">
+                    <input type="checkbox"id="showPassword" (click)="checkShowPassword()"  />
+                    <label for="showPassword"> Mostrar contraseña </label>
+                    <div class="chk-govco__indicator"></div>
+                  </label>
+
+
                 </div>
 
             </div>
@@ -53,6 +54,6 @@
     <div class="p-4 bg-color-selago footer-options">
         <a id="forgot-pass-btn" class="left btn-low color-dark-blue" (click)="olvidar_password()"> Olvidé mi
             contraseña </a>
-        <a id="forgot-pass-btn" class="right btn-low color-dark-blue" (click)="registrarme()"> Registrarme </a>
+        <a id="registry" class="right btn-low color-dark-blue" (click)="registrarme()"> Registrarme </a>
     </div>
 </div>

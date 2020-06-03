@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ConductaAlertaForm } from './conducta-alerta-form'
-import { Router } from '@angular/router'
+import { ConductaAlertaForm } from './conducta-alerta-form';
+import { Router } from '@angular/router';
 import { SicUtilsService } from '../../services/sic-utils.service';
 
 @Component({
@@ -10,32 +10,44 @@ import { SicUtilsService } from '../../services/sic-utils.service';
   styleUrls: ['./conducta-alerta.component.scss']
 })
 export class ConductaAlertaComponent implements OnInit {
-
+  submitted = false;
   seleccionForm: FormGroup;
   seleccionSolucionForm: ConductaAlertaForm;
-  listaOpcionAlerta: any = [];
+  listaOpcionAlerta: any[];
   invalidForm: boolean;
-
-  constructor(private router: Router,private sicUtils: SicUtilsService) { }
+  codigosTipoAlterta: number[];
+  hechos: string;
+  isError = true;
+  constructor(private router: Router, private sicUtils: SicUtilsService) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new ConductaAlertaForm();
     this.buildForm();
     this.cargar_opciones();
   }
-  
   buildForm() {
     this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
-
+  get f() { return this.seleccionForm.controls; }
+  continuar() {
+    this.submitted = true;
+    this.isError = false;
+    if (this.seleccionForm.invalid) {
+      return;
+    }
+    this.accion_continuar();
+  }
   accion_continuar() {
     if (this.seleccionSolucionForm.isValid()) {
       this.router.navigate(['/sic/adjunta_documento']);
-    }
-    else {
+    } else {
       this.invalidForm = true;
       return;
-    }    
+    }
+    this.codigosTipoAlterta = [this.seleccionForm.value.opcion];
+    this.hechos = this.seleccionForm.value.denuncia;
+    sessionStorage.setItem('codigosTipoAlerta', JSON.stringify(this.codigosTipoAlterta));
+    sessionStorage.setItem('hechos', JSON.stringify(this.hechos));
   }
 
   accion_anterior() {
@@ -43,7 +55,7 @@ export class ConductaAlertaComponent implements OnInit {
   }
 
   cargar_opciones() {
-    this.sicUtils.getListaGenericas("TIPO_CONDUCTA_ALERTA")
+    this.sicUtils.getListaGenericas('TIPO_CONDUCTA_ALERTA')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaOpcionAlerta = data;
@@ -54,4 +66,5 @@ export class ConductaAlertaComponent implements OnInit {
       );
   }
 
+  inactiveDetail() {}
 }

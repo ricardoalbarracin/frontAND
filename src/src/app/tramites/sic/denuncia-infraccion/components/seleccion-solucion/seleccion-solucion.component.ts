@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SeleccionSolucionForm } from './seleccion-solucion-form'
+import { SeleccionSolucionForm } from './seleccion-solucion-form';
 import jsonStrings from '@stringResources/tramites/denuncia-infraccion.json';
 import { Router } from '@angular/router';
 import { SicUtilsService } from '../../services/sic-utils.service';
@@ -36,15 +36,14 @@ export class SeleccionSolucionComponent implements OnInit {
   accion_continuar() {
     if (this.seleccionSolucionForm.isValid()) {
       this.router.navigate(['/sic/datos_denunciante']);
-    }
-    else {
+    } else {
       this.invalidForm = true;
       return;
-    }    
+    }
   }
 
   cargar_opciones() {
-    this.sicUtils.getListaGenericas("PRETENCIONES_SOLICITUD")
+    this.sicUtils.getListaGenericas('PRETENCIONES_SOLICITUD')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaOpcionSolucion = data;
@@ -55,4 +54,5 @@ export class SeleccionSolucionComponent implements OnInit {
       );
   }
 
+  inactiveDetail() {}
 }

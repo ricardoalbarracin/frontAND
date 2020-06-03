@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { requestUsuario, requestRegistrarUsuario, responseRegistrarUsuario, requestUsuarioxID, responseService, requestUsuarioxDocumento, Persona } from '../models/sic-models'
+import { requestUsuario,
+  requestRegistrarUsuario,
+  responseRegistrarUsuario,
+  requestUsuarioxID,
+  responseService,
+  requestUsuarioxDocumento,
+  Persona,
+  Radicacion,
+  ConsultaRadicacion
+} from '../models/sic-models';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -12,34 +21,44 @@ export class SicUtilsService {
 
   constructor(private http: HttpClient) { }
 
-  private Basepath = "sic/DenunciaInfraccion/";
-  private obtenerListasGenericas = "getListasGenericas/";
-  private obtenerListaRegion = "getListasRegion/";
-  private obtenerListaCiudad = "getListasCiudad/";
-  private autenticarUsuario = "AutenticarUsuario";
-  private consultarPersona = "ConsultarPersona";
-  private registrarUsuario = "RegistrarUsuario";
-  private registrarPersona = "RegistrarPersona";
-  private desplegarGrilla = false;
+  private Basepath = 'sic/DenunciaInfraccion/';
+  private obtenerListasGenericas = 'getListasGenericas/';
+  private obtenerListaRegion = 'getListasRegion/';
+  private obtenerListaCiudad = 'getListasCiudad/';
+  private autenticarUsuario = 'AutenticarUsuario';
+  private consultarPersona = 'ConsultarPersona';
+  private consultarRadicacion = 'ConsultarRadicacion';
+  private registrarUsuario = 'RegistrarUsuario';
+  private registrarPersona = 'RegistrarPersona';
+  private registrarDenuncia = 'RegistrarDenuncia';
 
+  private desplegarGrilla = false;
   get getdesplegarGrilla() { return this.desplegarGrilla; }
-  set setdesplegarGrilla(val:any){ this.desplegarGrilla = val;}
+  set setdesplegarGrilla(val: any) { this.desplegarGrilla = val; }
 
   getListaGenericas(value: string) {
     return this.http.get(this.Basepath + this.obtenerListasGenericas + value, {
-      headers: new HttpHeaders().append("angular-show-loading", "true")
+      headers: new HttpHeaders().append('angular-show-loading', 'true')
     });
   }
 
+  getRadicado(value: ConsultaRadicacion) {
+    return this.consPostConsultarRadicado(value);
+  }
+  consPostConsultarRadicado(value: any) {
+    return this.http.post<responseService>(this.Basepath + this.consultarRadicacion, value, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
   getListaRegion(value: string) {
     return this.http.get(this.Basepath + this.obtenerListaRegion + value, {
-      headers: new HttpHeaders().append("angular-show-loading", "true")
+      headers: new HttpHeaders().append('angular-show-loading', 'true')
     });
   }
 
   getListaCiudad(value: string) {
     return this.http.get(this.Basepath + this.obtenerListaCiudad + value, {
-      headers: new HttpHeaders().append("angular-show-loading", "true")
+      headers: new HttpHeaders().append('angular-show-loading', 'true')
     });
   }
 
@@ -48,13 +67,15 @@ export class SicUtilsService {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     }).pipe(
       map(response => {
-        if (response["usuario"] == null)
+        if (response['usuario'] == null) {
           return 0;
-        else
-          return response["usuario"]["id"];
+        } else {
+          return response['usuario']['id'];
+        }
       })
     );
   }
+
 
   postConsultarPersona(value: requestUsuarioxID) {
     return this.consPostConsultarPersona(value);
@@ -82,6 +103,11 @@ export class SicUtilsService {
     }).pipe(catchError(this.errorHandler));
   }
 
+  postRegistrarRadicacion(value: Radicacion) {
+    return this.http.post<responseService>(this.Basepath + this.registrarDenuncia, value, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
   // Error petición
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);

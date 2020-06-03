@@ -1,5 +1,4 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-principal',
@@ -7,10 +6,14 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./principal.component.scss']
 })
 export class PrincipalComponent implements OnInit {
+  consultaForm: any;
+  messages: any;
+  invalidForm: any;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  inactiveDetail() {}
 }

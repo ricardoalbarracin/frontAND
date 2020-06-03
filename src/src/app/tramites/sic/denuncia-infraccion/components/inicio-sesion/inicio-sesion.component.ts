@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { InicioSesionForm } from './inicio-sesion-form';
 import { Router } from '@angular/router';
-import { LoginModel } from '../../models/loginModel';
-import { ResponseModel } from '../../models/responseModel';
 import { SicUtilsService } from '../../services/sic-utils.service';
 import jsonStrings from '@stringResources/tramites/denuncia-infraccion.json';
 import { requestUsuario } from '../../models/sic-models';
@@ -15,20 +13,18 @@ import { requestUsuario } from '../../models/sic-models';
 })
 export class InicioSesionComponent implements OnInit {
 
-  typeButton: string = "password";
+  typeButton = 'password';
   seleccionForm: FormGroup;
   seleccionSolucionForm: InicioSesionForm;
   invalidForm = false;
-  loginModel: LoginModel;
-  responseModel: ResponseModel;
   failureRequest = false;
-  mensaje_error: string;
+  ErrorMessage: string;
   reqUsuario: requestUsuario;
 
   constructor(private router: Router, private sicUtils: SicUtilsService) { }
 
   ngOnInit() {
-    this.mensaje_error = jsonStrings.messages.error_login;
+    this.ErrorMessage = jsonStrings.messages.error_login;
     this.seleccionSolucionForm = new InicioSesionForm();
     this.buildForm();
   }
@@ -38,7 +34,8 @@ export class InicioSesionComponent implements OnInit {
   }
 
   checkShowPassword() {
-    this.typeButton = this.typeButton == "password" ? "input" : "password";
+    // tslint:disable-next-line:triple-equals
+    this.typeButton = this.typeButton == 'password' ? 'input' : 'password';
   }
 
   registrarme() {
@@ -62,19 +59,18 @@ export class InicioSesionComponent implements OnInit {
 
   autenticarUsuario() {
     this.findInvalidControls();
-    if (this.seleccionSolucionForm.isValid()) {      
+    if (this.seleccionSolucionForm.isValid()) {
       this.reqUsuario = {
         login: this.seleccionForm.value.username,
         password: this.seleccionForm.value.password,
-        sistema: "RC"
-      }
+        sistema: 'SL'
+      };
       this.sicUtils.postAutenticarUsuario(this.reqUsuario)
         .subscribe((data: any) => {
           if (data > 0) {
-            sessionStorage.setItem('user',data)
+            sessionStorage.setItem('user', data);
             this.router.navigate(['/sic/alerta_inicio']);
-          }
-          else {
+          } else {
             this.invalidForm = true;
             return;
           }
@@ -82,13 +78,11 @@ export class InicioSesionComponent implements OnInit {
           console.error(error);
         }
         );
-    }    
-    else{
+    } else {
       this.invalidForm = true;
-      return;  
-    }    
+      return;
+    }
   }
-
   ingresar() {
 
     if (!this.seleccionForm.valid) {
@@ -96,31 +90,6 @@ export class InicioSesionComponent implements OnInit {
       return;
     }
     this.router.navigate(['/sic/alerta_inicio']);
-
-    /*this.loginModel = {
-      User: this.seleccionForm.value.username,
-      Password: this.seleccionForm.value.password
-    };
-
-    this.SciUtils.Autenticar(this.loginModel).subscribe(
-      response => {
-        this.responseModel = response;
-        if (this.responseModel.error === 1) {
-          this.failureRequest = true;
-          window.scroll(0, 0);
-          return;
-        }
-        this.failureRequest = false;
-        this.userService.setUserLoggedIn(this.seleccionForm.value.username);
-        this.router.navigate(['/sic/alerta_inicio']);
-      },
-      error => {
-        this.failureRequest = true;
-        window.scroll(0, 0);
-        return;
-      },
-    );
-    this.invalidForm = false;*/
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DatosDenunciadoForm } from './datos-denunciado-form'
+import { DatosDenunciadoForm } from './datos-denunciado-form';
 
 @Component({
   selector: 'app-datos-denunciado',
@@ -10,8 +10,9 @@ import { DatosDenunciadoForm } from './datos-denunciado-form'
 export class DatosDenunciadoComponent implements OnInit {
 
   seleccionForm: FormGroup;
-  seleccionSolucionForm : DatosDenunciadoForm;
-  listaTipoPersona:any;
+  seleccionSolucionForm: DatosDenunciadoForm;
+  listaTipoPersona: any;
+  invalidForm: any;
 
   constructor() { }
 
@@ -20,16 +21,15 @@ export class DatosDenunciadoComponent implements OnInit {
     this.buildForm();
     this.llenarListaTipoPersona();
   }
-  
-  llenarListaTipoPersona(){    
+  llenarListaTipoPersona() {
     this.listaTipoPersona = [
-      {value:'1',text:'Natural'},
-      {value:'2',text:'Juridica'}
-    ]
+      {value: '1', text: 'Natural'},
+      {value: '2', text: 'Juridica'}
+    ];
   }
 
   buildForm() {
-    this.seleccionForm = this.seleccionSolucionForm.getForm();    
+    this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
 
 }

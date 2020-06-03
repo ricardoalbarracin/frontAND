@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 pb-3" *ngIf="true">
-        <app-notifications [typeMessage]="'success'" [show]="show_mensaje" [message]="prueba"
+        <app-notifications [typeMessage]="'success'" [show]="showMensaje" [message]="prueba"
             [title]="'Enlace enviado al correo'">
         </app-notifications>
     </div>
@@ -12,21 +12,21 @@
                 <h3 class="m-0 title-section">Registro de Nuevo Usuario</h3>
             </div>
             <div class="col-4">
-                <a class="btn-symbolic-govco d-flex">                                        
+                <a class="btn-symbolic-govco d-flex">
                 </a>
             </div>
         </div>
         <div class="card-body pt-0">
             <div class="row">
                 <div class="col-md-6 form-group select-govco">
-                    <label for="selector-normal" class="form-group-govco">Tipo persona *</label>
-                    <app-dropdownlist ngDefaultControl formControlName="tipoPersona" placeholder="Seleccione"
-                        [items]="listaTipoPersona">
-                    </app-dropdownlist>
+                    <label for="tipoPersona" class="form-group-govco">Tipo persona *</label>
+
+                  <input id="tipoPersona" disabled class="form-control input-govco" formControlName="tipoPersona"
+                         placeholder="PERSONA NATURAL"/>
                 </div>
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Tipo de documento *</label>
-                    <app-dropdownlist ngDefaultControl (change)="setValidator()" formControlName="tipoDocumento" placeholder="Seleccione"
+                    <label for="tipo_documento" class="form-group-govco">Tipo de documento *</label>
+                    <app-dropdownlist id="tipo_documento" ngDefaultControl (change)="setValidator()" formControlName="tipoDocumento" placeholder="Seleccione"
                         [items]="listaTipoDocumento">
                     </app-dropdownlist>
                 </div>
@@ -34,14 +34,14 @@
             <div class="row">
                 <div class="col-md-6 form-group select-govco">
                     <label for="numero_documento" class="form-group-govco">Número documento *</label>
-                    <input class="form-control input-govco" formControlName="numeroDocumento"
+                    <input id="numero_documento" class="form-control input-govco" formControlName="numeroDocumento"
                         placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
                     <div *ngIf="seleccionForm?.value?.tipoPersona.value == 'EM'" class="empty-validation ">Sin dígito de verificación</div>
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="correo" class="form-group-govco">Correo electrónico *</label>
-                    <input class="form-control input-govco" formControlName="correo"
-                        placeholder="Ej: correo@mail.com" />                    
+                    <input id="correo" class="form-control input-govco" formControlName="correo"
+                        placeholder="Ej: correo@mail.com" />
                 </div>
             </div>
             <div class="row mt-3">

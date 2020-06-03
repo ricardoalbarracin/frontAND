@@ -3,7 +3,7 @@
         <app-notifications class="col-12" [typeMessage]="'error'" [message]="busquedavacia" [title]="'Lo sentimos'"
             [show]="invalidForm"></app-notifications>
     </div>
-    <div class="card govco-card col-md-12">        
+    <div class="card govco-card col-md-12">
         <div class="row card-header pt-0">
             <div class="col-8 m-auto p-0">
                 <h3 class="m-0 title-section">Restablecer contraseña</h3>
@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="nuevo_password">Nueva contraseña</label>
-                    <input class="form-control input-govco" formControlName="nuevo_password" />
+                    <input id="nuevo_password" class="form-control input-govco" formControlName="nuevo_password" />
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="repetir_password">Repetir contraseña</label>
-                    <input class="form-control input-govco" formControlName="repetir_password" />
+                    <input id="repetir_password" class="form-control input-govco" formControlName="repetir_password" />
                 </div>
             </div>
             <div class="mt-3 area-note-selago">
@@ -27,7 +27,7 @@
                     Ten en cuenta caracteres especiales, mayusculas o
                     números a la hora de ingresar la contraseña
                 </em>
-            </div>            
+            </div>
             <div class="row mt-3">
                 <div class=" col-md-12 registro-consulta-footer">
                     <button id="save-user" class="btn btn-round btn-high" (click)="enviar()">ENVIAR</button>

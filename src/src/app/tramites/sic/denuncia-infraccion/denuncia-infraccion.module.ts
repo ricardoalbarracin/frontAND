@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SicComponent } from './components/sic/sic.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { SeleccionSolucionComponent } from './components/seleccion-solucion/seleccion-solucion.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DenunciaInfraccionRoutingModule } from './denuncia-infraccion-routing.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -26,23 +26,48 @@ import { NgbDate, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InicioOpcionSolucionComponent } from './components/inicio-opcion-solucion/inicio-opcion-solucion.component';
 import { ConsultaEstadoDenunciaComponent } from './components/consulta-estado-denuncia/consulta-estado-denuncia.component';
 import { ReestablecerContrasenaPaso1Component } from './components/reestablecer-contrasena-paso1/reestablecer-contrasena-paso1.component';
-import { NgbDateCustomParserFormatter, CustomDatepickerI18n } from "./services/date-formater";
+import { NgbDateCustomParserFormatter, CustomDatepickerI18n } from './services/date-formater';
 import { NgbDateParserFormatter, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
 import { GrillaConsultaComponent } from './components/grilla-consulta/grilla-consulta.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 @NgModule({
-  declarations: [SicComponent, PrincipalComponent, SeleccionSolucionComponent,  DatosDenunciadoComponent, DatosDenunciadoPersonaNaturalComponent, DatosDenunciadoPersonaJuridicaComponent, ConductaAlertaComponent, AdjuntaDocumentoComponent, DatosDenuncianteComponent, DatosDenuncianteApoderadoComponent, AlerteSicComponent, EnviarSolicitudComponent, InicioSesionComponent, RegistroNuevoUsuarioComponent, DatosPersonaNaturalComponent, UsuarioClaveAccesoComponent, ReestablecerContrasenaComponent, InicioOpcionSolucionComponent, ConsultaEstadoDenunciaComponent, ReestablecerContrasenaPaso1Component, GrillaConsultaComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    DenunciaInfraccionRoutingModule,
-    RouterModule,
-    SharedModule,
-    RecaptchaFormsModule,
-    RecaptchaModule,
-    NgbModule
+  declarations: [
+    SicComponent,
+    PrincipalComponent,
+    SeleccionSolucionComponent,
+    DatosDenunciadoComponent,
+    DatosDenunciadoPersonaNaturalComponent,
+    DatosDenunciadoPersonaJuridicaComponent,
+    ConductaAlertaComponent,
+    AdjuntaDocumentoComponent,
+    DatosDenuncianteComponent,
+    DatosDenuncianteApoderadoComponent,
+    AlerteSicComponent,
+    EnviarSolicitudComponent,
+    InicioSesionComponent,
+    RegistroNuevoUsuarioComponent,
+    DatosPersonaNaturalComponent,
+    UsuarioClaveAccesoComponent,
+    ReestablecerContrasenaComponent,
+    InicioOpcionSolucionComponent,
+    ConsultaEstadoDenunciaComponent,
+    ReestablecerContrasenaPaso1Component,
+    GrillaConsultaComponent
   ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        DenunciaInfraccionRoutingModule,
+        RouterModule,
+        SharedModule,
+        RecaptchaFormsModule,
+        RecaptchaModule,
+        NgbModule,
+        FormsModule,
+        FileUploadModule
+    ],
   providers: [
     { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter},
     { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }

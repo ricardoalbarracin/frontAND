@@ -7,20 +7,20 @@
             [ngClass]="{'invalid-form' : invalidForm}">
             <div class="row">
                 <div class="col-md-6 form-group select-govco mb-3">
-                    <label class="normal-font" for="selector-normal">Tipo de documento *</label>
+                    <label class="normal-font" >Tipo de documento *</label>
                     <app-dropdownlist ngDefaultControl formControlName="tipo_documento" (change)="setValidator()" placeholder="Ingrese un valor"
                         [items]="listaTipoDocumento">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Número de documento *</label>
+                    <label class="normal-font" >Número de documento *</label>
                     <input class="form-control input-govco" minlength="4" maxlength="15" formControlName="numero_documento" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Razón social</label>
+                    <label class="normal-font">Razón social</label>
                     <input class="form-control input-govco" minlength="2" maxlength="25" formControlName="razon_social"
                         oninput="this.value=this.value.toUpperCase()" />
                 </div>
@@ -28,29 +28,29 @@
 
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <label class="normal-font" for="sustancia">Dirección de correspondencia *</label>
+                    <label class="normal-font" >Dirección de correspondencia *</label>
                     <input class="form-control input-govco" formControlName="direccion" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Teléfono fijo</label>
+                    <label class="normal-font" >Teléfono fijo</label>
                     <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="telefono_fijo" />
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Teléfono celular</label>
+                    <label class="normal-font" >Teléfono celular</label>
                     <input class="form-control input-govco" minlength="1" maxlength="10" formControlName="celular" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="fax">Fax</label>
+                    <label class="normal-font">Fax</label>
                     <input class="form-control input-govco" minlength="7" maxlength="10" formControlName="fax" />
                 </div>
                 <div class="col-md-6 form-group select-govco mb-3">
-                    <label class="normal-font" for="selector-normal">País *</label>
+                    <label class="normal-font" >País *</label>
                     <app-dropdownlist ngDefaultControl (change)="cargarListaDepartamento()" formControlName="pais"
                         placeholder="Ingrese un valor" [items]="listaPais">
                     </app-dropdownlist>
@@ -59,13 +59,13 @@
 
             <div class="row">
                 <div class="col-md-6 form-group select-govco mb-3">
-                    <label class="normal-font" for="selector-normal">Departamento *</label>
+                    <label class="normal-font" >Departamento *</label>
                     <app-dropdownlist ngDefaultControl (change)="cargarListaCiudad()" formControlName="departamento"
                         placeholder="Ingrese un valor" [items]="listaDepartamento">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group select-govco mb-3">
-                    <label class="normal-font" for="selector-normal">Ciudad *</label>
+                    <label class="normal-font" >Ciudad *</label>
                     <app-dropdownlist ngDefaultControl formControlName="ciudad" placeholder="Ingrese un valor"
                         [items]="listaCiudad">
                     </app-dropdownlist>
@@ -74,7 +74,7 @@
 
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <label class="normal-font" for="sustancia">Correo electrónico *</label>
+                    <label class="normal-font" >Correo electrónico *</label>
                     <input class="form-control input-govco" minlength="4" maxlength="100" formControlName="correo" minlength="4" maxlength="100" />
                 </div>
             </div>
@@ -84,25 +84,25 @@
             <br>
             <div class="row">
                 <div class="col-md-6 form-group select-govco mb-3">
-                    <label class="normal-font" for="selector-normal">Tipo de documento</label>
+                    <label class="normal-font" >Tipo de documento</label>
                     <app-dropdownlist ngDefaultControl formControlName="tipo_documento_apoderado"
                         placeholder="Ingrese un valor" [items]="listaTipoDocumento">
                     </app-dropdownlist>
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Número de documento</label>
+                    <label class="normal-font" >Número de documento</label>
                     <input class="form-control input-govco" minlength="4" maxlength="15" formControlName="numero_documento_apoderado" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Primer nombre</label>
+                    <label class="normal-font" >Primer nombre</label>
                     <input class="form-control input-govco" minlength="2" maxlength="25" formControlName="primer_nombre_apoderado"
                         oninput="this.value=this.value.toUpperCase()" />
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Segundo nombre</label>
+                    <label class="normal-font" >Segundo nombre</label>
                     <input class="form-control input-govco" minlength="2" maxlength="25" formControlName="segundo_nombre_apoderado"
                         oninput="this.value=this.value.toUpperCase()" />
                 </div>
@@ -110,12 +110,12 @@
 
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Primer apellido</label>
+                    <label class="normal-font">Primer apellido</label>
                     <input class="form-control input-govco" minlength="2" maxlength="25" formControlName="primer_apellido_apoderado"
                         oninput="this.value=this.value.toUpperCase()" />
                 </div>
                 <div class="col-md-6 form-group">
-                    <label class="normal-font" for="sustancia">Segundo apellido</label>
+                    <label class="normal-font" >Segundo apellido</label>
                     <input class="form-control input-govco" minlength="2" maxlength="25" formControlName="segundo_apellido_apoderado"
                         oninput="this.value=this.value.toUpperCase()" />
                 </div>
@@ -123,7 +123,7 @@
 
             <div class="row">
                 <div class="col-md-12 form-group">
-                    <label class="normal-font" for="sustancia">Correo Electronico</label>
+                    <label class="normal-font" >Correo Electronico</label>
                     <input class="form-control input-govco" minlength="4" maxlength="100" formControlName="correo_apoderado" maxlength="100"
                         minlength="4" />
                 </div>

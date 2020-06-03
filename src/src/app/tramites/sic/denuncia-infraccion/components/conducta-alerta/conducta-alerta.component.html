@@ -11,7 +11,7 @@
                         <div class="row" *ngFor="let opcion of listaOpcionAlerta">
                             <div class="col-md-12">
                                 <label class="checklist-govco radiobutton-govco">
-                                    <input type="radio" (click)="inactiveDetail()" value={{opcion.value}}
+                                    <input type="radio" (click)="inactiveDetail()" value="{{opcion.value}}"
                                         formControlName="opcion" />
                                     <span class="span_normal">{{opcion.text}}</span>
                                     <div class="radiobutton-govco__indicator"></div>
@@ -52,7 +52,12 @@
             <div class="card-body">
                 <div class="row col-md-12">
                     <div class="textarea-govco col-md-12">
-                        <textarea class="form-control" rows="50" placeholder="Descripción" minlength="150" maxlength="500" formControlName="denuncia" ></textarea>
+                        <textarea  [ngClass]="{ 'is-invalid': submitted && f.denuncia.errors }" class="form-control" ngDefaultControl rows="50" placeholder="Descripción" minlength="150" maxlength="500" formControlName="denuncia" ></textarea>
+                      <div *ngIf="submitted && f.denuncia.errors" class="invalid-feedback">
+                        <div *ngIf="f.denuncia.errors.required">La descripcion de los hechos es requerida</div>
+                        <div *ngIf="f.denuncia.errors.minLength">Minimo 150 caracteres</div>
+                      </div>
+
                     </div>
                 </div>
                 <br>
@@ -60,7 +65,7 @@
                     <div class=" col-md-12 registro-consulta-footer">
                         <a class="btn btn-round btn-middle wb-150"
                             (click)="accion_anterior()">ANTERIOR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-round btn-high wb-150" (click)="accion_continuar()">CONTINUAR</a>
+                        <a class="btn btn-round btn-high wb-150" (click)="continuar()">CONTINUAR</a>
                     </div>
                 </div>
             </div>

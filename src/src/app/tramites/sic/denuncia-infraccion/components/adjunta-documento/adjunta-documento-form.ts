@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class AdjuntaDocumentoForm {
     public form: FormGroup;
@@ -11,8 +11,9 @@ export class AdjuntaDocumentoForm {
 
     buildForm() {
         this.form = this.formBuilder.group({
-            opcion: ['no'],
-            denuncia: ['',  [Validators.required, Validators.minLength(20)]]
+            opcion:  ['',  [Validators.required]],
+            observacion: [''],
+            adjuntos: ['']
         });
     }
 

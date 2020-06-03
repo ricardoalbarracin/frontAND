@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmModalService } from '@shared/dialog-modal/services/confirm-modal.service';
 import jsonStrings from '@stringResources/tramites/denuncia-infraccion.json';
-import { Router } from '@angular/router'
-import { SicUtilsService } from '../../services/sic-utils.service'
+import { Router } from '@angular/router';
+import { SicUtilsService } from '../../services/sic-utils.service';
 import { FormGroup, Validators } from '@angular/forms';
-import { RegistroNuevoUsuarioForm } from './registro-nuevo-usuario-form'
-import { responseService, requestUsuarioxDocumento } from '../../models/sic-models'
+import { RegistroNuevoUsuarioForm } from './registro-nuevo-usuario-form';
+import { requestUsuarioxDocumento } from '../../models/sic-models';
 
 @Component({
   selector: 'app-registro-nuevo-usuario',
@@ -14,13 +14,14 @@ import { responseService, requestUsuarioxDocumento } from '../../models/sic-mode
 })
 export class RegistroNuevoUsuarioComponent implements OnInit {
 
-  show_mensaje: false;
+  showMensaje: false;
   listaTipoDocumento: any = [];
   listaTipoPersona: any = [];
   invalidForm = false;
   seleccionForm: FormGroup;
   seleccionSolucionForm: RegistroNuevoUsuarioForm;
   usuarioDocumento: requestUsuarioxDocumento;
+  prueba: any;
 
   constructor(private modalAlertService: ConfirmModalService, private router: Router, private sicUtils: SicUtilsService) { }
 
@@ -36,11 +37,15 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
 
   setValidator() {
     if (this.seleccionForm.value.tipoDocumento.value == 'PA') {
-      this.seleccionForm.get('numeroDocumento').setValidators([Validators.required, Validators.minLength(4), Validators.maxLength(12), Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$')])
+      this.seleccionForm.get('numeroDocumento').setValidators([Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(12),
+        Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ]+$')])
       this.seleccionForm.get('numeroDocumento').updateValueAndValidity();
-    }
-    else {
-      this.seleccionForm.controls['numeroDocumento'].setValidators([Validators.required, Validators.minLength(4), Validators.maxLength(12), Validators.pattern('^[0-9]+$')])
+    } else {
+      this.seleccionForm.controls['numeroDocumento'].setValidators([Validators.required,
+        Validators.minLength(4), Validators.maxLength(12),
+        Validators.pattern('^[0-9]+$')])
       this.seleccionForm.controls['numeroDocumento'].updateValueAndValidity();
     }
   }
@@ -51,22 +56,22 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
       'Sin resultados',
       jsonStrings.messages.error_modal_sin_resultados,
       [{
-        name: "CANCELAR",
+        name: 'CANCELAR',
         value: true,
-        styleClass: "btn-middle",
+        styleClass: 'btn-middle',
         event: () => {
           console.log('Función a ejecutar');
         }
       }, {
-        name: "ACEPTAR",
+        name: 'ACEPTAR',
         value: true,
-        styleClass: "btn-high",
+        styleClass: 'btn-high',
         event: () => {
           sessionStorage.setItem('tipoDocumento', this.seleccionForm.value.tipoDocumento.value)
           sessionStorage.setItem('textotipoDocumento', this.seleccionForm.value.tipoDocumento.text)
           sessionStorage.setItem('numeroDocumento', this.seleccionForm.value.numeroDocumento)
           sessionStorage.setItem('correo', this.seleccionForm.value.correo)
-          sessionStorage.setItem('tipoPersona', this.seleccionForm.value.tipoPersona.value)
+          sessionStorage.setItem('tipoPersona', 'NA')
           this.router.navigate(['/sic/datos_persona_natural']);
         }
       }
@@ -78,9 +83,9 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
       'Proceso inválido',
       'El usuario ya se encuentra registrado en el sistema',
       [{
-        name: "ACEPTAR",
+        name: 'ACEPTAR',
         value: true,
-        styleClass: "btn-high",
+        styleClass: 'btn-high',
         event: () => {
           console.log('Función a ejecutar');
         }
@@ -91,8 +96,7 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
   continuar() {
     if (this.seleccionSolucionForm.isValid()) {
       this.consultarPersona();
-    }
-    else {
+    } else {
       this.invalidForm = true;
       return;
     }
@@ -103,16 +107,17 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
       tipoDocumento: this.seleccionForm.value.tipoDocumento.value,
       numeroDocumento: this.seleccionForm.value.numeroDocumento
     }
-    console.error("RETORNO DEL TIPODOCUMENTO " + this.seleccionForm.value.tipoDocumento.value);
-    console.error("RETORNO DEL NUMERO DOCUMENTO " + this.seleccionForm.value.numeroDocumento);
+    console.error('RETORNO DEL TIPODOCUMENTO ' + this.seleccionForm.value.tipoDocumento.value);
+    console.error('RETORNO DEL NUMERO DOCUMENTO ' + this.seleccionForm.value.numeroDocumento);
     this.sicUtils.postConsultarPersonaXDocumento(this.usuarioDocumento).subscribe(
       response => {
-        console.error("RETORNO DEL RESPONSE");
+        console.error('RETORNO DEL RESPONSE');
         console.error(response);
-        if (!response.persona)
+        if (!response.persona) {
           this.cargar_modal_usuario_no_existe();
-        else
+        } else {
           this.cargar_modal_usuario_existe();
+        }
       },
       error => {
         console.error(error);
@@ -121,8 +126,8 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
   }
 
   cargarListasGenericas() {
-    //Tipo de documento
-    this.sicUtils.getListaGenericas("TIPO_DOCUMENTO_PERSONA")
+    // Tipo de documento
+    this.sicUtils.getListaGenericas('TIPO_DOCUMENTO_PERSONA')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaTipoDocumento = data;
@@ -132,8 +137,8 @@ export class RegistroNuevoUsuarioComponent implements OnInit {
       }
       );
 
-    //Pais
-    this.sicUtils.getListaGenericas("TIPO_PERSONA")
+    // Pais
+    this.sicUtils.getListaGenericas('TIPO_PERSONA')
       .subscribe((data: any[]) => {
         if (data.length > 0) {
           this.listaTipoPersona = data;

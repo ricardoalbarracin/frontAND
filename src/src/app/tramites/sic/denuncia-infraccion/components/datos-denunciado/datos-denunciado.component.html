@@ -9,10 +9,10 @@
                     <div class="col-md-6 m-auto">
                         <label class="form-group-govco m-0">
                             Selecciona el tipo de persona contra quien presenta la denuncia*
-                        </label>                        
+                        </label>
                     </div>
                     <div class="col-md-6 form-group select-govco">
-                        <label class="normal-font" for="selector-normal">Tipo de persona</label>
+                        <label class="normal-font">Tipo de persona</label>
                         <app-dropdownlist ngDefaultControl formControlName="opcion" placeholder="Ingrese un valor" [items]="listaTipoPersona">
                         </app-dropdownlist>
                     </div>
@@ -21,9 +21,9 @@
         </div>
         <div *ngIf="seleccionForm?.value.opcion.value == 1">
             <app-datos-denunciado-persona-natural></app-datos-denunciado-persona-natural>
-        </div>    
+        </div>
         <div *ngIf="seleccionForm?.value.opcion.value == 2">
             <app-datos-denunciado-persona-juridica></app-datos-denunciado-persona-juridica>
         </div>
     </div>
-</div>  
+</div>

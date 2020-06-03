@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup,Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class RegistroNuevoUsuarioForm {
     public form: FormGroup;
@@ -11,10 +11,12 @@ export class RegistroNuevoUsuarioForm {
 
     buildForm() {
         this.form = this.formBuilder.group({
-            tipoPersona: ['', Validators.required],
+            tipoPersona: [''],
             tipoDocumento: ['', Validators.required],
-            numeroDocumento: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12), Validators.pattern('^[0-9]+$')]],
-            correo: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(100), Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+            numeroDocumento: ['', [Validators.required, Validators.minLength(4),
+              Validators.maxLength(12), Validators.pattern('^[0-9]+$')]],
+            correo: ['', [Validators.required, Validators.minLength(7),
+              Validators.maxLength(100), Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
         });
     }
 

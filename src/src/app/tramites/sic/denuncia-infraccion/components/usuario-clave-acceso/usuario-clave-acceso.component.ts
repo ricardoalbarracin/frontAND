@@ -1,9 +1,9 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { UsuarioClaveAccesoForm } from './usuario-clave-acceso-form'
+import { UsuarioClaveAccesoForm } from './usuario-clave-acceso-form';
 import { ConfirmModalService } from '@shared/dialog-modal/services/confirm-modal.service';
 import jsonStrings from '@stringResources/tramites/denuncia-infraccion.json';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { requestRegistrarUsuario, responseRegistrarUsuario, responseService } from '../../models/sic-models';
 import { SicUtilsService } from '../../services/sic-utils.service';
 
@@ -16,7 +16,7 @@ export class UsuarioClaveAccesoComponent implements OnInit {
 
   seleccionForm: FormGroup;
   seleccionSolucionForm: UsuarioClaveAccesoForm;
-  invalidForm: boolean = false;
+  invalidForm = false;
   reqUsuario: requestRegistrarUsuario;
 
   constructor(private modalAlertService: ConfirmModalService, private router: Router, private sicUtils: SicUtilsService) { }
@@ -78,12 +78,12 @@ export class UsuarioClaveAccesoComponent implements OnInit {
       sistema: "RC",
       codigoRol: "1"
     }
+    sessionStorage.setItem('reqUsuario', JSON.stringify(this.reqUsuario));
     this.sicUtils.postRegistrarUsuario(this.reqUsuario)
       .subscribe((data: responseRegistrarUsuario) => {
-        if (data.codigo == '0') {
+        if (data.codigo === '0') {
           this.modal_enviar_mensaje();
-        }
-        else {
+        }  else {
           console.error(data);
           return;
         }

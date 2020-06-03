@@ -7,14 +7,14 @@
         <div class="card-body pt-0">
             <div class="row">
                 <div class="col-md-6 form-group">
-                    <label for="sustancia" class="form-group-govco">Año *</label>
+                    <label  class="form-group-govco">Año *</label>
                     <app-dropdownlist ngDefaultControl formControlName="anyo" placeholder="Seleccione"
                         [items]="listaAnyo">
                     </app-dropdownlist>
                 </div>
 
                 <div class="col-md-6 form-group select-govco">
-                    <label for="selector-normal" class="form-group-govco">Número de radicado *</label>
+                    <label class="form-group-govco">Número de radicado *</label>
                     <input class="form-control input-govco" formControlName="numero_radicado" maxlength="10" minlength="4"
                         placeholder="Ej: 1 0 2 0 3 9 0 4 9" />
                 </div>
@@ -27,4 +27,15 @@
             </div>
         </div>
     </div>
+  <div>
+  </div>
+  <div *ngIf="show" class="body table-responsive">
+    <app-tables [tableType]="'detail'" [hContent]="tDetail.Header"
+                [bContent]="tDetail.Body" [hConfig]="tDetail.ConfigHeader" [bConfig]="tDetail.ConfigBody"></app-tables>
+  </div>
+
 </div>
+
+
+
+

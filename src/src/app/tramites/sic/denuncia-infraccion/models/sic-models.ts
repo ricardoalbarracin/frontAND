@@ -3,6 +3,10 @@ export interface requestUsuario {
     password: string;
     sistema: string;
 }
+export interface ConsultaRadicacion {
+  anio: number;
+  numero: number;
+}
 
 export interface requestRegistrarUsuario {
     id: string;
@@ -27,6 +31,8 @@ export interface requestUsuarioxDocumento {
 }
 
 export interface responseService {
+    radicaciones: any[];
+    radicacion: Radicacion;
     codigo: string;
     mensaje: string;
     persona: Persona;
@@ -86,4 +92,62 @@ export interface EmailsEntity {
     id?: number;
     tipo: string;
     descripcion: string;
+}
+
+export interface NaturalApoderado {
+  primerApellido: string;
+  primerNombre: string;
+  segundoApellido: string;
+  segundoNombre: string;
+}
+export interface Apoderado {
+  id: string;
+  numeroDocumento: string;
+  tipoDocumento: string;
+  tipoPersona: string;
+  natural: NaturalApoderado;
+  emails?: (EmailsEntity)[] | null;
+  direcciones?: (DireccionesEntity)[] | null;
+}
+export interface Denunciado {
+  id: string;
+  numeroDocumento: string;
+  tipoDocumento: string;
+  tipoPersona: string;
+  empresa: DenunciadoEmpresa;
+  emails?: (EmailsEntity)[] | null;
+  direcciones?: (DireccionesEntity)[] | null;
+  representanteLegal: RepresentanteDenunciado;
+
+}
+export interface DenunciadoEmpresa {
+  razonsocial: string;
+  descripcion?: string;
+  digitoVerificacion?: string;
+}
+export interface RepresentanteDenunciado {
+  id: string;
+  numeroDocumento: string;
+  tipoDocumento: string;
+  tipoPersona: string;
+  natural: NaturalApoderado;
+  emails?: (EmailsEntity)[] | null;
+  direcciones?: (DireccionesEntity)[] | null;
+}
+export interface Adjuntos {
+  nombreArchivo: string;
+  contenidoArchivo_BASE64: string;
+  numeroAdjunto: string;
+}
+export interface Radicador {
+  id: string;
+}
+export interface Radicacion {
+  radicador: Radicador;
+  apoderado: string;
+  denunciado: string;
+  codigosTipoAlerta: string;
+  adjuntos: string;
+  hechos: string;
+  observaciones: string;
 }
