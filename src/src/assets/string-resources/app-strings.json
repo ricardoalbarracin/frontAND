@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-    "client-side-recaptcha-key": "6Le6cPIUAAAAAJvU_6k6jZicYT_Q0Rx4LpcbKy6l",
-=======
     "client-side-recaptcha-key": "6LeCqOcUAAAAAMu9McR1zoUH0z6wDj_dekAODW5h",
->>>>>>> 83a71f5e177c657643596a797f33f3dda2e6b3ff
     "page-title": "Trámites y servicios",
     "tramites": {
         "minjusticia": {
@@ -89,6 +85,13 @@
                 "title": "Consultas Públicas del Instituto Nacional de Vigilancia de Medicamentos y Alimentos",
                 "detail": "Ofrecer información en el sitio web referente a cualquier producto registrado en la Base de Datos del INVIMA (vigente o nó), así mismo podrá consultar actos administrativos para notificarse, registros concedidos por periodo, suspendidos, cancelados, negados, establecimientos certificados, entidades protegidas, información de Código Único de Medicamentos, información decreto de transparencia, estado de los trámites radicados y verificación de documentos con firma digital."
             }
+        },
+        "horasextras": {
+          "name": "",
+          "horas-extras": {
+              "title": "Autorización para laborar horas extras",
+              "detail": "Espacio para la descripción del tramite."
+          }
         },
         "mintransporte": {
             "name": "Ministerio de transporte de Colombia",

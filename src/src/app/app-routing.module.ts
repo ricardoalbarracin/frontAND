@@ -81,6 +81,13 @@ const routes: Routes = [
     }
   },
   {
+    path: "mintrabajo",
+    loadChildren: () => import("./tramites/mintrabajo/horasextras/horasextras.module").then(m => m.HorasextrasModule),
+    data: {
+      title: "Autorización para laborar horas extras"
+    }
+  },
+  {
     path: "obtener-copia-rut",
     loadChildren: () => import("./tramites/dian/rut/rut.module").then(m => m.RutModule),
     data: {

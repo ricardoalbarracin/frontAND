@@ -1,0 +1,30 @@
+<!--div class="card-body">
+  <app-tables [tableType]="'detail'" [hContent]="tDetail.Header" [bContent]="tDetail.Body"
+    [bConfig]="tDetail.ConfigBody" [showDetail]="false"></app-tables>
+</div-->
+
+<div class="table-simple-headblue-govco">
+  <table class="table display table-responsive-sm table-responsive-md" style="width:100%">
+    <thead>
+      <tr>
+        <th>No. Radicado</th>
+        <th>Tipo de Trámite</th>
+        <th>Fecha de radicado</th>
+        <th>Dic. Territorial</th>
+        <th>Estado</th>
+        <th>Actualizar Tramite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{item.radicado}}</td>
+        <td>{{item.tipotramite}}</td>
+        <td>{{item.fecharadicado}}</td>
+        <td>{{item.dicTerritorial}}</td>
+        <td>{{item.estado}}</td>
+        <a [routerLink]="['/mintrabajo/seleccionar']" ><td> {{item.actTramite}} <td></a>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

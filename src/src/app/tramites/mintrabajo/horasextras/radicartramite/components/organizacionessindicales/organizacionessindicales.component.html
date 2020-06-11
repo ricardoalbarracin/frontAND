@@ -1,0 +1,55 @@
+<div class="card govco-card p-3 mb-3">
+  <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+    [ngClass]="{'invalid-form' : invalidForm}">
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section ">Organizaciones Sindicales</h3>
+    </div>
+    <label class="form-group-govco">Nombre de la organización Sindical</label>
+    <div class="row col-md-12">
+      <input class="form-control input-govco" formControlName="nombre" maxlength="100" minlength="3" />
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <label class="form-group-govco">Sigla de la organización </label>
+        <input class="form-control input-govco" formControlName="sigla" maxlength="100" minlength="3" />
+      </div>
+      <div class="col-md-4">
+        <label class="form-group-govco">Número de personería jurídica</label>
+        <input class="form-control input-govco" formControlName="numero" maxlength="100" minlength="3" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-group-govco">Dirección</label>
+        <input class="form-control input-govco" formControlName="direccion" maxlength="100" minlength="3" />
+      </div>
+      <span class="govco-icon govco-icon-plus-p " (click)='abrirDireccion()'></span>
+      <span class="govco-icon govco-icon-delete-n " (click)='limpiarOrganizacionSindical()'></span>
+    </div>
+    <br>
+    <span class="govco-icon govco-icon-plus-p " (click)='agregarOrganizacionSindical()'><label
+        class="form-group-govco">Agregar organización</label></span>
+    <br>
+    <div class="govco-table govco-table-simple">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre de la organización Sindical</th>
+            <th scope="col">Sigla de la organización</th>
+            <th scope="col">Número de personería jurídica</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of listOrganizacionesSindicales">
+            <td>{{item?.nombre}}</td>
+            <td>{{item?.sigla}}</td>
+            <td>{{item?.numero}}</td>
+            <td>{{item?.direccion}}</td>
+            <td (click)='eliminarOrganizacionSindical(item)'><span class="govco-icon govco-icon-delete-n "></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
