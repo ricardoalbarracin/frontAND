@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from "@angular/forms";
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { DireccionForm } from './direccion.form';
 
 @Component({
@@ -8,8 +8,6 @@ import { DireccionForm } from './direccion.form';
   styleUrls: ['./direccion.component.scss']
 })
 export class DireccionComponent implements OnInit {
-
-  controles: any[];
 
   listaSINO = [
     {
@@ -24,6 +22,8 @@ export class DireccionComponent implements OnInit {
   seleccionForm: FormGroup;
   seleccionSolucionForm: DireccionForm;
   invalidForm: boolean = false;
+  cadena_direccion:string = 'Avenida siempreviva 1234';
+  @Output() messageEvent = new EventEmitter<string>();
 
   constructor() { }
 
@@ -31,6 +31,10 @@ export class DireccionComponent implements OnInit {
     this.seleccionSolucionForm = new DireccionForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
     this.seleccionSolucionForm.addComplemento();
+  }
+
+  enviarDireccion(){
+    this.messageEvent.emit(this.cadena_direccion);
   }
 
   agregarComplemento() {
@@ -41,12 +45,8 @@ export class DireccionComponent implements OnInit {
     this.seleccionSolucionForm.addComplemento();
   }
 
-  aceptar() {
-
-  }
-
   cancelar() {
-
+    this.messageEvent.emit('%&/$');
   }
 
 }

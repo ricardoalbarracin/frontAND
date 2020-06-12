@@ -26,7 +26,7 @@ export class OrganizacionessindicalesComponent implements OnInit {
     this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
 
-  limpiarOrganizacionSindical(){
+  limpiarOrganizacionSindical() {
     this.seleccionForm.reset();
     this.invalidForm = false;
     /*Object.keys(this.seleccionForm.controls).forEach((key: string) => {
@@ -49,28 +49,27 @@ export class OrganizacionessindicalesComponent implements OnInit {
       });
       this.limpiarOrganizacionSindical();
     }
-    else
-    {
+    else {
       this.invalidForm = true;
       return;
     }
   }
 
-  abrirDireccion(){
+  abrirDireccion() {
     let modal = this.modalService.open(DireccionmodalComponent, {
       size: 'lg',
       backdrop: "static",
       keyboard: true
     });
 
-
-    /*modal.componentInstance.consultorio = consultorioJuridico;
-    modal.componentInstance.selectEvent.subscribe((consultorio) => {
-      if (consultorio != undefined){
-        this.service.setConsultorio(consultorio);
-        this.router.navigate([this.tramiteUrl +"/agendarcita"]);
+    modal.componentInstance.messageEvent.subscribe((mensaje) => {
+      if (mensaje === '%&/$')
+        modal.close();
+      else {
+        alert('Mensaje desde el abuelo ' + mensaje);
+        modal.close();
       }
-    });*/
+    });
   }
 
 }
