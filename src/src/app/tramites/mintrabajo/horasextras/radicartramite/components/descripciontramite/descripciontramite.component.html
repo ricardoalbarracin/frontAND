@@ -15,44 +15,41 @@
       <h3 class="m-0 title-section">Dirección territoriales a la cual presenta su trámite</h3>
     </div>
 
-    <div class="select-govco">
+    <div class="row card-header pt-0">
+      <label class="form-group-govco">Seleccione una ubicación</label>
+    </div>
+    <app-dropdownlist ngDefaultControl formControlName="direccion_territorial" placeholder="Ingrese un valor"
+      [items]="listaSistemaOrganico">
+    </app-dropdownlist>
+    <br>
+    <div class="row card-header pt-0">
       <div class="row card-header pt-0">
-        <label class="form-group-govco">Seleccione una ubicación</label>
-      </div>
-      <div class="col-md-6">
-        <app-dropdownlist ngDefaultControl formControlName="direccion_territorial" placeholder="Ingrese un valor"
-          [items]="listaSistemaOrganico">
-        </app-dropdownlist>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-2">
-          <span class="govco-icon govco-icon-plus-p " (click)='AgregarDireccionTerritorial()'><label
-              class="form-group-govco">Agregar</label></span>
+        <div style="width: 30px;">
+          <span class="govco-icon govco-icon-plus-n color-green " (click)='AgregarDireccionTerritorial()'></span>
         </div>
+        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar</div>
       </div>
-      <br>
-      <div class="col-md-12">
-        <div class="table-simple-headblue-govco">
-          <table class="table display table-responsive-sm table-responsive-md" style="width:80%">
-            <thead>
-              <tr>
-                <th>Dirección Territorial Relacionada</th>
-                <th>Opciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngIf='direccionTerritorial'>
-                <td>{{direccionTerritorial}}</td>
-                <td>
-                  <span class="govco-icon govco-icon-delete-n " (click)='EliminarDireccionTerritorial()'></span>
-                </td>
-                </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    </div>
 
+    <br>
+    <div class="table-simple-headblue-govco ">
+      <table class="table display table-responsive-sm table-responsive-md" >
+        <thead>
+          <tr>
+            <th>Dirección Territorial Relacionada</th>
+            <th style="width: 20%;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf='direccionTerritorial'>
+            <td>{{direccionTerritorial}}</td>
+            <td>
+              <span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
+                (click)='EliminarDireccionTerritorial()'></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <br>
@@ -69,28 +66,30 @@
           placeholder="00000-123" />
       </div>
       <br>
-      <div class="row">
-        <div class="col-md-2">
-          <span class="govco-icon govco-icon-plus-p " (click)='AgregarNumeroRadicado()'><label
-              class="form-group-govco">Agregar</label></span>
-        </div>
-        <div class="col-md-2">
 
+      <div class="row card-header pt-0">
+        <div class="row card-header pt-0">
+          <div style="width: 30px;">
+            <span class="govco-icon govco-icon-plus-n color-green " (click)='AgregarNumeroRadicado()'></span>
+          </div>
+          <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar</div>
         </div>
       </div>
+
       <br>
       <div class="table-simple-headblue-govco">
-        <table class="table display table-responsive-sm table-responsive-md" style="width:80%">
+        <table class="table display table-responsive-sm table-responsive-md">
           <thead>
             <tr>
               <th>Radicados Referidos</th>
-              <th>Opciones</th>
+              <th style="width: 20%;">Opciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngIf='numero_radicado'>
-              <td >{{numero_radicado}}</td>
-              <td><span class="govco-icon govco-icon-delete-n " (click)='EliminarNumeroRadicado()'></span></td>
+              <td>{{numero_radicado}}</td>
+              <td><span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
+                  (click)='EliminarNumeroRadicado()'></span></td>
             </tr>
           </tbody>
         </table>
@@ -98,36 +97,37 @@
     </div>
 
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">¿La entidad tiene pactos o convenciones colectivas?</label>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">¿La entidad tiene pactos o convenciones colectivas?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl formControlName="convenciones_colectivas" placeholder="Ingrese un valor"
+          [items]="listaSINO">
+        </app-dropdownlist>
       </div>
-      <app-dropdownlist ngDefaultControl formControlName="convenciones_colectivas" placeholder="Ingrese un valor"
-        [items]="listaSINO">
-      </app-dropdownlist>
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">¿La empresa está obligada a tener reglamento de trabajo?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl formControlName="reglamento_trabajo" placeholder="Ingrese un valor"
+          [items]="listaSINO">
+        </app-dropdownlist>
+      </div>
     </div>
-    <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">¿La empresa está obligada a tener reglamento de trabajo?</label>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">Indicar, ¿Si existe o no organizaciones sindicales dentro de la
+            empresa?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl (change)="MostrarOrganizacionesSindicales()"
+          formControlName="organizaciones_sindicales" placeholder="Ingrese un valor" [items]="listaSINO">
+        </app-dropdownlist>
       </div>
-      <app-dropdownlist ngDefaultControl formControlName="reglamento_trabajo" placeholder="Ingrese un valor"
-        [items]="listaSINO">
-      </app-dropdownlist>
     </div>
   </div>
-  <br>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Indicar, ¿Si existe o no organizaciones sindicales dentro de la empresa?</label>
-      </div>
-      <app-dropdownlist ngDefaultControl (change)="MostrarOrganizacionesSindicales()" formControlName="organizaciones_sindicales" placeholder="Ingrese un valor"
-        [items]="listaSINO">
-      </app-dropdownlist>
-    </div>
-  </div>
-</div>
   <br>
 
   <div *ngIf="mostrarOrganizacionesSindicales">
