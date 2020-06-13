@@ -66,7 +66,7 @@ export class OrganizacionessindicalesComponent implements OnInit {
       if (mensaje === '%&/$')
         modal.close();
       else {
-        alert('Mensaje desde el abuelo ' + mensaje);
+        this.seleccionForm.controls['direccion'].setValue(mensaje);
         modal.close();
       }
     });

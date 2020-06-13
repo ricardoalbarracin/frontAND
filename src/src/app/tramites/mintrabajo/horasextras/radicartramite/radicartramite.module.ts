@@ -5,9 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { OrganizacionessindicalesComponent } from './components/organizacionessindicales/organizacionessindicales.component';
 import { DireccionmodalComponent } from './components/direccionmodal/direccionmodal.component';
+import { DatosremitenteComponent } from './components/datosremitente/datosremitente.component';
+import { DatosremitenteNaturalComponent } from './components/datosremitente-natural/datosremitente-natural.component';
+import { DatosremitenteJuridicaComponent } from './components/datosremitente-juridica/datosremitente-juridica.component';
+import { DatosremitenteEstablecimientoComponent } from './components/datosremitente-establecimiento/datosremitente-establecimiento.component';
+import { DatosremitenteEntidadComponent } from './components/datosremitente-entidad/datosremitente-entidad.component';
 
 @NgModule({
-  declarations: [DescripciontramiteComponent, OrganizacionessindicalesComponent, DireccionmodalComponent],
+  declarations: [DescripciontramiteComponent, OrganizacionessindicalesComponent, DireccionmodalComponent, DatosremitenteComponent, DatosremitenteNaturalComponent, DatosremitenteJuridicaComponent, DatosremitenteEstablecimientoComponent, DatosremitenteEntidadComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
