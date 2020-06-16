@@ -5,8 +5,8 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { ConsultaComponent } from './consultatramite/components/consulta/consulta.component';
 import { SelecciontramiteComponent } from './components/selecciontramite/selecciontramite.component';
 import { DescripciontramiteComponent } from './radicartramite/components/descripciontramite/descripciontramite.component';
-import { OrganizacionessindicalesComponent } from './radicartramite/components/organizacionessindicales/organizacionessindicales.component';
-//import { DatostramiteComponent } from './radicartramite/components/datostramite/datostramite.component';
+import { DocumentostramiteComponent } from './radicartramite/components/documentostramite/documentostramite.component';
+import { TramiteregistradoComponent } from './radicartramite/components/tramiteregistrado/tramiteregistrado.component';
 
 const routes: Routes = [
   {
@@ -25,6 +25,14 @@ const routes: Routes = [
     {
       path: "descripcion",
       component: DescripciontramiteComponent
+    },
+    {
+      path: "documentos",
+      component: DocumentostramiteComponent
+    },
+    {
+      path: "registro",
+      component: TramiteregistradoComponent
     }]
   }
 ];

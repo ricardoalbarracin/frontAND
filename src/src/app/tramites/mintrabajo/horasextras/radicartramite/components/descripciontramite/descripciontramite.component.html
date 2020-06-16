@@ -33,7 +33,7 @@
 
     <br>
     <div class="table-simple-headblue-govco ">
-      <table class="table display table-responsive-sm table-responsive-md" >
+      <table class="table display table-responsive-sm table-responsive-md">
         <thead>
           <tr>
             <th>Dirección Territorial Relacionada</th>
@@ -133,5 +133,17 @@
   <div *ngIf="mostrarOrganizacionesSindicales">
     <app-organizacionessindicales></app-organizacionessindicales>
   </div>
+  <br>
 
+  <div class="col-md-12" style="background-color: #E5EEFB;">
+    <h6 class="headline-s-govco" style="font-weight: bold;">Por favor ingrese información veraz y completa, pues el
+      inspector iniciará contacto y notificación a partir de los ingresado.</h6>
+  </div>
+  <br>
+  <div class="row">
+    <div class=" col-md-12 registro-consulta-footer">
+      <a class="btn btn-round btn-middle" (click)='cancelar()'>CANCELAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-round btn-high" (click)="continuar()">CONTINUAR</button>
+    </div>
+  </div>
 </div>

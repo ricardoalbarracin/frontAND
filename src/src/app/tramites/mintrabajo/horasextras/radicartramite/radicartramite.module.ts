@@ -1,4 +1,4 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DescripciontramiteComponent } from './components/descripciontramite/descripciontramite.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,13 +10,31 @@ import { DatosremitenteNaturalComponent } from './components/datosremitente-natu
 import { DatosremitenteJuridicaComponent } from './components/datosremitente-juridica/datosremitente-juridica.component';
 import { DatosremitenteEstablecimientoComponent } from './components/datosremitente-establecimiento/datosremitente-establecimiento.component';
 import { DatosremitenteEntidadComponent } from './components/datosremitente-entidad/datosremitente-entidad.component';
+import { DocumentostramiteComponent } from './components/documentostramite/documentostramite.component';
+import { SubirarchivoComponent } from '../../sharedmintrabajo/components/subirarchivo/subirarchivo.component';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { TramiteregistradoComponent } from './components/tramiteregistrado/tramiteregistrado.component';
 
 @NgModule({
-  declarations: [DescripciontramiteComponent, OrganizacionessindicalesComponent, DireccionmodalComponent, DatosremitenteComponent, DatosremitenteNaturalComponent, DatosremitenteJuridicaComponent, DatosremitenteEstablecimientoComponent, DatosremitenteEntidadComponent],
+  declarations: [
+    DescripciontramiteComponent,
+    OrganizacionessindicalesComponent,
+    DireccionmodalComponent,
+    DatosremitenteComponent,
+    DatosremitenteNaturalComponent,
+    DatosremitenteJuridicaComponent,
+    DatosremitenteEstablecimientoComponent,
+    DatosremitenteEntidadComponent,
+    DocumentostramiteComponent,
+    SubirarchivoComponent,
+    TramiteregistradoComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RecaptchaFormsModule,
+    RecaptchaModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

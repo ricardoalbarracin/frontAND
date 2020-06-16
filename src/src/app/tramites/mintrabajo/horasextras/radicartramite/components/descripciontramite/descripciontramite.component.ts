@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { DescripciontramiteForm } from './descripciontramite.form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-descripciontramite',
@@ -40,7 +41,7 @@ export class DescripciontramiteComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new DescripciontramiteForm();
@@ -65,6 +66,14 @@ export class DescripciontramiteComponent implements OnInit {
 
   MostrarOrganizacionesSindicales(){
     this.mostrarOrganizacionesSindicales = this.seleccionForm.value.organizaciones_sindicales.text === 'Si';
+  }
+
+  continuar(){
+    this.router.navigate(['/mintrabajo/documentos']);
+  }
+
+  cancelar(){
+    this.router.navigate(['/mintrabajo']);
   }
 
 }

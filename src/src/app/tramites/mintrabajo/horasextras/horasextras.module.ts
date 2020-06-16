@@ -10,10 +10,24 @@ import { SelecciontramiteComponent } from './components/selecciontramite/selecci
 import { DescripciontramiteComponent } from './radicartramite/components/descripciontramite/descripciontramite.component';
 import { OrganizacionessindicalesComponent } from './radicartramite/components/organizacionessindicales/organizacionessindicales.component';
 import { DireccionComponent } from '../sharedmintrabajo/components/direccion/direccion.component';
+import { SubirarchivoComponent } from '../sharedmintrabajo/components/subirarchivo/subirarchivo.component';
 import { DireccionmodalComponent } from './radicartramite/components/direccionmodal/direccionmodal.component';
+import { DocumentostramiteComponent } from './radicartramite/components/documentostramite/documentostramite.component';
+import { TramiteregistradoComponent } from './radicartramite/components/tramiteregistrado/tramiteregistrado.component';
 
 @NgModule({
-  declarations: [InicioComponent, PrincipalComponent, SelecciontramiteComponent,DescripciontramiteComponent,OrganizacionessindicalesComponent,DireccionComponent,DireccionmodalComponent],
+  declarations: [
+    InicioComponent,
+    PrincipalComponent,
+    SelecciontramiteComponent,
+    DescripciontramiteComponent,
+    OrganizacionessindicalesComponent,
+    DireccionComponent,
+    DireccionmodalComponent,
+    DocumentostramiteComponent,
+    SubirarchivoComponent,
+    TramiteregistradoComponent
+  ],
   imports: [
     CommonModule,
     HorasExttrasRoutingModule,
@@ -21,7 +35,7 @@ import { DireccionmodalComponent } from './radicartramite/components/direccionmo
     ConsultatramiteModule,
     ReactiveFormsModule
   ],
-  entryComponents:[DireccionComponent,DireccionmodalComponent],
+  entryComponents:[DireccionComponent,DireccionmodalComponent,SubirarchivoComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HorasextrasModule { }
