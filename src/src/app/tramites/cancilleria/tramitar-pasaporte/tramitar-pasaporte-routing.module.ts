@@ -20,6 +20,7 @@ const routes: Routes = [
       },
       {
         path: "pagarPasaporte/:data",
+        // path: "pagarPasaporte",
         component: PagarPasaporteComponent
       },
       {
@@ -39,7 +40,7 @@ const routes: Routes = [
         component: ComprobantePagoPseComponent
       },
       {
-        path: "pagoOnline/:numeroSolicitud/:proceso/:medioPago/:codigoTramite/:entidad",
+        path: "pagoOnline/:numeroSolicitud/:proceso/:medioPago/:codigoTramite/:entidad/:url",
         component: PagoOnlineComponent
       }
     ]

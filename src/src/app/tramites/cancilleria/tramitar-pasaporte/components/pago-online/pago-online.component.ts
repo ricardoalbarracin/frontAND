@@ -26,6 +26,7 @@ export class PagoOnlineComponent implements OnInit {
     this.medioPago = this.router.snapshot.paramMap.get('medioPago');
     this.codigoTramite = this.router.snapshot.paramMap.get('codigoTramite');
     this.entidad = this.router.snapshot.paramMap.get('entidad');
+    this.url = this.router.snapshot.paramMap.get('url');
     this.dataSolicitud = "<datos><numeroSolicitud>" + this.numeroSolicitud + "</numeroSolicitud><process>" + this.proceso + "</process><medioPago>" + this.medioPago + "</medioPago><codTramite>" + this.codigoTramite + "</codTramite><entidad>" + this.entidad + "</entidad></datos>";
     this.paramUrl = btoa(this.dataSolicitud).substring(31);
   }
