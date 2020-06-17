@@ -62,6 +62,7 @@ export class ServiciosFiltroComponent implements OnInit {
       departamento_sede: [''],
       municipio_sede: [''],
       codigo_sede:  [''],
+      nombre_sede: [''],
       codigo_prestador:  [''],
       clase_prestador:  [''],
       ese:  [''],

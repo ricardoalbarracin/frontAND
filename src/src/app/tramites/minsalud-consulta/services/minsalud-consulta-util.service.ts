@@ -501,12 +501,12 @@ export class MinsaludConsultaUtilService {
     this.tDetail = {
       Header: [
         {  content: 'Id',filter: false,typeFilter: '', hidden: true},
-        { content: 'Departamento', columnName: 'Departamento', order: 1},
-        { content: 'Municipio', columnName: 'Municipio', order: 2},
-        { content: 'Código prestador', columnName: 'Código prestador', order: 3},
-        { content: 'Nombre prestador', columnName: 'Nombre prestador', order: 4},
-        { content: 'Dirección', columnName: 'Dirección', order: 5},
-        { content: 'Teléfono', columnName: 'Teléfono', order: 6} 
+        { content: 'Departamento',filter: false,typeFilter: ''},
+        { content: 'Municipio',filter: false,typeFilter: ''},
+        { content: 'Código prestador',filter: false,typeFilter: ''},
+        { content: 'Nombre prestador',filter: false,typeFilter: ''},
+        { content: 'Dirección',filter: false,typeFilter: ''},
+        { content: 'Teléfono',filter: false,typeFilter: ''} 
       ],
       Body: [],
       ConfigHeader: [],

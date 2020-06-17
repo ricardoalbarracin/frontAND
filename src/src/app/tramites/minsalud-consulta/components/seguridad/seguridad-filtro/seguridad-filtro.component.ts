@@ -62,6 +62,7 @@ export class SeguridadFiltroComponent implements OnInit {
       departamento_sede: [''],
       municipio_sede: [''],
       codigo_sede: [''],
+      nombre_sede: [''],
       zona: [''],
       codigo_prestador: [''],
       clase_prestador: [''],

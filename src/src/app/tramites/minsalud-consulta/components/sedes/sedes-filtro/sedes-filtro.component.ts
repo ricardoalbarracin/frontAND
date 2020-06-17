@@ -71,6 +71,7 @@ export class SedesFiltroComponent implements OnInit {
       departamento_prestador: [''],
       municipio_prestador: [''],
       codigo_prestador: [''],
+      nombre_prestador: [''],
       ese: [''],
       clase_prestador: [''],
       nivel_atencion: [''],
