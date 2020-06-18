@@ -11,9 +11,9 @@ export class DescripciontramiteForm {
 
     buildForm() {
         this.form = this.formBuilder.group({
-          circunstancia: ['',[Validators.minLength(15), Validators.maxLength(500), Validators.required]],
+          circunstancia: ['',[Validators.minLength(15), Validators.maxLength(500)]],
           direccion_territorial: ['',[Validators.required]],
-          numero_radicado: ['',[Validators.required]],
+          numero_radicado: [''],
           convenciones_colectivas: [''],
           reglamento_trabajo: [''],
           organizaciones_sindicales: ['']

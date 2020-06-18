@@ -19,6 +19,27 @@ export class DireccionComponent implements OnInit {
       text: 'No'
     }
   ]
+
+  listaPais = [
+    {
+      value: 1,
+      text: 'Albania'
+    },
+    {
+      value: 2,
+      text: 'Alemania'
+    },
+    {
+      value: 3,
+      text: 'Colombia'
+    }
+    ,
+    {
+      value: 4,
+      text: 'Panama'
+    }
+  ]
+
   seleccionForm: FormGroup;
   seleccionSolucionForm: DireccionForm;
   invalidForm: boolean = false;
@@ -38,7 +59,7 @@ export class DireccionComponent implements OnInit {
     Object.keys(this.seleccionForm.controls).forEach((key: string) => {
       let control = this.seleccionForm.get(key);
       if (control != null)
-        if(!(control instanceof FormArray))
+        if (!(control instanceof FormArray))
           cadena += control.value.text == null ? control.value + ' ' : control.value.text + ' ';
     });
     for (let control of this.seleccionSolucionForm.complementos.controls) {
@@ -50,10 +71,9 @@ export class DireccionComponent implements OnInit {
   }
 
   enviarDireccion() {
-    if(this.seleccionSolucionForm.isValid())
+    if (this.seleccionSolucionForm.isValid())
       this.messageEvent.emit(this.obtenerDireccion());
-    else
-    {
+    else {
       this.invalidForm = true;
       return;
     }
@@ -65,6 +85,17 @@ export class DireccionComponent implements OnInit {
 
   cancelar() {
     this.messageEvent.emit('%&/$');
+  }
+
+  habilitarControlesXpais() {
+    if (this.seleccionForm.controls.pais.value.text === 'Colombia') {
+      this.seleccionForm.controls['municipio'].enable();
+      this.seleccionForm.controls['departamento'].enable();
+    }
+    else {
+      this.seleccionForm.controls['municipio'].disable();
+      this.seleccionForm.controls['departamento'].disable();
+    }
   }
 
 }

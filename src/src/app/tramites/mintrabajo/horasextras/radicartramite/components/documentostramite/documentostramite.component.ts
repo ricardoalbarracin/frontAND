@@ -10,9 +10,16 @@ import { Router } from '@angular/router';
 })
 export class DocumentostramiteComponent implements OnInit {
 
+  convenciones_colectivas:string;
+  reglamento_trabajo:string;
+  organizaciones_sindicales:string;
+
   constructor(private modalService: NgbModal, private router:Router) { }
 
   ngOnInit() {
+    this.convenciones_colectivas = sessionStorage.convenciones_colectivas;
+    this.reglamento_trabajo = sessionStorage.reglamento_trabajo;
+    this.organizaciones_sindicales = sessionStorage.organizaciones_sindicales;
   }
 
   SeleccionarArchivo(){

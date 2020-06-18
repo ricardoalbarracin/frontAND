@@ -12,7 +12,7 @@ export class OrganizacionesSindicalesForm {
     buildForm() {
         this.form = this.formBuilder.group({
           nombre: ['',Validators.required],
-          sigla: ['',Validators.required],
+          sigla: [''],
           numero: ['',Validators.required],
           direccion: ['',Validators.required],
         });

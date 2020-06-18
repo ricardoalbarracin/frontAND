@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class DescripciontramiteComponent implements OnInit {
 
-  direccionTerritorial:string;
-  numero_radicado:string;
+  direccionTerritorial: string;
+  numero_radicado: string;
   seleccionForm: FormGroup;
   seleccionSolucionForm: DescripciontramiteForm;
   invalidForm: boolean = false;
-  mostrarOrganizacionesSindicales:boolean = false;
+  mostrarOrganizacionesSindicales: boolean = false;
   listaSINO: any[] = [
     {
       text: 'Si',
@@ -26,7 +26,7 @@ export class DescripciontramiteComponent implements OnInit {
       value: 2
     }
   ]
-  listaSistemaOrganico: any[] = [
+  listaCiudad: any[] = [
     {
       text: 'Cali',
       value: 1
@@ -41,38 +41,47 @@ export class DescripciontramiteComponent implements OnInit {
     }
   ]
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new DescripciontramiteForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
 
-  AgregarDireccionTerritorial(){
+  AgregarDireccionTerritorial() {
     this.direccionTerritorial = this.seleccionForm.value.direccion_territorial.text;
   }
 
-  EliminarDireccionTerritorial(){
+  EliminarDireccionTerritorial() {
     this.direccionTerritorial = '';
   }
 
-  AgregarNumeroRadicado(){
+  AgregarNumeroRadicado() {
     this.numero_radicado = this.seleccionForm.value.numero_radicado;
   }
 
-  EliminarNumeroRadicado(){
+  EliminarNumeroRadicado() {
     this.numero_radicado = '';
   }
 
-  MostrarOrganizacionesSindicales(){
+  MostrarOrganizacionesSindicales() {
     this.mostrarOrganizacionesSindicales = this.seleccionForm.value.organizaciones_sindicales.text === 'Si';
   }
 
-  continuar(){
-    this.router.navigate(['/mintrabajo/documentos']);
+  continuar() {
+    if (this.seleccionSolucionForm.isValid()) {
+      this.router.navigate(['/mintrabajo/documentos']);
+      sessionStorage.convenciones_colectivas = this.seleccionForm.controls.convenciones_colectivas.value.text;
+      sessionStorage.reglamento_trabajo = this.seleccionForm.controls.reglamento_trabajo.value.text;
+      sessionStorage.organizaciones_sindicales = this.seleccionForm.controls.organizaciones_sindicales.value.text;
+    }
+    else {
+      this.invalidForm = true;
+      return;
+    }
   }
 
-  cancelar(){
+  cancelar() {
     this.router.navigate(['/mintrabajo']);
   }
 

@@ -17,8 +17,9 @@
         <tr>
           <td style="font-weight: bold; text-align: center;">Si</td>
           <td><label style="font-weight: bold;">Oficio remisorio</label>(Carta de Solicitud)</td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</td>
+          <td>Carta de solicitud: 1 Original digitalizada por el representante legal. Mediante el cual solicitan la
+            autorización para el desarrollo de trabajos en horas extras. La solicitud deberá contener la justificación
+            por la cual la empresa requiere el desarrollo de actividades laborales mediante horas extras.</td>
           <td style="width:180px">
             <ul>
               <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
@@ -32,8 +33,14 @@
         <tr>
           <td style="font-weight: bold; text-align: center;">Si</td>
           <td><label style="font-weight: bold;">Certificación</label>(Afiliación Arl)</td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</td>
+          <td>Certificado de la Administradora de Riesgos Laborales - ARL: 1 Copia(s). A la cual la empresa se encuentra
+            afiliada, especificando: - Las exigencias de carga física, psicosocial y demás riesgos para los cargos que
+            requieren trabajar horas extras. - Evaluación donde se establezca a manera general si los trabajadores que
+            desempeñen los cargos que requieren trabajar horas extras, por este hecho se verían afectados por las
+            exigencias de carga física, psicosocial y demás riesgos (Tomando como referencia los programas de vigilancia
+            epidemiológica). - Existencia en la empresa solicitante de los programas de vigilancia epidemiológica de
+            factores de riesgo, relacionados con las actividades laborales, para las que está solicitando autorización
+            de horas extras.</td>
           <td style="width:180px">
             <ul>
               <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
@@ -47,8 +54,8 @@
         <tr>
           <td style="font-weight: bold; text-align: center;">Si</td>
           <td><label style="font-weight: bold;">Informe</label>(Relación deLos cargos)</td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</td>
+          <td>Informe con la relación de cargos: 1 Original digitalizada por el representante legal. Que contenga la
+            relación de actividades (cargos) para los cuales se solicita la autorización.</td>
           <td style="width:180px">
             <ul>
               <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
@@ -59,12 +66,32 @@
             </ul>
         </tr>
 
-        <tr>
+        <tr *ngIf="convenciones_colectivas === 'Si'">
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Oficio remisorio</label>(Manifestación expresa sobre existencia o no de
+            pactos o convenciones colectivas)
+          </td>
+          <td>Manifestación expresa sobre la existencia o no de pactos o convenciones colectivas: 1 Documento
+            digitalizado. De manifestación expresa sobre la existencia o no de pactos o convenciones colectivas. En caso
+            de contar con alguno, anexar la parte pertinente del mismo donde se estableció la jornada laboral, el
+            horario de trabajo y el trabajo suplementario.</td>
+          <td style="width:180px">
+            <ul>
+              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li>
+              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li>
+            </ul>
+        </tr>
+
+        <tr *ngIf="organizaciones_sindicales === 'Si'">
           <td style="font-weight: bold; text-align: center;">Si</td>
           <td><label style="font-weight: bold;">Oficio remisorio</label>(Manifestación de existencia o no de sindicato)
           </td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</td>
+          <td>Manifestación sobre la existencia o no de organización sindical: 1 Original digitalizada por el
+            representante legal. De manifestación expresa sobre la existencia o no de organización sindical en la
+            empresa.</td>
           <td style="width:180px">
             <ul>
               <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
@@ -75,12 +102,11 @@
             </ul>
         </tr>
 
-        <tr>
+        <tr *ngIf="reglamento_trabajo === 'Si'">
           <td style="font-weight: bold; text-align: center;">Si</td>
           <td><label style="font-weight: bold;">Copia del reglamento del contrato</label>(Reglamento interno de trabajo)
           </td>
-          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua.</td>
+          <td>Reglamento de trabajo : 1 Copia digitalizada. Si es el caso.</td>
           <td style="width:180px">
             <ul>
               <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
