@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DescripciontramiteComponent implements OnInit {
 
+  formatoRadicadoinvalido: boolean = true;
   direccionTerritorial: string;
   numero_radicado: string;
   seleccionForm: FormGroup;
@@ -50,18 +51,24 @@ export class DescripciontramiteComponent implements OnInit {
 
   AgregarDireccionTerritorial() {
     this.direccionTerritorial = this.seleccionForm.value.direccion_territorial.text;
+    this.seleccionForm.controls['direccion_territorial'].disable();
   }
 
   EliminarDireccionTerritorial() {
     this.direccionTerritorial = '';
+    this.seleccionForm.controls['direccion_territorial'].enable();
   }
 
   AgregarNumeroRadicado() {
-    this.numero_radicado = this.seleccionForm.value.numero_radicado;
+    if (this.formatoRadicadoinvalido) {
+      this.numero_radicado = this.seleccionForm.value.numero_radicado;
+      this.seleccionForm.controls['numero_radicado'].disable();
+    }
   }
 
   EliminarNumeroRadicado() {
     this.numero_radicado = '';
+    this.seleccionForm.controls['numero_radicado'].enable();
   }
 
   MostrarOrganizacionesSindicales() {
@@ -83,6 +90,11 @@ export class DescripciontramiteComponent implements OnInit {
 
   cancelar() {
     this.router.navigate(['/mintrabajo']);
+  }
+
+  onKeyValidNumber() {
+    let regEx = new RegExp('[0-9]{2}[A-Z]{2}[0-9]{19}');
+    this.formatoRadicadoinvalido = regEx.test(this.seleccionForm.controls.numero_radicado.value);
   }
 
 }

@@ -1,16 +1,18 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { OrganizacionesSindicalesForm } from './organizacionessindicales.form';
 //import { DireccionComponent } from 'src/app/tramites/mintrabajo/sharedmintrabajo/components/direccion/direccion.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DireccionmodalComponent } from '../direccionmodal/direccionmodal.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-organizacionessindicales',
   templateUrl: './organizacionessindicales.component.html',
   styleUrls: ['./organizacionessindicales.component.scss']
 })
-export class OrganizacionessindicalesComponent implements OnInit {
+export class OrganizacionessindicalesComponent implements OnInit, OnDestroy {
 
   @Output()
   listOrganizacionesSindicales = [];
@@ -18,6 +20,7 @@ export class OrganizacionessindicalesComponent implements OnInit {
   seleccionForm: FormGroup;
   seleccionSolucionForm: OrganizacionesSindicalesForm;
   invalidForm: boolean = false;
+  unsubscribe$ = new Subject<void>();
 
   constructor(private modalService: NgbModal) { }
 
@@ -62,7 +65,9 @@ export class OrganizacionessindicalesComponent implements OnInit {
       keyboard: true
     });
 
-    modal.componentInstance.messageEvent.subscribe((mensaje) => {
+    modal.componentInstance.messageEvent.pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe((mensaje: string) => {
       if (mensaje === '%&/$')
         modal.close();
       else {
@@ -70,6 +75,11 @@ export class OrganizacionessindicalesComponent implements OnInit {
         modal.close();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

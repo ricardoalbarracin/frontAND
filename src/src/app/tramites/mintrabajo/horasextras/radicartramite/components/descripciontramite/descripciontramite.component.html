@@ -9,7 +9,7 @@
     <label class="form-group-govco">Circunstancias de modo y lugar que conllevan a esta situación de este
       trámite</label>
     <textarea class="form-control" formControlName="circunstancia" ngDefaultControl rows="5"
-      placeholder="Ej: campo de texto" minlength="150" maxlength="500"></textarea>
+      placeholder="Ej: campo de texto" minlength="1" maxlength="256"></textarea>
     <br>
     <div class="row card-header pt-0">
       <h3 class="m-0 title-section">Dirección territoriales a la cual presenta su trámite</h3>
@@ -62,8 +62,11 @@
         <label class="form-group-govco">Escribe el número de radicado que te dio el sistema</label>
       </div>
       <div class="col-md-6">
-        <input class="form-control input-govco" formControlName="numero_radicado" maxlength="10" minlength="3"
+        <input class="form-control input-govco" (focusout)="onKeyValidNumber()" formControlName="numero_radicado" maxlength="24" minlength="3"
           placeholder="00000-123" />
+          <div *ngIf="!formatoRadicadoinvalido" class="invalid-label">
+            Formato incorrecto
+          </div>
       </div>
       <br>
 
