@@ -44,7 +44,7 @@ export class MinsaludConsultaUtilService {
 
   idsTablaPrestadores:  string[] = ['id','departamento_prestador','municipio_prestador', 'codigo_prestador','nombre_prestador','direccion','telefono'];
   idsTablaSedes:        string[] = ['id', 'departamento_prestador','municipio_prestador','codigo_prestador','nombre_prestador','codigo_sede','sede_principal','nombre_sede', 'zona','direccion','telefono'];
-  idsTablaServicios:    string[] = ['id', 'departamento_prestador','municipio_prestador','codigo_sede','nombre_sede'     ,'serv_nombre','numero_distintivo'];
+  idsTablaServicios:    string[] = ['id', 'departamento_prestador','municipio_prestador','codigo_sede','nombre_sede','serv_nombre','numero_distintivo'];
   idsTablaCapacidad:    string[] = ['id', 'departamento_prestador','municipio_prestador','codigo_sede','sede_principal','nombre_sede','grupo_capacidad','cantidad','numero_placa','modalidad','modelo','numero_tarjeta'];
   idsTablaSeguridad:    string[] = ['id','departamento_prestador','municipio_prestador','codigo_sede','sede_principal','nombre_sede','serv_nombre','numero_distintivo'];
   idsTablaSanciones:    string[] = ['id', 'departamento_prestador','municipio_prestador','codigo_sede','sede_principal','nombre_sede','serv_nombre','numero_distintivo'];  
@@ -541,7 +541,7 @@ export class MinsaludConsultaUtilService {
         {  content: 'Id',filter: false,typeFilter: '', hidden: true},
         {  content: 'Departamento',filter: false,typeFilter: ''},
         {  content: 'Municipio',filter: false,typeFilter: ''},
-        {  content: 'Código sede',filter: false,typeFilter: ''},
+        {  content: 'Código sede Prestador',filter: false,typeFilter: ''},
         {  content: 'Sede',filter: false,typeFilter: ''},
         {  content: 'Nombre Sede Prestador',filter: false,typeFilter: ''},
         {  content: 'Servicio',filter: false,typeFilter: ''},   

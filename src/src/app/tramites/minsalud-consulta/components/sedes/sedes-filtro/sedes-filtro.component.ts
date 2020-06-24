@@ -89,7 +89,7 @@ export class SedesFiltroComponent implements OnInit {
     });
     this.concultaService.invalidForm = false;
     this.formGroup.get('recaptcha').setValue(null);
-    this.concultaService.inicializarTablaDetalleServicios();
+    this.concultaService.inicializarTablaDetalleSedes();
 
   }
 
@@ -120,8 +120,8 @@ export class SedesFiltroComponent implements OnInit {
       }
     });
 
-    // Validación: Cantidad minima de filtros = 1
-    if (filterNumber > 0) {
+    // Validación: Cantidad minima de filtros = 1; >= 0 para quitar restriccion
+    if (filterNumber >= 0) {
       this.concultaService.invalidForm = false;
       this.concultaService.getDetalle(this.concultaService.tipoDetalle.sanciones).subscribe(
         (data) => this.success(data),
@@ -143,7 +143,7 @@ export class SedesFiltroComponent implements OnInit {
   success(data) {
     if (data.length > 0) {
       this.concultaService.detalleConsulta = data;
-      this.concultaService.setTablaDetalleDatos(this.concultaService.idsTablaSanciones);
+      this.concultaService.setTablaDetalleDatos(this.concultaService.idsTablaSedes);
       this.concultaService.asignarMostrarDetalle(true);
     } else {
       this.concultaService.asignarMostrarDetalle(false);

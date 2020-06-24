@@ -92,7 +92,7 @@ export class PrestadoresFiltroComponent implements OnInit {
       }
     });
 
-    // Validación: Cantidad minima de filtros = 1
+    // Validación: Cantidad minima de filtros = 1; >= 0 para quitar restriccion 
     if (filterNumber >= 0) {
       this.concultaService.invalidForm = false;
       this.concultaService.getDetalle(this.concultaService.tipoDetalle.prestadores).subscribe(

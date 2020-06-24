@@ -102,10 +102,10 @@ export class ServiciosFiltroComponent implements OnInit {
       }
     });
 
-    // Validación: Cantidad minima de filtros = 1
-    if (filterNumber > 0 ) {
+    // Validación: Cantidad minima de filtros = 1; >= 0 para quitar restriccion
+    if (filterNumber >= 0 ) {
       this.concultaService.invalidForm = false;
-      this.concultaService.getDetalle(this.concultaService.tipoDetalle.sanciones).subscribe(
+      this.concultaService.getDetalle(this.concultaService.tipoDetalle.servicios).subscribe(
         (data) => this.success(data),
         (error) => {
           this.concultaService.invalidForm = true;
