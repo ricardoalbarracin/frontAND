@@ -22,11 +22,47 @@
             por la cual la empresa requiere el desarrollo de actividades laborales mediante horas extras.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n" [ngClass]="{'disabled': adj_cartasolici}"  ><label class="form-group-govco">Ver</label></span></li>
-              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()' [ngClass]="{'disabled': !adj_cartasolici}"><label
-                    class="form-group-govco">Adjuntar</label></span></li>
-              <li><span class="govco-icon govco-icon-delete-n " [ngClass]="{'disabled': adj_cartasolici}"><label class="form-group-govco">Eliminar</label></span>
+
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
               </li>
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': !adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+              
+              <!-- <li><span class="govco-icon govco-icon-eye-n" [ngClass]="{'disabled': adj_cartasolici}"><label
+                    class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'
+                  [ngClass]="{'disabled': !adj_cartasolici}"><label class="form-group-govco">Adjuntar</label></span>
+              </li>
+              <li><span class="govco-icon govco-icon-delete-n " [ngClass]="{'disabled': adj_cartasolici}"><label
+                    class="form-group-govco">Eliminar</label></span>
+              </li> -->
             </ul>
         </tr>
 
@@ -41,13 +77,46 @@
             epidemiológica). - Existencia en la empresa solicitante de los programas de vigilancia epidemiológica de
             factores de riesgo, relacionados con las actividades laborales, para las que está solicitando autorización
             de horas extras.</td>
-          <td style="width:180px">
+          <td style="width:220px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
-              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
-                    class="form-group-govco">Adjuntar</label></span></li>
-              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
               </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+
+
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li> -->
+              <!-- <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li> -->
+              <!-- <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
             </ul>
         </tr>
 
@@ -58,11 +127,42 @@
             relación de actividades (cargos) para los cuales se solicita la autorización.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
               <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
                     class="form-group-govco">Adjuntar</label></span></li>
               <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
-              </li>
+              </li> -->
             </ul>
         </tr>
 
@@ -77,11 +177,43 @@
             horario de trabajo y el trabajo suplementario.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
               <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
                     class="form-group-govco">Adjuntar</label></span></li>
               <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
-              </li>
+              </li> -->
             </ul>
         </tr>
 
@@ -94,11 +226,44 @@
             empresa.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
               <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
                     class="form-group-govco">Adjuntar</label></span></li>
               <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
-              </li>
+              </li> -->
+              
             </ul>
         </tr>
 
@@ -109,11 +274,43 @@
           <td>Reglamento de trabajo : 1 Copia digitalizada. Si es el caso.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-n color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-n color-green" (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Adjuntar</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-n color-gold"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Eliminar</div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
               <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
                     class="form-group-govco">Adjuntar</label></span></li>
               <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
-              </li>
+              </li> -->
             </ul>
         </tr>
       </tbody>
