@@ -14,6 +14,7 @@ import { SubirarchivoComponent } from '../sharedmintrabajo/components/subirarchi
 import { DireccionmodalComponent } from './radicartramite/components/direccionmodal/direccionmodal.component';
 import { DocumentostramiteComponent } from './radicartramite/components/documentostramite/documentostramite.component';
 import { TramiteregistradoComponent } from './radicartramite/components/tramiteregistrado/tramiteregistrado.component';
+import { DatosremitenteComponent } from './radicartramite/components/datosremitente/datosremitente.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TramiteregistradoComponent } from './radicartramite/components/tramiter
     DireccionmodalComponent,
     DocumentostramiteComponent,
     SubirarchivoComponent,
-    TramiteregistradoComponent
+    TramiteregistradoComponent,
+    DatosremitenteComponent
   ],
   imports: [
     CommonModule,

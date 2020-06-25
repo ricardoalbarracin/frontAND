@@ -7,6 +7,7 @@ import { SelecciontramiteComponent } from './components/selecciontramite/selecci
 import { DescripciontramiteComponent } from './radicartramite/components/descripciontramite/descripciontramite.component';
 import { DocumentostramiteComponent } from './radicartramite/components/documentostramite/documentostramite.component';
 import { TramiteregistradoComponent } from './radicartramite/components/tramiteregistrado/tramiteregistrado.component';
+import { DatosremitenteComponent } from './radicartramite/components/datosremitente/datosremitente.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     {
       path: "registro",
       component: TramiteregistradoComponent
+    },
+    {
+      path: "remitente",
+      component: DatosremitenteComponent
     }]
   }
 ];

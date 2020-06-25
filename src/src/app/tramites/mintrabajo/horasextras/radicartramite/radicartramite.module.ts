@@ -6,10 +6,6 @@ import { SharedModule } from '@shared/shared.module';
 import { OrganizacionessindicalesComponent } from './components/organizacionessindicales/organizacionessindicales.component';
 import { DireccionmodalComponent } from './components/direccionmodal/direccionmodal.component';
 import { DatosremitenteComponent } from './components/datosremitente/datosremitente.component';
-import { DatosremitenteNaturalComponent } from './components/datosremitente-natural/datosremitente-natural.component';
-import { DatosremitenteJuridicaComponent } from './components/datosremitente-juridica/datosremitente-juridica.component';
-import { DatosremitenteEstablecimientoComponent } from './components/datosremitente-establecimiento/datosremitente-establecimiento.component';
-import { DatosremitenteEntidadComponent } from './components/datosremitente-entidad/datosremitente-entidad.component';
 import { DocumentostramiteComponent } from './components/documentostramite/documentostramite.component';
 import { SubirarchivoComponent } from '../../sharedmintrabajo/components/subirarchivo/subirarchivo.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
@@ -21,14 +17,10 @@ import { TramiteregistradoComponent } from './components/tramiteregistrado/trami
     OrganizacionessindicalesComponent,
     DireccionmodalComponent,
     DatosremitenteComponent,
-    DatosremitenteNaturalComponent,
-    DatosremitenteJuridicaComponent,
-    DatosremitenteEstablecimientoComponent,
-    DatosremitenteEntidadComponent,
     DocumentostramiteComponent,
     SubirarchivoComponent,
     TramiteregistradoComponent
-  ],
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

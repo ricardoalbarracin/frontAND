@@ -2,16 +2,13 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Pais*</label>
-      </div>
-      <app-dropdownlist ngDefaultControl formControlName="pais" placeholder="Ingrese un valor" (change)="habilitarControlesXpais()" [items]="listaPais">
+      <label class="form-group-govco">Pais*</label>
+      <app-dropdownlist ngDefaultControl formControlName="pais" placeholder="Ingrese un valor"
+        (change)="habilitarControlesXpais()" [items]="listaPais">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Departamento</label>
-      </div>
+      <label class="form-group-govco">Departamento</label>
       <app-dropdownlist ngDefaultControl formControlName="departamento" placeholder="Ingrese un valor"
         [items]="listaSINO">
       </app-dropdownlist>
@@ -20,16 +17,12 @@
   <br>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Municipio</label>
-      </div>
+      <label class="form-group-govco">Municipio</label>
       <app-dropdownlist ngDefaultControl formControlName="municipio" placeholder="Ingrese un valor" [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Código postal</label>
-      </div>
+      <label class="form-group-govco">Código postal</label>
       <input class="form-control input-govco" formControlName="codigo_postal" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -41,16 +34,12 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Tipo de vía</label>
-      </div>
+      <label class="form-group-govco">Tipo de vía</label>
       <app-dropdownlist ngDefaultControl formControlName="tipo_via" placeholder="Ingrese un valor" [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Número de vía principal</label>
-      </div>
+      <label class="form-group-govco">Número de vía principal</label>
       <input class="form-control input-govco" formControlName="numero_via_principal" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -59,18 +48,13 @@
   <br>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Prefijo cuadrante
-        </label>
-      </div>
+      <label class="form-group-govco">Prefijo cuadrante</label>
       <app-dropdownlist ngDefaultControl formControlName="prefijo_cuadrante1" placeholder="Ingrese un valor"
         [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Bis</label>
-      </div>
+      <label class="form-group-govco">Bis</label>
       <input class="form-control input-govco" formControlName="bis" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -79,17 +63,13 @@
   <br>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Orientación</label>
-      </div>
+      <label class="form-group-govco">Orientación</label>
       <app-dropdownlist ngDefaultControl formControlName="orientacion1" placeholder="Ingrese un valor"
         [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Número de vía</label>
-      </div>
+      <label class="form-group-govco">Número de vía</label>
       <input class="form-control input-govco" formControlName="numero_via" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -98,17 +78,13 @@
   <br>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Prefijo cuadrante</label>
-      </div>
+      <label class="form-group-govco">Prefijo cuadrante</label>
       <app-dropdownlist ngDefaultControl formControlName="prefijo_cuadrante2" placeholder="Ingrese un valor"
         [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Número de placa</label>
-      </div>
+      <label class="form-group-govco">Número de placa</label>
       <input class="form-control input-govco" formControlName="numero_placa1" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -117,17 +93,13 @@
   <br>
   <div class="row">
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Orientación</label>
-      </div>
+      <label class="form-group-govco">Orientación</label>
       <app-dropdownlist ngDefaultControl formControlName="orientacion2" placeholder="Ingrese un valor"
         [items]="listaSINO">
       </app-dropdownlist>
     </div>
     <div class="col-md-6">
-      <div class="row card-header pt-0">
-        <label class="form-group-govco">Número de placa</label>
-      </div>
+      <label class="form-group-govco">Número de placa</label>
       <input class="form-control input-govco" formControlName="numero_placa2" maxlength="10" minlength="3"
         placeholder="00000-123" />
     </div>
@@ -140,17 +112,13 @@
     <div *ngFor="let trabajo of seleccionSolucionForm.complementos.controls; let i = index;" [formGroupName]="i">
       <div class="row">
         <div class="col-md-6">
-          <div class="row card-header pt-0">
-            <label class="form-group-govco">Tipo de Complemento</label>
-          </div>
+          <label class="form-group-govco">Tipo de Complemento</label>
           <app-dropdownlist ngDefaultControl formControlName='tipo_complemento' placeholder="Ingrese un valor"
             [items]="listaSINO">
           </app-dropdownlist>
         </div>
         <div class="col-md-6">
-          <div class="row card-header pt-0">
-            <label class="form-group-govco">Descripción</label>
-          </div>
+          <label class="form-group-govco">Descripción</label>
           <input class="form-control input-govco" formControlName='descripcion_complemento' maxlength="10" minlength="3"
             placeholder="00000-123" />
         </div>
