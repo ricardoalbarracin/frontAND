@@ -13,6 +13,7 @@ export class DocumentostramiteComponent implements OnInit {
   convenciones_colectivas:string;
   reglamento_trabajo:string;
   organizaciones_sindicales:string;
+  adj_cartasolici:boolean = true;
 
   constructor(private modalService: NgbModal, private router:Router) { }
 
@@ -28,6 +29,7 @@ export class DocumentostramiteComponent implements OnInit {
       backdrop: "static",
       keyboard: true
     });
+    this.adj_cartasolici = !this.adj_cartasolici;
   }
 
   regresar(){}

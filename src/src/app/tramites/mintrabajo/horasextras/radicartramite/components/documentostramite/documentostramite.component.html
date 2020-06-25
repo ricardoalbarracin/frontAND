@@ -22,10 +22,10 @@
             por la cual la empresa requiere el desarrollo de actividades laborales mediante horas extras.</td>
           <td style="width:180px">
             <ul>
-              <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
-              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'><label
+              <li><span class="govco-icon govco-icon-eye-n" [ngClass]="{'disabled': adj_cartasolici}"  ><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()' [ngClass]="{'disabled': !adj_cartasolici}"><label
                     class="form-group-govco">Adjuntar</label></span></li>
-              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              <li><span class="govco-icon govco-icon-delete-n " [ngClass]="{'disabled': adj_cartasolici}"><label class="form-group-govco">Eliminar</label></span>
               </li>
             </ul>
         </tr>

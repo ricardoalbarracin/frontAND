@@ -8,7 +8,7 @@
 
     <label class="form-group-govco">Circunstancias de modo y lugar que conllevan a esta situación de este
       trámite</label>
-    <textarea class="form-control" formControlName="circunstancia" ngDefaultControl rows="5"
+    <textarea class="form-control" [ngClass]="{'is-invalid': invalidForm}" formControlName="circunstancia" ngDefaultControl rows="5"
       placeholder="Ej: campo de texto" minlength="1" maxlength="256"></textarea>
     <br>
     <div class="row card-header pt-0">

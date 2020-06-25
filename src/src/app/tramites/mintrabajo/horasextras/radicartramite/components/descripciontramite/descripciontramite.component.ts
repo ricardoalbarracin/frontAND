@@ -50,8 +50,10 @@ export class DescripciontramiteComponent implements OnInit {
   }
 
   AgregarDireccionTerritorial() {
-    this.direccionTerritorial = this.seleccionForm.value.direccion_territorial.text;
-    this.seleccionForm.controls['direccion_territorial'].disable();
+    if (this.seleccionForm.value.direccion_territorial.text.length > 0) {
+      this.direccionTerritorial = this.seleccionForm.value.direccion_territorial.text;
+      this.seleccionForm.controls['direccion_territorial'].disable();
+    }
   }
 
   EliminarDireccionTerritorial() {
@@ -60,9 +62,11 @@ export class DescripciontramiteComponent implements OnInit {
   }
 
   AgregarNumeroRadicado() {
-    if (this.formatoRadicadoinvalido) {
-      this.numero_radicado = this.seleccionForm.value.numero_radicado;
-      this.seleccionForm.controls['numero_radicado'].disable();
+    if (this.seleccionForm.value.numero_radicado.length > 0) {
+      if (this.formatoRadicadoinvalido) {
+        this.numero_radicado = this.seleccionForm.value.numero_radicado;
+        this.seleccionForm.controls['numero_radicado'].disable();
+      }
     }
   }
 
