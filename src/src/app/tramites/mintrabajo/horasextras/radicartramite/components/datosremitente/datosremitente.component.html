@@ -214,5 +214,47 @@
       </div>
     </div>
 
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Direcciones</h3>
+    </div>
+    <label for="checkbox_simple_solo">Seleccione la opción agregar para diligenciar direcciones</label>
+
+    <div class="row card-header pt-0">
+      <div class="row card-header pt-0">
+        <div style="width: 30px;">
+          <span class="govco-icon govco-icon-plus-n color-green " (click)='abrirDireccion()'></span>
+        </div>
+        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">AGREGAR DIRECCIÓN</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="table-simple-headblue-govco">
+      <table class="table display table-responsive-sm table-responsive-md">
+        <thead>
+          <tr>
+            <th>Radicados Referidos</th>
+            <th style="width: 20%;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf='direccion'>
+            <td>{{direccion}}</td>
+            <td><span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
+                (click)='eliminarDireccion()'></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class=" col-md-12 registro-consulta-footer">
+        <a class="btn btn-round btn-middle" (click)='atras()'>ATRAS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-round btn-middle" (click)='cancelar()'>CANCELAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-round btn-high" (click)="continuar()">CONTINUAR</button>
+      </div>
+    </div>
+
   </div>
 </div>

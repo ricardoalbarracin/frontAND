@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class DocumentostramiteComponent implements OnInit {
 
-  convenciones_colectivas:string;
-  reglamento_trabajo:string;
-  organizaciones_sindicales:string;
-  adj_cartasolici:boolean = true;
+  convenciones_colectivas: string;
+  reglamento_trabajo: string;
+  organizaciones_sindicales: string;
+  adj_cartasolici: boolean = true;
 
-  constructor(private modalService: NgbModal, private router:Router) { }
+  constructor(private modalService: NgbModal, private router: Router) { }
 
   ngOnInit() {
     this.convenciones_colectivas = sessionStorage.convenciones_colectivas;
@@ -23,7 +23,7 @@ export class DocumentostramiteComponent implements OnInit {
     this.organizaciones_sindicales = sessionStorage.organizaciones_sindicales;
   }
 
-  SeleccionarArchivo(){
+  SeleccionarArchivo() {
     let modal = this.modalService.open(SubirarchivoComponent, {
       size: 'lg',
       backdrop: "static",
@@ -32,9 +32,11 @@ export class DocumentostramiteComponent implements OnInit {
     this.adj_cartasolici = !this.adj_cartasolici;
   }
 
-  regresar(){}
+  regresar() {
+    this.router.navigate(['/mintrabajo/remitente']);
+  }
 
-  radicar(){
+  radicar() {
     this.router.navigate(['/mintrabajo/registro']);
   }
 

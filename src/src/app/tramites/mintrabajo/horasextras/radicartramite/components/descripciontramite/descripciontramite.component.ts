@@ -81,7 +81,7 @@ export class DescripciontramiteComponent implements OnInit {
 
   continuar() {
     if (this.seleccionSolucionForm.isValid()) {
-      this.router.navigate(['/mintrabajo/documentos']);
+      this.router.navigate(['/mintrabajo/remitente']);
       sessionStorage.convenciones_colectivas = this.seleccionForm.controls.convenciones_colectivas.value.text;
       sessionStorage.reglamento_trabajo = this.seleccionForm.controls.reglamento_trabajo.value.text;
       sessionStorage.organizaciones_sindicales = this.seleccionForm.controls.organizaciones_sindicales.value.text;
