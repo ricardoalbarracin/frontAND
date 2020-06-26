@@ -108,24 +108,21 @@
   <div class="row card-header pt-0">
     <h3 class="m-0 title-section">Complemento</h3>
   </div>
-  <div formArrayName="complementos">
-    <div *ngFor="let trabajo of seleccionSolucionForm.complementos.controls; let i = index;" [formGroupName]="i">
-      <div class="row">
-        <div class="col-md-6">
-          <label class="form-group-govco">Tipo de Complemento</label>
-          <app-dropdownlist ngDefaultControl formControlName='tipo_complemento' placeholder="Ingrese un valor"
-            [items]="listaSINO">
-          </app-dropdownlist>
-        </div>
-        <div class="col-md-6">
-          <label class="form-group-govco">Descripción</label>
-          <input class="form-control input-govco" formControlName='descripcion_complemento' maxlength="10" minlength="3"
-            placeholder="00000-123" />
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Tipo de Complemento</label>
+      <app-dropdownlist ngDefaultControl formControlName='tipo_complemento' placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Descripción</label>
+      <input class="form-control input-govco" formControlName='descripcion_complemento' maxlength="10" minlength="3"
+        placeholder="00000-123" />
     </div>
   </div>
 
+  <br>
   <div class="row card-header pt-0">
     <div class="row card-header pt-0">
       <div style="width: 30px;">
@@ -135,8 +132,30 @@
     </div>
   </div>
 
+  <br>
+  <div class="table-simple-headblue-govco ">
+    <table class="table display table-responsive-sm table-responsive-md">
+      <thead>
+        <tr>
+          <th>Tipo de complemento</th>
+          <th>Descripción</th>
+          <th style="width: 20%;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of complementos">
+          <td>{{item.tipo}}</td>
+          <td>{{item.descripcion}}</td>
+          <td>
+            <span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
+              (click)='EliminarComplemento(item)'></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
+<br>
 <div class="row mt-3">
   <div class=" col-md-12 registro-consulta-footer">
     <button (click)="cancelar()" class="btn btn-round btn-middle">CANCELAR DIRECCIÓN</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from "@angular/forms";
 import { DireccionForm } from './direccion.form';
+import { complemento } from '../../models/sharedmintrabajo.models';
 
 @Component({
   selector: 'app-direccion',
@@ -40,6 +41,7 @@ export class DireccionComponent implements OnInit {
     }
   ]
 
+  complementos: Array <complemento> = [];
   seleccionForm: FormGroup;
   seleccionSolucionForm: DireccionForm;
   invalidForm: boolean = false;
@@ -51,7 +53,6 @@ export class DireccionComponent implements OnInit {
   ngOnInit() {
     this.seleccionSolucionForm = new DireccionForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
-    this.seleccionSolucionForm.addComplemento();
   }
 
   obtenerDireccion() {
@@ -62,12 +63,9 @@ export class DireccionComponent implements OnInit {
         if (!(control instanceof FormArray))
           cadena += control.value.text == null ? control.value + ' ' : control.value.text + ' ';
     });
-    for (let control of this.seleccionSolucionForm.complementos.controls) {
-      let fg = (control as FormGroup);
-      if (fg.controls.tipo_complemento.value.text)
-        cadena += ` ${fg.controls.tipo_complemento.value.text} ${fg.controls.descripcion_complemento.value} `
-    }
-    return cadena;
+    for (let c of this.complementos)
+      cadena += ` ${c.tipo} ${c.descripcion} `
+    return cadena.replace(/  +/g, ' ');
   }
 
   enviarDireccion() {
@@ -80,7 +78,9 @@ export class DireccionComponent implements OnInit {
   }
 
   agregarComplemento() {
-    this.seleccionSolucionForm.addComplemento();
+    this.complementos.push({tipo:this.seleccionForm.controls.tipo_complemento.value.text, descripcion: this.seleccionForm.controls.descripcion_complemento.value});
+    this.seleccionForm.controls['tipo_complemento'].setValue('');
+    this.seleccionForm.controls['descripcion_complemento'].setValue('');
   }
 
   cancelar() {
@@ -96,6 +96,11 @@ export class DireccionComponent implements OnInit {
       this.seleccionForm.controls['municipio'].disable();
       this.seleccionForm.controls['departamento'].disable();
     }
+  }
+
+  EliminarComplemento(fila){
+    const index = this.complementos.indexOf(fila);
+    this.complementos.splice(index, 1);
   }
 
 }

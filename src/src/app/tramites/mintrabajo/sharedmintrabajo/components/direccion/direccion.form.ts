@@ -25,23 +25,11 @@ export class DireccionForm {
           numero_placa1: [''],
           numero_placa2: [''],
           orientacion2: [''],
-          complementos: this.formBuilder.array([])
+          tipo_complemento: [''],
+          descripcion_complemento: ['']
         });
     }
-
-    get complementos(): FormArray {
-      return this.form.get('complementos') as FormArray;
-    }
-
-    addComplemento() {
-      const trabajo = this.formBuilder.group({
-        tipo_complemento: new FormControl(''),
-        descripcion_complemento: new FormControl('')
-      });
-
-      this.complementos.push(trabajo);
-    }
-
+    
     getForm(): FormGroup {
         return this.form;
     }
