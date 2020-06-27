@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SubirarchivoComponent } from 'src/app/tramites/mintrabajo/sharedmintrabajo/components/subirarchivo/subirarchivo.component';
 import { Router } from '@angular/router';
+import { FormGroup } from "@angular/forms";
+import { DocumentostramiteForm } from './documentostramite.form';
 
 @Component({
   selector: 'app-documentostramite',
@@ -14,6 +16,9 @@ export class DocumentostramiteComponent implements OnInit {
   reglamento_trabajo: string;
   organizaciones_sindicales: string;
   adj_cartasolici: boolean = true;
+  seleccionForm: FormGroup;
+  seleccionSolucionForm: DocumentostramiteForm;
+  invalidForm: boolean = false;
 
   constructor(private modalService: NgbModal, private router: Router) { }
 
@@ -21,6 +26,8 @@ export class DocumentostramiteComponent implements OnInit {
     this.convenciones_colectivas = sessionStorage.convenciones_colectivas;
     this.reglamento_trabajo = sessionStorage.reglamento_trabajo;
     this.organizaciones_sindicales = sessionStorage.organizaciones_sindicales;
+    this.seleccionSolucionForm = new DocumentostramiteForm();
+    this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
 
   SeleccionarArchivo() {

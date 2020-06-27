@@ -1,3 +1,4 @@
+import { UtilsService } from '../../../../sharedmintrabajo/utils/utils.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 import { DescripciontramiteForm } from './descripciontramite.form';
@@ -42,7 +43,7 @@ export class DescripciontramiteComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private utils: UtilsService) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new DescripciontramiteForm();
@@ -88,6 +89,7 @@ export class DescripciontramiteComponent implements OnInit {
     }
     else {
       this.invalidForm = true;
+      this.utils.scrollAlControInvalido();
       return;
     }
   }

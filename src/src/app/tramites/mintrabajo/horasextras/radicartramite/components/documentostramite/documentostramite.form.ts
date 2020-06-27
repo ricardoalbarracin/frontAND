@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-export class DatosRemitenteForm {
+export class DocumentostramiteForm {
     public form: FormGroup;
     private formBuilder: any;
 
@@ -11,8 +11,7 @@ export class DatosRemitenteForm {
 //
     buildForm() {
         this.form = this.formBuilder.group({
-          tipo_persona: ['',[Validators.required]],
-          tipo_documento: [''],
+          recaptcha: [''],
         });
     }
 

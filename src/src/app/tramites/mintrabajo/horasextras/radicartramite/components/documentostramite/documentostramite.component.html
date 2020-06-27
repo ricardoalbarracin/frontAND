@@ -54,7 +54,7 @@
                   </div>
                 </div>
               </li>
-              
+
               <!-- <li><span class="govco-icon govco-icon-eye-n" [ngClass]="{'disabled': adj_cartasolici}"><label
                     class="form-group-govco">Ver</label></span></li>
               <li><span class="govco-icon govco-icon-attached-p" (click)='SeleccionarArchivo()'
@@ -263,7 +263,7 @@
                     class="form-group-govco">Adjuntar</label></span></li>
               <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
               </li> -->
-              
+
             </ul>
         </tr>
 
@@ -316,12 +316,14 @@
       </tbody>
     </table>
     <br>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row recaptcha-container">
-          <div class="form-group">
-            <re-captcha></re-captcha>
+    <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+      [ngClass]="{'invalid-form' : invalidForm}">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row recaptcha-container">
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha"></re-captcha>
+            </div>
           </div>
         </div>
       </div>

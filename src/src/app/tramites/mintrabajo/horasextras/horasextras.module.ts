@@ -15,6 +15,7 @@ import { DireccionmodalComponent } from './radicartramite/components/direccionmo
 import { DocumentostramiteComponent } from './radicartramite/components/documentostramite/documentostramite.component';
 import { TramiteregistradoComponent } from './radicartramite/components/tramiteregistrado/tramiteregistrado.component';
 import { DatosremitenteComponent } from './radicartramite/components/datosremitente/datosremitente.component';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { DatosremitenteComponent } from './radicartramite/components/datosremite
     HorasExttrasRoutingModule,
     SharedModule,
     ConsultatramiteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaFormsModule,
+    RecaptchaModule
   ],
   entryComponents:[DireccionComponent,DireccionmodalComponent,SubirarchivoComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

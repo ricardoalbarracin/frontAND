@@ -1,3 +1,4 @@
+import { utils } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DatosRemitenteForm } from './datosremitente.form';
@@ -6,6 +7,7 @@ import { DireccionmodalComponent } from '../direccionmodal/direccionmodal.compon
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UtilsService } from '../../../../sharedmintrabajo/utils/utils.service';
 
 @Component({
   selector: 'app-datosremitente',
@@ -18,7 +20,7 @@ export class DatosremitenteComponent implements OnInit {
     {
       text: 'Opcion 1',
       value: 1
-    },{
+    }, {
       text: 'Opcion 2',
       value: 2
     }, {
@@ -37,7 +39,7 @@ export class DatosremitenteComponent implements OnInit {
   invalidForm: boolean = false;
   unsubscribe$ = new Subject<void>();
 
-  constructor(private modalService: NgbModal, private router: Router) { }
+  constructor(private modalService: NgbModal, private router: Router, private utils: UtilsService) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new DatosRemitenteForm();
@@ -63,20 +65,27 @@ export class DatosremitenteComponent implements OnInit {
     });
   }
 
-  eliminarDireccion(){
+  eliminarDireccion() {
     this.direccion = '';
   }
 
-  atras(){
+  atras() {
     this.router.navigate(['/mintrabajo/descripcion']);
   }
 
-  cancelar(){
+  cancelar() {
     this.router.navigate(['/mintrabajo']);
   }
 
-  continuar(){
-    this.router.navigate(['/mintrabajo/documentos']);
+  continuar() {
+    if (this.seleccionSolucionForm.isValid()) {
+      this.router.navigate(['/mintrabajo/documentos']);
+    }
+    else{
+      this.invalidForm = true;
+      this.utils.scrollAlControInvalido();
+      return;
+    }
   }
 
 }

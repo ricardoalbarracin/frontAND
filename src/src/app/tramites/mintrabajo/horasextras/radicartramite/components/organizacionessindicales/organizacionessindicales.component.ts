@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { OrganizacionesSindicalesForm } from './organizacionessindicales.form';
-//import { DireccionComponent } from 'src/app/tramites/mintrabajo/sharedmintrabajo/components/direccion/direccion.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DireccionmodalComponent } from '../direccionmodal/direccionmodal.component';
 import { Subject } from 'rxjs';
@@ -32,9 +31,6 @@ export class OrganizacionessindicalesComponent implements OnInit, OnDestroy {
   limpiarOrganizacionSindical() {
     this.seleccionForm.reset();
     this.invalidForm = false;
-    /*Object.keys(this.seleccionForm.controls).forEach((key: string) => {
-      this.seleccionForm.controls[key].setValue('');
-    });*/
   }
 
   eliminarOrganizacionSindical(d) {

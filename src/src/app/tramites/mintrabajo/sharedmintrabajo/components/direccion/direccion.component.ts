@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
 import { FormGroup, FormArray } from "@angular/forms";
 import { DireccionForm } from './direccion.form';
 import { complemento } from '../../models/sharedmintrabajo.models';
@@ -41,14 +41,14 @@ export class DireccionComponent implements OnInit {
     }
   ]
 
-  complementos: Array <complemento> = [];
+  complementos: Array<complemento> = [];
   seleccionForm: FormGroup;
   seleccionSolucionForm: DireccionForm;
   invalidForm: boolean = false;
   cadena_direccion: string = '';
   @Output() messageEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private el: ElementRef) { }
 
   ngOnInit() {
     this.seleccionSolucionForm = new DireccionForm();
@@ -73,14 +73,19 @@ export class DireccionComponent implements OnInit {
       this.messageEvent.emit(this.obtenerDireccion());
     else {
       this.invalidForm = true;
+      this.scrollAlControlInvalido_modal();
       return;
     }
   }
 
   agregarComplemento() {
-    this.complementos.push({tipo:this.seleccionForm.controls.tipo_complemento.value.text, descripcion: this.seleccionForm.controls.descripcion_complemento.value});
-    this.seleccionForm.controls['tipo_complemento'].setValue('');
-    this.seleccionForm.controls['descripcion_complemento'].setValue('');
+    this.complementos.push({ tipo: this.seleccionForm.controls.tipo_complemento.value.text, descripcion: this.seleccionForm.controls.descripcion_complemento.value });
+    this.limpiarControl('tipo_complemento');
+    this.limpiarControl('descripcion_complemento');
+  }
+
+  limpiarControl(nombre:string){
+    this.seleccionForm.controls[nombre].setValue('');
   }
 
   cancelar() {
@@ -98,9 +103,17 @@ export class DireccionComponent implements OnInit {
     }
   }
 
-  EliminarComplemento(fila){
+  EliminarComplemento(fila) {
     const index = this.complementos.indexOf(fila);
     this.complementos.splice(index, 1);
+  }
+
+  scrollAlControlInvalido_modal() {
+    const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
+      ".ng-invalid");
+    if (firstInvalidControl) {
+      firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
 }
