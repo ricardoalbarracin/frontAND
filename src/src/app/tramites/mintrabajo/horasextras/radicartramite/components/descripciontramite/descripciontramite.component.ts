@@ -48,6 +48,7 @@ export class DescripciontramiteComponent implements OnInit {
   ngOnInit() {
     this.seleccionSolucionForm = new DescripciontramiteForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
+    this.utils.estadoTramite('2');
   }
 
   AgregarDireccionTerritorial() {
@@ -89,7 +90,7 @@ export class DescripciontramiteComponent implements OnInit {
     }
     else {
       this.invalidForm = true;
-      this.utils.scrollAlControInvalido();
+      this.utils.scrollControInvalido();
       return;
     }
   }

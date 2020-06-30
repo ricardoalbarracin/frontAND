@@ -4,6 +4,7 @@ import { SubirarchivoComponent } from 'src/app/tramites/mintrabajo/sharedmintrab
 import { Router } from '@angular/router';
 import { FormGroup } from "@angular/forms";
 import { DocumentostramiteForm } from './documentostramite.form';
+import { UtilsService } from 'src/app/tramites/mintrabajo/sharedmintrabajo/utils/utils.service';
 
 @Component({
   selector: 'app-documentostramite',
@@ -20,7 +21,7 @@ export class DocumentostramiteComponent implements OnInit {
   seleccionSolucionForm: DocumentostramiteForm;
   invalidForm: boolean = false;
 
-  constructor(private modalService: NgbModal, private router: Router) { }
+  constructor(private modalService: NgbModal, private router: Router,private utils:UtilsService) { }
 
   ngOnInit() {
     this.convenciones_colectivas = sessionStorage.convenciones_colectivas;
@@ -45,6 +46,7 @@ export class DocumentostramiteComponent implements OnInit {
 
   radicar() {
     this.router.navigate(['/mintrabajo/registro']);
+    this.utils.estadoTramite('4');
   }
 
 }

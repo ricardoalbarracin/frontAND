@@ -83,7 +83,7 @@ export class DatosremitenteComponent implements OnInit {
     }
     else{
       this.invalidForm = true;
-      this.utils.scrollAlControInvalido();
+      this.utils.scrollControInvalido();
       return;
     }
   }

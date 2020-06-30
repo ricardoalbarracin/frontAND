@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { UtilsService } from '../../../sharedmintrabajo/utils/utils.service';
 
 @Component({
   selector: 'app-principal',
@@ -10,13 +11,14 @@ export class PrincipalComponent implements OnInit {
 
   autorizar:boolean = true;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private utils:UtilsService) { }
 
   ngOnInit() {
   }
 
   continuar(){
     this.router.navigate(['/mintrabajo/seleccionar']);
+    this.utils.estadoTramite('2');
   }
 
   cancelar(){
