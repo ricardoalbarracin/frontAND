@@ -18,16 +18,16 @@ export class DatosremitenteComponent implements OnInit {
 
   listaOpciones: any[] = [
     {
-      text: 'Opcion 1',
+      text: 'Persona natural',
       value: 1
     }, {
-      text: 'Opcion 2',
+      text: 'Persona jurídica',
       value: 2
     }, {
-      text: 'Opcion 3',
+      text: 'Entidad oficial',
       value: 3
     }, {
-      text: 'Opcion 4',
+      text: 'Establecimiento comercial',
       value: 4
     },
   ]
@@ -81,7 +81,7 @@ export class DatosremitenteComponent implements OnInit {
     if (this.seleccionSolucionForm.isValid()) {
       this.router.navigate(['/mintrabajo/documentos']);
     }
-    else{
+    else {
       this.invalidForm = true;
       this.utils.scrollControInvalido();
       return;

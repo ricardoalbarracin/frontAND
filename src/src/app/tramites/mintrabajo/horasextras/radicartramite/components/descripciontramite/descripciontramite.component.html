@@ -6,7 +6,7 @@
       <h3 class="m-0 title-section">Datos del trámite</h3>
     </div>
 
-    <label class="form-group-govco">Circunstancias de modo y lugar que conllevan a esta situación de este
+    <label class="form-group-govco">*Circunstancias de modo y lugar que conllevan a esta situación de este
       trámite</label>
     <textarea class="form-control" [ngClass]="{'is-invalid': invalidForm}" formControlName="circunstancia"
       ngDefaultControl rows="5" placeholder="Ej: campo de texto" minlength="1" maxlength="256"></textarea>
@@ -15,7 +15,7 @@
       <h3 class="m-0 title-section">Dirección territoriales a la cual presenta su trámite</h3>
     </div>
 
-    <label class="form-group-govco">Seleccione una ubicación</label>
+    <label class="form-group-govco">*Seleccione una ubicación</label>
     <app-dropdownlist ngDefaultControl formControlName="direccion_territorial" placeholder="Ingrese un valor"
       [items]="listaCiudad">
     </app-dropdownlist>
@@ -23,9 +23,9 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n color-green " (click)='AgregarDireccionTerritorial()'></span>
+          <span class="govco-icon govco-icon-plus-n" (click)='AgregarDireccionTerritorial()'></span>
         </div>
-        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar</div>
+        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Agregar</div>
       </div>
     </div>
 
@@ -42,8 +42,11 @@
           <tr *ngIf='direccionTerritorial'>
             <td>{{direccionTerritorial}}</td>
             <td>
-              <span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
-                (click)='EliminarDireccionTerritorial()'></span>
+              <span class="govco-icon govco-icon-delete-p" (click)='EliminarDireccionTerritorial()'>
+                <span
+                  class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">
+                  Eliminar</span>
+              </span>
             </td>
           </tr>
         </tbody>
@@ -69,9 +72,9 @@
       <div class="row card-header pt-0">
         <div class="row card-header pt-0">
           <div style="width: 30px;">
-            <span class="govco-icon govco-icon-plus-n color-green " (click)='AgregarNumeroRadicado()'></span>
+            <span class="govco-icon govco-icon-plus-n" (click)='AgregarNumeroRadicado()'></span>
           </div>
-          <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar</div>
+          <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Agregar</div>
         </div>
       </div>
 
@@ -87,15 +90,15 @@
           <tbody>
             <tr *ngIf='numero_radicado'>
               <td>{{numero_radicado}}</td>
-              <td><span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
-                  (click)='EliminarNumeroRadicado()'></span></td>
+              <td><span class="govco-icon govco-icon-delete-p " (click)='EliminarNumeroRadicado()'>
+                  <span
+                    class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span>
+                </span></td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-
-
     <div class="row">
       <div class="col-md-6">
         <div class="row card-header pt-0">

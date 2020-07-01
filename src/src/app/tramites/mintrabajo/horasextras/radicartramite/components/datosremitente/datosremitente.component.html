@@ -4,6 +4,7 @@
     <div class="row card-header pt-0">
       <h3 class="m-0 title-section">Datos del remitente</h3>
     </div>
+    <div class="row card-header pt-0">*Campos obligatorios</div>
     <br>
     <div class="row">
       <div class="col-md-6">
@@ -21,7 +22,7 @@
     </div>
     <br>
     <!--Persona Natural-->
-    <ng-container *ngIf="seleccionForm.value.tipo_persona.text ==='Opcion 1'">
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 1">
       <div class="row">
         <div class="col-md-6">
           <label class="form-group-govco">*Número de identidad</label>
@@ -59,7 +60,7 @@
     </ng-container>
 
     <!--Persona Juridica-->
-    <ng-container *ngIf="seleccionForm.value.tipo_persona.text ==='Opcion 2'">
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 2">
       <div class="row">
         <div class="col-md-6">
           <label class="form-group-govco">*Número de documento</label>
@@ -104,8 +105,7 @@
     </ng-container>
 
     <!--Entidad Oficial o Establecimiento comercial-->
-    <ng-container
-      *ngIf="seleccionForm.value.tipo_persona.text ==='Opcion 3' || seleccionForm.value.tipo_persona.text ==='Opcion 4'">
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 3 || seleccionForm.value.tipo_persona.value === 4">
       <div class="row">
         <div class="col-md-6">
           <label class="form-group-govco">*Número documento identidad</label>
@@ -158,7 +158,7 @@
     <br>
     <div class="row">
       <div class="col-md-3"
-        *ngIf="seleccionForm.value.tipo_persona.text ==='Opcion 1' || seleccionForm.value.tipo_persona.text ==='Opcion 2'">
+        *ngIf="seleccionForm.value.tipo_persona.value === 1 || seleccionForm.value.tipo_persona.value === 2">
         <label class="form-group-govco">*Tipo teléfono</label>
         <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
           [items]="listaOpciones">
@@ -182,18 +182,13 @@
     <div class="row">
       <div class="col-md-6">
         <label class="form-group-govco">*Correo electrónico</label>
-        <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Ingrese un valor"
-          [items]="listaOpciones">
-        </app-dropdownlist>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
       </div>
       <div class="col-md-6">
         <label class="form-group-govco">*Verificar correo electrónico</label>
-        <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
-          [items]="listaOpciones">
-        </app-dropdownlist>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
       </div>
     </div>
-
     <br>
     <br>
     <div class="row">
@@ -222,7 +217,7 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n color-green " (click)='abrirDireccion()'></span>
+          <span class="govco-icon govco-icon-plus-n" (click)='abrirDireccion()'></span>
         </div>
         <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">AGREGAR DIRECCIÓN</div>
       </div>

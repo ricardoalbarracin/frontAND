@@ -11,30 +11,28 @@
     <br>
     <div class="row">
       <div class="col-3">
-        <label class="form-group-govco">Sigla de la organización </label>
+        <label class="form-group-govco">Sigla de la organización</label>
         <input class="form-control input-govco" formControlName="sigla" maxlength="100" minlength="3" />
       </div>
       <div class="col-4">
         <label class="form-group-govco">Número de personería jurídica</label>
         <input class="form-control input-govco" formControlName="numero" maxlength="100" minlength="3" />
       </div>
-
-      <div class="col-4 d-inline">
+      <div class="col-3 d-inline">
         <label class="form-group-govco">Dirección</label>
-        <div class="row card-header pt-0">
-          <div style="width: auto;">
-            <input class="form-control input-govco d-inline" formControlName="direccion" maxlength="100" minlength="3" />
-          </div>
-          <div style="width: 30px;">
-            <span class="govco-icon govco-icon-plus-p color-green d-inline" (click)='abrirDireccion()'></span>
+        <div class="input-group input-group-sm">
+          <input class="form-control input-govco h35" formControlName="direccion" maxlength="100" minlength="3" />
+          <div class="input-group-append h35">
+            <span class="govco-icon govco-icon-plus" (click)='abrirDireccion()'></span>
           </div>
         </div>
-
       </div>
-      <div class="col-1 d-inline">
+      <div class="col-2 d-inline">
         <label class="form-group-govco">Opciones</label>
-        <span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
-          (click)='limpiarOrganizacionSindical()'></span>
+        <div class="govco-icon govco-icon-delete-p" (click)='limpiarOrganizacionSindical()'>
+          <span
+            class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span>
+        </div>
       </div>
     </div>
 
@@ -43,7 +41,7 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n color-green " (click)='agregarOrganizacionSindical()'></span>
+          <span class="govco-icon govco-icon-plus-n" (click)='agregarOrganizacionSindical()'></span>
         </div>
         <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar organización</div>
       </div>
@@ -68,7 +66,8 @@
             <td>{{item?.sigla}}</td>
             <td>{{item?.numero}}</td>
             <td>{{item?.direccion}}</td>
-            <td (click)='eliminarOrganizacionSindical(item)'><span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"></span>
+            <td (click)='eliminarOrganizacionSindical(item)'><span class="govco-icon govco-icon-delete-n "
+                style="color: #FFAB00 !important;"></span>
             </td>
           </tr>
         </tbody>
