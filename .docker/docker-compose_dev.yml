@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  client:
+    container_name: tramites_y_servicios_spa
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile_dev
+    ports:
+      #- ${NODE_PORT}:80
+      - ${NGINX_PORT}:80
+    restart: unless-stopped
+    networks:
+      - red_govco
+networks:
+    red_govco:
+      external: true

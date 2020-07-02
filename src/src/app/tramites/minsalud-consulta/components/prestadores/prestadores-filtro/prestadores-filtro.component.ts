@@ -63,7 +63,7 @@ export class PrestadoresFiltroComponent implements OnInit {
     });
     this.concultaService.invalidForm = false;
     this.formGroup.get('recaptcha').setValue(null);
-    this.concultaService.inicializarTablaDetallePrestadores();
+    this.concultaService.inicializarTablaDetalleServicios();
   }
 
   buscar() {
@@ -92,8 +92,8 @@ export class PrestadoresFiltroComponent implements OnInit {
       }
     });
 
-    // Validación: Cantidad minima de filtros = 1; >= 0 para quitar restriccion 
-    if (filterNumber >= 0) {
+    // Validación: Cantidad minima de filtros = 1
+    if (filterNumber > 0) {
       this.concultaService.invalidForm = false;
       this.concultaService.getDetalle(this.concultaService.tipoDetalle.prestadores).subscribe(
         (data) => this.success(data),
@@ -115,7 +115,7 @@ export class PrestadoresFiltroComponent implements OnInit {
   success(data) {
     if (data.length > 0) {
       this.concultaService.detalleConsulta = data;
-      this.concultaService.setTablaDetalleDatos(this.concultaService.idsTablaPrestadores);
+      this.concultaService.setTablaDetalleDatos(this.concultaService.idsTablaSanciones);
       this.concultaService.asignarMostrarDetalle(true);
     } else {
       this.concultaService.asignarMostrarDetalle(false);

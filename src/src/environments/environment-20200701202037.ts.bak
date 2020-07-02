@@ -5,7 +5,7 @@
 export const environment = {
   fichaTramiteUrlBase: 'https://pre.www.gov.co/',
   production: false,
-  serverUrl: 'http://localhost:8081/api/'
+  serverUrl: 'http://ec2-34-237-145-3.compute-1.amazonaws.com:8081/api/'
 };
 
 /*
