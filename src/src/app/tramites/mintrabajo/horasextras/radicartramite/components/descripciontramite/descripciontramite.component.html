@@ -23,9 +23,10 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n" (click)='AgregarDireccionTerritorial()'></span>
+          <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='AgregarDireccionTerritorial()'></span>
         </div>
-        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Agregar</div>
+        <h6 class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">Agregar
+        </h6>
       </div>
     </div>
 
@@ -42,9 +43,9 @@
           <tr *ngIf='direccionTerritorial'>
             <td>{{direccionTerritorial}}</td>
             <td>
-              <span class="govco-icon govco-icon-delete-p" (click)='EliminarDireccionTerritorial()'>
+              <span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarDireccionTerritorial()'>
                 <span
-                  class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">
+                  class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-text-bottom color-dodger-blue">
                   Eliminar</span>
               </span>
             </td>
@@ -72,9 +73,10 @@
       <div class="row card-header pt-0">
         <div class="row card-header pt-0">
           <div style="width: 30px;">
-            <span class="govco-icon govco-icon-plus-n" (click)='AgregarNumeroRadicado()'></span>
+            <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='AgregarNumeroRadicado()'></span>
           </div>
-          <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Agregar</div>
+          <h6 class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">
+            Agregar</h6>
         </div>
       </div>
 
@@ -90,7 +92,7 @@
           <tbody>
             <tr *ngIf='numero_radicado'>
               <td>{{numero_radicado}}</td>
-              <td><span class="govco-icon govco-icon-delete-p " (click)='EliminarNumeroRadicado()'>
+              <td><span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarNumeroRadicado()'>
                   <span
                     class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span>
                 </span></td>
@@ -136,10 +138,12 @@
     <app-organizacionessindicales></app-organizacionessindicales>
   </div>
   <br>
-
-  <div class="col-md-12" style="background-color: #E5EEFB;">
-    <h6 class="headline-s-govco" style="font-weight: bold;">Por favor ingrese información veraz y completa, pues el
-      inspector iniciará contacto y notificación a partir de los ingresado.</h6>
+  <div class="card govco-card p-3 mb-3" style="border: 2px solid #386acd;">
+    <div class="col-md-12">
+      <h2 class="color-dodger-blue">Importante</h2>
+      <h6 class="headline-s-govco">Por favor ingrese información veraz y completa, pues el
+        inspector iniciará contacto y notificación a partir de los datos ingresados.</h6>
+    </div>
   </div>
   <br>
   <div class="row">

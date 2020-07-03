@@ -126,9 +126,10 @@
   <div class="row card-header pt-0">
     <div class="row card-header pt-0">
       <div style="width: 30px;">
-        <span class="govco-icon govco-icon-plus-n" (click)='agregarComplemento()'></span>
+        <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='agregarComplemento()'></span>
       </div>
-      <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar</div>
+      <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right color-dodger-blue text-uppercase">Agregar
+      </div>
     </div>
   </div>
 
@@ -147,8 +148,8 @@
           <td>{{item.tipo}}</td>
           <td>{{item.descripcion}}</td>
           <td>
-            <span class="govco-icon govco-icon-delete-p " (click)='EliminarComplemento(item)'><span
-                class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span></span>
+            <span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarComplemento(item)'><span
+                class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle color-dodger-blue">Eliminar</span></span>
           </td>
         </tr>
       </tbody>

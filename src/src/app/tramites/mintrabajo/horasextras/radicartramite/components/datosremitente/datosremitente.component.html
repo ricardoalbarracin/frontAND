@@ -217,9 +217,10 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n" (click)='abrirDireccion()'></span>
+          <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='abrirDireccion()'></span>
         </div>
-        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">AGREGAR DIRECCIÓN</div>
+        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">AGREGAR
+          DIRECCIÓN</div>
       </div>
     </div>
 
@@ -235,9 +236,32 @@
         </thead>
         <tbody>
           <tr *ngIf='direccion'>
-            <td>{{direccion}}</td>
-            <td><span class="govco-icon govco-icon-delete-n " style="color: #FFAB00 !important;"
-                (click)='eliminarDireccion()'></span></td>
+            <td style="width: 60%;">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>País:</td>
+                    <td>{{direccion}}</td>
+                  </tr>
+                  <tr>
+                    <td>Departamento:</td>
+                    <td>Bogotá D.C</td>
+                  </tr>
+                  <tr>
+                    <td>Municipio:</td>
+                    <td>Bogotá D.C</td>
+                  </tr>
+                  <tr>
+                    <td>Dirección:</td>
+                    <td>Autopista 13 B Bis Norte 4 B 23 Norte</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td class="align-middle"><span class="govco-icon govco-icon-delete-p color-dodger-blue"
+                (click)='eliminarDireccion()'></span><span
+                class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-text-bottom color-dodger-blue">
+                Eliminar</span></td>
           </tr>
         </tbody>
       </table>

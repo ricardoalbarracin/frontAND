@@ -29,7 +29,7 @@
       </div>
       <div class="col-2 d-inline">
         <label class="form-group-govco">Opciones</label>
-        <div class="govco-icon govco-icon-delete-p" (click)='limpiarOrganizacionSindical()'>
+        <div class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='limpiarOrganizacionSindical()'>
           <span
             class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span>
         </div>
@@ -41,7 +41,7 @@
     <div class="row card-header pt-0">
       <div class="row card-header pt-0">
         <div style="width: 30px;">
-          <span class="govco-icon govco-icon-plus-n" (click)='agregarOrganizacionSindical()'></span>
+          <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='agregarOrganizacionSindical()'></span>
         </div>
         <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right">Agregar organización</div>
       </div>
@@ -49,7 +49,7 @@
 
     <br>
 
-    <div class="govco-table govco-table-simple">
+    <div class="table-simple-headblue-govco">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -66,8 +66,8 @@
             <td>{{item?.sigla}}</td>
             <td>{{item?.numero}}</td>
             <td>{{item?.direccion}}</td>
-            <td (click)='eliminarOrganizacionSindical(item)'><span class="govco-icon govco-icon-delete-n "
-                style="color: #FFAB00 !important;"></span>
+            <td (click)='eliminarOrganizacionSindical(item)'><span
+                class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
             </td>
           </tr>
         </tbody>
