@@ -39,6 +39,7 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   login() {
+    debugger
     if(this.usuario != '' || this.password != ''){
       this.invalidForm = true;
       return;
@@ -50,7 +51,7 @@ export class IniciarSesionComponent implements OnInit {
 
   asignarVariables(){
     this.invalidForm = false; 
-    this.service.asignarPaso(2);
+    this.service.asignarPaso(1);
     this.service.asignarpasoIngresar(1);
     this.service.asignarLlega(1);
   }

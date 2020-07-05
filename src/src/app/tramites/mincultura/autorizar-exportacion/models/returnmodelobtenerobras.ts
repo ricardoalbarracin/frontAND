@@ -2,41 +2,41 @@ export interface ReturnModelObtenerObras
     {
 
     
-        obras : Obra[];
+        Obras : Obra[];
         Success : boolean;
         Errors : Error;
     }
 
     export interface Obra
     {
-        FIC_ID : number;
-        TIB_ID : number;
-        intB_ID : object;
-        RES_NRO_CONCEPTO : object;
-        SOS_ID : number;
-        DOC_ID : number;
-        FIC_TITULO : string;
-        FIC_AUTOR : string;
-        FIC_FECHA_ELABORACION_OBRA : string;
-        FIC_TECNICA : string;
-        FIC_DIMENSIONES : string;
-        FIC_PROPIETARIO : string;
-        FIC_NRO_DOCUMENTO_IDENTIDAD : string;
-        FIC_OBSERVACIONES : string;
-        FIC_FOTO : string;
-        TOB_ID : number;
-        FIC_CONSECUTIVO_OBRA : string;
-        FIC_CONSECUTIVO_SEGURIDAD : string;
-        CLT_ID : number;
-        FIC_ALTO : string;
-        FIC_LARGO : string;
-        FIC_ANCHO : string;
-        FIC_PROFUNDIDAD : string;
-        FIC_ESPESOR : string;
-        TEP_ID : number;
-        ID_FIRMADO : number;
-        CTL_PADRE_ID : number;
-        TIT_ID : number;
-        CANTIDAD : number;
-        CTL_HIJO_ID : number;
+        FicId : number;
+        TibId : number;
+        IntBId : object;
+        ResNroConcepto : object;
+        SosId : number;
+        DocId : number;
+        FicTitulo : string;
+        FicAutor : string;
+        FicFechaElaboracionObra : string;
+        FicTecnica : string;
+        FicDimensiones : string;
+        FicPropietario : string;
+        FicNroDocumentoIdentidad : string;
+        FicObservaciones : string;
+        FicFoto : string;
+        TobId : number;
+        FicConsecutivoObra : string;
+        FicConsecutivoSeguridad : string;
+        CltId : number;
+        FicAlto : string;
+        FicLargo : string;
+        FicAncho : string;
+        FicProfundidad : string;
+        FicEspesor : string;
+        TepId : number;
+        IdFirmado : number;
+        CtlPadreId : number;
+        TitId : number;
+        Cantidad : number;
+        CtlHijoId : number;
     }

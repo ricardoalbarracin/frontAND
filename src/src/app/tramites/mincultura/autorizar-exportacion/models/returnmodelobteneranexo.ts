@@ -1,4 +1,4 @@
-import  {Anexo} from './anexo';
+import  {Anexo} from './Anexo';
 
 export interface ReturnModelObtenerAnexo 
     {

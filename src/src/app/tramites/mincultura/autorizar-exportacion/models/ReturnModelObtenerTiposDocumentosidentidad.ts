@@ -1,4 +1,4 @@
-export interface ReturnModelObtenerTiposDocumentosintdentidad 
+export interface ReturnModelObtenerTiposDocumentosidentidad 
     {
 
         Paises : object;
@@ -17,10 +17,10 @@ export interface ReturnModelObtenerTiposDocumentosintdentidad
 
     export interface Tiposdocumento
     {
-        PAT_SOLICITUD_SALIDA_OBRAS : object[];
-        PAT_FICHA_TECNICA_BIENES : object[];
-        DOC_ID : number;
-        DOC_NOMBRE : string;
-        DOC_ACTIVO : string;
-        CODIGO : string;
+        PatSolicitudSalidaObras : object[];
+        PatFichaTecnicaBienes : object[];
+        DocId : number;
+        DocNombre : string;
+        DocActivo : string;
+        Codigo : string;
     }

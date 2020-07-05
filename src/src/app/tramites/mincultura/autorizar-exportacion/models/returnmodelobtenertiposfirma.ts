@@ -1,4 +1,4 @@
-import  {Tiposgenerico} from './tiposgenerico';
+import  {Tiposgenerico} from './Tiposgenerico';
 export interface ReturnModelObtenerTiposFirma 
     {
 
@@ -15,7 +15,3 @@ export interface ReturnModelObtenerTiposFirma
         Success : boolean;
         Errors : Error;
     }
-
-    
-
-}

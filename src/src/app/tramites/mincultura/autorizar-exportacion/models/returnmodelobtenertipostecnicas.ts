@@ -17,7 +17,7 @@ export interface ReturnModelObtenerTiposTecnicas
 
     export interface Tipostecnica
     {
-        TIT_ID : number;
-        GRU_ID : number;
-        TIT_NOMBRE : string;
+        TitId : number;
+        GruId : number;
+        TitNombre : string;
     }

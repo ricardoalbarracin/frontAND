@@ -1,4 +1,4 @@
-import  {Zonasgeografica} from './zonasgeografica';
+import  {Zonasgeografica} from './ZonasGeografica';
 export interface ReturnModelObtenerDepartamentos 
     {
 
@@ -16,7 +16,3 @@ export interface ReturnModelObtenerDepartamentos
         Success : boolean;
         Errors : Error;
     }
-
-    
-
-}

@@ -9,7 +9,7 @@ export interface ReturnModelObtenerReporte
 
     export interface Listareporte
     {
-        Sos_Id : number;
+        SosId : number;
         Restricciones : number;
         Respuesta : string;
         Reportes : Reporte[];

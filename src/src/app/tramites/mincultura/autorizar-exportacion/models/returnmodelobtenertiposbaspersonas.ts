@@ -17,6 +17,6 @@ export interface ReturnModelObtenerTiposBasPersonas
 
     export interface Tipospersona
     {
-        TIP_TIPO_PERSONA : number;
-        TIP_NOMBRE : string;
+        TipTipoPersona : number;
+        TipNombre : string;
     }

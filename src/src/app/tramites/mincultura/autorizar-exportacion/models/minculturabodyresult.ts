@@ -1,4 +1,4 @@
-export interface MintCulturaBodyResult
+export interface MinCulturaBodyResult
     {
         Mensaje : string;
 

@@ -1,4 +1,4 @@
-export interface RequestModelElimintarObra
+export interface RequestModelEliminarObra
     {
         FicId : number;
     }

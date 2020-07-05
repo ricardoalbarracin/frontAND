@@ -1,4 +1,4 @@
-import  {Zonasgeografica} from './zonasgeografica';
+import  {Zonasgeografica} from './ZonasGeografica';
 export interface ReturnModelObtenerMunicipios 
     {
 

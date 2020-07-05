@@ -11,6 +11,6 @@ export interface ReturnModelObtenerClasificacionesTipologicasGrupo
 
     export interface Clasificaciontipologicagrupo
     {
-        CLT_ID : number;
-        CLT_NOMBRE : string;
+        CltId : number;
+        CltNombre : string;
     }

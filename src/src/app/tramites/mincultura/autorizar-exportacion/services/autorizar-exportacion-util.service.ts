@@ -1,10 +1,53 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { TipoDocumento } from 'src/app/tramites/contraloria/antecedentes-fiscales/models/antecedentes-fiscales';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutorizarExportacionUtilService {
 
+  private urlTramite = {
+    obtenerSolicitudPorNroConsecutivo: "SolicitudExportacion/ObtenerSolicitudPorNroConsecutivo",
+    obtenerListaAnexos: "SolicitudExportacion/ObtenerListaAnexos",
+    obtenerListaConceptosSolicitud: "SolicitudExportacion/ObtenerListaConceptosSolicitud",
+    obtenerListaConceptosObras: "SolicitudExportacion/ObtenerListaConceptosObras",
+    obtenerListaPrestamo: "SolicitudExportacion/ObtenerListaPrestamo",
+    obtenerListaDeterioro: "SolicitudExportacion/ObtenerListaDeterioro",
+    obtenerSolicitudPorId: "SolicitudExportacion/ObtenerSolicitudPorId",
+    obtenerSolicitudes: "SolicitudExportacion/ObtenerSolicitudes",
+    obtenerObras: "SolicitudExportacion/ObtenerObras",
+    obtenerAnexo: "SolicitudExportacion/ObtenerAnexo",
+    obtenerConceptoSolicitud: "SolicitudExportacion/ObtenerConceptoSolicitud",
+    obtenerSolicitudPorIntermediario: "SolicitudExportacion/ObtenerSolicitudPorIntermediario",
+    obtenerSolicitudPorSolicitante: "SolicitudExportacion/ObtenerSolicitudPorSolicitante",
+    obtenerReporte: "SolicitudExportacion/ObtenerReporte",
+    crearSolicitud: "SolicitudExportacion/CrearSolicitud",
+    actualizarSolicitud: "SolicitudExportacion/ActualizarSolicitud",
+    enviarSolicitud: "SolicitudExportacion/EnviarSolicitud",
+    crearObra: "SolicitudExportacion/CrearObra",
+    actualizarObra: "SolicitudExportacion/ActualizarObra",
+    eliminarObra: "SolicitudExportacion/EliminarObra",
+    autenticacion: "SolicitudExportacion/Autenticacion",
+    obtenerMunicipios: "SolicitudExportacion/ObtenerMunicipios",
+    obtenerMunicipio: "SolicitudExportacion/ObtenerMunicipio",
+    obtenerDepartamentos: "SolicitudExportacion/ObtenerDepartamentos",
+    obtenerTiposMotivos: "SolicitudExportacion/ObtenerTiposMotivos",
+    obtenerTiposRespuestas: "SolicitudExportacion/ObtenerTiposRespuestas",
+    obtenerClasificacionesTipologicas: "SolicitudExportacion/ObtenerClasificacionesTipologicas",
+    obtenerClasificacionesTipologicasGrupo: "SolicitudExportacion/ObtenerClasificacionesTipologicasGrupo",
+    obtenerPaises: "SolicitudExportacion/ObtenerPaises",
+    obtenerTiposDocumentosIndentidad: "SolicitudExportacion/ObtenerTiposDocumentosIndentidad",
+    obtenerTiposEpocas: "SolicitudExportacion/ObtenerTiposEpocas",
+    obtenerTiposTecnicas: "SolicitudExportacion/ObtenerTiposTecnicas",
+    obtenerTiposBasPersonas: "SolicitudExportacion/ObtenerTiposBasPersonas",
+    obtenerTiposPermanencia: "SolicitudExportacion/ObtenerTiposPermanencia",
+    obtenerTiposFirma: "SolicitudExportacion/ObtenerTiposFirma",
+    obtenerFinesExportacion: "SolicitudExportacion/ObtenerFinesExportacion",
+
+  };
   paso:any;
   pasoIngresar:any;
   formularioInvalido:any;
@@ -13,7 +56,7 @@ export class AutorizarExportacionUtilService {
   consultarVerDescargar:any;
   llega:any;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   public asignarLlega(llegaParam){
     this.llega=llegaParam;
@@ -51,5 +94,18 @@ export class AutorizarExportacionUtilService {
   asignarConsultarVerDescargar(consultarVerDescargarParam){
     this.consultarVerDescargar=consultarVerDescargarParam;
   }
+
+
+  // Cargar listas (Operadores - Peridos)
+  public obtenerTiposDocumentosIndentidad() {
+    return this.http.get<TipoDocumento[]>(this.urlTramite.obtenerTiposDocumentosIndentidad)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  // Error petición
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error);
+  }
+
 
 }

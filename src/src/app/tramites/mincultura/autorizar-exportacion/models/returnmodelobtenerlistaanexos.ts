@@ -1,4 +1,4 @@
-import  {Anexo} from './anexo';
+import  {Anexo} from './Anexo';
 
 export interface ReturnModelObtenerListaAnexos 
     {
@@ -11,5 +11,3 @@ export interface ReturnModelObtenerListaAnexos
         Success : boolean;
         Errors : Error;
     }
-   
-}

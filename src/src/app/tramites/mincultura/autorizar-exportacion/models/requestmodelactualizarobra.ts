@@ -1,3 +1,5 @@
+import  {Anexo} from './Anexo';
+
 export interface RequestModelActualizarObra
     {
         FicId : number;

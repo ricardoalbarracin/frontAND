@@ -1,4 +1,4 @@
-import  {Anexo} from './anexo';
+import  {Anexo} from './Anexo';
 export interface RequestModelCrearSolicitud
     {
         Ciudad : string;
@@ -22,11 +22,11 @@ export interface RequestModelCrearSolicitud
         SosDireccionintermediario : string;
         SosTelefonointermediario : string;
         ZopNombre : string;
-        intZopId : number;
-        intCiudad : string;
-        intUbicacionZopId : number;
-        intUbicacionCiudad : string;
-        intUbicacionEmail : string;
+        IntZopId : number;
+        IntCiudad : string;
+        IntUbicacionZopId : number;
+        IntUbicacionCiudad : string;
+        IntUbicacionEmail : string;
         ProrrogaFechaRegreso : object;
         ProrrogaMotivo : string;
         DestintoZopId : number;

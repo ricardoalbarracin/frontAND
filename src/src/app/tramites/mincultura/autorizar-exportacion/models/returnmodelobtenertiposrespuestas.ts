@@ -17,8 +17,8 @@ export interface ReturnModelObtenerTiposRespuestas
 
     export interface Tiposrespuesta
     {
-        TIR_ID : number;
-        TIR_NOMBRE : string;
-        TIR_CONCEPTO : string;
-        TIR_NORMA : string;
+        TirId : number;
+        TirNombre : string;
+        TirConcepto : string;
+        TirNorma : string;
     }

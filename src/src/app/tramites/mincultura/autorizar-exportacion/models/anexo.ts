@@ -1,6 +1,6 @@
 export interface Anexo
     {
-        AnexoID : number;
+        AnexoId : number;
         SolicitudId : number;
         NombreArchivo : string;
         SeccionId : number;

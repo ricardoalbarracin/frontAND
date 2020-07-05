@@ -3,9 +3,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { ModalComponent } from '../modal/modal.component';
+import { ReturnModelObtenerTiposDocumentosintdentidad,Tiposdocumento } from '../../models/returnmodelobtenertiposdocumentosindentidad';
 
-// import custom validator to validate that password and confirm password fields match
 import { MustMatch } from '../../helpers/must-match.validator';
+import { TipoDocumento } from 'src/app/tramites/contraloria/antecedentes-fiscales/models/antecedentes-fiscales';
 
 @Component({
   selector: 'app-ingresar-solicitud',
@@ -25,14 +26,15 @@ export class IngresarSolicitudComponent implements OnInit {
    captchaValido=true;
    data: any = {
      solicitantes: [{text: 'Option 1', value: '1'}, {text: 'Option 2', value: '2'}],
+     TiposDocumento: [],
      pais: [{text: 'COLOMBIA', value: '1'}, {text: 'OTRO', value: '2'}],
    };
 
 
    ngOnInit() {
         this.requiereIntermediarioValor='NO';
-
-       this.registerForm = this.formBuilder.group({
+        this.obtenerTiposDocumentosIndentidad();
+        this.registerForm = this.formBuilder.group({
 
         tipoSolicitante: ['', Validators.required],
         tipoDocumento: ['', Validators.required],
@@ -132,6 +134,21 @@ export class IngresarSolicitudComponent implements OnInit {
       this.captchaValido=false;
     }  
 
+  }
+  //Obtiene los tipso de documentos permitidos
+  obtenerTiposDocumentosIndentidad() {
+    this.service.obtenerTiposDocumentosIndentidad().subscribe((data: Tiposdocumento[]) => { 
+      
+      this.data.TiposDocumento= data;
+      // if (data != undefined && data.success === true){
+      //   var a  = data.result;
+        
+      // }else {
+      //   //TODO: controlar errores internos
+      // }
+    }, (error) => {
+      console.error(error);
+    });
   }
 
   agregar(){

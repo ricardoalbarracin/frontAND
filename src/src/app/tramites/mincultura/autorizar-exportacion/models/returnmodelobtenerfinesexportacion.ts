@@ -1,6 +1,6 @@
-import  {Tiposmotivo} from './tiposmotivo';
+import  {Tiposmotivo} from './Tiposmotivo';
 
-export interface ReturnModelObtenerFintesExportacion 
+export interface ReturnModelObtenerFinesExportacion 
     {
 
         Paises : object;

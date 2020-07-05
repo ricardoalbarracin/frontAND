@@ -18,8 +18,8 @@ export interface ReturnModelObtenerPaises
 
     export interface Pais
     {
-        PAT_SOLICITUD_SALIDA_OBRAS : object[];
-        ZOP_ID : number;
-        ZOP_NOMBRE : string;
-        ZOP_CODIGO_intERNET : string;
+        PatSolicitudSalidaObras : object[];
+        ZopId : number;
+        ZopNombre : string;
+        ZopCodigoIntErnet : string;
     }

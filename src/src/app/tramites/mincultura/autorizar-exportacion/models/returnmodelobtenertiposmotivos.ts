@@ -15,7 +15,3 @@ export interface ReturnModelObtenerTiposMotivos
         Success : boolean;
         Errors : Error;
     }
-
-    
-
-}

@@ -13,11 +13,11 @@ export interface ReturnModelObtenerListaDeterioro
 
     export interface Deterioro
     {
-        ID_DETERIORO : number;
-        DESCRIPCION : string;
-        NO_DETERIORO : number;
-        SI_DETERIORO : number;
-        LETRA : string;
-        LOCALIZACION : string;
-        FIC_ID : number;
+        IdDeterioro : number;
+        Descripcion : string;
+        NoDeterioro : number;
+        SiDeterioro : number;
+        Letra : string;
+        Localizacion : string;
+        FicId : number;
     }

@@ -17,6 +17,6 @@ export interface ReturnModelObtenerTiposEpocas
 
     export interface Tiposepoca
     {
-        TEP_ID : number;
-        TEP_NOMBRE : string;
+        TepId : number;
+        TepNombre : string;
     }

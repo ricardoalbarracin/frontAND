@@ -17,13 +17,13 @@ export interface ReturnModelObtenerMunicipio
 
     export interface Zonageografica
     {
-        PAT_SOLICITUD_SALIDA_OBRAS : object[];
-        ZON_ID : number;
-        ZON_NOMBRE : string;
-        ZON_PADRE_ID : number;
-        ZON_POBLACION : number;
-        x : string;
-        ZON_LATITUD : Number;
-        ZON_LONGITUD : Number;
+        PatSolicitudSalidaObras : object[];
+        ZonId : number;
+        ZonNombre : string;
+        ZonPadreId : number;
+        ZonPoblacion : number;
+        X : string;
+        ZonLatitud : Number;
+        ZonLongitud : Number;
         EsCorrimiento : boolean;
     }
