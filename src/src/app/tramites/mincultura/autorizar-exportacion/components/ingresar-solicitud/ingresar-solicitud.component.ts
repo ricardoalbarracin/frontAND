@@ -3,10 +3,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { ModalComponent } from '../modal/modal.component';
-import { ReturnModelObtenerTiposDocumentosintdentidad,Tiposdocumento } from '../../models/returnmodelobtenertiposdocumentosindentidad';
+import { ReturnModelListasCrearSolicitud} from '../../models/ReturnModelListasCrearSolicitud';
 
 import { MustMatch } from '../../helpers/must-match.validator';
-import { TipoDocumento } from 'src/app/tramites/contraloria/antecedentes-fiscales/models/antecedentes-fiscales';
 
 @Component({
   selector: 'app-ingresar-solicitud',
@@ -27,16 +26,28 @@ export class IngresarSolicitudComponent implements OnInit {
    data: any = {
      solicitantes: [{text: 'Option 1', value: '1'}, {text: 'Option 2', value: '2'}],
      TiposDocumento: [],
-     pais: [{text: 'COLOMBIA', value: '1'}, {text: 'OTRO', value: '2'}],
+     departamentos: [],
+     minicipiosUbicacion: [],
+     paises: [],
    };
 
 
    ngOnInit() {
         this.requiereIntermediarioValor='NO';
-        this.obtenerTiposDocumentosIndentidad();
+        this.obtenerListasCrearSolicitud();
         this.registerForm = this.formBuilder.group({
-
+        tipoDocumentoSolicitante: ['', Validators.required],
         tipoSolicitante: ['', Validators.required],
+        numeroDocumentoSolicitante: ['', Validators.required],
+        numeroDocumentoSolicitante2: ['', Validators.required],
+        nombreRazonSocialSolicitante: ['', Validators.required],
+        paisExpedicionSolicitante: ['', Validators.required],
+
+        departamentoUbicacion: ['', Validators.required],
+        municipioUbicacion: ['', Validators.required],
+        telefonoUbicacion: ['', Validators.required],
+        direccionUbicacion: ['', Validators.required],
+
         tipoDocumento: ['', Validators.required],
         numeroDocumento: ['', Validators.required],
         numeroDocumento2: ['', Validators.required],
@@ -136,19 +147,38 @@ export class IngresarSolicitudComponent implements OnInit {
 
   }
   //Obtiene los tipso de documentos permitidos
-  obtenerTiposDocumentosIndentidad() {
-    this.service.obtenerTiposDocumentosIndentidad().subscribe((data: Tiposdocumento[]) => { 
-      
-      this.data.TiposDocumento= data;
-      // if (data != undefined && data.success === true){
-      //   var a  = data.result;
-        
-      // }else {
-      //   //TODO: controlar errores internos
-      // }
+  obtenerListasCrearSolicitud() {
+    this.service.obtenerListasCrearSolicitud().subscribe((data: ReturnModelListasCrearSolicitud) => { 
+      if (data != undefined && data.success === true){
+        this.data.TiposDocumento= data.result.tiposDocumento;
+        this.data.departamentos= data.result.departamentos;
+        this.data.paises= data.result.paises;
+      }else {
+        //TODO: controlar errores internos
+      }
     }, (error) => {
       console.error(error);
     });
+  }
+
+  actualizarDepartamentoUbicacion() {
+    console.log(this.registerForm.value.departamentoUbicacion.value);
+    this.data.municipiosUbicacion  = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacion.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
+
+           this.data.municipiosUbicacion = data.result;
+          }else {
+            //TODO: controlar errores internos
+          }
+          
+         },
+         (error) => {
+           
+         }
+       );
   }
 
   agregar(){

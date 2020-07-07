@@ -39,7 +39,6 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   login() {
-    debugger
     if(this.usuario != '' || this.password != ''){
       this.invalidForm = true;
       return;

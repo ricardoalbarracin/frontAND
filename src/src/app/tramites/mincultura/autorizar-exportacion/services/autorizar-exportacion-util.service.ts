@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { TipoDocumento } from 'src/app/tramites/contraloria/antecedentes-fiscales/models/antecedentes-fiscales';
+import { ReturnModelObtenerTiposDocumentosidentidad,Tiposdocumento } from '../models/ReturnModelObtenerTiposDocumentosidentidad';
+import { ReturnModelListasCrearSolicitud } from '../models/ReturnModelListasCrearSolicitud';
+import { ReturnModelObtenerMunicipios } from '../models/returnmodelobtenermunicipios';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { TipoDocumento } from 'src/app/tramites/contraloria/antecedentes-fiscale
 export class AutorizarExportacionUtilService {
 
   private urlTramite = {
+    ObtenerListasCrearSolicitud:"SolicitudExportacion/ObtenerListasCrearSolicitud",
     obtenerSolicitudPorNroConsecutivo: "SolicitudExportacion/ObtenerSolicitudPorNroConsecutivo",
     obtenerListaAnexos: "SolicitudExportacion/ObtenerListaAnexos",
     obtenerListaConceptosSolicitud: "SolicitudExportacion/ObtenerListaConceptosSolicitud",
@@ -95,11 +98,18 @@ export class AutorizarExportacionUtilService {
     this.consultarVerDescargar=consultarVerDescargarParam;
   }
 
+  
+  // Cargar listas (Operadores - Peridos)
+  public obtenerListasCrearSolicitud() {
+    return this.http.get<ReturnModelListasCrearSolicitud>(this.urlTramite.ObtenerListasCrearSolicitud)
+    .pipe(catchError(this.errorHandler));    
+  }
+  
 
   // Cargar listas (Operadores - Peridos)
-  public obtenerTiposDocumentosIndentidad() {
-    return this.http.get<TipoDocumento[]>(this.urlTramite.obtenerTiposDocumentosIndentidad)
-    .pipe(catchError(this.errorHandler));
+  public obtenerMunicipiosPorDepartamentoId(departamentoId: string) {
+    return this.http.get<ReturnModelObtenerMunicipios>(this.urlTramite.obtenerMunicipios+'?padreId='+departamentoId)
+    .pipe(catchError(this.errorHandler));    
   }
 
   // Error petición

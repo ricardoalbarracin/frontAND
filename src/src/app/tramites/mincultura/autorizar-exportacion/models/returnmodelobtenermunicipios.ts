@@ -1,18 +1,8 @@
-import  {Zonasgeografica} from './ZonasGeografica';
+import { SelectListItemModel } from '@shared/forms/models/select-list-item.model';
 export interface ReturnModelObtenerMunicipios 
     {
-
-
-        Paises : object;
-        ZonasGeograficas : Zonasgeografica[];
-        ZonaGeografica : object;
-        TiposDocumentos : object;
-        TiposEpocas : object;
-        TiposTecnicas : object;
-        TiposPersonas : object;
-        TiposMotivos : object;
-        TiposRespuestas : object;
-        TiposGenericos : object;
-        Success : boolean;
-        Errors : Error;
+        message : string;
+        success : boolean;
+        result :  SelectListItemModel[];
     }
+
