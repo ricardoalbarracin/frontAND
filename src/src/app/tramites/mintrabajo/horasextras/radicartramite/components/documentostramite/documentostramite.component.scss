@@ -1,0 +1,16 @@
+li{
+  list-style-type: none
+}
+
+.registro-consulta-footer {
+  text-align: center;
+
+  button {
+      margin: 10px;
+  }
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

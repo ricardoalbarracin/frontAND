@@ -1,0 +1,155 @@
+<div class="card govco-card p-3 mb-3">
+  <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+    [ngClass]="{'invalid-form' : invalidForm}">
+
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Datos del trámite</h3>
+    </div>
+
+    <label class="form-group-govco">*Circunstancias de modo y lugar que conllevan a esta situación de este
+      trámite</label>
+    <textarea class="form-control" [ngClass]="{'is-invalid': invalidForm}" formControlName="circunstancia"
+      ngDefaultControl rows="5" placeholder="Ej: campo de texto" minlength="1" maxlength="256"></textarea>
+    <br>
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Dirección territoriales a la cual presenta su trámite</h3>
+    </div>
+
+    <label class="form-group-govco">*Seleccione una ubicación</label>
+    <app-dropdownlist ngDefaultControl formControlName="direccion_territorial" placeholder="Ingrese un valor"
+      [items]="listaCiudad">
+    </app-dropdownlist>
+    <br>
+    <div class="row card-header pt-0">
+      <div class="row card-header pt-0">
+        <div style="width: 30px;">
+          <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='AgregarDireccionTerritorial()'></span>
+        </div>
+        <h6 class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">Agregar
+        </h6>
+      </div>
+    </div>
+
+    <br>
+    <div class="table-simple-headblue-govco ">
+      <table class="table display table-responsive-sm table-responsive-md">
+        <thead>
+          <tr>
+            <th>Dirección Territorial Relacionada</th>
+            <th style="width: 20%;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf='direccionTerritorial'>
+            <td>{{direccionTerritorial}}</td>
+            <td>
+              <span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarDireccionTerritorial()'>
+                <span
+                  class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-text-bottom color-dodger-blue">
+                  Eliminar</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Número de radicado a relacionar</h3>
+    </div>
+
+    <div class="select-govco">
+      <label class="form-group-govco">Escribe el número de radicado que te dio el sistema</label>
+      <div class="col-md-6">
+        <input class="form-control input-govco" (focusout)="onKeyValidNumber()" formControlName="numero_radicado"
+          maxlength="24" minlength="3" placeholder="00000-123" />
+        <div *ngIf="!formatoRadicadoinvalido" class="invalid-label">
+          Formato incorrecto
+        </div>
+      </div>
+      <br>
+
+      <div class="row card-header pt-0">
+        <div class="row card-header pt-0">
+          <div style="width: 30px;">
+            <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='AgregarNumeroRadicado()'></span>
+          </div>
+          <h6 class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">
+            Agregar</h6>
+        </div>
+      </div>
+
+      <br>
+      <div class="table-simple-headblue-govco">
+        <table class="table display table-responsive-sm table-responsive-md">
+          <thead>
+            <tr>
+              <th>Radicados Referidos</th>
+              <th style="width: 20%;">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf='numero_radicado'>
+              <td>{{numero_radicado}}</td>
+              <td><span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarNumeroRadicado()'>
+                  <span
+                    class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle">Eliminar</span>
+                </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">¿La entidad tiene pactos o convenciones colectivas?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl formControlName="convenciones_colectivas" placeholder="Ingrese un valor"
+          [items]="listaSINO">
+        </app-dropdownlist>
+      </div>
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">¿La empresa está obligada a tener reglamento de trabajo?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl formControlName="reglamento_trabajo" placeholder="Ingrese un valor"
+          [items]="listaSINO">
+        </app-dropdownlist>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row card-header pt-0">
+          <label class="form-group-govco">Indicar, ¿Si existe o no organizaciones sindicales dentro de la
+            empresa?</label>
+        </div>
+        <app-dropdownlist ngDefaultControl (change)="MostrarOrganizacionesSindicales()"
+          formControlName="organizaciones_sindicales" placeholder="Ingrese un valor" [items]="listaSINO">
+        </app-dropdownlist>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div *ngIf="mostrarOrganizacionesSindicales">
+    <app-organizacionessindicales></app-organizacionessindicales>
+  </div>
+  <br>
+  <div class="card govco-card p-3 mb-3" style="border: 2px solid #386acd;">
+    <div class="col-md-12">
+      <h2 class="color-dodger-blue">Importante</h2>
+      <h6 class="headline-s-govco">Por favor ingrese información veraz y completa, pues el
+        inspector iniciará contacto y notificación a partir de los datos ingresados.</h6>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class=" col-md-12 registro-consulta-footer">
+      <a class="btn btn-round btn-middle" (click)='cancelar()'>CANCELAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="btn btn-round btn-high" (click)="continuar()">CONTINUAR</button>
+    </div>
+  </div>
+</div>

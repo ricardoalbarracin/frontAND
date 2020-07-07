@@ -1,0 +1,14 @@
+.registro-consulta-footer {
+  text-align: center;
+
+  button {
+    margin: 10px;
+  }
+}
+
+.table-borderless tbody+tbody,
+.table-borderless td,
+.table-borderless th,
+.table-borderless thead th {
+  border: 0;
+}

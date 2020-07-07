@@ -1,0 +1,279 @@
+<div class="card govco-card p-3 mb-3">
+  <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+    [ngClass]="{'invalid-form' : invalidForm}">
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Datos del remitente</h3>
+    </div>
+    <div class="row card-header pt-0">*Campos obligatorios</div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form-group-govco">*Tipo de persona</label>
+        <app-dropdownlist ngDefaultControl formControlName="tipo_persona" placeholder="Ingrese un valor"
+          [items]="listaOpciones">
+        </app-dropdownlist>
+      </div>
+      <div class="col-md-6">
+        <label class="form-group-govco">*Tipo de documento</label>
+        <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+          [items]="listaOpciones">
+        </app-dropdownlist>
+      </div>
+    </div>
+    <br>
+    <!--Persona Natural-->
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 1">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Número de identidad</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Tratamiento cortesía</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+            [items]="listaOpciones">
+          </app-dropdownlist>
+        </div>
+      </div>
+    </ng-container>
+
+    <!--Persona Juridica-->
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 2">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Número de documento</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Razón social</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Actua calidad</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+            [items]="listaOpciones">
+          </app-dropdownlist>
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+    </ng-container>
+
+    <!--Entidad Oficial o Establecimiento comercial-->
+    <ng-container *ngIf="seleccionForm.value.tipo_persona.value === 3 || seleccionForm.value.tipo_persona.value === 4">
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Número documento identidad</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">*Razón social</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo nombre</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Primer apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-group-govco">Segundo apellido</label>
+          <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-group-govco">*Tratamiento cortesía</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+            [items]="listaOpciones">
+          </app-dropdownlist>
+        </div>
+        <div class="col-md-4">
+          <label class="form-group-govco">*Tipo teléfono</label>
+          <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+            [items]="listaOpciones">
+          </app-dropdownlist>
+        </div>
+      </div>
+    </ng-container>
+
+    <br>
+    <div class="row">
+      <div class="col-md-3"
+        *ngIf="seleccionForm.value.tipo_persona.value === 1 || seleccionForm.value.tipo_persona.value === 2">
+        <label class="form-group-govco">*Tipo teléfono</label>
+        <app-dropdownlist ngDefaultControl formControlName="tipo_documento" placeholder="Seleccione"
+          [items]="listaOpciones">
+        </app-dropdownlist>
+      </div>
+      <div class="col-md-2">
+        <label class="form-group-govco">Indicativo</label>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+      </div>
+      <div class="col-md-4">
+        <label class="form-group-govco">*Número de telefóno</label>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-group-govco">Extensión</label>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="form-group-govco">*Correo electrónico</label>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+      </div>
+      <div class="col-md-6">
+        <label class="form-group-govco">*Verificar correo electrónico</label>
+        <input class="form-control input-govco" formControlName="tipo_documento" maxlength="10" minlength="3" />
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="checkbox-govco">
+          <input type="checkbox" id="checkbox_simple_solo" />
+          <label for="checkbox_simple_solo">Autorizo el envío de comunicaciones vía correo electrónico</label>
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label class="checkbox-govco">
+          <input type="checkbox" id="checkbox_simple_solo1" />
+          <label for="checkbox_simple_solo1">Autorizo que los actos administrativos resultantes del presente
+            trámite pueden ser notificados de manera electrónica</label>
+        </label>
+      </div>
+    </div>
+
+    <div class="row card-header pt-0">
+      <h3 class="m-0 title-section">Direcciones</h3>
+    </div>
+    <label for="checkbox_simple_solo">Seleccione la opción agregar para diligenciar direcciones</label>
+
+    <div class="row card-header pt-0">
+      <div class="row card-header pt-0">
+        <div style="width: 30px;">
+          <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='abrirDireccion()'></span>
+        </div>
+        <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase color-dodger-blue">AGREGAR
+          DIRECCIÓN</div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="table-simple-headblue-govco">
+      <table class="table display table-responsive-sm table-responsive-md">
+        <thead>
+          <tr>
+            <th>Dirección</th>
+            <th style="width: 20%;">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf='direccion'>
+            <td style="width: 60%;">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>País:</td>
+                    <td>{{direccion}}</td>
+                  </tr>
+                  <tr>
+                    <td>Departamento:</td>
+                    <td>Bogotá D.C</td>
+                  </tr>
+                  <tr>
+                    <td>Municipio:</td>
+                    <td>Bogotá D.C</td>
+                  </tr>
+                  <tr>
+                    <td>Dirección:</td>
+                    <td>Autopista 13 B Bis Norte 4 B 23 Norte</td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td class="align-middle"><span class="govco-icon govco-icon-delete-p color-dodger-blue"
+                (click)='eliminarDireccion()'></span><span
+                class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-text-bottom color-dodger-blue">
+                Eliminar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class=" col-md-12 registro-consulta-footer">
+        <a class="btn btn-round btn-middle" (click)='atras()'>ATRAS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="btn btn-round btn-middle" (click)='cancelar()'>CANCELAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-round btn-high" (click)="continuar()">CONTINUAR</button>
+      </div>
+    </div>
+
+  </div>
+</div>

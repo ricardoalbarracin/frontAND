@@ -1,0 +1,19 @@
+.registro-consulta-footer {
+  text-align: center;
+
+  button {
+    margin: 10px;
+  }
+}
+
+.invalid-label {
+  margin-top: .25rem;
+  font-size: 90%;
+  color: #dc3545;
+  font-style: italic;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
