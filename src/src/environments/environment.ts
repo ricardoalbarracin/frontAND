@@ -5,7 +5,7 @@
 export const environment = {
   fichaTramiteUrlBase: 'https://www.gov.co/',
   production: false,
-  serverUrl: 'https://localhost:44376/api/'
+  serverUrl: 'http://localhost:8081/api/'
 };
 
 /*

@@ -1,5 +1,5 @@
 
-import  {Solicitudsalidaobra} from './Solicitudsalidaobra';
+import  {Solicitudsalidaobra} from './solicitudsalidaobra';
 export interface ReturnModelObtenerSolicitudPorNroConsecutivo 
     {
 

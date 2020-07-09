@@ -1,4 +1,4 @@
-import  {Tiposgenerico} from './tiposgenerico';
+import  {Tiposgenerico} from './Tiposgenerico';
 
 export interface ReturnModelObtenerTiposPermanencia 
     {

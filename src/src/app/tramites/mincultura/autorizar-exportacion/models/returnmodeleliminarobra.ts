@@ -1,4 +1,4 @@
-import  {Fichatecnicabienes} from './Fichatecnicabienes';
+import  {Fichatecnicabienes} from './fichatecnicabienes';
 export interface ReturnModelEliminarObra 
     {
 
