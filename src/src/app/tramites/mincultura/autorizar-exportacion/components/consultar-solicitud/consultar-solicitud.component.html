@@ -1,120 +1,154 @@
-<div class="main-minsalud-advice" [formGroup]="registerForm">
-    <div class="card govco-card ">
-        <div class="card-body">
-            <h2  class="tg-0lax">Consultar solicitud</h2>
-            <br>
-            <div class="row" >
-                <div class="col-md-6">
-                    <div  class="form-group">
-                        <p>Número de radicación*</p>
-                        <input class="form-control" placeholder="XXXX-AAAA" alt="Debe ingresar el código incluyendo Número guión y año (XXXX-AAAA)" formControlName="radicado" [ngClass]="{ 'is-invalid': submitted && f.radicado.errors }">
-                        <div *ngIf="submitted && f.radicado.errors" class="text-danger">
-                            Campo sin diligenciar.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div  class="form-group">
-                        <p>Número de documento*</p>
-                        <input class="form-control" numbersOnly  formControlName="numeroIdentificacion" [ngClass]="{ 'is-invalid': submitted && f.numeroIdentificacion.errors }">
-                        <div *ngIf="submitted && f.numeroIdentificacion.errors" class="text-danger">
-                            Campo sin diligenciar.
-                        </div>
-                    </div>                
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <a class="btn btn-round btn-high" (click)="consultar()" >BUSCAR</a>
-                </div>
-            </div>
-            <br>
+<div *ngIf="mensajeConsultaSinResultados" class="alert-wrong-govco alert alert-dismissible fade show" aria-label="Alerta: caso de error">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" title="Cerrar">&times;</button>
+  <div class="alert-heading">
+    <span class="govco-icon govco-icon-sad-face-n size-2x"></span>
+    <span class="headline-l-govco">Lo sentimos</span>
+  </div>
+  <div class="alert-content">
+    <p>El servicio no se encuentra disponible en este momento, te recomendamos: </p>
+    <ol>
+      <li>Intentarlo más tarde.</li>
+      <li>Recargar la página.</li>
+    </ol>
+  </div>
+</div>
 
-            <div *ngIf="(service.consultar)">
-            <h2  class="tg-0lax">Resultados</h2>
-            <br>
-            <table id="example" class="table-header-blu-gov-co" style="width:100%">
-                <thead  >
-                    <tr>
-                        <th>Fecha</th>
-                        <th>No. de radicación</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>20-02-2018</td>
-                        <td>0175-2018</td>
-                        <td>
-                            <p class="text-success">Concepto definitivo</p>
-                            <p *ngIf="0 === 1" class="text-danger">Guardada</p>
-                        </td>
-                        <td ><u (click)="verConcepto()">Ver concepto</u></td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
-
-            <div *ngIf="(service.consultarVerConcepto)">
-            <br>
-            <h2  class="tg-0lax">Concepto</h2>
-                <div class="row" >
-                        <div class="col-md-6">
-                            <div  class="form-group">
-                                <p>Sin restricción de exportaciòn</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 text-right see-downloads">
-                            <div  class="form-group text-right">
-                                <p (click)="verDescargar()">
-                                    <u>Ver información a descargar</u>
-                                </p>
-                            </div>                
-                        </div>
-                    </div>
-            </div>
-
-                <div *ngIf="(service.consultarVerDescargar)" class="container-table-concept-gov-co">
-                    <table id="example" class="table-concept-gov-co ml-5 ml-lg-0 w-100">
-                        <tbody>
-                            <tr class="table-concept">
-                                <td><p>Concepto</p></td>
-                                <td class="text-right">
-                                    <u>Descargar</u>
-                                </td>
-                            </tr>
-                            <tr class="table-concept">
-                                <td><p>Todas las fichas técnicas</p></td>
-                                <td class="text-right">
-                                    <u>Descargar</u>
-                                </td>
-                            </tr>
-                            <tr class="table-concept">
-                                <td><p>Ficha técnica obra 1</p></td>
-                                <td class="text-right">
-                                    <u>Descargar</u>
-                                </td>
-                            </tr>
-                            <tr class="table-concept">
-                                <td><p>Ficha técnica obra 2</p></td>
-                                <td class="text-right">
-                                    <u>Descargar</u>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <br>
-                <div class="row" *ngIf="(service.consultar)">
-                    <div class="col-md-12 text-center">
-                        <a class="btn btn-round btn-middle" (click)="limpiar()">NUEVA CONSULTA</a>
-                    </div>
-                </div>
-                <br>
-
+<div class="main-minsalud-advice" [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+  [ngClass]="{'invalid-form' : invalidForm}">
+  <div class="card govco-card ">
+    <div class="card-body">
+      <h2 class="tg-0lax">Consultar solicitud</h2>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <p>Número de radicación*</p>
+            <input class="form-control" placeholder="XXXX-AAAA"
+              alt="Debe ingresar el código incluyendo Número guión y año (XXXX-AAAA)" formControlName="numero_radicado">
+          </div>
         </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <p>Número de documento*</p>
+            <input class="form-control" numbersOnly formControlName="numero_documento">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <a class="btn btn-round btn-high" (click)="consultar()">BUSCAR</a>
+        </div>
+      </div>
+      <br>
+
+      <div *ngIf="items.length">
+        <h2 class="tg-0lax">Resultados</h2>
+        <br>
+        <table id="example" class="table-header-blu-gov-co" style="width:100%">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>No. de radicación</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>{{item.SosFechaRadicacion}}</td>
+              <td>{{item.sosConsecutivoIndice}}</td>
+              <td *ngIf="item.estado === 'CONCEPTO DEFINITIVO'">
+                <p class="text-success">Concepto definitivo</p>
+              </td>
+              <td *ngIf="item.estado === 'GUARDADA'">
+                <p class="text-danger">Guardada</p>
+              </td>
+              <td *ngIf="item.estado != 'GUARDADA' && item.estado != 'CONCEPTO DEFINITIVO'">
+                <p class="text-warning">{{item.estado | titlecase}}</p>
+              </td>
+              <td *ngIf="item.estado === 'CONCEPTO DEFINITIVO'">
+                <u (click)="verResultado()">Ver concepto</u>
+              </td>
+              <td *ngIf="item.estado === 'GUARDADA'">
+                <u (click)="verEditar()">Ver concepto</u>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="col-md-12 text-center">
+          <a class="btn btn-round btn-middle" (click)="limpiarCampos()">Nueva Consulta</a>
+        </div>
+      </div>
+
+      <div *ngIf="consultarVerConcepto">
+        <br>
+        <h2 class="tg-0lax">Concepto</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <p>Sin restricción de exportaciòn</p>
+            </div>
+          </div>
+          <div class="col-md-6 text-right see-downloads">
+            <div class="form-group text-right">
+              <p (click)="verDescargar()">
+                <u>Ver información a descargar</u>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="verInformacionDescargar" class="container-table-concept-gov-co">
+        <table id="example" class="table-concept-gov-co ml-5 ml-lg-0 w-100">
+          <tbody>
+            <tr class="table-concept">
+              <td>
+                <p>Concepto</p>
+              </td>
+              <td class="text-right">
+                <u>Descargar</u>
+              </td>
+            </tr>
+            <tr class="table-concept">
+              <td>
+                <p>Todas las fichas técnicas</p>
+              </td>
+              <td class="text-right">
+                <u>Descargar</u>
+              </td>
+            </tr>
+            <tr class="table-concept">
+              <td>
+                <p>Ficha técnica obra 1</p>
+              </td>
+              <td class="text-right">
+                <u>Descargar</u>
+              </td>
+            </tr>
+            <tr class="table-concept">
+              <td>
+                <p>Ficha técnica obra 2</p>
+              </td>
+              <td class="text-right">
+                <u>Descargar</u>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <div class="row" *ngIf="(service.consultar)">
+        <div class="col-md-12 text-center">
+          <a class="btn btn-round btn-middle" (click)="limpiar()">NUEVA CONSULTA</a>
+        </div>
+      </div>
+      <br>
+
     </div>
+  </div>
 </div>

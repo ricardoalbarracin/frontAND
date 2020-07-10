@@ -5,6 +5,10 @@ import { throwError } from 'rxjs';
 import { ReturnModelObtenerTiposDocumentosidentidad,Tiposdocumento } from '../models/ReturnModelObtenerTiposDocumentosidentidad';
 import { ReturnModelListasCrearSolicitud } from '../models/ReturnModelListasCrearSolicitud';
 import { ReturnModelObtenerMunicipios } from '../models/returnmodelobtenermunicipios';
+import { ReturnModelObtenerSolicitudPorNroConsecutivo, ReturnResult } from '../models/returnmodelobtenersolicitudpornroconsecutivo';
+import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../models/requestmodelobtenersolicitudpornroconsecutivo';
+import { RequestModelObtenerListaAnexos } from '../models/requestmodelobtenerlistaanexos';
+import { ReturnModelObtenerListaAnexos } from '../models/returnmodelobtenerlistaanexos';
 
 @Injectable({
   providedIn: 'root'
@@ -98,23 +102,41 @@ export class AutorizarExportacionUtilService {
     this.consultarVerDescargar=consultarVerDescargarParam;
   }
 
-  
+
   // Cargar listas (Operadores - Peridos)
   public obtenerListasCrearSolicitud() {
     return this.http.get<ReturnModelListasCrearSolicitud>(this.urlTramite.ObtenerListasCrearSolicitud)
-    .pipe(catchError(this.errorHandler));    
+    .pipe(catchError(this.errorHandler));
   }
-  
+
 
   // Cargar listas (Operadores - Peridos)
   public obtenerMunicipiosPorDepartamentoId(departamentoId: string) {
     return this.http.get<ReturnModelObtenerMunicipios>(this.urlTramite.obtenerMunicipios+'?padreId='+departamentoId)
-    .pipe(catchError(this.errorHandler));    
+    .pipe(catchError(this.errorHandler));
   }
 
   // Error petición
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
+  }
+
+  ConsultarSolicitudxRadicado(value: string) {
+    let data: RequestModelObtenerSolicitudPorNroConsecutivo = {
+      NroConsecutivo: value
+    }
+    return this.http.post<ReturnModelObtenerSolicitudPorNroConsecutivo>(this.urlTramite.obtenerSolicitudPorNroConsecutivo, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
+
+  ConsultarListaAnexosSolicitudesXSolicitud(value: number) {
+    let data: RequestModelObtenerListaAnexos = {
+      SosId: value
+    }
+    return this.http.post<ReturnModelObtenerListaAnexos>(this.urlTramite.obtenerListaAnexos, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
   }
 
 
