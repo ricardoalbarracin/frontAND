@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { ReturnModelObtenerTiposDocumentosidentidad,Tiposdocumento } from '../models/ReturnModelObtenerTiposDocumentosidentidad';
-import { ReturnModelListasCrearSolicitud } from '../models/ReturnModelListasCrearSolicitud';
+import { ReturnModelLista } from '../models/ReturnModelLista';
 import { ReturnModelObtenerMunicipios } from '../models/returnmodelobtenermunicipios';
 
 @Injectable({
@@ -100,10 +100,33 @@ export class AutorizarExportacionUtilService {
 
   
   // Cargar listas (Operadores - Peridos)
-  public obtenerListasCrearSolicitud() {
-    return this.http.get<ReturnModelListasCrearSolicitud>(this.urlTramite.ObtenerListasCrearSolicitud)
+  public obtenerDepartamentos() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerDepartamentos)
     .pipe(catchError(this.errorHandler));    
   }
+
+  // Cargar listas (Operadores - Peridos)
+  public obtenerTiposDocumentosIndentidad() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerTiposDocumentosIndentidad)
+    .pipe(catchError(this.errorHandler));    
+  }
+  // Cargar listas (Operadores - Peridos)
+  public ObtenerPaises() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerPaises)
+    .pipe(catchError(this.errorHandler));    
+  }
+
+  // Cargar listas (Operadores - Peridos)
+  public ObtenerTiposBasPersonas() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerTiposBasPersonas)
+    .pipe(catchError(this.errorHandler));    
+  }
+  // Cargar listas (Operadores - Peridos)
+  public ObtenerFinesExportacion() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerFinesExportacion)
+    .pipe(catchError(this.errorHandler));    
+  }
+  
   
 
   // Cargar listas (Operadores - Peridos)

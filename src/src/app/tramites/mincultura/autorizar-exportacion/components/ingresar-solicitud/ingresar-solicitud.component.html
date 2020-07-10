@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">Tipo de solicitante *</label>
-                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.solicitantes">
+                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.tiposSolicitante">
                             </app-dropdownlist>
                             <div *ngIf="submitted && f.departamento.errors" class="text-danger">
                                 Campo sin diligenciar.
@@ -537,7 +537,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">País *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoPais" [items]="data.pais">
+                        <app-dropdownlist ngDefaultControl formControlName="destinoPais" [items]="data.paises">
                         </app-dropdownlist>
                         <div *ngIf="submitted && f.destinoPais.errors" class="text-danger">
                             Campo sin diligenciar.
@@ -545,12 +545,11 @@
                     </div>
                 </div>
                 <div class="col-md-6" *ngIf="!(colombiaSeleccionado())">
+                    
                     <div class="form-group">
                         <label class="form-group-govco">Ciudad *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoCiudad" [items]="data.pais">
-                        </app-dropdownlist>
-                        <div *ngIf="submitted && f.destinoCiudad.errors && !(colombiaSeleccionado())"
-                            class="text-danger">
+                        <input class="form-control input-govco" formControlName="ciudadDestino">
+                        <div *ngIf="submitted && f.ciudadDestino.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -593,7 +592,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Fines de exportación</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.pais">
+                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.finesExportacion">
                         </app-dropdownlist>
                     </div>
                 </div>
