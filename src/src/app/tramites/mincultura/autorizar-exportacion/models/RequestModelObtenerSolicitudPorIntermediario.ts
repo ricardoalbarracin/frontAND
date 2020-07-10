@@ -4,5 +4,4 @@ namespace tramites_servicios_webapi.MinCultura.SolicitudExportacion.Models
     {
          NroDocumentoIntermediario: string;
     }
-
 }
