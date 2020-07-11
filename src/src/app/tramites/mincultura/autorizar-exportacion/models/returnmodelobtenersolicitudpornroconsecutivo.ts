@@ -1,11 +1,16 @@
-
 import  {Solicitudsalidaobra} from './solicitudsalidaobra';
-export interface ReturnModelObtenerSolicitudPorNroConsecutivo 
+export interface ReturnModelObtenerSolicitudPorNroConsecutivo
     {
+        message:string;
+        result:ReturnResult;
+    }
 
-        
-        SolicitudSalidaObra : Solicitudsalidaobra;
-        Solicitud : object;
-        Success : boolean;
-        Errors : Error;
+    export interface ReturnResult{
+      error:string;
+      mensage: string;
+      operacionExitosa:boolean;
+      solicitud:string;
+      solicitudSalidaObra: Solicitudsalidaobra;
+      success: boolean;
+
     }

@@ -1,7 +1,13 @@
+import { Solicitudsalidaobra } from './../../models/solicitudsalidaobra';
+import { Radicacion } from './../../../../sic/denuncia-infraccion/models/sic-models';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../../models/requestmodelobtenersolicitudpornroconsecutivo';
+import { ReturnModelObtenerSolicitudPorNroConsecutivo } from '../../models/returnmodelobtenersolicitudpornroconsecutivo';
+import { ConsultarSolicitudForm } from './consultar-solicitud.form';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-consultar-solicitud',
@@ -9,68 +15,68 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./consultar-solicitud.component.scss']
 })
 export class ConsultarSolicitudComponent implements OnInit {
-
-  estado:any;
-  myClassesImg:any;
-  registerForm: FormGroup;
-  submitted = false;
+  seleccionForm: FormGroup;
+  seleccionSolucionForm: ConsultarSolicitudForm;
+  invalidForm: boolean = false;
+  items: Array<any> = [];
+  consultarVerConcepto: boolean = false;
+  verInformacionDescargar: boolean = false;
+  mensajeConsultaSinResultados: boolean = false;
 
   constructor(public formBuilder: FormBuilder, public service: AutorizarExportacionUtilService) {
-    this.estado='text-success';
 
-    this.myClassesImg = 'text-success material-icons';
+  }
 
-   }
+  establecerAreaNotificaciones(value:string){
+    const s = document.getElementsByTagName('govco-area-servicios');
+    s[0].setAttribute('step', value);
+  }
 
-   consultar(){
-    this.asignarVariables();
+  consultar() {
+    if (this.seleccionSolucionForm.isValid()) {
+      this.service.ConsultarSolicitudxRadicado(this.seleccionForm.value.numero_radicado).subscribe((response:ReturnModelObtenerSolicitudPorNroConsecutivo) => {
+        debugger;
+        if (response.result.solicitudSalidaObra)
+          {
+            this.items.push(response.result.solicitudSalidaObra);
+            this.mensajeConsultaSinResultados = false;
+            this.establecerAreaNotificaciones('4');
+          }
+        else
+          this.mensajeConsultaSinResultados = true;
+      }, error => {
+        console.error(error);
+      });
 
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-        this.service.asignarLlega(9);
-        this.service.asignarFormularioInvalido(true);
-        return;
+    } else {
+      this.invalidForm = true;
+      return;
     }
-
-     this.service.asignarConsultar(true);
-   }
-
-   asignarVariables(){
-    this.submitted = true;
-    this.service.asignarFormularioInvalido(false);
   }
 
-   verConcepto(){
-    var boolconsultarVerConcepto = !this.service.consultarVerConcepto?true:false;
-    this.service.asignarConsultarVerConcepto(boolconsultarVerConcepto);
-
-      if(this.service.consultarVerConcepto===false){
-        this.service.asignarConsultarVerDescargar(false);
-      }
+  verResultado() {
+    this.consultarVerConcepto = !this.consultarVerConcepto;
   }
 
-  verDescargar(){
-
-      var boolconsultarVerDescargar = !this.service.consultarVerDescargar?true:false
-      this.service.asignarConsultarVerDescargar(boolconsultarVerDescargar);
+  limpiarCampos() {
+    this.seleccionForm.reset();
+    this.invalidForm = false;
+    this.verInformacionDescargar = false;
+    this.consultarVerConcepto = false;
+    this.items = [];
   }
 
-  limpiar(){
-    this.submitted=false;
-    this.service.limpiarConsultar();
-    this.registerForm.get('radicado').setValue(null);
-    this.registerForm.get('numeroIdentificacion').setValue(null);
+  verEditar() {
+
+  }
+
+  verDescargar() {
+    this.verInformacionDescargar = !this.verInformacionDescargar;
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-        
-      radicado: ['', Validators.required],
-      numeroIdentificacion: ['', Validators.required]
-
-     });
+    this.seleccionSolucionForm = new ConsultarSolicitudForm();
+    this.seleccionForm = this.seleccionSolucionForm.getForm();
   }
-
-  get f() { return this.registerForm.controls; }
 
 }
