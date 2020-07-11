@@ -9,7 +9,7 @@
                             <label class="form-group-govco">Tipo de solicitante *</label>
                             <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.tiposSolicitante">
                             </app-dropdownlist>
-                            <div *ngIf="submitted && f.departamento.errors" class="text-danger">
+                            <div *ngIf="submitted && f.tipoSolicitante.errors" class="text-danger">
                                 Campo sin diligenciar.
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                     <div class="form-group">
                         <label class="form-group-govco">Teléfono *</label>
                         <input class="form-control input-govco" numbersOnly formControlName="telefonoUbicacion"
-                            [ngClass]="{ 'is-invalid': submitted && f.telefono.telefonoUbicacion }">
+                            [ngClass]="{ 'is-invalid': submitted && f.telefonoUbicacion.errors }">
                         <div *ngIf="submitted && f.telefonoUbicacion.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
@@ -198,9 +198,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Correo electrónico *</label>
-                        <input class="form-control input-govco" formControlName="correo"
-                            [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
-                        <div *ngIf="submitted && f.correo.errors" class="text-danger">
+                        <input class="form-control input-govco" formControlName="correoUbicacion"
+                            [ngClass]="{ 'is-invalid': submitted && f.correoUbicacion.errors }">
+                        <div *ngIf="submitted && f.correoUbicacion.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -208,9 +208,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Confirmación de correo electrónico *</label>
-                        <input class="form-control input-govco" formControlName="correo2"
-                            [ngClass]="{ 'is-invalid': submitted && f.correo2.errors }">
-                        <div *ngIf="submitted && f.correo2.errors" class="text-danger">
+                        <input class="form-control input-govco" formControlName="correoUbicacion2"
+                            [ngClass]="{ 'is-invalid': submitted && f.correoUbicacion2.errors }">
+                        <div *ngIf="submitted && f.correoUbicacion2.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -274,7 +274,7 @@
             <div class="row">
                 <div *ngIf="requiereIntermediarioValor === 'SI'">
                     <br>
-                    <h2 class="tg-0lax">Intermediario</h2>
+                    <h3 class="tg-0lax">Intermediario</h3>
                     <p>Aplica solo cuando la solicitud es tramitada por un tercero (persona natural, empresa de
                         mudanzas,
                         agencia o
@@ -283,15 +283,12 @@
                         siguiendo las mismas pautas para el solicitante, en caso contrario no diligencie este item.</p>
                     <div class="row">
                         <div class="col-md-6">
+                            
                             <div class="form-group">
-                                <p>Tipo de documento*</p>
-                                <select formControlName="intermediarioTipoDocumento" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI' }">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI'"
-                                    class="text-danger">
+                                <label class="form-group-govco">Tipo de documento*</label>
+                                <app-dropdownlist ngDefaultControl formControlName="tipoDocumentoIntermediario" [items]="data.TiposDocumento">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.tipoDocumentoIntermediario.errors" class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
                             </div>
@@ -302,9 +299,9 @@
                             <div class="form-group">
                                 <p>Número de documento*</p>
                                 <input class="form-control input-govco" numbersOnly
-                                    formControlName="intermediarioNumeroDocumento"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioNumeroDocumento.errors  && requiereIntermediarioValor === 'SI'}">
-                                <div *ngIf="submitted && f.intermediarioNumeroDocumento.errors && requiereIntermediarioValor === 'SI'"
+                                    formControlName="numeroDocumentoIntermediario"
+                                    [ngClass]="{ 'is-invalid': submitted && f.numeroDocumentoIntermediario.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.numeroDocumentoIntermediario.errors && requiereIntermediarioValor === 'SI'"
                                     class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
@@ -314,9 +311,9 @@
                             <div class="form-group">
                                 <p>Confirmar número de documento*</p>
                                 <input class="form-control input-govco" numbersOnly
-                                    formControlName="intermediarioNumeroDocumento2"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioNumeroDocumento2.errors  && requiereIntermediarioValor === 'SI'}">
-                                <div *ngIf="submitted && f.intermediarioNumeroDocumento2.errors && requiereIntermediarioValor === 'SI'"
+                                    formControlName="numeroDocumentoIntermediario2"
+                                    [ngClass]="{ 'is-invalid': submitted && f.numeroDocumentoIntermediario2.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.numeroDocumentoIntermediario2.errors && requiereIntermediarioValor === 'SI'"
                                     class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
@@ -327,36 +324,40 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <p>Nombre</p>
-                                <input class="form-control input-govco">
+                                <input formControlName="nombreIntermediario" class="form-control input-govco">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>País de expedición*</p>
-                                <select formControlName="intermediarioPais" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioTipoDocumento.errors && requiereIntermediarioValor === 'SI' }">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.intermediarioPais.errors && requiereIntermediarioValor === 'SI'"
-                                    class="text-danger">
+                                <label class="form-group-govco">País de expedición *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="paisExpedicionIntermediario" [items]="data.paises">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.paisExpedicionIntermediario.errors && requiereIntermediarioValor === 'SI'"
+                                class="text-danger">
+                                    Campo sin diligenciar.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6" *ngIf="!(colombiaSeleccionadoExpedicionIntermediario())">
+                    
+                            <div class="form-group">
+                                <label class="form-group-govco">Ciudad *</label>
+                                <input class="form-control input-govco" formControlName="ciudadIntermediario">
+                                <div *ngIf="submitted && f.ciudadIntermediario.errors" class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="colombiaSeleccionadoExpedicionIntermediario()">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>Departamento*</p>
-                                <select formControlName="intermediarioDepartamento" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioDepartamento.errors && requiereIntermediarioValor === 'SI' }">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.intermediarioDepartamento.errors && requiereIntermediarioValor === 'SI'"
+                                <label class="form-group-govco">Departamento *</label>
+                                <app-dropdownlist (change)="actualizarDepartamentoIntermediario()" ngDefaultControl formControlName="departamentoIntermediario" [items]="data.departamentos">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.departamentoIntermediario.errors && colombiaSeleccionadoExpedicionIntermediario()"
                                     class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
@@ -364,22 +365,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>Municipio*</p>
-                                <select formControlName="intermediarioMunicipio" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.intermediarioMunicipio.errors && requiereIntermediarioValor === 'SI' }">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.intermediarioMunicipio.errors && requiereIntermediarioValor === 'SI'"
-                                    class="text-danger">
+                                <label class="form-group-govco">Municipio *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="municipioIntermediario" [items]="data.municipiosIntermediario">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.municipioIntermediario.errors && colombiaSeleccionado()" class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
 
                     <br>
-                    <h2 class="tg-0lax">Anexos</h2>
+                    <h3 class="tg-0lax">Anexos</h3>
                     <p>Según el "Tipo de documento" seleccionado en la casilla del solicitante adjunte: Fotocopia de la
                         cédula
                         de
@@ -438,32 +436,24 @@
                     </div>
 
                     <br>
-                    <h2 class="tg-0lax">Datos de ubicación</h2>
+                    <h3 class="tg-0lax">Datos de ubicación</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>Departamento*</p>
-                                <select formControlName="ubicacionDepartamento" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionDepartamento.errors  && requiereIntermediarioValor === 'SI'}">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.ubicacionDepartamento.errors && requiereIntermediarioValor === 'SI'"
-                                    class="text-danger">
+                                <label class="form-group-govco">Departamento *</label>
+                                <app-dropdownlist (change)="actualizarDepartamentoUbicacionIntermediario()" ngDefaultControl formControlName="departamentoUbicacionIntermediario" [items]="data.departamentos">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.departamentoUbicacionIntermediario.errors" class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>Municipio*</p>
-                                <select formControlName="ubicacionMunicipio" class="form-control"
-                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionMunicipio.errors  && requiereIntermediarioValor === 'SI'}">
-                                    <option value=""></option>
-                                    <option value="1">Opcion 1</option>
-                                </select>
-                                <div *ngIf="submitted && f.ubicacionMunicipio.errors && requiereIntermediarioValor === 'SI'"
-                                    class="text-danger">
+                                <label class="form-group-govco">Municipio *</label>
+                                <app-dropdownlist ngDefaultControl formControlName="municipioUbicacionIntermediario" [items]="data.municipiosUbicacionIntermediario">
+                                </app-dropdownlist>
+                                <div *ngIf="submitted && f.municipioUbicacionIntermediario.errors" class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
                             </div>
@@ -473,23 +463,23 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <p>Teléfono</p>
-                                <input class="form-control input-govco" numbersOnly>
+                                <input formControlName="telefonoUbicacionIntermediario" class="form-control input-govco" numbersOnly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <p>Dirección</p>
-                                <input class="form-control input-govco">
+                                <input formControlName="direccionUbicacionIntermediario" class="form-control input-govco">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <p>Correo electrónico*</p>
-                                <input class="form-control input-govco" formControlName="ubicacionCorreo"
-                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionCorreo.errors  && requiereIntermediarioValor === 'SI'}">
-                                <div *ngIf="submitted && f.ubicacionCorreo.errors && requiereIntermediarioValor === 'SI'"
+                                <label class="form-group-govco">Correo electrónico*</label>
+                                <input class="form-control input-govco" formControlName="correoUbicacionIntermediario"
+                                    [ngClass]="{ 'is-invalid': submitted && f.correoUbicacionIntermediario.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.correoUbicacionIntermediario.errors && requiereIntermediarioValor === 'SI'"
                                     class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
@@ -498,9 +488,9 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-group-govco">Confirmación de correo electrónico*</label>
-                                <input class="form-control input-govco" formControlName="ubicacionCorreo2"
-                                    [ngClass]="{ 'is-invalid': submitted && f.ubicacionCorreo2.errors  && requiereIntermediarioValor === 'SI'}">
-                                <div *ngIf="submitted && f.ubicacionCorreo2.errors && requiereIntermediarioValor === 'SI'"
+                                <input class="form-control input-govco" formControlName="correoUbicacionIntermediario2"
+                                    [ngClass]="{ 'is-invalid': submitted && f.correoUbicacionIntermediario2.errors  && requiereIntermediarioValor === 'SI'}">
+                                <div *ngIf="submitted && f.correoUbicacionIntermediario2.errors && requiereIntermediarioValor === 'SI'"
                                     class="text-danger">
                                     Campo sin diligenciar.
                                 </div>
@@ -537,9 +527,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">País *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoPais" [items]="data.paises">
+                        <app-dropdownlist ngDefaultControl formControlName="PaisDestino" [items]="data.paises">
                         </app-dropdownlist>
-                        <div *ngIf="submitted && f.destinoPais.errors" class="text-danger">
+                        <div *ngIf="submitted && f.PaisDestino.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -559,9 +549,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Departamento *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoDepartamento" [items]="data.pais">
+                        <app-dropdownlist (change)="actualizarDepartamentoDestino()" ngDefaultControl formControlName="departamentoDestino" [items]="data.departamentos">
                         </app-dropdownlist>
-                        <div *ngIf="submitted && f.destinoDepartamento.errors && colombiaSeleccionado()"
+                        <div *ngIf="submitted && f.departamentoDestino.errors && colombiaSeleccionado()"
                             class="text-danger">
                             Campo sin diligenciar.
                         </div>
@@ -570,9 +560,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Municipio *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.pais">
+                        <app-dropdownlist ngDefaultControl formControlName="municipioDestino" [items]="data.municipiosDestino">
                         </app-dropdownlist>
-                        <div *ngIf="submitted && f.destinoMunicipio.errors" class="text-danger">
+                        <div *ngIf="submitted && f.municipioDestino.errors && colombiaSeleccionado()" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -582,9 +572,9 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Dirección *</label>
-                        <input class="form-control input-govco" formControlName="destinoDireccion"
-                            [ngClass]="{ 'is-invalid': submitted && f.destinoDireccion.errors }">
-                        <div *ngIf="submitted && f.destinoDireccion.errors" class="text-danger">
+                        <input class="form-control input-govco" formControlName="direccionDestino"
+                            [ngClass]="{ 'is-invalid': submitted && f.direccionDestino.errors }">
+                        <div *ngIf="submitted && f.direccionDestino.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -592,7 +582,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Fines de exportación</label>
-                        <app-dropdownlist ngDefaultControl formControlName="destinoMunicipio" [items]="data.finesExportacion">
+                        <app-dropdownlist ngDefaultControl formControlName="finExportacion" [items]="data.finesExportacion">
                         </app-dropdownlist>
                     </div>
                 </div>
@@ -601,13 +591,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Entidad destino</label>
-                        <input class="form-control input-govco">
+                        <input formControlName="entidadDestino" class="form-control input-govco">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Teléfono</label>
-                        <input class="form-control input-govco" numbersOnly>
+                        <input formControlName="telefonoDestino" class="form-control input-govco" numbersOnly>
                     </div>
                 </div>
             </div>
@@ -617,8 +607,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="form-group-govco">Días</label>
-                        <app-dropdownlist ngDefaultControl formControlName="departamento" [items]="data.solicitantes">
+                        <input class="form-control input-govco" numbersOnly formControlName="tiempoPermanencia">
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <app-dropdownlist ngDefaultControl formControlName="tipoPermanencia" [items]="data.tiposPermanencia">
                         </app-dropdownlist>
                     </div>
                 </div>

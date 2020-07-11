@@ -126,6 +126,13 @@ export class AutorizarExportacionUtilService {
     return this.http.get<ReturnModelLista>(this.urlTramite.obtenerFinesExportacion)
     .pipe(catchError(this.errorHandler));    
   }
+
+  // Cargar listas (Operadores - Peridos)
+  public ObtenerTiposPermanencia() {
+    return this.http.get<ReturnModelLista>(this.urlTramite.obtenerTiposPermanencia)
+    .pipe(catchError(this.errorHandler));    
+  }
+  
   
   
 

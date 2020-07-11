@@ -28,67 +28,77 @@ export class IngresarSolicitudComponent implements OnInit {
      TiposDocumento: [],
      departamentos: [],
      minicipiosUbicacion: [],
+     municipiosUbicacionIntermediario:[],
+     municipiosDestino:[],
+     municipiosIntermediario:[],
      paises: [],
      tiposSolicitante: [],
-     finesExportacion:[]
+     finesExportacion:[],
+     tiposPermanencia:[]
    };
 
 
    ngOnInit() {
-        this.requiereIntermediarioValor='NO';
+        this.requiereIntermediarioValor='SI';
+
         this.obtenerDepartamentos();
         this.obtenerPaises();
         this.obtenerTiposDocumentosIndentidad();
         this.ObtenerTiposPersonas();
         this.ObtenerFinesExportacion();
+        this.ObtenerTiposPermanencia();
+
         this.registerForm = this.formBuilder.group({
-          
-        tipoDocumentoSolicitante: ['', Validators.required],
+
+        //datos solicitante
         tipoSolicitante: ['', Validators.required],
+        tipoDocumentoSolicitante: ['', Validators.required],
         numeroDocumentoSolicitante: ['', Validators.required],
         numeroDocumentoSolicitante2: ['', Validators.required],
         nombreRazonSocialSolicitante: ['', Validators.required],
         paisExpedicionSolicitante: ['', Validators.required],
 
+        //datos ubicacion
         departamentoUbicacion: ['', Validators.required],
         municipioUbicacion: ['', Validators.required],
         telefonoUbicacion: ['', Validators.required],
         direccionUbicacion: ['', Validators.required],
+        correoUbicacion: ['', Validators.required],
+        correoUbicacion2: ['', Validators.required],
 
-        tipoDocumento: ['', Validators.required],
-        numeroDocumento: ['', Validators.required],
-        numeroDocumento2: ['', Validators.required],
-        nombreRazonSocial: ['', Validators.required],
-        paisExpedicion: ['', Validators.required],
-        descripcion: ['', Validators.required],
-        departamento: ['', Validators.required],
-        municipio: ['', Validators.required],
-        telefono: ['', Validators.required],
-        direccion: ['', Validators.required],
-        correo: ['', Validators.required, Validators.email],
-        correo2: ['', Validators.required, Validators.email],
+        //datos intermediario
         requiereIntermediario: ['', Validators.required],
-        intermediarioTipoDocumento: ['', Validators.required],
-        intermediarioNumeroDocumento: ['', Validators.required],
-        intermediarioNumeroDocumento2: ['', Validators.required],
+        tipoDocumentoIntermediario: ['', Validators.required],
+        numeroDocumentoIntermediario: ['', Validators.required],
+        numeroDocumentoIntermediario2: ['', Validators.required],
+        nombreIntermediario: ['', Validators.required],
+        paisExpedicionIntermediario: ['', Validators.required],
+        ciudadIntermediario: ['', Validators.required],
+        departamentoIntermediario: ['', Validators.required],
+        municipioIntermediario: ['', Validators.required],
+        departamentoUbicacionIntermediario: ['', Validators.required],
+        municipioUbicacionIntermediario: ['', Validators.required],
+        telefonoUbicacionIntermediario: ['', Validators.required],
+        direccionUbicacionIntermediario: ['', Validators.required],
+        correoUbicacionIntermediario: ['', Validators.required],
+        correoUbicacionIntermediario2: ['', Validators.required],
 
-        intermediarioPais: ['', Validators.required],
-        intermediarioDepartamento: ['', Validators.required],
-        intermediarioMunicipio: ['', Validators.required],
+        //datos destino
+        PaisDestino: ['', Validators.required],
+        ciudadDestino: ['', Validators.required],
+        departamentoDestino: ['', Validators.required],
+        municipioDestino: ['', Validators.required],
+        direccionDestino: ['', Validators.required],
+        finExportacion: ['', Validators.required],
+        entidadDestino: ['', Validators.required],
+        telefonoDestino: ['', Validators.required],
+        tiempoPermanencia: ['', Validators.required],
+        tipoPermanencia: ['', Validators.required],
 
-        ubicacionDepartamento: ['', Validators.required],
-        ubicacionMunicipio: ['', Validators.required],
-        ubicacionCorreo: ['', Validators.required, Validators.email],
-        ubicacionCorreo2: ['', Validators.required, Validators.email],
-        destinoPais: ['', Validators.required],
-        destinoCiudad: ['', Validators.required],
-        destinoDepartamento: ['', Validators.required],
-        destinoMunicipio: ['', Validators.required],
-        destinoDireccion: ['', Validators.required],
+        descripcion: ['', Validators.required],
         autoriza: ['', Validators.requiredTrue],
-
         formControlRecaptcha: ['', Validators.required]
-
+        
        });
    }
 
@@ -139,7 +149,17 @@ export class IngresarSolicitudComponent implements OnInit {
 
   colombiaSeleccionado(){
     
-    if(this.destinoPaisValor=='COLOMBIA')
+    var paisSeleccionado= this.registerForm.value.PaisDestino.text;
+    if(paisSeleccionado=='COLOMBIA')
+      return true;
+    else
+      return false;
+  }
+
+  colombiaSeleccionadoExpedicionIntermediario(){
+    
+    var paisSeleccionado= this.registerForm.value.paisExpedicionIntermediario.text;
+    if(paisSeleccionado=='COLOMBIA')
       return true;
     else
       return false;
@@ -213,10 +233,24 @@ export class IngresarSolicitudComponent implements OnInit {
 
   ObtenerFinesExportacion() {
     this.service.ObtenerFinesExportacion().subscribe((data: ReturnModelLista) => { 
-      debugger
+      
       if (data != undefined && data.success === true){
         
         this.data.finesExportacion= data.result;
+      }else {
+        //TODO: controlar errores internos
+        this.manejoErrorInterno(data);
+      }
+    }, (error) => {
+      this.manejoErrorPeticion(error);
+    });
+  }
+
+  ObtenerTiposPermanencia() {
+    this.service.ObtenerTiposPermanencia().subscribe((data: ReturnModelLista) => { 
+      if (data != undefined && data.success === true){
+        
+        this.data.tiposPermanencia= data.result;
       }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
@@ -235,6 +269,71 @@ export class IngresarSolicitudComponent implements OnInit {
           if (data != undefined && data.success === true){
 
            this.data.municipiosUbicacion = data.result;
+          }else {
+            //TODO: controlar errores internos
+            this.manejoErrorInterno(data);
+          }
+          
+         },
+         (error) => {
+          this.manejoErrorPeticion(error);
+         }
+       );
+  }
+
+  actualizarDepartamentoUbicacionIntermediario() {
+    console.log(this.registerForm.value.departamentoUbicacionIntermediario.value);
+    this.data.municipiosUbicacionIntermediario  = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacionIntermediario.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
+
+           this.data.municipiosUbicacionIntermediario = data.result;
+          }else {
+            //TODO: controlar errores internos
+            this.manejoErrorInterno(data);
+          }
+          
+         },
+         (error) => {
+          this.manejoErrorPeticion(error);
+         }
+       );
+  }
+
+  actualizarDepartamentoDestino() {
+    debugger
+    console.log(this.registerForm.value.departamentoDestino.value);
+    this.data.municipiosDestino = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
+
+           this.data.municipiosDestino = data.result;
+          }else {
+            //TODO: controlar errores internos
+            this.manejoErrorInterno(data);
+          }
+          
+         },
+         (error) => {
+          this.manejoErrorPeticion(error);
+         }
+       );
+  }
+
+  actualizarDepartamentoIntermediario() {
+    debugger
+    console.log(this.registerForm.value.departamentoIntermediario.value);
+    this.data.municipiosIntermediario = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
+
+           this.data.municipiosIntermediario = data.result;
           }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
