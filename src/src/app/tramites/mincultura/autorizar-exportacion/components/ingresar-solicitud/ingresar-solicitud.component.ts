@@ -170,7 +170,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
     };
 
-    console.log(solicitud);
+    return solicitud;
   }
   asignarVariables(){
     this.submitted = true;
@@ -186,6 +186,7 @@ export class IngresarSolicitudComponent implements OnInit {
   guardar(){
     this.service.asignarPaso(3);
     this.service.asignarpasoIngresar(2);
+    this.crearSolicitud();
   }
 
    onReset() {
