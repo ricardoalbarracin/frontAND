@@ -4,6 +4,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ReturnModelLista} from '../../models/ReturnModelLista';
+import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitud';
 
 import { MustMatch } from '../../helpers/must-match.validator';
 
@@ -119,7 +120,58 @@ export class IngresarSolicitudComponent implements OnInit {
 
 
   }
+  crearSolicitud(){    
+    const solicitud: RequestModelCrearSolicitud = {
+      SosTipoPersonaId: this.registerForm.value.tipoSolicitante.value, 
+      DocIdSolicitante: this.registerForm.value.tipoDocumentoSolicitante.value, 
+      SosNroDocumentoSolicitante:this.registerForm.value.actualizarDepartamentoDestino.numeroDocumentoSolicitante, 
+      ZopId:this.registerForm.value.paisExpedicionSolicitante.value, 
+      SosZonPadreId: this.registerForm.value.departamentoUbicacion.value, 
+      SosZonId:this.registerForm.value.municipioUbicacion.value, 
+      SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion, 
+      SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
+      SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
+      Requiereintermediario: this.registerForm.value.requiereIntermediario,
+      DocIdintermediario:this.registerForm.value.tipoDocumentoIntermediario,
+      SosNroDocumentointermediario:this.registerForm.value.numeroDocumentoIntermediario,
+      SosNombreintermediario: this.registerForm.value.nombreIntermediario,
+      IntZopId: this.registerForm.value.paisExpedicionIntermediario.value,
+      IntCiudad: this.registerForm.value.ciudadIntermediario.value,
+      //IntCiudad: this.registerForm.value.municipioIntermediario.value,
+      IntUbicacionCiudad:this.registerForm.value.municipioUbicacionIntermediario.value,
+      SosTelefonointermediario:  this.registerForm.value.telefonoUbicacionIntermediario,
+      SosDireccionintermediario: this.registerForm.value.direccionUbicacionIntermediario,
+      IntUbicacionEmail:this.registerForm.value.correoUbicacionIntermediario,
+      DestintoZopId:this.registerForm.value.PaisDestino.value,
+      DestintoCiudad:this.registerForm.value.ciudadIntermediario.value,
+      DestintoDireccion: this.registerForm.value.direccionDestino,
+      TmsId: this.registerForm.value.finesExportacion.value,
+      DestintoEntidad: this.registerForm.value.entidadDestino,
+      DestintoTelefono:this.registerForm.value.telefonoDestino,
+      DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
+      DestintoTipoTiempoPermanencia: this.registerForm.value.tipoPermanencia,
 
+      //atrib missing
+      AceptaHabeasdata:true,
+      AnexoSolicitante:[],
+      Anexointermediario:[],
+      ReitegroObservaciones:"",
+      SosNombreRepresentante:"",
+      ProrrogaMotivo:"",
+      ProrrogaFechaRegreso:Date.now,
+      IntUbicacionZopId:0,
+      Ciudad: "",
+      ZonId:"",
+      SosNombreSolicitante:"",
+      SosCantidad:0,
+      SosLugarExpedicion:"",
+      ZopNombre:"",
+
+
+    };
+
+    console.log(solicitud);
+  }
   asignarVariables(){
     this.submitted = true;
     this.service.asignarFormularioInvalido(false);
