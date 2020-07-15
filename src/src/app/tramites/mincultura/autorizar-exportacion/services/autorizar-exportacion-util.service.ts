@@ -11,6 +11,8 @@ import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../models/request
 import { RequestModelObtenerListaAnexos } from '../models/requestmodelobtenerlistaanexos';
 import { ReturnModelObtenerListaAnexos } from '../models/returnmodelobtenerlistaanexos';
 import { ReturnModelObtenerSolicitudes } from '../models/returnmodelobtenersolicitudes';
+import { RequestModelCrearSolicitud } from '../models/requestmodelcrearsolicitud';
+
 
 @Injectable({
   providedIn: 'root'
@@ -183,6 +185,16 @@ export class AutorizarExportacionUtilService {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     }).pipe(catchError(this.errorHandler));
   }
+
+
+  public registrar(registerModel: RequestModelCrearSolicitud) {
+    return this.http.post<RequestModelCrearSolicitud>(this.urlTramite.crearSolicitud, registerModel, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    })
+    .pipe(catchError(this.errorHandler));
+  }
+
+
 
 
 }
