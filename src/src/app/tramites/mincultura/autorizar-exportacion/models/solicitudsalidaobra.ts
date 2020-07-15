@@ -21,7 +21,7 @@ export interface Solicitudsalidaobra
         SosCantidad : number;
         Estado : string;
         SosConsecutivo : string;
-        SosFechaRadicacion : string;
+        sosFechaRadicacion : string;
         TmsId : number;
         SosLugarExpedicion : string;
         SosDireccionSolicitante : string;

@@ -1,8 +1,8 @@
 export interface RequestModelObtenerSolicitudes
     {
-        FechaRadicacioninticial : string;
-        FechaRadicacionFintal : string;
+        FechaRadicacioninicial : any;
+        FechaRadicacionFinal : any;
         NroDocumentoSolicitante : string;
-        NroConsecutivo : object;
-        Estado : string;
+        NroConsecutivo : string;
+        Estado : any;
     }

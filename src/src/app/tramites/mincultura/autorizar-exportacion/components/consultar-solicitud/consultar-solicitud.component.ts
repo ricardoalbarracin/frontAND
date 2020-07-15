@@ -1,13 +1,8 @@
-import { Solicitudsalidaobra } from './../../models/solicitudsalidaobra';
-import { Radicacion } from './../../../../sic/denuncia-infraccion/models/sic-models';
 import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../../models/requestmodelobtenersolicitudpornroconsecutivo';
-import { ReturnModelObtenerSolicitudPorNroConsecutivo } from '../../models/returnmodelobtenersolicitudpornroconsecutivo';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultarSolicitudForm } from './consultar-solicitud.form';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ReturnModelObtenerSolicitudes } from '../../models/returnmodelobtenersolicitudes';
 
 @Component({
   selector: 'app-consultar-solicitud',
@@ -27,21 +22,23 @@ export class ConsultarSolicitudComponent implements OnInit {
 
   }
 
-  establecerAreaNotificaciones(value:string){
+  establecerAreaNotificaciones(value: string) {
     const s = document.getElementsByTagName('govco-area-servicios');
     s[0].setAttribute('step', value);
   }
 
   consultar() {
     if (this.seleccionSolucionForm.isValid()) {
-      this.service.ConsultarSolicitudxRadicado(this.seleccionForm.value.numero_radicado).subscribe((response:ReturnModelObtenerSolicitudPorNroConsecutivo) => {
-        debugger;
-        if (response.result.solicitudSalidaObra)
-          {
-            this.items.push(response.result.solicitudSalidaObra);
-            this.mensajeConsultaSinResultados = false;
-            this.establecerAreaNotificaciones('4');
+      this.service.ConsultarListaAnexosSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
+        //debugger;
+        if (response.result.solicitudSalidaObras) {
+          this.items = [];
+          for (let solicitud of response.result.solicitudSalidaObras) {
+            this.items.push(solicitud);
           }
+          this.mensajeConsultaSinResultados = false;
+          this.establecerAreaNotificaciones('4');
+        }
         else
           this.mensajeConsultaSinResultados = true;
       }, error => {

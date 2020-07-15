@@ -1,3 +1,4 @@
+import { RequestModelObtenerSolicitudes } from './../models/requestmodelobtenersolicitudes';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -9,6 +10,7 @@ import { ReturnModelObtenerSolicitudPorNroConsecutivo, ReturnResult } from '../m
 import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../models/requestmodelobtenersolicitudpornroconsecutivo';
 import { RequestModelObtenerListaAnexos } from '../models/requestmodelobtenerlistaanexos';
 import { ReturnModelObtenerListaAnexos } from '../models/returnmodelobtenerlistaanexos';
+import { ReturnModelObtenerSolicitudes } from '../models/returnmodelobtenersolicitudes';
 
 @Injectable({
   providedIn: 'root'
@@ -133,11 +135,11 @@ export class AutorizarExportacionUtilService {
   // Cargar listas (Operadores - Peridos)
   public ObtenerTiposPermanencia() {
     return this.http.get<ReturnModelLista>(this.urlTramite.obtenerTiposPermanencia)
-    .pipe(catchError(this.errorHandler));    
+    .pipe(catchError(this.errorHandler));
   }
-  
-  
-  
+
+
+
 
 
   // Cargar listas (Operadores - Peridos)
@@ -165,6 +167,19 @@ export class AutorizarExportacionUtilService {
       SosId: value
     }
     return this.http.post<ReturnModelObtenerListaAnexos>(this.urlTramite.obtenerListaAnexos, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
+
+  ConsultarListaAnexosSolicitudesXRango(nroDocumentoSolicitante:string , nroConsecutivo:string) {
+    let data: RequestModelObtenerSolicitudes = {
+      NroDocumentoSolicitante:nroDocumentoSolicitante,
+      NroConsecutivo:nroConsecutivo,
+      FechaRadicacioninicial : null,
+      FechaRadicacionFinal : null,
+      Estado : null
+    }
+    return this.http.post<ReturnModelObtenerSolicitudes>(this.urlTramite.obtenerSolicitudes, data, {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     }).pipe(catchError(this.errorHandler));
   }
