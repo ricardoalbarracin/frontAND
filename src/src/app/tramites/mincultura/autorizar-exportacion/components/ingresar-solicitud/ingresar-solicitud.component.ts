@@ -7,6 +7,7 @@ import { ReturnModelLista} from '../../models/ReturnModelLista';
 import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitud';
 import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subirarchivo.component';
 import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
+import {Anexo} from '../../models/anexo';
 
 import { MustMatch } from '../../helpers/must-match.validator';
 
@@ -131,7 +132,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
 
   }
-  crearSolicitud(){    
+  crearSolicitudModel(){    
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: this.registerForm.value.tipoSolicitante.value, 
       DocIdSolicitante: this.registerForm.value.tipoDocumentoSolicitante.value, 
@@ -166,23 +167,42 @@ export class IngresarSolicitudComponent implements OnInit {
       SosNombreSolicitante:this.registerForm.value.nombreRazonSocialSolicitante,
       //atrib missing
       
-      AnexoSolicitante:[],
-      Anexointermediario:[],
-      ReitegroObservaciones:"",
-      SosNombreRepresentante:"",
-      ProrrogaMotivo:"",
-      ProrrogaFechaRegreso:Date.now,
-      IntUbicacionZopId:0,
-      ZonId:"",
-      SosCantidad: 1,
-      SosLugarExpedicion:"",
-      ZopNombre:"",
+      AnexoSolicitante:this.mappAnexo(this.adjuntosSolicitante),
+      Anexointermediario:this.mappAnexo(this.adjuntosIntermediario),
+      ReitegroObservaciones:"",//por defecto vacio
+      SosNombreRepresentante:"", //por defecto vacio
+      ProrrogaMotivo:"", //por defecto vacio
+      ProrrogaFechaRegreso:null,//por defecto
+      IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario.value,
+      ZonId:"01001",
+      SosCantidad: 1,//1 valor fijo
+      SosLugarExpedicion:"01001",//valor fijo
+      ZopNombre:this.registerForm.value.paisExpedicionSolicitante.text,
 
 
     };
 
     return solicitud;
   }
+
+  mappAnexo(adjuntosSolicitante: ResponseFileModel[]){    
+    let anexos:Anexo[];
+    let anexo:Anexo;
+    adjuntosSolicitante.forEach(i=>{
+      NombreArchivo:i.FileName;
+      ArchivoBinario: i.FileContent;
+      Descripcion: i.Description;
+      AnexoId:0;
+      FicId:0;
+      NroDocumentoSolicitante:"";
+      PrestamoId:0;
+      SeccionId:0;
+      SolicitudId:0;
+      TipoDocumentoSolicitante:""
+    });
+    return anexos;
+  }
+  
   asignarVariables(){
     this.submitted = true;
     this.service.asignarFormularioInvalido(false);
@@ -197,8 +217,9 @@ export class IngresarSolicitudComponent implements OnInit {
   guardar(){
     this.service.asignarPaso(3);
     this.service.asignarpasoIngresar(2);
-    this.crearSolicitud();
-  }
+    let solicitud=this.crearSolicitudModel();
+    this.service.registrarSolicitud(solicitud);
+   }
 
    onReset() {
        this.submitted = false;
