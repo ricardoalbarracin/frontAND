@@ -5,6 +5,8 @@ import { AutorizarExportacionUtilService } from '../../services/autorizar-export
 import { ModalComponent } from '../modal/modal.component';
 import { ReturnModelLista} from '../../models/ReturnModelLista';
 import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitud';
+import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subirarchivo.component';
+import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
 
 import { MustMatch } from '../../helpers/must-match.validator';
 
@@ -20,6 +22,10 @@ export class IngresarSolicitudComponent implements OnInit {
    }
 
    registerForm: FormGroup;
+   adjuntoPendienteSolicitante: ResponseFileModel;
+   adjuntosSolicitante: ResponseFileModel[];
+   adjuntoPendienteIntermediario: ResponseFileModel;
+   adjuntosIntermediario: ResponseFileModel[];
    submitted = false;
    requiereIntermediarioValor:any='SI';
    destinoPaisValor:any;
@@ -40,7 +46,10 @@ export class IngresarSolicitudComponent implements OnInit {
 
 
    ngOnInit() {
-        this.requiereIntermediarioValor='SI';
+    this.adjuntosSolicitante =[];
+
+    this.adjuntosIntermediario =[];
+    this.requiereIntermediarioValor='SI';
 
         this.obtenerDepartamentos();
         this.obtenerPaises();
@@ -58,6 +67,7 @@ export class IngresarSolicitudComponent implements OnInit {
         numeroDocumentoSolicitante2: ['', Validators.required],
         nombreRazonSocialSolicitante: ['', Validators.required],
         paisExpedicionSolicitante: ['', Validators.required],
+        descripcionAdjuntoSolicitante: ['', Validators.required],
 
         //datos ubicacion
         departamentoUbicacion: ['', Validators.required],
@@ -83,6 +93,7 @@ export class IngresarSolicitudComponent implements OnInit {
         direccionUbicacionIntermediario: ['', Validators.required],
         correoUbicacionIntermediario: ['', Validators.required],
         correoUbicacionIntermediario2: ['', Validators.required],
+        descripcionAdjuntoIntermediario: ['', Validators.required],
 
         //datos destino
         PaisDestino: ['', Validators.required],
@@ -128,6 +139,7 @@ export class IngresarSolicitudComponent implements OnInit {
       ZopId:this.registerForm.value.paisExpedicionSolicitante.value, 
       SosZonPadreId: this.registerForm.value.departamentoUbicacion.value, 
       SosZonId:this.registerForm.value.municipioUbicacion.value, 
+      Ciudad:this.registerForm.value.municipioUbicacion.text, 
       SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion, 
       SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
       SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
@@ -150,9 +162,10 @@ export class IngresarSolicitudComponent implements OnInit {
       DestintoTelefono:this.registerForm.value.telefonoDestino,
       DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
       DestintoTipoTiempoPermanencia: this.registerForm.value.tipoPermanencia,
-
+      AceptaHabeasdata:this.registerForm.value.autoriza,
+      SosNombreSolicitante:this.registerForm.value.nombreRazonSocialSolicitante,
       //atrib missing
-      AceptaHabeasdata:true,
+      
       AnexoSolicitante:[],
       Anexointermediario:[],
       ReitegroObservaciones:"",
@@ -160,10 +173,8 @@ export class IngresarSolicitudComponent implements OnInit {
       ProrrogaMotivo:"",
       ProrrogaFechaRegreso:Date.now,
       IntUbicacionZopId:0,
-      Ciudad: "",
       ZonId:"",
-      SosNombreSolicitante:"",
-      SosCantidad:0,
+      SosCantidad: 1,
       SosLugarExpedicion:"",
       ZopNombre:"",
 
@@ -299,6 +310,8 @@ export class IngresarSolicitudComponent implements OnInit {
     });
   }
 
+  
+
   ObtenerTiposPermanencia() {
     this.service.ObtenerTiposPermanencia().subscribe((data: ReturnModelLista) => { 
       if (data != undefined && data.success === true){
@@ -408,6 +421,71 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   manejoErrorInterno(data: any){
+  }
+
+  SeleccionarArchivoSolicitante() {
+    const modalRef = this.modalService.open(SubirarchivoComponent, {
+      size: 'lg',
+      backdrop: "static",
+      keyboard: true
+    });
+
+    modalRef.componentInstance.uploaded.subscribe((e) => {
+      this.adjuntoPendienteSolicitante = e;
+      modalRef.close();
+      
+    })
+
+    modalRef.componentInstance.canceled.subscribe(($e) => {
+      modalRef.close();
+    })
+  }
+
+  SeleccionarArchivoIntermediario() {
+    const modalRef = this.modalService.open(SubirarchivoComponent, {
+      size: 'lg',
+      backdrop: "static",
+      keyboard: true
+    });
+
+    modalRef.componentInstance.uploaded.subscribe((e) => {
+      this.adjuntoPendienteIntermediario = e;
+      modalRef.close();
+    })
+
+    modalRef.componentInstance.canceled.subscribe(($e) => {
+      modalRef.close();
+    })
+  }
+
+  agregarArchivoSolicitante(){
+    debugger
+    if(this.adjuntoPendienteSolicitante != null)
+    {
+      this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
+      this.registerForm.value.descripcionAdjuntoSolicitante = "";
+      this.adjuntosSolicitante.push(this.adjuntoPendienteSolicitante);
+      this.adjuntoPendienteSolicitante=null;
+    }
+  }
+
+  eliminarArchivoSolicitante(index: number){
+    this.adjuntosSolicitante.splice(index, 1);
+  }
+
+  agregarArchivoIntermediario(){
+    debugger
+    if(this.adjuntoPendienteIntermediario != null)
+    {
+      this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
+      this.registerForm.value.descripcionAdjuntoIntermediario = "";
+      this.adjuntosIntermediario.push(this.adjuntoPendienteIntermediario);
+      this.adjuntoPendienteIntermediario=null;
+    }
+  }
+
+  eliminarArchivoIntermediario(index: number){
+    this.adjuntosIntermediario.splice(index, 1);
   }
 
 }

@@ -1,0 +1,36 @@
+<div class="card govco-card p-5">
+  <div class="row card-header pt-0">
+    <h3 class="m-0 title-section">Cargar archivo</h3>
+  </div>
+  <div class="row card-body mt-3">
+    <div class="file-drop-area col-md-12 text-center">
+      <div class="col-md-12">
+        
+        <div (click)="onClick()" class="btn ">
+          <span class="govco-icon govco-icon-attached-p icon5x disabled"></span>
+          <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right file-msg text-uppercase clear">
+            <u>Seleccionar documento</u>
+          </div>
+        </div>
+        <div class="col-md-12">
+          
+          <li *ngIf="file != null">
+            <div>{{file.data.name}}</div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" [style.width.%]=file.progress aria-valuenow="0"
+                aria-valuemin="0" aria-valuemax="100">Cargando {{ file.progress }}</div>
+            </div>
+            <span id="file-label">
+            </span>
+          </li>
+          <input type="file" class="file-input" #fileUpload id="fileUpload" name="fileUpload" accept="application/pdf"
+            style="display: none;">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-round btn-high text-uppercase m-1" (click)="cargar()">Aceptar</button>
+      <button type="button" class="btn btn-round   text-uppercase m-1" (click)="cancelar()">Cancelar</button>
+    </div>
+  </div>
+</div>
