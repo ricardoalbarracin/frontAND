@@ -1,4 +1,5 @@
-<div *ngIf="mensajeConsultaSinResultados" class="alert-wrong-govco alert alert-dismissible fade show" aria-label="Alerta: caso de error">
+<div *ngIf="mensajeConsultaSinResultados" class="alert-wrong-govco alert alert-dismissible fade show"
+  aria-label="Alerta: caso de error">
   <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar" title="Cerrar">&times;</button>
   <div class="alert-heading">
     <span class="govco-icon govco-icon-sad-face-n size-2x"></span>
@@ -30,7 +31,7 @@
         <div class="col-md-6">
           <div class="form-group">
             <p>Número de documento*</p>
-            <input class="form-control" numbersOnly formControlName="numero_documento">
+            <input class="form-control" formControlName="numero_documento">
           </div>
         </div>
       </div>
@@ -56,24 +57,22 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of items">
-              <td>{{item.SosFechaRadicacion}}</td>
+              <td>{{item.sosFechaRadicacion.split('T')[0]}}</td>
               <td>{{item.sosConsecutivoIndice}}</td>
-              <td *ngIf="item.estado === 'CONCEPTO DEFINITIVO'">
-                <p class="text-success">Concepto definitivo</p>
-              </td>
-              <td *ngIf="item.estado === 'GUARDADA'">
-                <p class="text-danger">Guardada</p>
-              </td>
-              <td *ngIf="item.estado != 'GUARDADA' && item.estado != 'CONCEPTO DEFINITIVO'">
-                <p class="text-warning">{{item.estado | titlecase}}</p>
-              </td>
-              <td *ngIf="item.estado === 'CONCEPTO DEFINITIVO'">
-                <u (click)="verResultado()">Ver concepto</u>
-              </td>
-              <td *ngIf="item.estado === 'GUARDADA'">
-                <u (click)="verEditar()">Ver concepto</u>
-              </td>
-              <td></td>
+              <ng-container [ngSwitch]="item.estado">
+                <ng-container *ngSwitchCase="'CONCEPTO DEFINITIVO'">
+                  <td><p class="text-success">Concepto definitivo</p></td>
+                  <td><u (click)="verResultado()">Ver concepto</u></td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'GUARDADA'">
+                  <td><p class="text-danger">Guardada</p></td>
+                  <td><u (click)="verEditar()">Ver concepto</u></td>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <td><p class="text-warning">{{item.estado | titlecase}}</p></td>
+                  <td></td>
+                </ng-container>
+              </ng-container>
             </tr>
           </tbody>
         </table>

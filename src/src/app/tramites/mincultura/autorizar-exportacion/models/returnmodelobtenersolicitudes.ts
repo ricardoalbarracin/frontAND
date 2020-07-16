@@ -1,12 +1,17 @@
 
 import  {Solicitudsalidaobra} from './solicitudsalidaobra';
+export interface ReturnModelObtenerSolicitudes
+{
+    message:string;
+    result:ReturnResultSol;
+}
 
-export interface ReturnModelObtenerSolicitudes 
+export interface ReturnResultSol
     {
-
-        SolicitudSalidaObras : Solicitudsalidaobra[];
+        solicitudSalidaObras : Solicitudsalidaobra[];
         SolicitudSolicitantesSalidaObras : object;
         SolicitudSolicitanteSalidaObras : object;
         Success : boolean;
         Errors : Error;
     }
+

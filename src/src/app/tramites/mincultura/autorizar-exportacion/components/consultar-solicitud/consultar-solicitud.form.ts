@@ -12,7 +12,7 @@ export class ConsultarSolicitudForm {
     buildForm() {
         this.form = this.formBuilder.group({
           numero_radicado: ['',[Validators.minLength(3), Validators.maxLength(10), Validators.required]],
-          numero_documento: ['',[Validators.minLength(3), Validators.maxLength(10), Validators.required,Validators.pattern('^[0-9]+$')]],
+          numero_documento: ['',[Validators.minLength(3), Validators.maxLength(20), Validators.required]],
         });
     }
 
