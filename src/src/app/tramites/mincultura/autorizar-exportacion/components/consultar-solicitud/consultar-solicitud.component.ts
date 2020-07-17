@@ -3,6 +3,8 @@ import { AutorizarExportacionUtilService } from '../../services/autorizar-export
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultarSolicitudForm } from './consultar-solicitud.form';
 import { ReturnModelObtenerSolicitudes } from '../../models/returnmodelobtenersolicitudes';
+import { Solicitudsalidaobra } from '../../models/solicitudsalidaobra';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultar-solicitud',
@@ -18,7 +20,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   verInformacionDescargar: boolean = false;
   mensajeConsultaSinResultados: boolean = false;
 
-  constructor(public formBuilder: FormBuilder, public service: AutorizarExportacionUtilService) {
+  constructor(public formBuilder: FormBuilder, public service: AutorizarExportacionUtilService, private router:Router) {
 
   }
 
@@ -27,14 +29,36 @@ export class ConsultarSolicitudComponent implements OnInit {
     s[0].setAttribute('step', value);
   }
 
+  almacenarDatosStorage(solicitud){
+    debugger;
+    sessionStorage.tipo_solicitante = solicitud.docIdSolicitante;
+    sessionStorage.numero_documento = solicitud.sosNroDocumentoSolicitante;
+    sessionStorage.tipo_documento = solicitud.docIdSolicitante;
+    sessionStorage.nombre_solicitante = solicitud.sosNombreSolicitante;
+    sessionStorage.lugar_expedicion = solicitud.sosLugarExpedicion;
+    sessionStorage.direccion_solicitante = solicitud.sosDireccionSolicitante;
+    sessionStorage.telefono_solicitante = solicitud.sosTelefonoSolicitante;
+    sessionStorage.correo_solicitante = solicitud.sosCorreoSolicitante;
+
+    sessionStorage.docIdIntermediario = solicitud.docIdIntermediario;
+    sessionStorage.sosSinoIntermediario = solicitud.sosSinoIntermediario;
+    sessionStorage.sosSinoAnexos = solicitud.sosSinoAnexos;
+    sessionStorage.sosNroDocumentoIntermediario = solicitud.sosNroDocumentoIntermediario;
+    sessionStorage.sosNombreIntermediario = solicitud.sosNombreIntermediario;
+
+
+  }
+
   consultar() {
     if (this.seleccionSolucionForm.isValid()) {
       this.service.ConsultarListaAnexosSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
         //debugger;
         if (response.result.solicitudSalidaObras) {
           this.items = [];
+          sessionStorage.clear();
           for (let solicitud of response.result.solicitudSalidaObras) {
             this.items.push(solicitud);
+            this.almacenarDatosStorage(solicitud);
           }
           this.mensajeConsultaSinResultados = false;
           this.establecerAreaNotificaciones('4');
@@ -64,7 +88,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   }
 
   verEditar() {
-
+    this.router.navigate(['/autorizar-exportacion/ingresar']);
   }
 
   verDescargar() {

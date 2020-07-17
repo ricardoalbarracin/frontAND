@@ -14,6 +14,7 @@ import { ConsultarSolicitudComponent } from './components/consultar-solicitud/co
 import { ModalComponent } from './components/modal/modal.component';
 import { NumberDirective } from './services/NumberDirective';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { InicioComponent } from './components/inicio/inicio.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [IngresarTramiteComponent, IniciarSesionComponent, GeneralComponent, IngresarSolicitudComponent, IngresarObrasComponent, ConsultarSolicitudComponent, ModalComponent, NumberDirective],
+  declarations: [IngresarTramiteComponent, IniciarSesionComponent, GeneralComponent, IngresarSolicitudComponent, IngresarObrasComponent, ConsultarSolicitudComponent, ModalComponent, NumberDirective, InicioComponent],
   imports: [
     CommonModule,
     AutorizarExportacionRoutingModule,

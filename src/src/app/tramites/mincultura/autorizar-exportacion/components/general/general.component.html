@@ -1,84 +1,57 @@
-<div id="minsaludContainer" class="row">
-    <div class="col-md-12">
-        <div id="minsaludTitle">
-            <h2>Autorización de exportación de bienes culturales muebles</h2>
-        </div>
-        <p id="minsaludDescription">
-            Obtener la autorización de salida del país de los bienes culturales muebles y los de interés cultural, estos
-            últimos con el propósito de exhibición al público, estudios científicos o intercambio entre entidades. En
-            caso de tratarse de un Bien de Interés Cultural la autorización de exportación será únicamente temporal.
-        </p>
-        <td class="tg-0lax">
-            <h3>Ministerio de cultura</h3>
-        </td>
+<div class="main-minsalud-advice" *ngIf="service.formularioInvalido && 1==0">
+  <div class="card govco-card-red ">
+    <div class="card-body">
+      <span class="govco-icon govco-icon-sad-face-n error x10" style='font-size:48px;color:red'>Lo
+        sentimos</span>
+      <br>
+      <br>
+      <p>Los datos ingresados son incorrectos, te recomendamos:</p>
+      <p>1. Revisar los datos ingresados sean los solicitados.</p>
+      <p *ngIf="service.paso === 5">2. Si aún no encuentras lo que buscas <b>Contáctanos</b>.</p>
     </div>
-    <br>
-    <div class="col-md-9 tramite-area">
-        <div class="main-minsalud-advice" *ngIf="service.formularioInvalido && 1==0">
-            <div class="card govco-card-red ">
-                <div class="card-body">
-                    <span class="govco-icon govco-icon-sad-face-n error x10" style='font-size:48px;color:red'>Lo
-                        sentimos</span>
-                    <br>
-                    <br>
-                    <p>Los datos ingresados son incorrectos, te recomendamos:</p>
-                    <p>1. Revisar   los datos ingresados sean los solicitados.</p>
-                    <p *ngIf="service.paso === 5">2. Si aún no encuentras lo que buscas <b>Contáctanos</b>.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="mb-3" *ngIf="service.formularioInvalido && true">
-            <app-notifications 
-                [typeMessage]="'error'"
-                [message]="'Los datos ingresados son incorrectos, te recomendamos: 1. Revisar que los datos ingresados sean los solicitados. 2. Si aún no encuentras lo que buscas Contáctanos'"
-                [title]="'Lo sentimos'" 
-                [show]='true'
-                class="mb-3">
-            </app-notifications>
-        </div>
-
-        <div class="main-minsalud-advice" *ngIf="service.paso === 4">
-            <div class="card govco-card ">
-                <div class="card-body">
-                    <h2 class="tg-0lax">Enviar al ministerio</h2>
-                    <br>
-                    <p>Se enviaràn los datos al ministerio de cultura.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="pasoSeis" *ngIf="service.paso === 5">
-            <app-consultar-solicitud></app-consultar-solicitud>
-        </div>
-        <div class="main-minsalud-advice mt-4"
-            *ngIf="service.paso === 1 || service.paso === 2 || service.paso === 3 || service.paso === 4 || service.paso === 5">
-            <div class="card govco-card ">
-                <div class="card-body p-0">
-                    <div *ngIf="service.paso === 1 || service.paso === 3 || service.paso === 4 " id="pasoDos">
-                        <app-ingresar-solicitud></app-ingresar-solicitud>
-                    </div>
-                    <div *ngIf="service.paso === 2 || service.paso === 4 || service.paso === 5 " id="pasoUno">
-                        <app-ingresar-tramite></app-ingresar-tramite>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="main-minsalud-advice" *ngIf="(service.paso === 3 || service.paso === 4 )">
-            <div class="card govco-card ">
-                <div class="card-body">
-                    <div id="pasoTres">
-                        <app-ingresar-obras></app-ingresar-obras>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-
-    </div>
-    <div class="col-md-3 area-servicio">
-        <govco-area-servicios module="Tramites" itemid="1033" step="{{service.paso}}"></govco-area-servicios>
-        <app-btn-volver [tramite]="'ficha-tramites-y-servicios/T955'" [type]="'redirect'"></app-btn-volver>
-    </div>
+  </div>
 </div>
+
+<div class="mb-3" *ngIf="service.formularioInvalido && true">
+  <app-notifications [typeMessage]="'error'"
+    [message]="'Los datos ingresados son incorrectos, te recomendamos: 1. Revisar que los datos ingresados sean los solicitados. 2. Si aún no encuentras lo que buscas Contáctanos'"
+    [title]="'Lo sentimos'" [show]='true' class="mb-3">
+  </app-notifications>
+</div>
+
+<div class="main-minsalud-advice" *ngIf="service.paso === 4">
+  <div class="card govco-card ">
+    <div class="card-body">
+      <h2 class="tg-0lax">Enviar al ministerio</h2>
+      <br>
+      <p>Se enviaràn los datos al ministerio de cultura.</p>
+    </div>
+  </div>
+</div>
+
+<div id="pasoSeis" *ngIf="service.paso === 5">
+  <app-consultar-solicitud></app-consultar-solicitud>
+</div>
+<div *ngIf="service.paso === 1 || service.paso === 2 || service.paso === 3 || service.paso === 4 || service.paso === 5">
+  <div class="card govco-card ">
+    <div class="card-body p-0">
+      <div *ngIf="service.paso === 1 || service.paso === 3 || service.paso === 4 " id="pasoDos">
+        <app-ingresar-solicitud></app-ingresar-solicitud>
+      </div>
+      <div *ngIf="service.paso === 2 || service.paso === 4 || service.paso === 5 " id="pasoUno">
+        <app-ingresar-tramite></app-ingresar-tramite>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="main-minsalud-advice" *ngIf="(service.paso === 3 || service.paso === 4 )">
+  <div class="card govco-card ">
+    <div class="card-body">
+      <div id="pasoTres">
+        <app-ingresar-obras></app-ingresar-obras>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

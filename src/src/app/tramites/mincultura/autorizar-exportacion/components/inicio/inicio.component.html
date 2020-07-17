@@ -1,0 +1,13 @@
+<div id="sicContainer" class="row">
+  <app-tramite-detail class="col-md-12" [name]="'consulta'" [owner]="'mincultura'">
+  </app-tramite-detail>
+
+  <div class="col-md-9 tramite-area">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-3 area-servicio">
+    <govco-area-servicios module="Tramites" itemid="1033" step="2"></govco-area-servicios>
+    <app-btn-volver [tramite]="'ficha-tramites-y-servicios/T11625'" [type]="'redirect'"></app-btn-volver>
+  </div>
+
+</div>

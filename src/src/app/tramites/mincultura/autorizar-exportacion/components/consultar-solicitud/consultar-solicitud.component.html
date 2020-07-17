@@ -59,7 +59,7 @@
             <tr *ngFor="let item of items">
               <td>{{item.sosFechaRadicacion.split('T')[0]}}</td>
               <td>{{item.sosConsecutivoIndice}}</td>
-              <ng-container [ngSwitch]="item.estado">
+              <ng-container [ngSwitch]="item.estado | uppercase">
                 <ng-container *ngSwitchCase="'CONCEPTO DEFINITIVO'">
                   <td><p class="text-success">Concepto definitivo</p></td>
                   <td><u (click)="verResultado()">Ver concepto</u></td>

@@ -1,4 +1,4 @@
-<div [formGroup]="registerForm" *ngIf="service.pasoIngresar === 1">
+<div [formGroup]="registerForm">
     <div class="card govco-card mb-3">
         <div class="ingresar-solicitud">
             <h3 class="title-section">Ingresar solicitud</h3>
@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">Tipo de solicitante *</label>
-                            <app-dropdownlist ngDefaultControl formControlName="tipoSolicitante" [items]="data.tiposSolicitante">
+                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.tipo_solicitante" formControlName="tipoSolicitante" [items]="listaTipoDocumento">
                             </app-dropdownlist>
                             <div *ngIf="submitted && f.tipoSolicitante.errors" class="text-danger">
                                 Campo sin diligenciar.
@@ -17,7 +17,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">Tipo de documento*</label>
-                            <app-dropdownlist ngDefaultControl formControlName="tipoDocumentoSolicitante" [items]="data.TiposDocumento">
+                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.tipo_documento" formControlName="tipoDocumentoSolicitante" [items]="data.TiposDocumento">
                             </app-dropdownlist>
                             <div *ngIf="submitted && f.tipoDocumentoSolicitante.errors" class="text-danger">
                                 Campo sin diligenciar.
@@ -61,7 +61,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">País de expedición*</label>
-                            <app-dropdownlist ngDefaultControl formControlName="paisExpedicionSolicitante" [items]="data.paises">
+                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.lugar_expedicion" formControlName="paisExpedicionSolicitante" [items]="data.paises">
                             </app-dropdownlist>
                             <div *ngIf="submitted && f.paisExpedicionSolicitante.errors" class="text-danger">
                                 Campo sin diligenciar.
@@ -283,10 +283,10 @@
                         siguiendo las mismas pautas para el solicitante, en caso contrario no diligencie este item.</p>
                     <div class="row">
                         <div class="col-md-6">
-                            
+
                             <div class="form-group">
                                 <label class="form-group-govco">Tipo de documento*</label>
-                                <app-dropdownlist ngDefaultControl formControlName="tipoDocumentoIntermediario" [items]="data.TiposDocumento">
+                                <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.docIdIntermediario" formControlName="tipoDocumentoIntermediario" [items]="data.TiposDocumento">
                                 </app-dropdownlist>
                                 <div *ngIf="submitted && f.tipoDocumentoIntermediario.errors" class="text-danger">
                                     Campo sin diligenciar.
@@ -341,7 +341,7 @@
                             </div>
                         </div>
                         <div class="col-md-6" *ngIf="!(colombiaSeleccionadoExpedicionIntermediario())">
-                    
+
                             <div class="form-group">
                                 <label class="form-group-govco">Ciudad *</label>
                                 <input class="form-control input-govco" formControlName="ciudadIntermediario">
@@ -374,7 +374,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <br>
                     <h3 class="tg-0lax">Anexos</h3>
@@ -430,7 +430,7 @@
                                     <span aria-hidden="true">&times;</span>
                                     <u>Eliminar</u>
                                 </button>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -518,7 +518,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <div class="card govco-card mb-3">
 
         <h3 class="title-section">Destino</h3>
@@ -535,7 +535,7 @@
                     </div>
                 </div>
                 <div class="col-md-6" *ngIf="!(colombiaSeleccionado())">
-                    
+
                     <div class="form-group">
                         <label class="form-group-govco">Ciudad *</label>
                         <input class="form-control input-govco" formControlName="ciudadDestino">
@@ -608,7 +608,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <input class="form-control input-govco" numbersOnly formControlName="tiempoPermanencia">
-                        
+
                     </div>
                 </div>
                 <div class="col-md-6">
