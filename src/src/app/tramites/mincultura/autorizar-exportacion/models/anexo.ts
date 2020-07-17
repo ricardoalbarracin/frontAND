@@ -6,7 +6,7 @@ export interface Anexo
         SeccionId : number;
         NroDocumentoSolicitante : string;
         TipoDocumentoSolicitante : string;
-        ArchivoBintario : string;
+        ArchivoBinario : string;
         FicId : number;
         PrestamoId : number;
         Descripcion : string;

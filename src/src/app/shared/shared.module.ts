@@ -29,6 +29,7 @@ import { AccessibilityComponent } from './accessibility/accessibility.component'
 import { NotificationActionComponent } from './notifications/components/notification-action/notification-action.component';
 import { BackToTopComponent} from './back-to-top/back-to-top.component';
 import { PasswordComponent } from './forms/components/password/password.component';
+import { SubirarchivoComponent } from './subirarchivo/subirarchivo.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PasswordComponent } from './forms/components/password/password.componen
       NotificationActionComponent,
       BackToTopComponent,
       PasswordComponent,
+      SubirarchivoComponent
   ],
   imports: [
     CommonModule,
@@ -86,6 +88,6 @@ import { PasswordComponent } from './forms/components/password/password.componen
     PasswordComponent
   ],
   providers: [ConfirmModalService, DecimalPipe, TramiteDetailService],
-  entryComponents: [ConfirmModalComponent, DateRangeComponent]
+  entryComponents: [ConfirmModalComponent, DateRangeComponent,SubirarchivoComponent]
 })
 export class SharedModule { }

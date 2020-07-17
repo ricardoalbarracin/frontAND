@@ -187,7 +187,7 @@ export class AutorizarExportacionUtilService {
   }
 
 
-  public registrar(registerModel: RequestModelCrearSolicitud) {
+  public registrarSolicitud(registerModel: RequestModelCrearSolicitud) {
     return this.http.post<RequestModelCrearSolicitud>(this.urlTramite.crearSolicitud, registerModel, {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     })

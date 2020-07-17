@@ -103,7 +103,7 @@
                             <div class="textarea-govco">
                                 <div class="div-character" id="divtextarea-example">
                                     <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
-                                        id="textarea-example" maxlength="255" formControlName="descripcion"
+                                        maxlength="255" formControlName="descripcionAdjuntoSolicitante"
                                         class="form-control"
                                         [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
                                     </textarea>
@@ -119,25 +119,34 @@
                             Campo sin diligenciar.
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="text-right ">
-                            <a class="btn btn-round btn-high">AGREGAR</a>
+
+                    <div class="row" text-right>
+                        <div class="col-md-4  text-left">
+                            <a (click)='SeleccionarArchivoSolicitante()' class="btn btn-round btn-middle">Seleccionar archivo</a>
+                        </div>
+                        <div class="col-md-4  text-left m-auto">
+                            <a *ngIf="adjuntoPendienteSolicitante != null">{{adjuntoPendienteSolicitante.FileName}}</a>
+                        </div>
+                        <div class="col-md-4  text-right ">
+                            <a (click)='agregarArchivoSolicitante()' class="btn btn-round btn-high">AGREGAR</a>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="tg-0lax">Adjuntos</div>
-                        <div class="row">
+                        <br>
+                        <b class="tg-0lax">Adjuntos:</b>
+                        <br>
+                        <div *ngFor="let file of adjuntosSolicitante; let i = index;" class="row border-bottom">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.PDF</p>
-                                    <p>Descripcion de archivo</p>
+                                    <p class="m-0">{{file.FileName}}</p>
+                                    <p>{{file.Description}}</p>
                                 </div>
                             </div>
                             <div class="col-md-6  text-right">
                                 <div class="form-group  text-right">
                                     <button type="button" class="close" aria-label="Close">
                                         <i _ngcontent-ryh-c4="" class="material-icons page-icon-close align-middle">clear</i>
-                                        <u>Eliminar</u>
+                                        <u (click)='eliminarArchivoSolicitante(i)'>Eliminar</u>
                                     </button>
                                 </div>
                             </div>
@@ -394,9 +403,11 @@
                                 <div id="div-textarea-item" class="pt-3">
                                     <div class="textarea-govco">
                                         <div class="div-character" id="divtextarea-example">
-                                            <textarea class="form-control" rows="5"
-                                                placeholder="Escribe aquí tu descripción" id="textarea-example"
-                                                maxlength="300"></textarea>
+                                            <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
+                                                maxlength="255" formControlName="descripcionAdjuntoIntermediario"
+                                                class="form-control"
+                                                [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
+                                            </textarea>
                                             <div class="div-count-character"><span class="hidden span-message-character"
                                                     id="messagetextarea-example">Alcanzó el máximo de carácteres
                                                     permitidos</span><span class="float-right pr-3 span-count-character"
@@ -408,29 +419,34 @@
                         </div>
                     </div>
                     <div class="row" text-right>
-                        <div class="col-md-6  text-left">
-                            <a class="btn btn-round btn-middle">Seleccionar archivo</a>
+                        <div class="col-md-4  text-left">
+                            <a (click)='SeleccionarArchivoIntermediario()' class="btn btn-round btn-middle">Seleccionar archivo</a>
                         </div>
-                        <div class="col-md-6  text-right ">
-                            <a class="btn btn-round btn-high">AGREGAR</a>
+                        <div class="col-md-4  text-left m-auto">
+                            <a *ngIf="adjuntoPendienteIntermediario != null">{{adjuntoPendienteIntermediario.FileName}}</a>
+                        </div>
+                        <div class="col-md-4  text-right ">
+                            <a (click)='agregarArchivoIntermediario()' class="btn btn-round btn-high">AGREGAR</a>
                         </div>
                     </div>
-                    <br>
-                    <div class="tg-0lax">Adjuntos:</div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <p>FOTOCOPIA_CEDULA_RAMIRO_TORRES.PDF</p>
-                                <p>Descripcion de archivo</p>
+                    <div class="form-group">
+                        <br>
+                        <b class="tg-0lax">Adjuntos:</b>
+                        <br>
+                        <div *ngFor="let file of adjuntosIntermediario; let i = index;" class="row border-bottom">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p class="m-0">{{file.FileName}}</p>
+                                    <p>{{file.Description}}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6  text-right">
-                            <div class="form-group  text-right">
-                                <button type="button" class="close" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    <u>Eliminar</u>
-                                </button>
-
+                            <div class="col-md-6  text-right">
+                                <div class="form-group  text-right">
+                                    <button type="button" class="close" aria-label="Close">
+                                        <i _ngcontent-ryh-c4="" class="material-icons page-icon-close align-middle">clear</i>
+                                        <u (click)='eliminarArchivoIntermediario(i)'>Eliminar</u>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

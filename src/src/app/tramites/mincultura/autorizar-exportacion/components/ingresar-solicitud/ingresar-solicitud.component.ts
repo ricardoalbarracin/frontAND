@@ -1,15 +1,15 @@
-import { ValidacionCertificadoComponent } from './../../../../supernotariado/certificado-tradicion-libertad/components/validacion-certificado/validacion-certificado.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { ModalComponent } from '../modal/modal.component';
-import { ReturnModelLista } from '../../models/ReturnModelLista';
-import { RequestModelCrearSolicitud } from '../../models/requestmodelcrearsolicitud';
+import { ReturnModelLista} from '../../models/ReturnModelLista';
+import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitud';
+import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subirarchivo.component';
+import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
+import {Anexo} from '../../models/anexo';
 
 import { MustMatch } from '../../helpers/must-match.validator';
-import { Solicitudsalidaobra } from '../../models/solicitudsalidaobra';
-import { debugOutputAstAsTypeScript } from '@angular/compiler';
 
 @Component({
   selector: 'app-ingresar-solicitud',
@@ -19,169 +19,191 @@ import { debugOutputAstAsTypeScript } from '@angular/compiler';
 export class IngresarSolicitudComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public modalService: NgbModal, public service: AutorizarExportacionUtilService) {
-    this.requiereIntermediarioValor = 'NO';
-  }
+    this.requiereIntermediarioValor='NO';
+   }
 
-  registerForm: FormGroup;
-  submitted = false;
-  requiereIntermediarioValor: any = 'SI';
-  destinoPaisValor: any;
-  captchaValido = true;
-  data: any = {
-    solicitantes: [{ text: 'Option 1', value: '1' }, { text: 'Option 2', value: '2' }],
-    TiposDocumento: [],
-    departamentos: [],
-    minicipiosUbicacion: [],
-    municipiosUbicacionIntermediario: [],
-    municipiosDestino: [],
-    municipiosIntermediario: [],
-    paises: [],
-    tiposSolicitante: [],
-    finesExportacion: [],
-    tiposPermanencia: []
-  };
-  listaTipoDocumento: any = [];
-
-
-  ngOnInit() {
-    this.requiereIntermediarioValor = 'SI';
-
-    this.obtenerDepartamentos();
-    this.obtenerPaises();
-    this.obtenerTiposDocumentosIndentidad();
-    this.ObtenerTiposPersonas();
-    this.ObtenerFinesExportacion();
-    this.ObtenerTiposPermanencia();
+   registerForm: FormGroup;
+   adjuntoPendienteSolicitante: ResponseFileModel;
+   adjuntosSolicitante: ResponseFileModel[];
+   adjuntoPendienteIntermediario: ResponseFileModel;
+   adjuntosIntermediario: ResponseFileModel[];
+   submitted = false;
+   requiereIntermediarioValor:any='SI';
+   destinoPaisValor:any;
+   captchaValido=true;
+   data: any = {
+     solicitantes: [{text: 'Option 1', value: '1'}, {text: 'Option 2', value: '2'}],
+     TiposDocumento: [],
+     departamentos: [],
+     minicipiosUbicacion: [],
+     municipiosUbicacionIntermediario:[],
+     municipiosDestino:[],
+     municipiosIntermediario:[],
+     paises: [],
+     tiposSolicitante: [],
+     finesExportacion:[],
+     tiposPermanencia:[]
+   };
 
 
-    this.registerForm = this.formBuilder.group({
+   ngOnInit() {
+    this.adjuntosSolicitante =[];
 
-      //datos solicitante
-      tipoSolicitante: ['', Validators.required],
-      tipoDocumentoSolicitante: ['', Validators.required],
-      numeroDocumentoSolicitante: ['', Validators.required],
-      numeroDocumentoSolicitante2: ['', Validators.required],
-      nombreRazonSocialSolicitante: ['', Validators.required],
-      paisExpedicionSolicitante: ['', Validators.required],
+    this.adjuntosIntermediario =[];
+    this.requiereIntermediarioValor='SI';
 
-      //datos ubicacion
-      departamentoUbicacion: ['', Validators.required],
-      municipioUbicacion: ['', Validators.required],
-      telefonoUbicacion: ['', Validators.required],
-      direccionUbicacion: ['', Validators.required],
-      correoUbicacion: ['', Validators.required],
-      correoUbicacion2: ['', Validators.required],
+        this.obtenerDepartamentos();
+        this.obtenerPaises();
+        this.obtenerTiposDocumentosIndentidad();
+        this.ObtenerTiposPersonas();
+        this.ObtenerFinesExportacion();
+        this.ObtenerTiposPermanencia();
 
-      //datos intermediario
-      requiereIntermediario: ['', Validators.required],
-      tipoDocumentoIntermediario: ['', Validators.required],
-      numeroDocumentoIntermediario: ['', Validators.required],
-      numeroDocumentoIntermediario2: ['', Validators.required],
-      nombreIntermediario: ['', Validators.required],
-      paisExpedicionIntermediario: ['', Validators.required],
-      ciudadIntermediario: ['', Validators.required],
-      departamentoIntermediario: ['', Validators.required],
-      municipioIntermediario: ['', Validators.required],
-      departamentoUbicacionIntermediario: ['', Validators.required],
-      municipioUbicacionIntermediario: ['', Validators.required],
-      telefonoUbicacionIntermediario: ['', Validators.required],
-      direccionUbicacionIntermediario: ['', Validators.required],
-      correoUbicacionIntermediario: ['', Validators.required],
-      correoUbicacionIntermediario2: ['', Validators.required],
+        this.registerForm = this.formBuilder.group({
 
-      //datos destino
-      PaisDestino: ['', Validators.required],
-      ciudadDestino: ['', Validators.required],
-      departamentoDestino: ['', Validators.required],
-      municipioDestino: ['', Validators.required],
-      direccionDestino: ['', Validators.required],
-      finExportacion: ['', Validators.required],
-      entidadDestino: ['', Validators.required],
-      telefonoDestino: ['', Validators.required],
-      tiempoPermanencia: ['', Validators.required],
-      tipoPermanencia: ['', Validators.required],
+        //datos solicitante
+        tipoSolicitante: ['', Validators.required],
+        tipoDocumentoSolicitante: ['', Validators.required],
+        numeroDocumentoSolicitante: ['', Validators.required],
+        numeroDocumentoSolicitante2: ['', Validators.required],
+        nombreRazonSocialSolicitante: ['', Validators.required],
+        paisExpedicionSolicitante: ['', Validators.required],
+        descripcionAdjuntoSolicitante: ['', Validators.required],
 
-      descripcion: ['', Validators.required],
-      autoriza: ['', Validators.requiredTrue],
-      formControlRecaptcha: ['', Validators.required]
+        //datos ubicacion
+        departamentoUbicacion: ['', Validators.required],
+        municipioUbicacion: ['', Validators.required],
+        telefonoUbicacion: ['', Validators.required],
+        direccionUbicacion: ['', Validators.required],
+        correoUbicacion: ['', Validators.required],
+        correoUbicacion2: ['', Validators.required],
 
-    });
-  }
+        //datos intermediario
+        requiereIntermediario: ['', Validators.required],
+        tipoDocumentoIntermediario: ['', Validators.required],
+        numeroDocumentoIntermediario: ['', Validators.required],
+        numeroDocumentoIntermediario2: ['', Validators.required],
+        nombreIntermediario: ['', Validators.required],
+        paisExpedicionIntermediario: ['', Validators.required],
+        ciudadIntermediario: ['', Validators.required],
+        departamentoIntermediario: ['', Validators.required],
+        municipioIntermediario: ['', Validators.required],
+        departamentoUbicacionIntermediario: ['', Validators.required],
+        municipioUbicacionIntermediario: ['', Validators.required],
+        telefonoUbicacionIntermediario: ['', Validators.required],
+        direccionUbicacionIntermediario: ['', Validators.required],
+        correoUbicacionIntermediario: ['', Validators.required],
+        correoUbicacionIntermediario2: ['', Validators.required],
+        descripcionAdjuntoIntermediario: ['', Validators.required],
 
-  ngAfterViewInit(){
+        //datos destino
+        PaisDestino: ['', Validators.required],
+        ciudadDestino: ['', Validators.required],
+        departamentoDestino: ['', Validators.required],
+        municipioDestino: ['', Validators.required],
+        direccionDestino: ['', Validators.required],
+        finExportacion: ['', Validators.required],
+        entidadDestino: ['', Validators.required],
+        telefonoDestino: ['', Validators.required],
+        tiempoPermanencia: ['', Validators.required],
+        tipoPermanencia: ['', Validators.required],
 
-  }
+        descripcion: ['', Validators.required],
+        autoriza: ['', Validators.requiredTrue],
+        formControlRecaptcha: ['', Validators.required]
 
-  get f() { return this.registerForm.controls; }
+       });
+   }
 
-  open(content) {
-    debugger;
-    this.registerForm.controls['tipoSolicitante'].value.value = 1;
+   get f() { return this.registerForm.controls; }
+
+   open(content) {
+
     this.asignarVariables();
+
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       this.service.asignarFormularioInvalido(true);
     }
 
     if (this.submitted && !this.service.formularioInvalido) {
-      this.modalService.open(content, { size: "xl", scrollable: true });
+        this.modalService.open(content, { size: "xl", scrollable: true });
     }
 
 
   }
-  crearSolicitud() {
+  crearSolicitudModel(){
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: this.registerForm.value.tipoSolicitante.value,
       DocIdSolicitante: this.registerForm.value.tipoDocumentoSolicitante.value,
-      SosNroDocumentoSolicitante: this.registerForm.value.actualizarDepartamentoDestino.numeroDocumentoSolicitante,
-      ZopId: this.registerForm.value.paisExpedicionSolicitante.value,
+      SosNroDocumentoSolicitante:this.registerForm.value.actualizarDepartamentoDestino.numeroDocumentoSolicitante,
+      ZopId:this.registerForm.value.paisExpedicionSolicitante.value,
       SosZonPadreId: this.registerForm.value.departamentoUbicacion.value,
-      SosZonId: this.registerForm.value.municipioUbicacion.value,
-      SosTelefonoSolicitante: this.registerForm.value.telefonoUbicacion,
+      SosZonId:this.registerForm.value.municipioUbicacion.value,
+      Ciudad:this.registerForm.value.municipioUbicacion.text,
+      SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion,
       SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
       SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
       Requiereintermediario: this.registerForm.value.requiereIntermediario,
-      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario,
-      SosNroDocumentointermediario: this.registerForm.value.numeroDocumentoIntermediario,
+      DocIdintermediario:this.registerForm.value.tipoDocumentoIntermediario,
+      SosNroDocumentointermediario:this.registerForm.value.numeroDocumentoIntermediario,
       SosNombreintermediario: this.registerForm.value.nombreIntermediario,
       IntZopId: this.registerForm.value.paisExpedicionIntermediario.value,
       IntCiudad: this.registerForm.value.ciudadIntermediario.value,
       //IntCiudad: this.registerForm.value.municipioIntermediario.value,
-      IntUbicacionCiudad: this.registerForm.value.municipioUbicacionIntermediario.value,
-      SosTelefonointermediario: this.registerForm.value.telefonoUbicacionIntermediario,
+      IntUbicacionCiudad:this.registerForm.value.municipioUbicacionIntermediario.value,
+      SosTelefonointermediario:  this.registerForm.value.telefonoUbicacionIntermediario,
       SosDireccionintermediario: this.registerForm.value.direccionUbicacionIntermediario,
-      IntUbicacionEmail: this.registerForm.value.correoUbicacionIntermediario,
-      DestintoZopId: this.registerForm.value.PaisDestino.value,
-      DestintoCiudad: this.registerForm.value.ciudadIntermediario.value,
+      IntUbicacionEmail:this.registerForm.value.correoUbicacionIntermediario,
+      DestintoZopId:this.registerForm.value.PaisDestino.value,
+      DestintoCiudad:this.registerForm.value.ciudadIntermediario.value,
       DestintoDireccion: this.registerForm.value.direccionDestino,
       TmsId: this.registerForm.value.finesExportacion.value,
       DestintoEntidad: this.registerForm.value.entidadDestino,
-      DestintoTelefono: this.registerForm.value.telefonoDestino,
+      DestintoTelefono:this.registerForm.value.telefonoDestino,
       DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
       DestintoTipoTiempoPermanencia: this.registerForm.value.tipoPermanencia,
-
+      AceptaHabeasdata:this.registerForm.value.autoriza,
+      SosNombreSolicitante:this.registerForm.value.nombreRazonSocialSolicitante,
       //atrib missing
-      AceptaHabeasdata: true,
-      AnexoSolicitante: [],
-      Anexointermediario: [],
-      ReitegroObservaciones: "",
-      SosNombreRepresentante: "",
-      ProrrogaMotivo: "",
-      ProrrogaFechaRegreso: Date.now,
-      IntUbicacionZopId: 0,
-      Ciudad: "",
-      ZonId: "",
-      SosNombreSolicitante: "",
-      SosCantidad: 0,
-      SosLugarExpedicion: "",
-      ZopNombre: "",
+
+      AnexoSolicitante:this.mappAnexo(this.adjuntosSolicitante),
+      Anexointermediario:this.mappAnexo(this.adjuntosIntermediario),
+      ReitegroObservaciones:"",//por defecto vacio
+      SosNombreRepresentante:"", //por defecto vacio
+      ProrrogaMotivo:"", //por defecto vacio
+      ProrrogaFechaRegreso:null,//por defecto
+      IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario.value,
+      ZonId:"01001",
+      SosCantidad: 1,//1 valor fijo
+      SosLugarExpedicion:"01001",//valor fijo
+      ZopNombre:this.registerForm.value.paisExpedicionSolicitante.text,
 
 
     };
 
     return solicitud;
   }
-  asignarVariables() {
+
+  mappAnexo(adjuntosSolicitante: ResponseFileModel[]){
+    let anexos:Anexo[];
+    let anexo:Anexo;
+    adjuntosSolicitante.forEach(i=>{
+      NombreArchivo:i.FileName;
+      ArchivoBinario: i.FileContent;
+      Descripcion: i.Description;
+      AnexoId:0;
+      FicId:0;
+      NroDocumentoSolicitante:"";
+      PrestamoId:0;
+      SeccionId:0;
+      SolicitudId:0;
+      TipoDocumentoSolicitante:""
+    });
+    return anexos;
+  }
+
+  asignarVariables(){
     this.submitted = true;
     this.service.asignarFormularioInvalido(false);
   }
@@ -192,56 +214,57 @@ export class IngresarSolicitudComponent implements OnInit {
     this.guardar();
   }
 
-  guardar() {
+  guardar(){
     this.service.asignarPaso(3);
     this.service.asignarpasoIngresar(2);
-    this.crearSolicitud();
-  }
+    let solicitud=this.crearSolicitudModel();
+    this.service.registrarSolicitud(solicitud);
+   }
 
-  onReset() {
-    this.submitted = false;
-    this.registerForm.reset();
-  }
+   onReset() {
+       this.submitted = false;
+       this.registerForm.reset();
+   }
 
-  volver() {
+   volver(){
     this.service.asignarPaso(1);
     this.service.asignarpasoIngresar(1);
     this.service.asignarFormularioInvalido(false);
   }
 
-  colombiaSeleccionado() {
+  colombiaSeleccionado(){
 
-    var paisSeleccionado = this.registerForm.value.PaisDestino.text;
-    if (paisSeleccionado == 'COLOMBIA')
+    var paisSeleccionado= this.registerForm.value.PaisDestino.text;
+    if(paisSeleccionado=='COLOMBIA')
       return true;
     else
       return false;
   }
 
-  colombiaSeleccionadoExpedicionIntermediario() {
+  colombiaSeleccionadoExpedicionIntermediario(){
 
-    var paisSeleccionado = this.registerForm.value.paisExpedicionIntermediario.text;
-    if (paisSeleccionado == 'COLOMBIA')
+    var paisSeleccionado= this.registerForm.value.paisExpedicionIntermediario.text;
+    if(paisSeleccionado=='COLOMBIA')
       return true;
     else
       return false;
   }
 
-  validarCaptcha() {
+  validarCaptcha(){
 
-    if (this.registerForm.value.formControlRecaptcha != null) {
-      this.captchaValido = true;
-    } else {
-      this.captchaValido = false;
+    if(this.registerForm.value.formControlRecaptcha!=null){
+      this.captchaValido=true;
+    }else{
+      this.captchaValido=false;
     }
 
   }
   //Obtiene los tipso de documentos permitidos
   obtenerDepartamentos() {
     this.service.obtenerDepartamentos().subscribe((data: ReturnModelLista) => {
-      if (data != undefined && data.success === true) {
-        this.data.departamentos = data.result;
-      } else {
+      if (data != undefined && data.success === true){
+        this.data.departamentos= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
@@ -253,9 +276,9 @@ export class IngresarSolicitudComponent implements OnInit {
   //Obtiene los tipso de documentos permitidos
   obtenerTiposDocumentosIndentidad() {
     this.service.obtenerTiposDocumentosIndentidad().subscribe((data: ReturnModelLista) => {
-      if (data != undefined && data.success === true) {
-        this.data.TiposDocumento = data.result;
-      } else {
+      if (data != undefined && data.success === true){
+        this.data.TiposDocumento= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
@@ -267,9 +290,9 @@ export class IngresarSolicitudComponent implements OnInit {
   //Obtiene los tipso de documentos permitidos
   obtenerPaises() {
     this.service.ObtenerPaises().subscribe((data: ReturnModelLista) => {
-      if (data != undefined && data.success === true) {
-        this.data.paises = data.result;
-      } else {
+      if (data != undefined && data.success === true){
+        this.data.paises= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
@@ -280,29 +303,26 @@ export class IngresarSolicitudComponent implements OnInit {
 
   //Obtiene los tipso de documentos permitidos
   ObtenerTiposPersonas() {
-
     this.service.ObtenerTiposBasPersonas().subscribe((data: ReturnModelLista) => {
-      if (data != undefined && data.success === true) {
-        this.listaTipoDocumento = data.result;
-        this.cargarDatosStorage();
-      } else {
+      if (data != undefined && data.success === true){
+
+        this.data.tiposSolicitante= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
     }, (error) => {
       this.manejoErrorPeticion(error);
     });
-
-
   }
 
   ObtenerFinesExportacion() {
     this.service.ObtenerFinesExportacion().subscribe((data: ReturnModelLista) => {
 
-      if (data != undefined && data.success === true) {
+      if (data != undefined && data.success === true){
 
-        this.data.finesExportacion = data.result;
-      } else {
+        this.data.finesExportacion= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
@@ -311,12 +331,14 @@ export class IngresarSolicitudComponent implements OnInit {
     });
   }
 
+
+
   ObtenerTiposPermanencia() {
     this.service.ObtenerTiposPermanencia().subscribe((data: ReturnModelLista) => {
-      if (data != undefined && data.success === true) {
+      if (data != undefined && data.success === true){
 
-        this.data.tiposPermanencia = data.result;
-      } else {
+        this.data.tiposPermanencia= data.result;
+      }else {
         //TODO: controlar errores internos
         this.manejoErrorInterno(data);
       }
@@ -327,105 +349,165 @@ export class IngresarSolicitudComponent implements OnInit {
 
   actualizarDepartamentoUbicacion() {
     console.log(this.registerForm.value.departamentoUbicacion.value);
-    this.data.municipiosUbicacion = [];
-    this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacion.value)
-      .subscribe(
-        (data) => {
-          if (data != undefined && data.success === true) {
+    this.data.municipiosUbicacion  = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacion.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
 
-            this.data.municipiosUbicacion = data.result;
-          } else {
+           this.data.municipiosUbicacion = data.result;
+          }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
           }
 
-        },
-        (error) => {
+         },
+         (error) => {
           this.manejoErrorPeticion(error);
-        }
-      );
+         }
+       );
   }
 
   actualizarDepartamentoUbicacionIntermediario() {
     console.log(this.registerForm.value.departamentoUbicacionIntermediario.value);
-    this.data.municipiosUbicacionIntermediario = [];
-    this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacionIntermediario.value)
-      .subscribe(
-        (data) => {
-          if (data != undefined && data.success === true) {
+    this.data.municipiosUbicacionIntermediario  = [];
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoUbicacionIntermediario.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
 
-            this.data.municipiosUbicacionIntermediario = data.result;
-          } else {
+           this.data.municipiosUbicacionIntermediario = data.result;
+          }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
           }
 
-        },
-        (error) => {
+         },
+         (error) => {
           this.manejoErrorPeticion(error);
-        }
-      );
+         }
+       );
   }
 
   actualizarDepartamentoDestino() {
+    debugger
     console.log(this.registerForm.value.departamentoDestino.value);
     this.data.municipiosDestino = [];
-    this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
-      .subscribe(
-        (data) => {
-          if (data != undefined && data.success === true) {
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
 
-            this.data.municipiosDestino = data.result;
-          } else {
+           this.data.municipiosDestino = data.result;
+          }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
           }
 
-        },
-        (error) => {
+         },
+         (error) => {
           this.manejoErrorPeticion(error);
-        }
-      );
+         }
+       );
   }
 
   actualizarDepartamentoIntermediario() {
+    debugger
     console.log(this.registerForm.value.departamentoIntermediario.value);
     this.data.municipiosIntermediario = [];
-    this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
-      .subscribe(
-        (data) => {
-          if (data != undefined && data.success === true) {
+     this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
+       .subscribe(
+         (data) => {
+          if (data != undefined && data.success === true){
 
-            this.data.municipiosIntermediario = data.result;
-          } else {
+           this.data.municipiosIntermediario = data.result;
+          }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
           }
 
-        },
-        (error) => {
+         },
+         (error) => {
           this.manejoErrorPeticion(error);
-        }
-      );
+         }
+       );
   }
 
-  agregar() {
+  agregar(){
   }
-  eliminar() {
-  }
-
-  manejoErrorPeticion(error: any) {
+  eliminar(){
   }
 
-  manejoErrorInterno(data: any) {
+  manejoErrorPeticion(error: any){
   }
 
-  public valoresConsulta={
-    tipo_solicitante:sessionStorage.tipo_solicitante,
-    tipo_documento: sessionStorage.tipo_documento,
-    lugar_expedicion: sessionStorage.lugar_expedicion,
-    docIdIntermediario: sessionStorage.docIdIntermediario,
-  };
+  manejoErrorInterno(data: any){
+  }
+
+  SeleccionarArchivoSolicitante() {
+    const modalRef = this.modalService.open(SubirarchivoComponent, {
+      size: 'lg',
+      backdrop: "static",
+      keyboard: true
+    });
+
+    modalRef.componentInstance.uploaded.subscribe((e) => {
+      this.adjuntoPendienteSolicitante = e;
+      modalRef.close();
+
+    })
+
+    modalRef.componentInstance.canceled.subscribe(($e) => {
+      modalRef.close();
+    })
+  }
+
+  SeleccionarArchivoIntermediario() {
+    const modalRef = this.modalService.open(SubirarchivoComponent, {
+      size: 'lg',
+      backdrop: "static",
+      keyboard: true
+    });
+
+    modalRef.componentInstance.uploaded.subscribe((e) => {
+      this.adjuntoPendienteIntermediario = e;
+      modalRef.close();
+    })
+
+    modalRef.componentInstance.canceled.subscribe(($e) => {
+      modalRef.close();
+    })
+  }
+
+  agregarArchivoSolicitante(){
+    debugger
+    if(this.adjuntoPendienteSolicitante != null)
+    {
+      this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
+      this.registerForm.value.descripcionAdjuntoSolicitante = "";
+      this.adjuntosSolicitante.push(this.adjuntoPendienteSolicitante);
+      this.adjuntoPendienteSolicitante=null;
+    }
+  }
+
+  eliminarArchivoSolicitante(index: number){
+    this.adjuntosSolicitante.splice(index, 1);
+  }
+
+  agregarArchivoIntermediario(){
+    debugger
+    if(this.adjuntoPendienteIntermediario != null)
+    {
+      this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
+      this.registerForm.value.descripcionAdjuntoIntermediario = "";
+      this.adjuntosIntermediario.push(this.adjuntoPendienteIntermediario);
+      this.adjuntoPendienteIntermediario=null;
+    }
+  }
+
+  eliminarArchivoIntermediario(index: number){
+    this.adjuntosIntermediario.splice(index, 1);
+  }
 
   cargarDatosStorage() {
     //debugger;
