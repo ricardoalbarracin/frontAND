@@ -7,7 +7,7 @@ import { ReturnModelLista} from '../../models/ReturnModelLista';
 import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitud';
 import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subirarchivo.component';
 import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
-import {Anexo} from '../../models/anexo';
+import {Anexo} from '../../models/Anexo';
 
 import { MustMatch } from '../../helpers/must-match.validator';
 
@@ -304,6 +304,7 @@ export class IngresarSolicitudComponent implements OnInit {
   //Obtiene los tipso de documentos permitidos
   ObtenerTiposPersonas() {
     this.service.ObtenerTiposBasPersonas().subscribe((data: ReturnModelLista) => {
+      debugger
       if (data != undefined && data.success === true){
 
         this.data.tiposSolicitante= data.result;
@@ -484,7 +485,7 @@ export class IngresarSolicitudComponent implements OnInit {
     if(this.adjuntoPendienteSolicitante != null)
     {
       this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
-      this.registerForm.value.descripcionAdjuntoSolicitante = "";
+      //this.registerForm.value.descripcionAdjuntoSolicitante = "";
       this.adjuntosSolicitante.push(this.adjuntoPendienteSolicitante);
       this.adjuntoPendienteSolicitante=null;
     }
@@ -499,7 +500,7 @@ export class IngresarSolicitudComponent implements OnInit {
     if(this.adjuntoPendienteIntermediario != null)
     {
       this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
-      this.registerForm.value.descripcionAdjuntoIntermediario = "";
+      //this.registerForm.value.descripcionAdjuntoIntermediario = "";
       this.adjuntosIntermediario.push(this.adjuntoPendienteIntermediario);
       this.adjuntoPendienteIntermediario=null;
     }
