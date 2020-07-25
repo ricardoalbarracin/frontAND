@@ -173,7 +173,7 @@ export class AutorizarExportacionUtilService {
     }).pipe(catchError(this.errorHandler));
   }
 
-  ConsultarListaAnexosSolicitudesXRango(nroDocumentoSolicitante:string , nroConsecutivo:string) {
+  ConsultarSolicitudesXRango(nroDocumentoSolicitante:string , nroConsecutivo:string) {
     let data: RequestModelObtenerSolicitudes = {
       NroDocumentoSolicitante:nroDocumentoSolicitante,
       NroConsecutivo:nroConsecutivo,
@@ -193,8 +193,5 @@ export class AutorizarExportacionUtilService {
     })
     .pipe(catchError(this.errorHandler));
   }
-
-
-
 
 }

@@ -45,13 +45,12 @@ export class ConsultarSolicitudComponent implements OnInit {
     sessionStorage.sosSinoAnexos = solicitud.sosSinoAnexos;
     sessionStorage.sosNroDocumentoIntermediario = solicitud.sosNroDocumentoIntermediario;
     sessionStorage.sosNombreIntermediario = solicitud.sosNombreIntermediario;
-
-
+    sessionStorage.solicitud_id = solicitud.solicitudId;
   }
 
   consultar() {
     if (this.seleccionSolucionForm.isValid()) {
-      this.service.ConsultarListaAnexosSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
+      this.service.ConsultarSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
         //debugger;
         if (response.result.solicitudSalidaObras) {
           this.items = [];

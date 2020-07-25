@@ -289,6 +289,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
   //Obtiene los tipso de documentos permitidos
   obtenerPaises() {
+    debugger;
     this.service.ObtenerPaises().subscribe((data: ReturnModelLista) => {
       if (data != undefined && data.success === true){
         this.data.paises= data.result;
@@ -525,6 +526,11 @@ export class IngresarSolicitudComponent implements OnInit {
       this.registerForm.controls.nombreIntermediario.setValue(sessionStorage.sosNombreIntermediario);
       this.registerForm.controls.requiereIntermediario.setValue(sessionStorage.sosSinoIntermediario === 'S' ? "SI" : "NO");
 
+      this.service.ConsultarListaAnexosSolicitudesXSolicitud(sessionStorage.solicitud_id).subscribe(data => {
+
+      }
+
+      );
 
     }
   }
