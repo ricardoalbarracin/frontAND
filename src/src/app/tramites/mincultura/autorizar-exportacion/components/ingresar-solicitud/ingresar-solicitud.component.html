@@ -7,7 +7,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">Tipo de solicitante *</label>
-                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.tipo_solicitante" formControlName="tipoSolicitante" [items]="listaTipoDocumento">
+                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.tipo_solicitante" formControlName="tipoSolicitante" [items]="data.tiposSolicitante">
                             </app-dropdownlist>
                             <div *ngIf="submitted && f.tipoSolicitante.errors" class="text-danger">
                                 Campo sin diligenciar.
