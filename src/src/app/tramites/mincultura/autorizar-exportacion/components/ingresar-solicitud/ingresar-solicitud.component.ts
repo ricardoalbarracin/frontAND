@@ -44,6 +44,7 @@ export class IngresarSolicitudComponent implements OnInit {
      finesExportacion:[],
      tiposPermanencia:[]
    };
+   invalidForm: boolean = false;
 
    equalValueValidator(targetKey: string, toMatchKey: string): ValidatorFn {
     return (group: FormGroup): {[key: string]: any} => {
@@ -61,22 +62,22 @@ export class IngresarSolicitudComponent implements OnInit {
           toMatch.setErrors(null);
         }
       }
-  
+      
       return null;
     };
   }
 
   multipleValidator(  validations: any[]): ValidatorFn {
     return (group: FormGroup): {[key: string]: any} => {
-      
+
       validations.forEach(validation => validation(group));
-  
+
       return null;
     };
   }
 
    ngOnInit() {
-     
+
     this.adjuntosSolicitante =[];
 
     this.adjuntosIntermediario =[];
@@ -142,13 +143,13 @@ export class IngresarSolicitudComponent implements OnInit {
 
        },
        {
-          validator: this.multipleValidator( 
-            [ 
+          validator: this.multipleValidator(
+            [
               this.equalValueValidator('numeroDocumentoSolicitante', 'numeroDocumentoSolicitante2'),
               this.equalValueValidator('correoUbicacion', 'correoUbicacion2'),
               this.equalValueValidator('numeroDocumentoIntermediario', 'numeroDocumentoIntermediario2'),
               this.equalValueValidator('correoUbicacionIntermediario', 'correoUbicacionIntermediario2'),
-                                                  
+
             ]
           )
         },
@@ -172,7 +173,7 @@ export class IngresarSolicitudComponent implements OnInit {
        const ciudadDestino = this.registerForm.get('ciudadIntermediario');
        const departamentoDestino = this.registerForm.get('departamentoIntermediario');
        const municipioDestino = this.registerForm.get('municipioIntermediario');
-      
+
 
        this.registerForm.get('requiereIntermediario').valueChanges
         .subscribe(requiereIntermediario => {
@@ -224,7 +225,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
         });
 
-    
+
       this.registerForm.get('paisExpedicionIntermediario').valueChanges
         .subscribe(pais => {
           if (pais.text === 'COLOMBIA') {
@@ -262,9 +263,9 @@ export class IngresarSolicitudComponent implements OnInit {
           ciudadDestino.updateValueAndValidity();
         });
 
-        
 
-        
+
+
        this.cargarDatosStorage();
    }
 
@@ -279,7 +280,14 @@ export class IngresarSolicitudComponent implements OnInit {
 
    open(content) {
 
-    this.asignarVariables();
+    if (this.registerForm.valid){
+      this.modalService.open(content, { size: "xl", scrollable: true });
+    }
+    else{
+      this.scrollControInvalido();
+      this.invalidForm = true;
+    }
+    /*this.asignarVariables();
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
@@ -288,9 +296,10 @@ export class IngresarSolicitudComponent implements OnInit {
 
     this.scrollControInvalido();
 
+
     if (this.submitted && !this.service.formularioInvalido) {
         this.modalService.open(content, { size: "xl", scrollable: true });
-    }
+    }*/
 
 
   }
