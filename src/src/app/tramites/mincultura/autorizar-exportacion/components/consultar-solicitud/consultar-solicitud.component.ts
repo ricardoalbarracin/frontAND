@@ -46,6 +46,9 @@ export class ConsultarSolicitudComponent implements OnInit {
     sessionStorage.sosNroDocumentoIntermediario = solicitud.sosNroDocumentoIntermediario;
     sessionStorage.sosNombreIntermediario = solicitud.sosNombreIntermediario;
     sessionStorage.solicitud_id = solicitud.solicitudId;
+    sessionStorage.zopId = solicitud.zopId;
+    sessionStorage.zonId = solicitud.zonId;
+    sessionStorage.sosId = solicitud.sosId;
   }
 
   consultar() {

@@ -1,7 +1,4 @@
-namespace tramites_servicios_webapi.MinCultura.SolicitudExportacion.Models
-{
-    class RequestModelObtenerSolicitudPorIntermediario
+  export interface RequestModelObtenerSolicitudPorIntermediario
     {
          NroDocumentoIntermediario: string;
     }
-}
