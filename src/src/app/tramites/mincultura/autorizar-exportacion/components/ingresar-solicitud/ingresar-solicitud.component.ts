@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators,ValidatorFn } from '@angular/forms';
 import { AutorizarExportacionUtilService } from '../../services/autorizar-exportacion-util.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ReturnModelLista} from '../../models/ReturnModelLista';
@@ -8,7 +8,6 @@ import {RequestModelCrearSolicitud} from '../../models/requestmodelcrearsolicitu
 import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subirarchivo.component';
 import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
 import {Anexo} from '../../models/Anexo';
-
 import { MustMatch } from '../../helpers/must-match.validator';
 
 @Component({
@@ -45,8 +44,38 @@ export class IngresarSolicitudComponent implements OnInit {
      tiposPermanencia:[]
    };
 
+   equalValueValidator(targetKey: string, toMatchKey: string): ValidatorFn {
+    return (group: FormGroup): {[key: string]: any} => {
+      const target = group.controls[targetKey];
+      const toMatch = group.controls[toMatchKey];
+      if (target.touched && toMatch.touched) {
+        const isMatch = target.value === toMatch.value;
+        // set equal value error on dirty controls
+        if (!isMatch && target.valid && toMatch.valid) {
+          toMatch.setErrors({equalValue: targetKey});
+          const message = targetKey + ' != ' + toMatchKey;
+          return {'equalValue': message};
+        }
+        if (isMatch && toMatch.hasError('equalValue')) {
+          toMatch.setErrors(null);
+        }
+      }
+  
+      return null;
+    };
+  }
+
+  multipleValidator(  validations: any[]): ValidatorFn {
+    return (group: FormGroup): {[key: string]: any} => {
+      
+      validations.forEach(validation => validation(group));
+  
+      return null;
+    };
+  }
 
    ngOnInit() {
+     
     this.adjuntosSolicitante =[];
 
     this.adjuntosIntermediario =[];
@@ -68,15 +97,15 @@ export class IngresarSolicitudComponent implements OnInit {
         numeroDocumentoSolicitante2: ['', Validators.required],
         nombreRazonSocialSolicitante: ['', Validators.required],
         paisExpedicionSolicitante: ['', Validators.required],
-        descripcionAdjuntoSolicitante: ['', Validators.required],
+        descripcionAdjuntoSolicitante: [''],
 
         //datos ubicacion
         departamentoUbicacion: ['', Validators.required],
         municipioUbicacion: ['', Validators.required],
         telefonoUbicacion: ['', Validators.required],
         direccionUbicacion: ['', Validators.required],
-        correoUbicacion: ['', Validators.required],
-        correoUbicacion2: ['', Validators.required],
+        correoUbicacion: ['', [Validators.required, Validators.email]],
+        correoUbicacion2: ['', [Validators.required, Validators.email]],
 
         //datos intermediario
         requiereIntermediario: ['', Validators.required],
@@ -86,33 +115,153 @@ export class IngresarSolicitudComponent implements OnInit {
         nombreIntermediario: ['', Validators.required],
         paisExpedicionIntermediario: ['', Validators.required],
         ciudadIntermediario: ['', Validators.required],
-        departamentoIntermediario: ['', Validators.required],
-        municipioIntermediario: ['', Validators.required],
+        departamentoIntermediario: [''],
+        municipioIntermediario: [''],
         departamentoUbicacionIntermediario: ['', Validators.required],
         municipioUbicacionIntermediario: ['', Validators.required],
         telefonoUbicacionIntermediario: ['', Validators.required],
         direccionUbicacionIntermediario: ['', Validators.required],
-        correoUbicacionIntermediario: ['', Validators.required],
-        correoUbicacionIntermediario2: ['', Validators.required],
-        descripcionAdjuntoIntermediario: ['', Validators.required],
+        correoUbicacionIntermediario: ['', [Validators.required, Validators.email]],
+        correoUbicacionIntermediario2: ['', [Validators.required, Validators.email]],
+        descripcionAdjuntoIntermediario: [''],
 
         //datos destino
         PaisDestino: ['', Validators.required],
         ciudadDestino: ['', Validators.required],
-        departamentoDestino: ['', Validators.required],
-        municipioDestino: ['', Validators.required],
+        departamentoDestino: [''],
+        municipioDestino: [''],
         direccionDestino: ['', Validators.required],
         finExportacion: ['', Validators.required],
         entidadDestino: ['', Validators.required],
         telefonoDestino: ['', Validators.required],
         tiempoPermanencia: ['', Validators.required],
         tipoPermanencia: ['', Validators.required],
-
-        descripcion: ['', Validators.required],
         autoriza: ['', Validators.requiredTrue],
         formControlRecaptcha: ['', Validators.required]
 
-       });
+       },
+       {
+          validator: this.multipleValidator( 
+            [ 
+              this.equalValueValidator('numeroDocumentoSolicitante', 'numeroDocumentoSolicitante2'),
+              this.equalValueValidator('correoUbicacion', 'correoUbicacion2'),
+              this.equalValueValidator('numeroDocumentoIntermediario', 'numeroDocumentoIntermediario2'),
+              this.equalValueValidator('correoUbicacionIntermediario', 'correoUbicacionIntermediario2'),
+                                                  
+            ]
+          )
+        },
+       );
+
+       const tipoDocumentoIntermediario = this.registerForm.get('tipoDocumentoIntermediario');
+       const numeroDocumentoIntermediario = this.registerForm.get('numeroDocumentoIntermediario');
+       const numeroDocumentoIntermediario2 = this.registerForm.get('numeroDocumentoIntermediario2');
+       const nombreIntermediario = this.registerForm.get('nombreIntermediario');
+       const paisExpedicionIntermediario = this.registerForm.get('paisExpedicionIntermediario');
+       const ciudadIntermediario = this.registerForm.get('ciudadIntermediario');
+       const departamentoIntermediario = this.registerForm.get('departamentoIntermediario');
+       const municipioIntermediario = this.registerForm.get('municipioIntermediario');
+       const departamentoUbicacionIntermediario = this.registerForm.get('departamentoUbicacionIntermediario');
+       const municipioUbicacionIntermediario = this.registerForm.get('municipioUbicacionIntermediario');
+       const telefonoUbicacionIntermediario = this.registerForm.get('telefonoUbicacionIntermediario');
+       const direccionUbicacionIntermediario = this.registerForm.get('direccionUbicacionIntermediario');
+       const correoUbicacionIntermediario = this.registerForm.get('correoUbicacionIntermediario');
+       const correoUbicacionIntermediario2 = this.registerForm.get('correoUbicacionIntermediario2');
+
+       const ciudadDestino = this.registerForm.get('ciudadIntermediario');
+       const departamentoDestino = this.registerForm.get('departamentoIntermediario');
+       const municipioDestino = this.registerForm.get('municipioIntermediario');
+      
+
+       this.registerForm.get('requiereIntermediario').valueChanges
+        .subscribe(requiereIntermediario => {
+          if (requiereIntermediario== 'SI') {
+            tipoDocumentoIntermediario.setValidators([Validators.required]);
+            numeroDocumentoIntermediario.setValidators([Validators.required]);
+            numeroDocumentoIntermediario2.setValidators([Validators.required]);
+            nombreIntermediario.setValidators([Validators.required]);
+            paisExpedicionIntermediario.setValidators([Validators.required]);
+            departamentoUbicacionIntermediario.setValidators([Validators.required]);
+            municipioUbicacionIntermediario.setValidators([Validators.required]);
+            telefonoUbicacionIntermediario.setValidators([Validators.required]);
+            direccionUbicacionIntermediario.setValidators([Validators.required]);
+            correoUbicacionIntermediario.setValidators([Validators.required, Validators.email]);
+            correoUbicacionIntermediario2 .setValidators([Validators.required, Validators.email]);
+          }
+          else
+          {
+            tipoDocumentoIntermediario.setValidators(null);
+            numeroDocumentoIntermediario.setValidators(null);
+            numeroDocumentoIntermediario2.setValidators(null);
+            nombreIntermediario.setValidators(null);
+            paisExpedicionIntermediario.setValidators(null);
+            ciudadIntermediario.setValidators(null);
+            departamentoIntermediario.setValidators(null);
+            municipioIntermediario.setValidators(null);
+            departamentoUbicacionIntermediario.setValidators(null);
+            municipioUbicacionIntermediario.setValidators(null);
+            telefonoUbicacionIntermediario.setValidators(null);
+            direccionUbicacionIntermediario.setValidators(null);
+            correoUbicacionIntermediario.setValidators(null);
+            correoUbicacionIntermediario2.setValidators(null);
+          }
+
+          tipoDocumentoIntermediario.updateValueAndValidity();
+          numeroDocumentoIntermediario.updateValueAndValidity();
+          numeroDocumentoIntermediario2.updateValueAndValidity();
+          nombreIntermediario.updateValueAndValidity();
+          paisExpedicionIntermediario.updateValueAndValidity();
+          ciudadIntermediario.updateValueAndValidity();
+          departamentoIntermediario.updateValueAndValidity();
+          municipioIntermediario.updateValueAndValidity();
+          departamentoUbicacionIntermediario.updateValueAndValidity();
+          municipioUbicacionIntermediario.updateValueAndValidity();
+          telefonoUbicacionIntermediario.updateValueAndValidity();
+          direccionUbicacionIntermediario.updateValueAndValidity();
+          correoUbicacionIntermediario.updateValueAndValidity();
+          correoUbicacionIntermediario2.updateValueAndValidity();
+
+        });
+
+    
+      this.registerForm.get('paisExpedicionIntermediario').valueChanges
+        .subscribe(pais => {
+          if (pais.text === 'COLOMBIA') {
+            ciudadIntermediario.setValidators(null);
+            departamentoIntermediario.setValidators([Validators.required]);
+            municipioIntermediario.setValidators([Validators.required]);
+          }
+          else
+          {
+            ciudadIntermediario.setValidators([Validators.required]);
+            departamentoIntermediario.setValidators(null);
+            municipioIntermediario.setValidators(null);
+          }
+          departamentoIntermediario.updateValueAndValidity();
+          municipioIntermediario.updateValueAndValidity();
+          ciudadIntermediario.updateValueAndValidity();
+
+        });
+
+        this.registerForm.get('PaisDestino').valueChanges
+        .subscribe(pais => {
+          if (pais.text === 'COLOMBIA') {
+            ciudadDestino.setValidators(null);
+            departamentoDestino.setValidators([Validators.required]);
+            municipioDestino.setValidators([Validators.required]);
+          }
+          else
+          {
+            ciudadDestino.setValidators([Validators.required]);
+            departamentoDestino.setValidators(null);
+            municipioDestino.setValidators(null);
+          }
+          departamentoDestino.updateValueAndValidity();
+          municipioDestino.updateValueAndValidity();
+          ciudadDestino.updateValueAndValidity();
+        });
+
+        
    }
 
    get f() { return this.registerForm.controls; }
@@ -136,7 +285,7 @@ export class IngresarSolicitudComponent implements OnInit {
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: this.registerForm.value.tipoSolicitante.value,
       DocIdSolicitante: this.registerForm.value.tipoDocumentoSolicitante.value,
-      SosNroDocumentoSolicitante:this.registerForm.value.actualizarDepartamentoDestino.numeroDocumentoSolicitante,
+      SosNroDocumentoSolicitante:this.registerForm.value.numeroDocumentoSolicitante,
       ZopId:this.registerForm.value.paisExpedicionSolicitante.value,
       SosZonPadreId: this.registerForm.value.departamentoUbicacion.value,
       SosZonId:this.registerForm.value.municipioUbicacion.value,
@@ -158,7 +307,7 @@ export class IngresarSolicitudComponent implements OnInit {
       DestintoZopId:this.registerForm.value.PaisDestino.value,
       DestintoCiudad:this.registerForm.value.ciudadIntermediario.value,
       DestintoDireccion: this.registerForm.value.direccionDestino,
-      TmsId: this.registerForm.value.finesExportacion.value,
+      TmsId: this.registerForm.value.finExportacion.value,
       DestintoEntidad: this.registerForm.value.entidadDestino,
       DestintoTelefono:this.registerForm.value.telefonoDestino,
       DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
@@ -215,6 +364,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   guardar(){
+    debugger
     this.service.asignarPaso(3);
     this.service.asignarpasoIngresar(2);
     let solicitud=this.crearSolicitudModel();

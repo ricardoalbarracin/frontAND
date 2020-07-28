@@ -103,19 +103,19 @@
                             <div class="textarea-govco">
                                 <div class="div-character" id="divtextarea-example">
                                     <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
-                                        maxlength="255" formControlName="descripcionAdjuntoSolicitante"
+                                        maxlength="255" id = "descripcionAdjuntoSolicitante" formControlName="descripcionAdjuntoSolicitante"
                                         class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
+                                        [ngClass]="{ 'is-invalid': submitted && f.descripcionAdjuntoSolicitante.errors }">
                                     </textarea>
                                     <div class="div-count-character"><span class="hidden span-message-character"
-                                            id="messagetextarea-example">Alcanzó el máximo de carácteres
+                                            id="descripcionAdjuntoSolicitante">Alcanzó el máximo de carácteres
                                             permitidos</span><span class="float-right pr-3 span-count-character"
                                             id="counttextarea-example">255</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="submitted && f.descripcion.errors" class="text-danger">
+                        <div *ngIf="submitted && f.descripcionAdjuntoSolicitante.errors" class="text-danger">
                             Campo sin diligenciar.
                         </div>
                     </div>
@@ -404,16 +404,19 @@
                                     <div class="textarea-govco">
                                         <div class="div-character" id="divtextarea-example">
                                             <textarea class="form-control" rows="5" placeholder="Escribe aquí tu descripción"
-                                                maxlength="255" formControlName="descripcionAdjuntoIntermediario"
+                                                maxlength="255" id="descripcionAdjuntoIntermediario" formControlName="descripcionAdjuntoIntermediario"
                                                 class="form-control"
-                                                [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }">
+                                                [ngClass]="{ 'is-invalid': submitted && f.descripcionAdjuntoIntermediario.errors }">
                                             </textarea>
                                             <div class="div-count-character"><span class="hidden span-message-character"
-                                                    id="messagetextarea-example">Alcanzó el máximo de carácteres
+                                                    id="descripcionAdjuntoIntermediario">Alcanzó el máximo de carácteres
                                                     permitidos</span><span class="float-right pr-3 span-count-character"
                                                     id="counttextarea-example">300</span></div>
                                         </div>
                                     </div>
+                                </div>
+                                <div *ngIf="submitted && f.descripcionAdjuntoSolicitante.errors" class="text-danger">
+                                    Campo sin diligenciar.
                                 </div>
                             </div>
                         </div>
