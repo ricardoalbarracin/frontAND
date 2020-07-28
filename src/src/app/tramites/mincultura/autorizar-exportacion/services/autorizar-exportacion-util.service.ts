@@ -12,6 +12,8 @@ import { RequestModelObtenerListaAnexos } from '../models/requestmodelobtenerlis
 import { ReturnModelObtenerListaAnexos } from '../models/returnmodelobtenerlistaanexos';
 import { ReturnModelObtenerSolicitudes } from '../models/returnmodelobtenersolicitudes';
 import { RequestModelCrearSolicitud } from '../models/requestmodelcrearsolicitud';
+import { RequestModelObtenerSolicitudPorId } from '../models/requestmodelobtenersolicitudporid';
+import { RequestModelObtenerSolicitudPorIntermediario } from '../models/RequestModelObtenerSolicitudPorIntermediario';
 
 
 @Injectable({
@@ -173,7 +175,7 @@ export class AutorizarExportacionUtilService {
     }).pipe(catchError(this.errorHandler));
   }
 
-  ConsultarListaAnexosSolicitudesXRango(nroDocumentoSolicitante:string , nroConsecutivo:string) {
+  ConsultarSolicitudesXRango(nroDocumentoSolicitante:string , nroConsecutivo:string) {
     let data: RequestModelObtenerSolicitudes = {
       NroDocumentoSolicitante:nroDocumentoSolicitante,
       NroConsecutivo:nroConsecutivo,
@@ -194,7 +196,22 @@ export class AutorizarExportacionUtilService {
     .pipe(catchError(this.errorHandler));
   }
 
+  ConsultarSolicitudxID(value: number) {
+    let data: RequestModelObtenerSolicitudPorId = {
+      SosId: value
+    }
+    return this.http.post<any>(this.urlTramite.obtenerSolicitudPorId, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
 
-
+  ConsultarSolicitudxIntermediario(value: string) {
+    let data: RequestModelObtenerSolicitudPorIntermediario = {
+      NroDocumentoIntermediario: value
+    }
+    return this.http.post<any>(this.urlTramite.obtenerSolicitudPorIntermediario, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
 
 }

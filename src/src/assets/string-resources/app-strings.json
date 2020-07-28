@@ -54,8 +54,8 @@
         "mincultura": {
             "name": "Ministerio de cultura",
             "consulta": {
-                "title": "Autorizar exportación de bienes culturales",
-                "detail": "Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit Lorem ipsum dolor sit amet consectetur adipiscing elit cras, justo et facilisis luctus ultrices suscipit in to et facilisis luctus ultrices suscipit Lorem ipsum dolo"
+                "title": "Autorizar exportación de bienes culturales muebles",
+                "detail": "Obtener la autorización de salida del país de los bienes culturales muebles y los de interés cultural, estos últimos con el propósito de exhibición al público, estudios científicos o intercambio entre entidades. En caso de tratarse de un Bien de Interés Cultural la autorización de exportación será únicamente temporal."
             }
         },
         "contraloria": {

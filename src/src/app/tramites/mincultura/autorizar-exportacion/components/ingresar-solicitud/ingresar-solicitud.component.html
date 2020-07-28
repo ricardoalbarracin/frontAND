@@ -163,7 +163,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Departamento *</label>
-                        <app-dropdownlist (change)="actualizarDepartamentoUbicacion()" ngDefaultControl formControlName="departamentoUbicacion" [items]="data.departamentos">
+                        <app-dropdownlist (change)="actualizarDepartamentoUbicacion()" [selected]="valoresConsulta?.zopId"  ngDefaultControl formControlName="departamentoUbicacion" [items]="data.departamentos">
                         </app-dropdownlist>
                         <div *ngIf="submitted && f.departamentoUbicacion.errors" class="text-danger">
                             Campo sin diligenciar.
@@ -173,7 +173,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Municipio *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="municipioUbicacion" [items]="data.municipiosUbicacion">
+                        <app-dropdownlist ngDefaultControl formControlName="municipioUbicacion" [selected]="valoresConsulta?.zonId" [items]="data.municipiosUbicacion">
                         </app-dropdownlist>
                         <div *ngIf="submitted && f.municipioUbicacion.errors" class="text-danger">
                             Campo sin diligenciar.
@@ -546,7 +546,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">País *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="PaisDestino" [items]="data.paises">
+                        <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.destinoZopId" formControlName="PaisDestino" [items]="data.paises">
                         </app-dropdownlist>
                         <div *ngIf="submitted && f.PaisDestino.errors" class="text-danger">
                             Campo sin diligenciar.
@@ -601,7 +601,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Fines de exportación</label>
-                        <app-dropdownlist ngDefaultControl formControlName="finExportacion" [items]="data.finesExportacion">
+                        <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.destinoFinExportacion" formControlName="finExportacion" [items]="data.finesExportacion">
                         </app-dropdownlist>
                     </div>
                 </div>
@@ -632,7 +632,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <app-dropdownlist ngDefaultControl formControlName="tipoPermanencia" [items]="data.tiposPermanencia">
+                        <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.destinoTipoTiempoPermanencia" formControlName="tipoPermanencia" [items]="data.tiposPermanencia">
                         </app-dropdownlist>
                     </div>
                 </div>

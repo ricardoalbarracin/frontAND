@@ -9,6 +9,7 @@ import { SubirarchivoComponent } from '../../../../../shared/subirarchivo/subira
 import { ResponseFileModel } from '../../../../../shared/models/responseFileModel';
 import {Anexo} from '../../models/Anexo';
 import { MustMatch } from '../../helpers/must-match.validator';
+import { Session } from 'protractor';
 
 @Component({
   selector: 'app-ingresar-solicitud',
@@ -262,7 +263,17 @@ export class IngresarSolicitudComponent implements OnInit {
         });
 
         
+
+        
+       this.cargarDatosStorage();
    }
+
+   scrollControInvalido(): void {
+    const firstElementWithError = document.querySelector('.ng-invalid[formControlName]');
+    if (firstElementWithError) {
+      firstElementWithError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 
    get f() { return this.registerForm.controls; }
 
@@ -274,6 +285,8 @@ export class IngresarSolicitudComponent implements OnInit {
     if (this.registerForm.invalid) {
       this.service.asignarFormularioInvalido(true);
     }
+
+    this.scrollControInvalido();
 
     if (this.submitted && !this.service.formularioInvalido) {
         this.modalService.open(content, { size: "xl", scrollable: true });
@@ -332,6 +345,10 @@ export class IngresarSolicitudComponent implements OnInit {
     };
 
     return solicitud;
+  }
+
+  AfterViewInit(){
+    //this.cargarDatosStorage();
   }
 
   mappAnexo(adjuntosSolicitante: ResponseFileModel[]){
@@ -454,7 +471,6 @@ export class IngresarSolicitudComponent implements OnInit {
   //Obtiene los tipso de documentos permitidos
   ObtenerTiposPersonas() {
     this.service.ObtenerTiposBasPersonas().subscribe((data: ReturnModelLista) => {
-      debugger
       if (data != undefined && data.success === true){
 
         this.data.tiposSolicitante= data.result;
@@ -660,9 +676,21 @@ export class IngresarSolicitudComponent implements OnInit {
     this.adjuntosIntermediario.splice(index, 1);
   }
 
+  public valoresConsulta:any = {
+    tipo_solicitante: "",
+    tipo_documento: "",
+    docIdIntermediario:"",
+    zonId:"",
+    zopId:"",
+    destinoZopId:"",
+    destinoFinExportacion:"",
+    destinoTipoTiempoPermanencia:"",
+  };
+
   cargarDatosStorage() {
-    //debugger;
     if (sessionStorage.numero_documento) {
+      this.valoresConsulta.tipo_solicitante = sessionStorage.tipo_solicitante;
+      this.valoresConsulta.tipo_documento = sessionStorage.tipo_documento;
       this.registerForm.controls.numeroDocumentoSolicitante.setValue(sessionStorage.numero_documento);
       this.registerForm.controls.numeroDocumentoSolicitante2.setValue(sessionStorage.numero_documento);
       this.registerForm.controls.nombreRazonSocialSolicitante.setValue(sessionStorage.nombre_solicitante);
@@ -675,7 +703,35 @@ export class IngresarSolicitudComponent implements OnInit {
       this.registerForm.controls.numeroDocumentoIntermediario2.setValue(sessionStorage.sosNroDocumentoIntermediario);
       this.registerForm.controls.nombreIntermediario.setValue(sessionStorage.sosNombreIntermediario);
       this.registerForm.controls.requiereIntermediario.setValue(sessionStorage.sosSinoIntermediario === 'S' ? "SI" : "NO");
+      this.valoresConsulta.docIdIntermediario = sessionStorage.docIdIntermediario;
+      this.valoresConsulta.zonId = sessionStorage.zonId;
+      this.valoresConsulta.zopId = sessionStorage.zopId;
 
+      this.service.ConsultarSolicitudxID(Number(sessionStorage.sosId)).subscribe(data => {
+        if(data.success){
+          this.valoresConsulta.destinoZopId = data.result.solicitud.destinoZopId.toString();
+          this.valoresConsulta.destinoFinExportacion = data.result.solicitud.destinoFinExportacion;
+          this.valoresConsulta.destinoTipoTiempoPermanencia = data.result.solicitud.destinoTipoTiempoPermanencia;
+          this.registerForm.controls.ciudadDestino.setValue(data.result.solicitud.destinoCiudad);
+          this.registerForm.controls.direccionDestino.setValue(data.result.solicitud.destinoDireccion);
+          this.registerForm.controls.entidadDestino.setValue(data.result.solicitud.destinoEntidad);
+          this.registerForm.controls.telefonoDestino.setValue(data.result.solicitud.destinoTelefono);
+          this.registerForm.controls.tiempoPermanencia.setValue(data.result.solicitud.destinoTiempoPermanencia);
+        }
+      });
+
+      if(sessionStorage.sosSinoIntermediario == 'S')
+        this.service.ConsultarSolicitudxIntermediario(sessionStorage.sosId).subscribe(data => {
+          if(data.success){
+
+          }
+        });
+
+      this.service.ConsultarListaAnexosSolicitudesXSolicitud(sessionStorage.solicitud_id).subscribe(data => {
+
+      }
+
+      );
 
     }
   }
