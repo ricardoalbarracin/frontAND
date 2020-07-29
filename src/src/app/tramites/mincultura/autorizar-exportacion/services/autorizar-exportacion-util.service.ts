@@ -1,3 +1,4 @@
+import { ReturnModelCrearSolicitud } from './../models/returnmodelcrearsolicitud';
 import { RequestModelObtenerSolicitudes } from './../models/requestmodelobtenersolicitudes';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
@@ -190,7 +191,7 @@ export class AutorizarExportacionUtilService {
 
 
   public registrarSolicitud(registerModel: RequestModelCrearSolicitud) {
-    return this.http.post<RequestModelCrearSolicitud>(this.urlTramite.crearSolicitud, registerModel, {
+    return this.http.post<ReturnModelCrearSolicitud>(this.urlTramite.crearSolicitud, registerModel, {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     })
     .pipe(catchError(this.errorHandler));

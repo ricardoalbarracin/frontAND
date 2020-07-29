@@ -10,7 +10,7 @@ import { ResponseFileModel } from '../../../../../shared/models/responseFileMode
 import {Anexo} from '../../models/Anexo';
 import { MustMatch } from '../../helpers/must-match.validator';
 import { Session } from 'protractor';
-
+import {ReturnModelCrearSolicitud} from '../../models/returnmodelcrearsolicitud';
 @Component({
   selector: 'app-ingresar-solicitud',
   templateUrl: './ingresar-solicitud.component.html',
@@ -110,21 +110,21 @@ export class IngresarSolicitudComponent implements OnInit {
         correoUbicacion2: ['', [Validators.required, Validators.email]],
 
         //datos intermediario
-        requiereIntermediario: ['', Validators.required],
-        tipoDocumentoIntermediario: ['', Validators.required],
-        numeroDocumentoIntermediario: ['', Validators.required],
-        numeroDocumentoIntermediario2: ['', Validators.required],
-        nombreIntermediario: ['', Validators.required],
-        paisExpedicionIntermediario: ['', Validators.required],
-        ciudadIntermediario: ['', Validators.required],
+        requiereIntermediario: [''],
+        tipoDocumentoIntermediario: [''],
+        numeroDocumentoIntermediario: [''],
+        numeroDocumentoIntermediario2: [''],
+        nombreIntermediario: [''],
+        paisExpedicionIntermediario: [''],
+        ciudadIntermediario: [''],
         departamentoIntermediario: [''],
         municipioIntermediario: [''],
-        departamentoUbicacionIntermediario: ['', Validators.required],
-        municipioUbicacionIntermediario: ['', Validators.required],
-        telefonoUbicacionIntermediario: ['', Validators.required],
-        direccionUbicacionIntermediario: ['', Validators.required],
-        correoUbicacionIntermediario: ['', [Validators.required, Validators.email]],
-        correoUbicacionIntermediario2: ['', [Validators.required, Validators.email]],
+        departamentoUbicacionIntermediario: [''],
+        municipioUbicacionIntermediario: [''],
+        telefonoUbicacionIntermediario: [''],
+        direccionUbicacionIntermediario: [''],
+        correoUbicacionIntermediario: [''],
+        correoUbicacionIntermediario2: [''],
         descripcionAdjuntoIntermediario: [''],
 
         //datos destino
@@ -134,10 +134,10 @@ export class IngresarSolicitudComponent implements OnInit {
         municipioDestino: [''],
         direccionDestino: ['', Validators.required],
         finExportacion: ['', Validators.required],
-        entidadDestino: ['', Validators.required],
-        telefonoDestino: ['', Validators.required],
-        tiempoPermanencia: ['', Validators.required],
-        tipoPermanencia: ['', Validators.required],
+        entidadDestino: [''],
+        telefonoDestino: [''],
+        tiempoPermanencia: [''],
+        tipoPermanencia: [''],
         autoriza: ['', Validators.requiredTrue],
         formControlRecaptcha: ['', Validators.required]
 
@@ -170,25 +170,24 @@ export class IngresarSolicitudComponent implements OnInit {
        const correoUbicacionIntermediario = this.registerForm.get('correoUbicacionIntermediario');
        const correoUbicacionIntermediario2 = this.registerForm.get('correoUbicacionIntermediario2');
 
-       const ciudadDestino = this.registerForm.get('ciudadIntermediario');
-       const departamentoDestino = this.registerForm.get('departamentoIntermediario');
-       const municipioDestino = this.registerForm.get('municipioIntermediario');
+       const ciudadDestino = this.registerForm.get('ciudadDestino');
+       const departamentoDestino = this.registerForm.get('departamentoDestino');
+       const municipioDestino = this.registerForm.get('municipioDestino');
 
 
        this.registerForm.get('requiereIntermediario').valueChanges
         .subscribe(requiereIntermediario => {
+          
           if (requiereIntermediario== 'SI') {
+            
             tipoDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario2.setValidators([Validators.required]);
-            nombreIntermediario.setValidators([Validators.required]);
-            paisExpedicionIntermediario.setValidators([Validators.required]);
-            departamentoUbicacionIntermediario.setValidators([Validators.required]);
-            municipioUbicacionIntermediario.setValidators([Validators.required]);
-            telefonoUbicacionIntermediario.setValidators([Validators.required]);
-            direccionUbicacionIntermediario.setValidators([Validators.required]);
+            
+         
             correoUbicacionIntermediario.setValidators([Validators.required, Validators.email]);
             correoUbicacionIntermediario2 .setValidators([Validators.required, Validators.email]);
+          
           }
           else
           {
@@ -225,25 +224,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
         });
 
-
-      this.registerForm.get('paisExpedicionIntermediario').valueChanges
-        .subscribe(pais => {
-          if (pais.text === 'COLOMBIA') {
-            ciudadIntermediario.setValidators(null);
-            departamentoIntermediario.setValidators([Validators.required]);
-            municipioIntermediario.setValidators([Validators.required]);
-          }
-          else
-          {
-            ciudadIntermediario.setValidators([Validators.required]);
-            departamentoIntermediario.setValidators(null);
-            municipioIntermediario.setValidators(null);
-          }
-          departamentoIntermediario.updateValueAndValidity();
-          municipioIntermediario.updateValueAndValidity();
-          ciudadIntermediario.updateValueAndValidity();
-
-        });
+      
 
         this.registerForm.get('PaisDestino').valueChanges
         .subscribe(pais => {
@@ -279,8 +260,9 @@ export class IngresarSolicitudComponent implements OnInit {
    get f() { return this.registerForm.controls; }
 
    open(content) {
-
+ 
     if (this.registerForm.valid){
+      this.guardar();
       this.modalService.open(content, { size: "xl", scrollable: true });
     }
     else{
@@ -304,22 +286,23 @@ export class IngresarSolicitudComponent implements OnInit {
 
   }
   crearSolicitudModel(){
+    debugger
     const solicitud: RequestModelCrearSolicitud = {
-      SosTipoPersonaId: this.registerForm.value.tipoSolicitante.value,
-      DocIdSolicitante: this.registerForm.value.tipoDocumentoSolicitante.value,
+      SosTipoPersonaId: parseInt(this.registerForm.value.tipoSolicitante.value, 10),
+      DocIdSolicitante: parseInt(this.registerForm.value.tipoDocumentoSolicitante.value, 10),
       SosNroDocumentoSolicitante:this.registerForm.value.numeroDocumentoSolicitante,
-      ZopId:this.registerForm.value.paisExpedicionSolicitante.value,
-      SosZonPadreId: this.registerForm.value.departamentoUbicacion.value,
+      ZopId:parseInt(this.registerForm.value.paisExpedicionSolicitante.value, 10),
+      SosZonPadreId: parseInt(this.registerForm.value.departamentoUbicacion.value,10 ),
       SosZonId:this.registerForm.value.municipioUbicacion.value,
       Ciudad:this.registerForm.value.municipioUbicacion.text,
       SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion,
       SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
       SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
-      Requiereintermediario: this.registerForm.value.requiereIntermediario,
-      DocIdintermediario:this.registerForm.value.tipoDocumentoIntermediario,
+      Requiereintermediario: this.registerForm.value.requiereIntermediario=='SI'? true: false,
+      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario? parseInt(this.registerForm.value.tipoDocumentoIntermediario, 10): null,
       SosNroDocumentointermediario:this.registerForm.value.numeroDocumentoIntermediario,
       SosNombreintermediario: this.registerForm.value.nombreIntermediario,
-      IntZopId: this.registerForm.value.paisExpedicionIntermediario.value,
+      IntZopId: parseInt(this.registerForm.value.paisExpedicionIntermediario.value, 10),
       IntCiudad: this.registerForm.value.ciudadIntermediario.value,
       //IntCiudad: this.registerForm.value.municipioIntermediario.value,
       IntUbicacionCiudad:this.registerForm.value.municipioUbicacionIntermediario.value,
@@ -329,11 +312,11 @@ export class IngresarSolicitudComponent implements OnInit {
       DestintoZopId:this.registerForm.value.PaisDestino.value,
       DestintoCiudad:this.registerForm.value.ciudadIntermediario.value,
       DestintoDireccion: this.registerForm.value.direccionDestino,
-      TmsId: this.registerForm.value.finExportacion.value,
+      TmsId: parseInt(this.registerForm.value.finExportacion.value, 10),
       DestintoEntidad: this.registerForm.value.entidadDestino,
       DestintoTelefono:this.registerForm.value.telefonoDestino,
       DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
-      DestintoTipoTiempoPermanencia: this.registerForm.value.tipoPermanencia,
+      DestintoTipoTiempoPermanencia: parseInt(this.registerForm.value.tipoPermanencia, 10),
       AceptaHabeasdata:this.registerForm.value.autoriza,
       SosNombreSolicitante:this.registerForm.value.nombreRazonSocialSolicitante,
       //atrib missing
@@ -386,7 +369,7 @@ export class IngresarSolicitudComponent implements OnInit {
   closeModal() {
     this.service.asignarFormularioInvalido(false);
     this.modalService.dismissAll();
-    this.guardar();
+    
   }
 
   guardar(){
@@ -394,7 +377,11 @@ export class IngresarSolicitudComponent implements OnInit {
     this.service.asignarPaso(3);
     this.service.asignarpasoIngresar(2);
     let solicitud=this.crearSolicitudModel();
-    this.service.registrarSolicitud(solicitud);
+    this.service.registrarSolicitud(solicitud).subscribe((data: ReturnModelCrearSolicitud) => {
+      debugger
+    }, (error) => {
+      this.manejoErrorPeticion(error);
+    });
    }
 
    onReset() {
@@ -566,7 +553,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoDestino() {
-    debugger
+    
     console.log(this.registerForm.value.departamentoDestino.value);
     this.data.municipiosDestino = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
@@ -588,7 +575,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoIntermediario() {
-    debugger
+    
     console.log(this.registerForm.value.departamentoIntermediario.value);
     this.data.municipiosIntermediario = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
@@ -656,7 +643,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoSolicitante(){
-    debugger
+    
     if(this.adjuntoPendienteSolicitante != null)
     {
       this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
@@ -671,7 +658,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoIntermediario(){
-    debugger
+    
     if(this.adjuntoPendienteIntermediario != null)
     {
       this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
