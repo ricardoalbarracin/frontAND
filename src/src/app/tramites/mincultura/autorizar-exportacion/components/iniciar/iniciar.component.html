@@ -1,0 +1,63 @@
+<div class="p-4 mb-3">
+    <div class="text-center">
+        <div class="row w-100">
+            <div class="col-md-12">
+                <h3 class="title-section w-100 ">INICIAR SESIÓN EN MINISTERIO DE CULTURA</h3>
+                <div>Por favor ingresar los siguientes datos</div>
+            </div>
+            <div class="col-md-12 mt-2">
+                Para confirmar tu cita debes ser un usuario registrado
+            </div>
+        </div>
+    </div>
+    <div class=" pl-4 pr-4 pt-0 pb-0">
+        <div class="form-group">
+            <div class="area-note-selago p-3">
+                <p><strong class="title mb-4">Advertencia</strong></p>
+                <i class="content">
+                    Si usted accede desde una empresa intermediaria, ingrese con el usuario y
+                    contraseña asignado por el Ministerio, de lo contrario acceda mediante el botón ingresar sin
+                    diligenciar los campos
+                </i>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="invalidForm == true">
+            <div class="col-12">
+                <ngb-alert type="danger">
+                    <p id="error-message">
+                        Usuario o contraseña incorrecta
+                    </p>
+                </ngb-alert>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12 d-flex mt-4">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Username" class="form-group-govco">Usuario</label>
+                        <input class="form-control input-govco" type="text" maxlength="30" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-group-govco">Contraseña</label>
+                        <input id="password" class="form-control input-govco" [type]="typeButton" maxlength="50" />
+                        <label class="chk-govco mt-0">
+                            <input type="checkbox" id="showPassword" (click)="checkShowPassword()" />
+                            <label for="showPassword">
+                                Mostrar contraseña
+                            </label>
+                            <div class="chk-govco__indicator"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+    <div class=" justify-content-center pt-2 text-center" id="modal-options">
+        <button formcontrolname="formControlLogin" class="btn btn-round btn-high w-25"
+            (click)="login()">Ingresar</button>
+    </div>
+</div>
