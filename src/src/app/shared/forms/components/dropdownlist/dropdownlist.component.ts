@@ -26,12 +26,13 @@ export class DropdownlistComponent implements ControlValueAccessor, OnChanges {
 
   ngOnChanges() {
     if (this.selected !== undefined && this.selected !== null) {
-      this.items.forEach(element => {
-        if (element.value === this.selected) {
-          this.selectItem(element);
-          this.value = element.text;
-        }
-      });
+      if(this.items !== undefined)
+        this.items.forEach(element => {
+          if (element.value === this.selected) {
+            this.selectItem(element);
+            this.value = element.text;
+          }
+        });
     }
   }
 

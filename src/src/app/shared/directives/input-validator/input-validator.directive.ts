@@ -56,7 +56,7 @@ export class InputValidatorDirective {
     let htmlElement = this.elemRef.nativeElement;
     let inputChildrens = htmlElement.getElementsByTagName(tag);
 
-    for(let i = 0; i < inputChildrens.length; i ++){      
+    for(let i = 0; i < inputChildrens.length; i ++){
       this.removeElementMessage(inputChildrens[i]);
       this.alterClassByElement(inputChildrens[i], this.actionType.Delete);
     }
@@ -98,8 +98,8 @@ export class InputValidatorDirective {
         let messageElement = this.addElementMessage(
           (element.value == undefined || element.value == "") ? "empty": "invalid"
         );
-        
-        element.parentNode.appendChild(messageElement);        
+
+        element.parentNode.appendChild(messageElement);
         this.alterClassByElement(element, this.actionType.Add);
       }else {
         element.className = element.className.replace("input-error", "");
@@ -119,9 +119,9 @@ export class InputValidatorDirective {
         element.push({ element: elementRef.previousElementSibling, className: 'label-error' });
         break;
       case 'app-password':
-        const inputElement = elementRef.querySelector(".input-govco");        
-        element.push({ element: inputElement, className: 'is-invalid' });                
-      case 'text':  
+        const inputElement = elementRef.querySelector(".input-govco");
+        element.push({ element: inputElement, className: 'is-invalid' });
+      case 'text':
       case 'number':
       case 'password': {
         if (elementRef.previousElementSibling != undefined ) {
@@ -133,13 +133,14 @@ export class InputValidatorDirective {
 
     if (element !== undefined) {
       for (var i = 0; i < element.length; i ++){
-        if(element[i].element.classList != undefined){          
-          if (actionType === this.actionType.Delete) {
-            element[i].element.classList.remove(element[i].className);
-          } else if (actionType === this.actionType.Add) {
-            element[i].element.classList.add(element[i].className);
+        if(element[i].element != null)
+          if(element[i].element.classList != undefined){
+            if (actionType === this.actionType.Delete) {
+              element[i].element.classList.remove(element[i].className);
+            } else if (actionType === this.actionType.Add) {
+              element[i].element.classList.add(element[i].className);
+            }
           }
-        }
       }
     }
   }
@@ -156,14 +157,14 @@ export class InputValidatorDirective {
     this.alterClassByElement(currentElement, this.actionType.Delete);
   }
 
-  //Incluye el mensaje 
+  //Incluye el mensaje
   addElementMessage(messageType: string): HTMLElement {
     var wrapper = document.createElement('div');
     wrapper.className = messageType == "empty" ? "input-validation-error empty-validation " : "input-validation-error invalid-validation";
-    wrapper.innerHTML = messageType == "empty" ? 
-        jsonStrings.messages["input-validation"]["empty-input"]: 
+    wrapper.innerHTML = messageType == "empty" ?
+        jsonStrings.messages["input-validation"]["empty-input"]:
         jsonStrings.messages["input-validation"]["invalid-input"];
-    
+
     return wrapper;
   }
 

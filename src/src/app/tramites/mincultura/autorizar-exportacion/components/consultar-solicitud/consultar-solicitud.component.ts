@@ -55,7 +55,7 @@ export class ConsultarSolicitudComponent implements OnInit {
     if (this.seleccionSolucionForm.isValid()) {
       this.service.ConsultarSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
         //debugger;
-        if (response.result.solicitudSalidaObras) {
+        if (response.result.solicitudSalidaObras.length > 0) {
           this.items = [];
           sessionStorage.clear();
           for (let solicitud of response.result.solicitudSalidaObras) {
@@ -90,7 +90,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   }
 
   verEditar() {
-    this.router.navigate(['/autorizar-exportacion/ingresar']);
+    this.router.navigate(['mincultura/autorizar-exportacion/ingresar-solicitud']);
   }
 
   verDescargar() {

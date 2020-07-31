@@ -62,7 +62,7 @@ export class IngresarSolicitudComponent implements OnInit {
           toMatch.setErrors(null);
         }
       }
-      
+
       return null;
     };
   }
@@ -177,17 +177,17 @@ export class IngresarSolicitudComponent implements OnInit {
 
        this.registerForm.get('requiereIntermediario').valueChanges
         .subscribe(requiereIntermediario => {
-          
+
           if (requiereIntermediario== 'SI') {
-            
+
             tipoDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario2.setValidators([Validators.required]);
-            
-         
+
+
             correoUbicacionIntermediario.setValidators([Validators.required, Validators.email]);
             correoUbicacionIntermediario2 .setValidators([Validators.required, Validators.email]);
-          
+
           }
           else
           {
@@ -224,7 +224,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
         });
 
-      
+
 
         this.registerForm.get('PaisDestino').valueChanges
         .subscribe(pais => {
@@ -256,7 +256,7 @@ export class IngresarSolicitudComponent implements OnInit {
    get f() { return this.registerForm.controls; }
 
    open(content) {
- 
+
     if (this.registerForm.valid){
       this.modalService.open(content, { size: "xl", scrollable: true });
     }
@@ -281,7 +281,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
   }
   crearSolicitudModel(){
-    
+
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: parseInt(this.registerForm.value.tipoSolicitante.value, 10),
       DocIdSolicitante: parseInt(this.registerForm.value.tipoDocumentoSolicitante.value, 10),
@@ -366,7 +366,7 @@ export class IngresarSolicitudComponent implements OnInit {
   closeModal() {
     this.service.asignarFormularioInvalido(false);
     this.modalService.dismissAll();
-    
+
   }
 
   guardar(content){
@@ -375,7 +375,7 @@ export class IngresarSolicitudComponent implements OnInit {
       this.service.asignarpasoIngresar(2);
       let solicitud=this.crearSolicitudModel();
       this.service.registrarSolicitud(solicitud).subscribe((result: any) => {
-        
+
         if(result.success && result.result.operacionExitosa)
         {
           if(result.result.success)
@@ -387,13 +387,13 @@ export class IngresarSolicitudComponent implements OnInit {
       }, (error) => {
         this.manejoErrorPeticion(error);
       });
-      
+
     }
     else{
     this.scrollControInvalido();
     this.invalidForm = true;
     }
-    
+
   }
 
    onReset() {
@@ -565,7 +565,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoDestino() {
-    
+
     console.log(this.registerForm.value.departamentoDestino.value);
     this.data.municipiosDestino = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
@@ -587,7 +587,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoIntermediario() {
-    
+
     console.log(this.registerForm.value.departamentoIntermediario.value);
     this.data.municipiosIntermediario = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
@@ -655,7 +655,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoSolicitante(){
-    
+
     if(this.adjuntoPendienteSolicitante != null)
     {
       this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
@@ -670,7 +670,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoIntermediario(){
-    
+
     if(this.adjuntoPendienteIntermediario != null)
     {
       this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
