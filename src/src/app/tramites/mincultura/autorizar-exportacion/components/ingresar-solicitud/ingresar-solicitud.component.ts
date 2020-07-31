@@ -294,7 +294,7 @@ export class IngresarSolicitudComponent implements OnInit {
       SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
       SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
       Requiereintermediario: this.registerForm.value.requiereIntermediario=='SI'? true: false,
-      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario? parseInt(this.registerForm.value.tipoDocumentoIntermediario, 10): null,
+      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario? parseInt(this.registerForm.value.tipoDocumentoIntermediario.value, 10): null,
       SosNroDocumentointermediario:this.registerForm.value.numeroDocumentoIntermediario,
       SosNombreintermediario: this.registerForm.value.nombreIntermediario,
       IntZopId: parseInt(this.registerForm.value.paisExpedicionIntermediario.value, 10),
@@ -322,7 +322,7 @@ export class IngresarSolicitudComponent implements OnInit {
       SosNombreRepresentante:this.registerForm.value.nombreRazonSocialSolicitante,
       ProrrogaMotivo:"", //por defecto vacio
       ProrrogaFechaRegreso:null,//por defecto
-      IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario.value,
+      IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario? parseInt(this.registerForm.value.paisExpedicionIntermediario.value, 10): null,
       ZonId:"01001",
       SosCantidad: 1,//1 valor fijo
       SosLugarExpedicion:"01001",//valor fijo
