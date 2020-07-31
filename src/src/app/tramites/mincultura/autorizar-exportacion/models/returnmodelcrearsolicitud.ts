@@ -1,9 +1,10 @@
 import  {Solicitudsalidaobra} from './solicitudsalidaobra';
 export interface ReturnModelCrearSolicitud 
     {
-
-        SolicitudSalidaObra : Solicitudsalidaobra;
-        Solicitud : object;
-        Success : boolean;
-        Errors : Error;
+        solicitudSalidaObra : Solicitudsalidaobra;
+        solicitud : object;
+        success : boolean;
+        errors : Error;
+        mensaje: string;
+        operacionExitosa: boolean;
     }

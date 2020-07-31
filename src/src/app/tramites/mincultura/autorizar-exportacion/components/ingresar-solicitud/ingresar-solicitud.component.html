@@ -585,7 +585,7 @@
                 <a (click)="volver()" class="btn btn-round btn-middle">Cancelar</a>
             </div>
             <div class="col-md-6 text-center">
-                <a (click)="open(content)" class="btn btn-round btn-high">Guardar</a>
+                <a (click)="guardar(content)" class="btn btn-round btn-high">Guardar</a>
             </div>
         </div>
 
@@ -604,7 +604,7 @@
                                 con éxito</p>
                             <p id="modal-content-txt" class="modal-content-txt content-govco">Tu número de solicitud es
                             </p>
-                            <p id="modal-content-txt" class="modal-content-txt content-govco">0175-2018</p>
+                            <p id="modal-content-txt" class="modal-content-txt content-govco">{{sosId}}</p>
                             <p id="modal-content-txt" class="modal-content-txt content-govco">Tu solicitud aún no ha
                                 iniciado trámite ante el ministerio, debe completar los requisitos, agregar obras y
                                 presionar el botón enviar al ministerio.</p>

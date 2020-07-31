@@ -21,7 +21,7 @@ export class IngresarSolicitudComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, public modalService: NgbModal, public service: AutorizarExportacionUtilService) {
     this.requiereIntermediarioValor='NO';
    }
-
+   sosId: string;
    registerForm: FormGroup;
    adjuntoPendienteSolicitante: ResponseFileModel;
    adjuntosSolicitante: ResponseFileModel[];
@@ -243,10 +243,6 @@ export class IngresarSolicitudComponent implements OnInit {
           municipioDestino.updateValueAndValidity();
           ciudadDestino.updateValueAndValidity();
         });
-
-
-
-
        this.cargarDatosStorage();
    }
 
@@ -262,7 +258,6 @@ export class IngresarSolicitudComponent implements OnInit {
    open(content) {
  
     if (this.registerForm.valid){
-      this.guardar();
       this.modalService.open(content, { size: "xl", scrollable: true });
     }
     else{
@@ -286,13 +281,13 @@ export class IngresarSolicitudComponent implements OnInit {
 
   }
   crearSolicitudModel(){
-    debugger
+    
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: parseInt(this.registerForm.value.tipoSolicitante.value, 10),
       DocIdSolicitante: parseInt(this.registerForm.value.tipoDocumentoSolicitante.value, 10),
       SosNroDocumentoSolicitante:this.registerForm.value.numeroDocumentoSolicitante,
       ZopId:parseInt(this.registerForm.value.paisExpedicionSolicitante.value, 10),
-      SosZonPadreId: parseInt(this.registerForm.value.departamentoUbicacion.value,10 ),
+      SosZonPadreId: this.registerForm.value.departamentoUbicacion.value,
       SosZonId:this.registerForm.value.municipioUbicacion.value,
       Ciudad:this.registerForm.value.municipioUbicacion.text,
       SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion,
@@ -309,14 +304,14 @@ export class IngresarSolicitudComponent implements OnInit {
       SosTelefonointermediario:  this.registerForm.value.telefonoUbicacionIntermediario,
       SosDireccionintermediario: this.registerForm.value.direccionUbicacionIntermediario,
       IntUbicacionEmail:this.registerForm.value.correoUbicacionIntermediario,
-      DestintoZopId:this.registerForm.value.PaisDestino.value,
-      DestintoCiudad:this.registerForm.value.ciudadIntermediario.value,
-      DestintoDireccion: this.registerForm.value.direccionDestino,
+      DestinoZopId:parseInt(this.registerForm.value.PaisDestino.value, 10),
+      DestinoCiudad:this.registerForm.value.ciudadDestino,
+      DestinoDireccion: this.registerForm.value.direccionDestino,
       TmsId: parseInt(this.registerForm.value.finExportacion.value, 10),
-      DestintoEntidad: this.registerForm.value.entidadDestino,
-      DestintoTelefono:this.registerForm.value.telefonoDestino,
-      DestintoTiempoPermanencia: this.registerForm.value.tiempoPermanencia,
-      DestintoTipoTiempoPermanencia: parseInt(this.registerForm.value.tipoPermanencia, 10),
+      DestinoEntidad: this.registerForm.value.entidadDestino,
+      DestinoTelefono:this.registerForm.value.telefonoDestino,
+      DestinoTiempoPermanencia: this.registerForm.value.tiempoPermanencia ? parseInt(this.registerForm.value.tiempoPermanencia,10): null,
+      DestinoTipoTiempoPermanencia:this.registerForm.value.tipoPermanencia ? parseInt(this.registerForm.value.tipoPermanencia.value, 10): null,
       AceptaHabeasdata:this.registerForm.value.autoriza,
       SosNombreSolicitante:this.registerForm.value.nombreRazonSocialSolicitante,
       //atrib missing
@@ -324,7 +319,7 @@ export class IngresarSolicitudComponent implements OnInit {
       AnexoSolicitante:this.mappAnexo(this.adjuntosSolicitante),
       Anexointermediario:this.mappAnexo(this.adjuntosIntermediario),
       ReitegroObservaciones:"",//por defecto vacio
-      SosNombreRepresentante:"", //por defecto vacio
+      SosNombreRepresentante:this.registerForm.value.nombreRazonSocialSolicitante,
       ProrrogaMotivo:"", //por defecto vacio
       ProrrogaFechaRegreso:null,//por defecto
       IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario.value,
@@ -344,20 +339,22 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   mappAnexo(adjuntosSolicitante: ResponseFileModel[]){
-    let anexos:Anexo[];
-    let anexo:Anexo;
+    let anexos:Anexo[]=[];
     adjuntosSolicitante.forEach(i=>{
-      NombreArchivo:i.FileName;
-      ArchivoBinario: i.FileContent;
-      Descripcion: i.Description;
-      AnexoId:0;
-      FicId:0;
-      NroDocumentoSolicitante:"";
-      PrestamoId:0;
-      SeccionId:0;
-      SolicitudId:0;
+      const anexo: Anexo = {
+      NombreArchivo:i.FileName,
+      ArchivoBinario: i.FileContent,
+      Descripcion: i.Description,
+      AnexoId:0,
+      FicId:0,
+      NroDocumentoSolicitante:"",
+      PrestamoId:0,
+      SeccionId:0,
+      SolicitudId:0,
       TipoDocumentoSolicitante:""
-    });
+    }
+    anexos.push(anexo);
+  });
     return anexos;
   }
 
@@ -372,17 +369,32 @@ export class IngresarSolicitudComponent implements OnInit {
     
   }
 
-  guardar(){
-    debugger
-    this.service.asignarPaso(3);
-    this.service.asignarpasoIngresar(2);
-    let solicitud=this.crearSolicitudModel();
-    this.service.registrarSolicitud(solicitud).subscribe((data: ReturnModelCrearSolicitud) => {
-      debugger
-    }, (error) => {
-      this.manejoErrorPeticion(error);
-    });
-   }
+  guardar(content){
+    if (this.registerForm.valid){
+      this.service.asignarPaso(3);
+      this.service.asignarpasoIngresar(2);
+      let solicitud=this.crearSolicitudModel();
+      this.service.registrarSolicitud(solicitud).subscribe((result: any) => {
+        
+        if(result.success && result.result.operacionExitosa)
+        {
+          if(result.result.success)
+          {
+            this.sosId = result.result.solicitudSalidaObra.sosConsecutivoIndice;
+            this.modalService.open(content, { size: "xl", scrollable: true });
+          }
+        }
+      }, (error) => {
+        this.manejoErrorPeticion(error);
+      });
+      
+    }
+    else{
+    this.scrollControInvalido();
+    this.invalidForm = true;
+    }
+    
+  }
 
    onReset() {
        this.submitted = false;
@@ -647,7 +659,7 @@ export class IngresarSolicitudComponent implements OnInit {
     if(this.adjuntoPendienteSolicitante != null)
     {
       this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
-      //this.registerForm.value.descripcionAdjuntoSolicitante = "";
+      this.adjuntoPendienteSolicitante.FileContent = this.adjuntoPendienteSolicitante.FileContent.split(',')[1];
       this.adjuntosSolicitante.push(this.adjuntoPendienteSolicitante);
       this.adjuntoPendienteSolicitante=null;
     }
@@ -662,7 +674,7 @@ export class IngresarSolicitudComponent implements OnInit {
     if(this.adjuntoPendienteIntermediario != null)
     {
       this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
-      //this.registerForm.value.descripcionAdjuntoIntermediario = "";
+      this.adjuntoPendienteIntermediario.FileContent = this.adjuntoPendienteIntermediario.FileContent.split(',')[1];
       this.adjuntosIntermediario.push(this.adjuntoPendienteIntermediario);
       this.adjuntoPendienteIntermediario=null;
     }
