@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { ResponseFileModel } from '../models/responseFileModel';
 export class SubirarchivoComponent implements OnInit {
   @Output() uploaded = new EventEmitter<ResponseFileModel>();
   @Output() canceled = new EventEmitter();
+  @Input() type: string;
 
   @ViewChild('fileUpload', { static: false }) fileUpload: ElementRef;
   file;
@@ -20,6 +21,8 @@ export class SubirarchivoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Tipo de archivo que se va a subir
+    console.log(this.type);
   }
   public upload(formData: any) {
     debugger
@@ -35,7 +38,7 @@ export class SubirarchivoComponent implements OnInit {
 
   // Para archivos multiples
   private uploadFiles() {
-    this.file.inProgress=true;
+    this.file.inProgress = true;
     this.fileUpload.nativeElement.value = '';
     this.uploadFile(this.file);
   }
@@ -49,15 +52,15 @@ export class SubirarchivoComponent implements OnInit {
         FileName: file.name,
         Type: file.type,
         Description: "",
-        FileContent:(<FileReader>event.target).result.toString()
+        FileContent: (<FileReader>event.target).result.toString()
       };
-      this.responseFileModel =responceFile;
+      this.responseFileModel = responceFile;
     });
 
     reader.addEventListener('progress', (event) => {
       if (event.loaded && event.total) {
         const percent = (event.loaded / event.total) * 100;
-        this.file.progress= Math.round(percent);
+        this.file.progress = Math.round(percent);
         console.log(`Progress: ${Math.round(percent)}`);
       }
     });
@@ -69,7 +72,7 @@ export class SubirarchivoComponent implements OnInit {
   }
 
   cargar() {
-    if(this.responseFileModel != null)
+    if (this.responseFileModel != null)
       this.uploaded.emit(this.responseFileModel);
   }
 

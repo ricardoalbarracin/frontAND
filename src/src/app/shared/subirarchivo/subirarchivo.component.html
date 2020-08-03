@@ -5,7 +5,7 @@
   <div class="row card-body mt-3">
     <div class="file-drop-area col-md-12 text-center">
       <div class="col-md-12">
-        
+
         <div (click)="onClick()" class="btn ">
           <span class="govco-icon govco-icon-attached-p icon5x disabled"></span>
           <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right file-msg text-uppercase clear">
@@ -13,7 +13,7 @@
           </div>
         </div>
         <div class="col-md-12">
-          
+
           <li *ngIf="file != null">
             <div>{{file.data.name}}</div>
             <div class="progress">
@@ -23,7 +23,7 @@
             <span id="file-label">
             </span>
           </li>
-          <input type="file" class="file-input" #fileUpload id="fileUpload" name="fileUpload" accept="application/pdf"
+          <input type="file" class="file-input" #fileUpload id="fileUpload" name="fileUpload" accept={{type}}
             style="display: none;">
         </div>
       </div>
