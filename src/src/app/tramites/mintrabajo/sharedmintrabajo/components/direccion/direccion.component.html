@@ -1,0 +1,165 @@
+<div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm" [ngClass]="{'invalid-form' : invalidForm}">
+
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Pais*</label>
+      <app-dropdownlist ngDefaultControl formControlName="pais" placeholder="Ingrese un valor"
+        (change)="habilitarControlesXpais()" [items]="listaPais">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Departamento</label>
+      <app-dropdownlist ngDefaultControl formControlName="departamento" placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Municipio</label>
+      <app-dropdownlist ngDefaultControl formControlName="municipio" placeholder="Ingrese un valor" [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Código postal</label>
+      <input class="form-control input-govco" formControlName="codigo_postal" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row card-header pt-0">
+    <h3 class="m-0 title-section">Dirección</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Tipo de vía</label>
+      <app-dropdownlist ngDefaultControl formControlName="tipo_via" placeholder="Ingrese un valor" [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Número de vía principal</label>
+      <input class="form-control input-govco" formControlName="numero_via_principal" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Prefijo cuadrante</label>
+      <app-dropdownlist ngDefaultControl formControlName="prefijo_cuadrante1" placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Bis</label>
+      <input class="form-control input-govco" formControlName="bis" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Orientación</label>
+      <app-dropdownlist ngDefaultControl formControlName="orientacion1" placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Número de vía</label>
+      <input class="form-control input-govco" formControlName="numero_via" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Prefijo cuadrante</label>
+      <app-dropdownlist ngDefaultControl formControlName="prefijo_cuadrante2" placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Número de placa</label>
+      <input class="form-control input-govco" formControlName="numero_placa1" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Orientación</label>
+      <app-dropdownlist ngDefaultControl formControlName="orientacion2" placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <!-- <div class="col-md-6">
+      <label class="form-group-govco">Número de placa</label>
+      <input class="form-control input-govco" formControlName="numero_placa2" maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div> -->
+  </div>
+  <hr>
+  <div class="row card-header pt-0">
+    <h3 class="m-0 title-section">Complemento</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <label class="form-group-govco">Tipo de Complemento</label>
+      <app-dropdownlist ngDefaultControl formControlName='tipo_complemento' placeholder="Ingrese un valor"
+        [items]="listaSINO">
+      </app-dropdownlist>
+    </div>
+    <div class="col-md-6">
+      <label class="form-group-govco">Descripción</label>
+      <input class="form-control input-govco" formControlName='descripcion_complemento' maxlength="10" minlength="3"
+        placeholder="00000-123" />
+    </div>
+  </div>
+
+  <br>
+  <div class="row card-header pt-0">
+    <div class="row card-header pt-0">
+      <div style="width: 30px;">
+        <span class="govco-icon govco-icon-plus-n color-dodger-blue" (click)='agregarComplemento()'></span>
+      </div>
+      <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right color-dodger-blue text-uppercase">Agregar
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="table-simple-headblue-govco ">
+    <table class="table display table-responsive-sm table-responsive-md">
+      <thead>
+        <tr>
+          <th>Tipo de complemento</th>
+          <th>Descripción</th>
+          <th style="width: 20%;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of complementos">
+          <td>{{item.tipo}}</td>
+          <td>{{item.descripcion}}</td>
+          <td>
+            <span class="govco-icon govco-icon-delete-p color-dodger-blue" (click)='EliminarComplemento(item)'><span
+                class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase d-inline-block align-middle color-dodger-blue">Eliminar</span></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<div class="row mt-3">
+  <div class=" col-md-12 registro-consulta-footer">
+    <button (click)="cancelar()" class="btn btn-round btn-middle">CANCELAR DIRECCIÓN</button>
+    <button (click)="enviarDireccion()" class="btn btn-round btn-high">ACEPTAR DIRECCIÓN</button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="card-body pt-0">
+  <h3 class="m-0">Bienvenido(a)</h3>
+</div>
+<br>
+<label class="form-group-govco">El Ministerio del Trabajo, en lo sucesivo Mintrabajo, identificado con el NIT
+  830115226-3, con domicilio en la Carrera 14 No. 99 -33, Bogotá – Colombia,
+  informa que los datos personales que usted suministrará al sistema, serán
+  tratados mediante el uso y mantenimiento de medidas de seguridad técnicas,
+  físicas y administrativas y su confidencialidad estará garantizada de conformidad
+  con lo definido en la Ley 1581 de 2012, el Decreto Reglamentario 1377 de 2013, la
+  Resolución 1867 del 13 de mayo de 2014, con las siguientes finalidades:<br>
+  <br><br>a.)Registrar la información de datos personales en las bases de datos del Ministerio del
+  Trabajo, con la finalidad de analizar, evaluar y generar datos estadísticos así como indicadores
+  para la formulación de políticas en el sector del trabajo.
+  <br><br>b.)Ejercer las funciones establecidas en el Decreto 4108 de 2011, Ley 1562 de 2012, Ley 1610
+  de 2013 y las establecidas en las demás disposiciones legales vigentes.
+  <br><br>c.)Facilitar la implementación de programas en cumplimiento de mandatos legales.
+  <br><br>d.)Enviar la información a entidades gubernamentales o judiciales por solicitud expresa
+  de las mismas.<br><br>
+  Igualmente, es preciso informar que cualquier modificación al presente aviso
+  le será notificado a través de los canales que disponga Mintrabajo para tal fin.</label>
+<label class="checkbox-govco">
+  <input type="checkbox" id="checkbox_simple_solo" (click)='autoriza()' />
+  <label for="checkbox_simple_solo"> Autoriza el uso y tratamiento de los datos registrados</label>
+</label>
+<br>
+<div class="row">
+  <div class=" col-md-12 registro-consulta-footer">
+    <a class="btn btn-round btn-middle" (click)='cancelar()'>CANCELAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-round btn-high" [disabled]='autorizar' (click)="continuar()">CONTINUAR</button>
+  </div>
+</div>
+<br>

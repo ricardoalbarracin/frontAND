@@ -1,0 +1,11 @@
+version: '3.6'
+
+services:
+  client:
+    image: node:10
+    volumes:
+      - ..:/opt/app:cached
+    ports:
+      - "${NODE_PORT}:4200"
+    working_dir: /opt/app/consulta-certificados
+    command: "/bin/sh -c 'yarn install --frozen-lockfile --production=false; yarn start'"

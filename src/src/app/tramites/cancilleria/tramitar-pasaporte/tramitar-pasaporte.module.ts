@@ -17,9 +17,10 @@ import { ComprobantePagoPseComponent } from './components/comprobante-pago-pse/c
 import { PagoOnlineComponent } from './components/pago-online/pago-online.component';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { TramitarPasaporteService } from './services/tramitar-pasaporte.service';
+import { IngresarTramiteComponent } from './components/ingresar-tramite/ingresar-tramite.component';
 
 @NgModule({
-  declarations: [SolicitarPasaporteComponent, PagarPasaporteComponent, ConsultarEstadoComponent, ContainerPasaporteComponent, EstadoSolicitudComponent, AvisoPrivacidadModalComponent, AyudaPasaporteModalComponent, VerSolicitudPasaporteComponent, ComprobantePagoPseComponent, PagoOnlineComponent],
+  declarations: [SolicitarPasaporteComponent, PagarPasaporteComponent, ConsultarEstadoComponent, ContainerPasaporteComponent, EstadoSolicitudComponent, AvisoPrivacidadModalComponent, AyudaPasaporteModalComponent, VerSolicitudPasaporteComponent, ComprobantePagoPseComponent, PagoOnlineComponent, IngresarTramiteComponent],
   imports: [
     CommonModule,
     TramitarPasaporteRoutingModule,

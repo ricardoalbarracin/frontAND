@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  fichaTramiteUrlBase: 'https://www.gov.co/',
+  fichaTramiteUrlBase: 'https://pre.www.gov.co/',
   production: false,
   serverUrl: 'http://localhost:8081/api/'
 };

@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  client:
+    container_name: tramites_y_servicios_spa
+    build:
+      context: .
+      dockerfile: Dockerfile_qa
+    ports:
+      - ${NODE_PORT}:8181
+    restart: unless-stopped
+    networks:
+      - red_govco
+networks:
+    red_govco:
+      external: true

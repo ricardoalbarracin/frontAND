@@ -26,11 +26,6 @@ export class PagarPasaporteComponent implements OnInit {
   moneda: string;
   totalPago: Int16Array;
   centavos: string;   
-  mostrarPSE: boolean;
-  mostrarTC: boolean;
-  mostrarPresencial: boolean;
-  urlPSE: string = "";
-  urlTC: string = "";
 
   constructor(private route: ActivatedRoute, public sanitizer: DomSanitizer, private router:Router ) {  
     //Obtiene el string con la data de la solicitud.
@@ -38,7 +33,7 @@ export class PagarPasaporteComponent implements OnInit {
     
     //Covierte en Json el string con la data de la solicitud
     var data = JSON.parse(this.dataSolicitud); 
-    // var data = JSON.parse("{\"return\" : {  \"outDatosSolicitante\" : {    \"nombreCompleto\" : {      \"primerApellido\" : \"VELASQUEZ\",      \"primerNombre\" : \"ANA\",      \"segundoApellido\" : \"GIRALDO\",      \"segundoNombre\" : \"MARIA\"    },    \"numeroPersonal\" : \"1088253299\",    \"tipoDocumento\" : \"CC\"  },  \"outDetalleRespuesta\" : {    \"codigo\" : 1,    \"detalle\" : \"EXITO\",    \"mensaje\" : \"Su solicitud de pasaporte se ha registrado correctamente, el número de registro de su solicitud es 165005005004401.\"  },  \"outFormaPago\" : [ {    \"descripcion\" : \"EN LÍNEA <br /> A través de Pagos Seguros en línea - PSE\",    \"formaDePago\" : \"PSE\",    \"id\" : 116,    \"labelBoton\" : \"IR A PSE\",    \"referenciaUnicaPago\" : \"165005005004401\",    \"tipoFormaPago\" : \"EN_LINEA\",    \"url\" : \"https://tramites.cancilleria.gov.co/ApostillaLegalizacion/pago/inicioPagoPSE.aspx?refpago=165005005004401&metodoPago=PSE&fuente=govco&redirectUrl=xxx\"  } ],  \"outSolicitud\" : {    \"moneda\" : \"USD $\",    \"numeroSolicitud\" : \"165005005004401\",    \"oficina\" : \"C. MEXICO\",    \"tipoPasaporte\" : \"ORDINARIO 32 PÁGINAS\",    \"totalPagar\" : 110.00  }}}");
+
     //Mapeo de datos de la solicitud.
     var nombres = data.return.outDatosSolicitante.nombreCompleto;
     this.nombresApellidos = nombres.primerNombre + " " + nombres.segundoNombre + " " + nombres.primerApellido + " " + nombres.segundoApellido;
@@ -51,18 +46,6 @@ export class PagarPasaporteComponent implements OnInit {
     this.moneda = data.return.outSolicitud.moneda;
     this.totalPago = data.return.outSolicitud.totalPagar;
     this.centavos = ".00"
-
-    this.mostrarPSE = data.return.outFormaPago.some(e => e.formaDePago === 'PSE');
-    this.mostrarTC = data.return.outFormaPago.some(e => e.formaDePago === 'TC');
-    this.mostrarPresencial = data.return.outFormaPago.some(e => e.formaDePago === 'PRESENCIAL');
-
-    if(this.mostrarPSE){
-      this.urlPSE = data.return.outFormaPago.find(e => e.formaDePago === 'PSE').url;
-    }
-
-    if(this.mostrarTC){
-      this.urlTC = data.return.outFormaPago.find(e => e.formaDePago === 'TC').url;
-    }
 
     //Renderiza el formulario.
     this.PagarPasaporteForm = new PagarPasaporteForm();
@@ -83,10 +66,10 @@ export class PagarPasaporteComponent implements OnInit {
   }
 
   pagoPse() {
-    this.router.navigate(["/cancilleria/pagoOnline", this.solicitud, "S", "PSE", "", "GOVCO", this.urlPSE]);
+    this.router.navigate(["/cancilleria/pagoOnline",this.solicitud,"S","PSE","","GOVCO"]);
   }
 
-  pagoTc() {
-    this.router.navigate(["/cancilleria/pagoOnline", this.solicitud, "TC", "PSE", "", "GOVCO", this.urlTC]);
-  }
+  pagoTc() {                               
+   this.router.navigate(["/cancilleria/pagoOnline",this.solicitud,"TC","PSE","","GOVCO"]);
+ }
 }

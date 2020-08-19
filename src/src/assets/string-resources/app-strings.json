@@ -86,6 +86,13 @@
                 "detail": "Ofrecer información en el sitio web referente a cualquier producto registrado en la Base de Datos del INVIMA (vigente o nó), así mismo podrá consultar actos administrativos para notificarse, registros concedidos por periodo, suspendidos, cancelados, negados, establecimientos certificados, entidades protegidas, información de Código Único de Medicamentos, información decreto de transparencia, estado de los trámites radicados y verificación de documentos con firma digital."
             }
         },
+        "horasextras": {
+          "name": "",
+          "horas-extras": {
+              "title": "Autorización para laborar horas extras",
+              "detail": "Espacio para la descripción del tramite."
+          }
+        },
         "mintransporte": {
             "name": "Ministerio de transporte de Colombia",
             "licencia-conduccion": {

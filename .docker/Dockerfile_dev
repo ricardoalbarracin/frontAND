@@ -1,0 +1,37 @@
+ARG VERSION=10
+FROM node:$VERSION as builder
+
+# Envs variables
+ENV OUTP_DIR=/opt/app
+ENV OUTS_DIR=/opt/app/src
+
+# Labels Constants
+LABEL usuario="allen.asto"
+LABEL correo="allen.asto@and.gov.co"
+LABEL version="1.0"
+LABEL description="Desarrollo de DockerFile para Estandarización"
+
+# Runs commands
+RUN mkdir $OUTP_DIR
+#RUN mkdir $OUTS_DIR
+
+WORKDIR $OUTP_DIR
+COPY ./ $OUTP_DIR/.
+
+WORKDIR $OUTS_DIR
+RUN npm install
+RUN npm install -g @angular/cli@8.1.3
+RUN ng b --optimization
+#RUN ng b --output-hashing=all --base-href /tramites-y-servicios/ --delete-output-path --optimization
+#RUN ng b --output-hashing=all --base-href /tramites-y-servicios/ --delete-output-path --optimization
+#RUN ng b --main $OUTS_DIR --output-hashing=all --base-href /tramites-y-servicios/ --delete-output-path --optimization --profile --progress --watch --skip-app-shell
+
+FROM nginx:alpine
+
+COPY .docker/nginx/default.conf /etc/nginx/conf.d/
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /opt/app/src/dist/tramites-y-servicios/ /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
+
+#USER root

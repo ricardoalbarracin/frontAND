@@ -1,0 +1,359 @@
+<div class="card govco-card p-3 mb-3">
+  <div class="row card-header pt-0">
+    <h3 class="m-0 title-section">Documentos del trámite</h3>
+  </div>
+  <br>
+  <div class="table-simple-headblue-govco">
+    <table class="table display table-responsive-sm table-responsive-md" style="width:100%">
+      <thead>
+        <tr>
+          <th>Obligatorio</th>
+          <th>Mátricula</th>
+          <th>Anotaciones adicionales </th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Oficio remisorio</label>(Carta de Solicitud)</td>
+          <td>Carta de solicitud: 1 Original digitalizada por el representante legal. Mediante el cual solicitan la
+            autorización para el desarrollo de trabajos en horas extras. La solicitud deberá contener la justificación
+            por la cual la empresa requiere el desarrollo de actividades laborales mediante horas extras.</td>
+          <td style="width:180px">
+            <ul>
+
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': !adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="row card-header pt-0" [ngClass]="{'disabled': adj_cartasolici}">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n" [ngClass]="{'disabled': adj_cartasolici}"><label
+                    class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'
+                  [ngClass]="{'disabled': !adj_cartasolici}"><label class="form-group-govco">Adjuntar</label></span>
+              </li>
+              <li><span class="govco-icon govco-icon-delete-n " [ngClass]="{'disabled': adj_cartasolici}"><label
+                    class="form-group-govco">Eliminar</label></span>
+              </li> -->
+            </ul>
+        </tr>
+
+        <tr>
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Certificación</label>(Afiliación Arl)</td>
+          <td>Certificado de la Administradora de Riesgos Laborales - ARL: 1 Copia(s). A la cual la empresa se encuentra
+            afiliada, especificando: - Las exigencias de carga física, psicosocial y demás riesgos para los cargos que
+            requieren trabajar horas extras. - Evaluación donde se establezca a manera general si los trabajadores que
+            desempeñen los cargos que requieren trabajar horas extras, por este hecho se verían afectados por las
+            exigencias de carga física, psicosocial y demás riesgos (Tomando como referencia los programas de vigilancia
+            epidemiológica). - Existencia en la empresa solicitante de los programas de vigilancia epidemiológica de
+            factores de riesgo, relacionados con las actividades laborales, para las que está solicitando autorización
+            de horas extras.</td>
+          <td style="width:220px">
+            <ul>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li> -->
+              <!-- <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li> -->
+              <!-- <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
+            </ul>
+        </tr>
+
+        <tr>
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Informe</label>(Relación deLos cargos)</td>
+          <td>Informe con la relación de cargos: 1 Original digitalizada por el representante legal. Que contenga la
+            relación de actividades (cargos) para los cuales se solicita la autorización.</td>
+          <td style="width:180px">
+            <ul>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li>
+              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
+            </ul>
+        </tr>
+
+        <tr *ngIf="convenciones_colectivas === 'Si'">
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Oficio remisorio</label>(Manifestación expresa sobre existencia o no de
+            pactos o convenciones colectivas)
+          </td>
+          <td>Manifestación expresa sobre la existencia o no de pactos o convenciones colectivas: 1 Documento
+            digitalizado. De manifestación expresa sobre la existencia o no de pactos o convenciones colectivas. En caso
+            de contar con alguno, anexar la parte pertinente del mismo donde se estableció la jornada laboral, el
+            horario de trabajo y el trabajo suplementario.</td>
+          <td style="width:180px">
+            <ul>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li>
+              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
+            </ul>
+        </tr>
+
+        <tr *ngIf="organizaciones_sindicales === 'Si'">
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Oficio remisorio</label>(Manifestación de existencia o no de sindicato)
+          </td>
+          <td>Manifestación sobre la existencia o no de organización sindical: 1 Original digitalizada por el
+            representante legal. De manifestación expresa sobre la existencia o no de organización sindical en la
+            empresa.</td>
+          <td style="width:180px">
+            <ul>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li>
+              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
+
+            </ul>
+        </tr>
+
+        <tr *ngIf="reglamento_trabajo === 'Si'">
+          <td style="font-weight: bold; text-align: center;">Si</td>
+          <td><label style="font-weight: bold;">Copia del reglamento del contrato</label>(Reglamento interno de trabajo)
+          </td>
+          <td>Reglamento de trabajo : 1 Copia digitalizada. Si es el caso.</td>
+          <td style="width:180px">
+            <ul>
+
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-eye-p color-dodger-blue "></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Ver</div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-attached-p color-dodger-blue"
+                        (click)='SeleccionarArchivo()'></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Adjuntar
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row card-header pt-0">
+                  <div class="row card-header pt-0">
+                    <div style="width: 30px;">
+                      <span class="govco-icon govco-icon-delete-p color-dodger-blue"></span>
+                    </div>
+                    <div class="btn-symbolic-govco__title btn-symbolic-govco__title--right text-uppercase">Eliminar
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- <li><span class="govco-icon govco-icon-eye-n "><label class="form-group-govco">Ver</label></span></li>
+              <li><span class="govco-icon govco-icon-attached-p color-dodger-blue" (click)='SeleccionarArchivo()'><label
+                    class="form-group-govco">Adjuntar</label></span></li>
+              <li><span class="govco-icon govco-icon-delete-n "><label class="form-group-govco">Eliminar</label></span>
+              </li> -->
+            </ul>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <div [formGroup]="seleccionForm" appInputValidator [validate]="invalidForm"
+      [ngClass]="{'invalid-form' : invalidForm}">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row recaptcha-container">
+            <div class="form-group">
+              <re-captcha formControlName="recaptcha"></re-captcha>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class=" col-md-12 registro-consulta-footer">
+        <a class="btn btn-round btn-middle" (click)='regresar()'>REGRESAR</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-round btn-high" (click)="radicar()">RADICAR</button>
+      </div>
+    </div>
+
+  </div>
+</div>

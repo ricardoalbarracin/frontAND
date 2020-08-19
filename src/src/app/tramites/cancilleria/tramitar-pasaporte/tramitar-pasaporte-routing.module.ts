@@ -8,6 +8,7 @@ import { EstadoSolicitudComponent } from './components/estado-solicitud/estado-s
 import { VerSolicitudPasaporteComponent } from './components/ver-solicitud-pasaporte/ver-solicitud-pasaporte.component';
 import { ComprobantePagoPseComponent } from './components/comprobante-pago-pse/comprobante-pago-pse.component';
 import { PagoOnlineComponent } from './components/pago-online/pago-online.component';
+import { IngresarTramiteComponent } from './components/ingresar-tramite/ingresar-tramite.component';
 
 const routes: Routes = [
   {
@@ -16,11 +17,14 @@ const routes: Routes = [
     children: [
       { 
         path: "",
+        component: IngresarTramiteComponent        
+      },
+      { 
+        path: "solicitarPasaporte",
         component: SolicitarPasaporteComponent        
       },
       {
         path: "pagarPasaporte/:data",
-        // path: "pagarPasaporte",
         component: PagarPasaporteComponent
       },
       {
@@ -40,7 +44,7 @@ const routes: Routes = [
         component: ComprobantePagoPseComponent
       },
       {
-        path: "pagoOnline/:numeroSolicitud/:proceso/:medioPago/:codigoTramite/:entidad/:url",
+        path: "pagoOnline/:numeroSolicitud/:proceso/:medioPago/:codigoTramite/:entidad",
         component: PagoOnlineComponent
       }
     ]

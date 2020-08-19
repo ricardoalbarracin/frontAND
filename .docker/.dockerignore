@@ -1,0 +1,8 @@
+# comment
+*/temp*
+*/*/temp*
+temp?
+*.md
+.git/ 
+node_modules/ 
+#dist/
