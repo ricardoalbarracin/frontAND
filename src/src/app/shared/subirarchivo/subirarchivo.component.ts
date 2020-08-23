@@ -44,7 +44,6 @@ export class SubirarchivoComponent implements OnInit {
     const reader = new FileReader();
     reader.addEventListener('load', (event) => {
       console.log(file);
-      debugger
       const responceFile: ResponseFileModel = {
         FileName: file.name,
         Type: file.type,
@@ -80,7 +79,6 @@ export class SubirarchivoComponent implements OnInit {
       // tslint:disable-next-line: prefer-for-of
       for (let index = 0; index < fileUpload.files.length; index++) {
         const file = fileUpload.files[index];
-        debugger
         this.file = { data: file, inProgress: false, progress: 0 };
       }
       this.uploadFiles();

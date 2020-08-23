@@ -1,3 +1,4 @@
+import { RequestModelObtenerListaAnexos } from './../models/requestmodelobtenerlistaanexos';
 import { ReturnModelCrearSolicitud } from './../models/returnmodelcrearsolicitud';
 import { RequestModelObtenerSolicitudes } from './../models/requestmodelobtenersolicitudes';
 import { Injectable } from '@angular/core';
@@ -9,12 +10,12 @@ import { ReturnModelLista } from '../models/ReturnModelLista';
 import { ReturnModelObtenerMunicipios } from '../models/returnmodelobtenermunicipios';
 import { ReturnModelObtenerSolicitudPorNroConsecutivo, ReturnResult } from '../models/returnmodelobtenersolicitudpornroconsecutivo';
 import { RequestModelObtenerSolicitudPorNroConsecutivo } from '../models/requestmodelobtenersolicitudpornroconsecutivo';
-import { RequestModelObtenerListaAnexos } from '../models/requestmodelobtenerlistaanexos';
 import { ReturnModelObtenerListaAnexos } from '../models/returnmodelobtenerlistaanexos';
 import { ReturnModelObtenerSolicitudes } from '../models/returnmodelobtenersolicitudes';
 import { RequestModelCrearSolicitud } from '../models/requestmodelcrearsolicitud';
 import { RequestModelObtenerSolicitudPorId } from '../models/requestmodelobtenersolicitudporid';
 import { RequestModelObtenerSolicitudPorIntermediario } from '../models/RequestModelObtenerSolicitudPorIntermediario';
+import { RequestModelActualizarSolicitud } from '../models/requestmodelactualizarsolicitud';
 
 
 @Injectable({
@@ -213,6 +214,22 @@ export class AutorizarExportacionUtilService {
     return this.http.post<any>(this.urlTramite.obtenerSolicitudPorIntermediario, data, {
       headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
     }).pipe(catchError(this.errorHandler));
+  }
+
+  ObtenerListaAnexos(value: number) {
+    let data: RequestModelObtenerListaAnexos = {
+      SosId: value
+    }
+    return this.http.post<any>(this.urlTramite.obtenerListaAnexos, data, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    }).pipe(catchError(this.errorHandler));
+  }
+
+  public actualizarSolicitud(registerModel: RequestModelActualizarSolicitud) {
+    return this.http.post<ReturnModelCrearSolicitud>(this.urlTramite.actualizarSolicitud, registerModel, {
+      headers: new HttpHeaders().append('Content-Type', 'application/json').append('angular-show-loading', 'true')
+    })
+    .pipe(catchError(this.errorHandler));
   }
 
 }

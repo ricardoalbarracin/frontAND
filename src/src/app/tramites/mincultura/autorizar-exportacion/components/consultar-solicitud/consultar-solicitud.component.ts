@@ -30,7 +30,6 @@ export class ConsultarSolicitudComponent implements OnInit {
   }
 
   almacenarDatosStorage(solicitud){
-    debugger;
     sessionStorage.tipo_solicitante = solicitud.docIdSolicitante;
     sessionStorage.numero_documento = solicitud.sosNroDocumentoSolicitante;
     sessionStorage.tipo_documento = solicitud.docIdSolicitante;
