@@ -38,7 +38,7 @@ export class ConsultarSolicitudComponent implements OnInit {
     sessionStorage.direccion_solicitante = solicitud.sosDireccionSolicitante;
     sessionStorage.telefono_solicitante = solicitud.sosTelefonoSolicitante;
     sessionStorage.correo_solicitante = solicitud.sosCorreoSolicitante;
-
+    sessionStorage.sos_consecutivo  = solicitud.sosConsecutivo;
     sessionStorage.docIdIntermediario = solicitud.docIdIntermediario;
     sessionStorage.sosSinoIntermediario = solicitud.sosSinoIntermediario;
     sessionStorage.sosSinoAnexos = solicitud.sosSinoAnexos;
