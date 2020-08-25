@@ -20,6 +20,8 @@ export class ConsultarSolicitudComponent implements OnInit {
   verInformacionDescargar: boolean = false;
   mensajeConsultaSinResultados: boolean = false;
 
+  currentMessage:string;
+
   constructor(public formBuilder: FormBuilder, public service: AutorizarExportacionUtilService, private router:Router) {
 
   }
@@ -99,6 +101,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   ngOnInit() {
     this.seleccionSolucionForm = new ConsultarSolicitudForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
+    this.currentMessage = "El servicio no se encuentra disponible en este momento, te recomendamos:\n\n1. Intentarlo más tarde\n2. Recargar la página.";
   }
 
 }

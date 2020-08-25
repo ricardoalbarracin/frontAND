@@ -799,7 +799,6 @@ export class IngresarSolicitudComponent implements OnInit {
       this.registerForm.controls.nombreIntermediario.setValue(sessionStorage.sosNombreIntermediario);
       this.service.ConsultarSolicitudxID(Number(sessionStorage.sosId)).subscribe(data => {
         if(data.success){
-          debugger;
           this.valoresConsulta.departamentoUbicacion = data.result.solicitud.sosZonPadreId.toString();
           this.valoresConsulta.tipo_solicitante = data.result.solicitud.sosTipoPersonaId.toString().trim();
           this.valoresConsulta.paisExpedicionIntermediario = data.result.solicitud.intZopId.toString();
