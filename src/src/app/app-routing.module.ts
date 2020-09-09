@@ -79,14 +79,14 @@ const routes: Routes = [
     },
   },
   {
-    path: 'autorizar-exportacion',
-    loadChildren: () =>
-      import(
-        './tramites/mincultura/autorizar-exportacion/autorizar-exportacion.module'
-      ).then((m) => m.AutorizarExportacionModule),
-    data: {
-      title: jsonStrings.tramites.mincultura['consulta'].title,
+    path: 'mincultura/autorizar-exportacion',
+    loadChildren: async () => {
+      const m = await import('./tramites/mincultura/autorizar-exportacion/autorizar-exportacion.module');
+      return m.AutorizarExportacionModule;
     },
+    data: {
+      title: jsonStrings.tramites.mincultura.consulta.title
+    }
   },
   {
     path: 'contraloria/certificado-de-antecedentes/T17084',
