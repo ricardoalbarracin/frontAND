@@ -20,6 +20,8 @@ export class ConsultarSolicitudComponent implements OnInit {
   verInformacionDescargar: boolean = false;
   mensajeConsultaSinResultados: boolean = false;
 
+  currentMessage:string;
+
   constructor(public formBuilder: FormBuilder, public service: AutorizarExportacionUtilService, private router:Router) {
 
   }
@@ -30,7 +32,6 @@ export class ConsultarSolicitudComponent implements OnInit {
   }
 
   almacenarDatosStorage(solicitud){
-    debugger;
     sessionStorage.tipo_solicitante = solicitud.docIdSolicitante;
     sessionStorage.numero_documento = solicitud.sosNroDocumentoSolicitante;
     sessionStorage.tipo_documento = solicitud.docIdSolicitante;
@@ -39,7 +40,7 @@ export class ConsultarSolicitudComponent implements OnInit {
     sessionStorage.direccion_solicitante = solicitud.sosDireccionSolicitante;
     sessionStorage.telefono_solicitante = solicitud.sosTelefonoSolicitante;
     sessionStorage.correo_solicitante = solicitud.sosCorreoSolicitante;
-
+    sessionStorage.sos_consecutivo  = solicitud.sosConsecutivo;
     sessionStorage.docIdIntermediario = solicitud.docIdIntermediario;
     sessionStorage.sosSinoIntermediario = solicitud.sosSinoIntermediario;
     sessionStorage.sosSinoAnexos = solicitud.sosSinoAnexos;
@@ -55,7 +56,7 @@ export class ConsultarSolicitudComponent implements OnInit {
     if (this.seleccionSolucionForm.isValid()) {
       this.service.ConsultarSolicitudesXRango(this.seleccionForm.value.numero_documento, this.seleccionForm.value.numero_radicado).subscribe((response: ReturnModelObtenerSolicitudes) => {
         //debugger;
-        if (response.result.solicitudSalidaObras) {
+        if (response.result.solicitudSalidaObras.length > 0) {
           this.items = [];
           sessionStorage.clear();
           for (let solicitud of response.result.solicitudSalidaObras) {
@@ -90,7 +91,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   }
 
   verEditar() {
-    this.router.navigate(['/autorizar-exportacion/ingresar']);
+    this.router.navigate(['mincultura/autorizar-exportacion/ingresar-solicitud']);
   }
 
   verDescargar() {
@@ -100,6 +101,7 @@ export class ConsultarSolicitudComponent implements OnInit {
   ngOnInit() {
     this.seleccionSolucionForm = new ConsultarSolicitudForm();
     this.seleccionForm = this.seleccionSolucionForm.getForm();
+    this.currentMessage = "El servicio no se encuentra disponible en este momento, te recomendamos:\n\n1. Intentarlo más tarde\n2. Recargar la página.";
   }
 
 }

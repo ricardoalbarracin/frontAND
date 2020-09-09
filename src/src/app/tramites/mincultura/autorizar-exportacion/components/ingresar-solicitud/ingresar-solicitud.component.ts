@@ -1,3 +1,4 @@
+import { RequestModelActualizarSolicitud } from './../../models/requestmodelactualizarsolicitud';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormBuilder, FormGroup, Validators,ValidatorFn } from '@angular/forms';
@@ -62,7 +63,7 @@ export class IngresarSolicitudComponent implements OnInit {
           toMatch.setErrors(null);
         }
       }
-      
+
       return null;
     };
   }
@@ -177,17 +178,17 @@ export class IngresarSolicitudComponent implements OnInit {
 
        this.registerForm.get('requiereIntermediario').valueChanges
         .subscribe(requiereIntermediario => {
-          
+
           if (requiereIntermediario== 'SI') {
-            
+
             tipoDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario.setValidators([Validators.required]);
             numeroDocumentoIntermediario2.setValidators([Validators.required]);
-            
-         
+
+
             correoUbicacionIntermediario.setValidators([Validators.required, Validators.email]);
             correoUbicacionIntermediario2 .setValidators([Validators.required, Validators.email]);
-          
+
           }
           else
           {
@@ -224,7 +225,7 @@ export class IngresarSolicitudComponent implements OnInit {
 
         });
 
-      
+
 
         this.registerForm.get('PaisDestino').valueChanges
         .subscribe(pais => {
@@ -256,7 +257,7 @@ export class IngresarSolicitudComponent implements OnInit {
    get f() { return this.registerForm.controls; }
 
    open(content) {
- 
+
     if (this.registerForm.valid){
       this.modalService.open(content, { size: "xl", scrollable: true });
     }
@@ -281,26 +282,26 @@ export class IngresarSolicitudComponent implements OnInit {
 
   }
   crearSolicitudModel(){
-    
+
     const solicitud: RequestModelCrearSolicitud = {
       SosTipoPersonaId: parseInt(this.registerForm.value.tipoSolicitante.value, 10),
       DocIdSolicitante: parseInt(this.registerForm.value.tipoDocumentoSolicitante.value, 10),
       SosNroDocumentoSolicitante:this.registerForm.value.numeroDocumentoSolicitante,
       ZopId:parseInt(this.registerForm.value.paisExpedicionSolicitante.value, 10),
       SosZonPadreId: this.registerForm.value.departamentoUbicacion.value,
-      SosZonId:this.registerForm.value.municipioUbicacion.value,
-      Ciudad:this.registerForm.value.municipioUbicacion.text,
+      SosZonId: this.registerForm.value.municipioUbicacion.value,
+      Ciudad: this.registerForm.value.municipioUbicacion.text,
       SosTelefonoSolicitante:this.registerForm.value.telefonoUbicacion,
       SosDireccionSolicitante: this.registerForm.value.direccionUbicacion,
-      SosCorreoSolicitante: this.registerForm.value.direccionUbicacion,
+      SosCorreoSolicitante: this.registerForm.value.correoUbicacion,
       Requiereintermediario: this.registerForm.value.requiereIntermediario=='SI'? true: false,
-      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario? parseInt(this.registerForm.value.tipoDocumentoIntermediario.value, 10): null,
+      DocIdintermediario: this.registerForm.value.tipoDocumentoIntermediario? Number(this.registerForm.value.tipoDocumentoIntermediario.value): null,
       SosNroDocumentointermediario:this.registerForm.value.numeroDocumentoIntermediario,
       SosNombreintermediario: this.registerForm.value.nombreIntermediario,
       IntZopId: parseInt(this.registerForm.value.paisExpedicionIntermediario.value, 10),
-      IntCiudad: this.registerForm.value.ciudadIntermediario.value,
+      IntCiudad: this.registerForm.value.ciudadIntermediario,
       //IntCiudad: this.registerForm.value.municipioIntermediario.value,
-      IntUbicacionCiudad:this.registerForm.value.municipioUbicacionIntermediario.value,
+      IntUbicacionCiudad: this.registerForm.value.municipioUbicacionIntermediario.value,
       SosTelefonointermediario:  this.registerForm.value.telefonoUbicacionIntermediario,
       SosDireccionintermediario: this.registerForm.value.direccionUbicacionIntermediario,
       IntUbicacionEmail:this.registerForm.value.correoUbicacionIntermediario,
@@ -322,7 +323,7 @@ export class IngresarSolicitudComponent implements OnInit {
       SosNombreRepresentante:this.registerForm.value.nombreRazonSocialSolicitante,
       ProrrogaMotivo:"", //por defecto vacio
       ProrrogaFechaRegreso:null,//por defecto
-      IntUbicacionZopId:this.registerForm.value.paisExpedicionIntermediario? parseInt(this.registerForm.value.paisExpedicionIntermediario.value, 10): null,
+      IntUbicacionZopId:Number(this.registerForm.value.departamentoUbicacionIntermediario.value),
       ZonId:"01001",
       SosCantidad: 1,//1 valor fijo
       SosLugarExpedicion:"01001",//valor fijo
@@ -366,34 +367,55 @@ export class IngresarSolicitudComponent implements OnInit {
   closeModal() {
     this.service.asignarFormularioInvalido(false);
     this.modalService.dismissAll();
-    
+
   }
 
   guardar(content){
-    if (this.registerForm.valid){
+    if (!this.registerForm.valid){
       this.service.asignarPaso(3);
       this.service.asignarpasoIngresar(2);
       let solicitud=this.crearSolicitudModel();
-      this.service.registrarSolicitud(solicitud).subscribe((result: any) => {
-        
-        if(result.success && result.result.operacionExitosa)
-        {
-          if(result.result.success)
+      if(sessionStorage.sosId)
+      {
+        solicitud.SosZonPadreId = Number(solicitud.SosZonPadreId);
+        this.service.actualizarSolicitud(this.mapearActualizarSolicitud(solicitud)).subscribe((result: any) => {
+          if(result.success && result.result.operacionExitosa)
           {
-            this.sosId = result.result.solicitudSalidaObra.sosConsecutivoIndice;
-            this.modalService.open(content, { size: "xl", scrollable: true });
+            if(result.result.success)
+            {
+              this.sosId = sessionStorage.sos_consecutivo;
+              this.modalService.open(content, { size: "xl", scrollable: true });
+              sessionStorage.clear();
+            }
           }
-        }
-      }, (error) => {
-        this.manejoErrorPeticion(error);
-      });
-      
+        }, (error) => {
+          this.manejoErrorPeticion(error);
+        });
+
+      }
+      else
+      {
+        this.service.registrarSolicitud(solicitud).subscribe((result: any) => {
+
+          if(result.success && result.result.operacionExitosa)
+          {
+            if(result.result.success)
+            {
+              //debugger;
+              this.sosId = result.result.solicitudSalidaObra.sosConsecutivoIndice;
+              this.modalService.open(content, { size: "xl", scrollable: true });
+            }
+          }
+        }, (error) => {
+          this.manejoErrorPeticion(error);
+        });
+      }
     }
     else{
     this.scrollControInvalido();
     this.invalidForm = true;
     }
-    
+
   }
 
    onReset() {
@@ -531,6 +553,8 @@ export class IngresarSolicitudComponent implements OnInit {
           if (data != undefined && data.success === true){
 
            this.data.municipiosUbicacion = data.result;
+           if(sessionStorage)
+              this.valoresConsulta.municipioUbicacion = sessionStorage.zonId;
           }else {
             //TODO: controlar errores internos
             this.manejoErrorInterno(data);
@@ -565,7 +589,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoDestino() {
-    
+
     console.log(this.registerForm.value.departamentoDestino.value);
     this.data.municipiosDestino = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoDestino.value)
@@ -587,7 +611,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   actualizarDepartamentoIntermediario() {
-    
+
     console.log(this.registerForm.value.departamentoIntermediario.value);
     this.data.municipiosIntermediario = [];
      this.service.obtenerMunicipiosPorDepartamentoId(this.registerForm.value.departamentoIntermediario.value)
@@ -655,7 +679,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoSolicitante(){
-    
+
     if(this.adjuntoPendienteSolicitante != null)
     {
       this.adjuntoPendienteSolicitante.Description = this.registerForm.value.descripcionAdjuntoSolicitante;
@@ -670,7 +694,7 @@ export class IngresarSolicitudComponent implements OnInit {
   }
 
   agregarArchivoIntermediario(){
-    
+
     if(this.adjuntoPendienteIntermediario != null)
     {
       this.adjuntoPendienteIntermediario.Description = this.registerForm.value.descripcionAdjuntoIntermediario;
@@ -688,38 +712,107 @@ export class IngresarSolicitudComponent implements OnInit {
     tipo_solicitante: "",
     tipo_documento: "",
     docIdIntermediario:"",
-    zonId:"",
-    zopId:"",
+    municipioUbicacion:"",
+    departamentoUbicacion:"",
     destinoZopId:"",
     destinoFinExportacion:"",
     destinoTipoTiempoPermanencia:"",
+    paisExpedicionSolicitante:"",
+    paisExpedicionIntermediario:"",
+    departamentoUbicacionIntermediario:"",
+    municipioUbicacionIntermediario:""
+
   };
+
+  mapearActualizarSolicitud(solicitud:RequestModelCrearSolicitud){
+    let actualizarSolicitud: RequestModelActualizarSolicitud = {
+      SosId: sessionStorage.sosId,
+      Ciudad : solicitud.Ciudad,
+      DocIdSolicitante : solicitud.DocIdSolicitante,
+      ZopId : solicitud.ZopId,
+      ZonId : solicitud.ZonId,
+      SosNombreSolicitante : solicitud.SosNombreSolicitante,
+      SosNroDocumentoSolicitante : solicitud.SosNroDocumentoSolicitante,
+      SosNroFoliosAnexos : 0,
+      SosFechaParaDarConcepto : '',
+      SosCantidad : solicitud.SosCantidad,
+      TmsId : solicitud.TmsId,
+      SosLugarExpedicion : solicitud.SosLugarExpedicion,
+      SosDireccionSolicitante : solicitud.SosDireccionSolicitante,
+      SosTelefonoSolicitante : solicitud.SosTelefonoSolicitante,
+      SosCorreoSolicitante : solicitud.SosCorreoSolicitante,
+      SosNombreintermediario : solicitud.SosNombreintermediario,
+      DocIdintermediario : solicitud.DocIdintermediario,
+      SosNroDocumentointermediario : solicitud.SosNroDocumentointermediario,
+      SosDireccionintermediario : solicitud.SosDireccionintermediario,
+      SosTelefonointermediario : solicitud.SosTelefonointermediario,
+      SosSintointermediario : '',
+      SosSintoAnexos : '',
+      SosSintoProrroga : '',
+      ZopNombre : solicitud.ZopNombre,
+      SosTipoPersonaId : solicitud.SosTipoPersonaId,
+      SosZonPadreId : solicitud.SosZonPadreId,
+      SosZonId : solicitud.SosZonId,
+      IntZopId : solicitud.IntZopId,
+      IntCiudad : solicitud.IntCiudad,
+      IntUbicacionZopId : solicitud.IntUbicacionZopId,
+      IntUbicacionCiudad :solicitud.IntUbicacionCiudad,
+      IntUbicacionEmail : solicitud.IntUbicacionEmail,
+      ProrrogaFechaRegreso : solicitud.ProrrogaFechaRegreso,
+      ProrrogaMotivo :solicitud.ProrrogaMotivo,
+      DestinoZopId : solicitud.DestinoZopId,
+      DestinoCiudad :solicitud.DestinoCiudad,
+      DestinoDireccion :solicitud.DestinoDireccion,
+      DestinoFintExportacion : '',
+      DestinoEntidad :solicitud.DestinoEntidad,
+      DestinoTelefono :solicitud.DestinoTelefono,
+      DestinoTiempoPermanencia : solicitud.DestinoTiempoPermanencia,
+      DestinoTipoTiempoPermanencia : solicitud.DestinoTipoTiempoPermanencia,
+      ReitegroObservaciones :solicitud.ReitegroObservaciones,
+      SosNombreRepresentante :solicitud.SosNombreRepresentante,
+      AceptaHabeasdata :solicitud.AceptaHabeasdata,
+      Requiereintermediario : solicitud.Requiereintermediario,
+      AnexoSolicitante :solicitud.AnexoSolicitante
+    }
+    return actualizarSolicitud;
+  }
 
   cargarDatosStorage() {
     if (sessionStorage.numero_documento) {
-      this.valoresConsulta.tipo_solicitante = sessionStorage.tipo_solicitante;
+
       this.valoresConsulta.tipo_documento = sessionStorage.tipo_documento;
       this.registerForm.controls.numeroDocumentoSolicitante.setValue(sessionStorage.numero_documento);
       this.registerForm.controls.numeroDocumentoSolicitante2.setValue(sessionStorage.numero_documento);
       this.registerForm.controls.nombreRazonSocialSolicitante.setValue(sessionStorage.nombre_solicitante);
+      this.valoresConsulta.paisExpedicionSolicitante = sessionStorage.zopId;
+
+
       this.registerForm.controls.telefonoUbicacion.setValue(sessionStorage.telefono_solicitante);
       this.registerForm.controls.direccionUbicacion.setValue(sessionStorage.direccion_solicitante);
       this.registerForm.controls.correoUbicacion.setValue(sessionStorage.correo_solicitante);
       this.registerForm.controls.correoUbicacion2.setValue(sessionStorage.correo_solicitante);
 
+      this.registerForm.controls.requiereIntermediario.setValue(sessionStorage.sosSinoIntermediario === 'S' ? "SI" : "NO");
+      this.valoresConsulta.docIdIntermediario = sessionStorage.docIdIntermediario;
       this.registerForm.controls.numeroDocumentoIntermediario.setValue(sessionStorage.sosNroDocumentoIntermediario);
       this.registerForm.controls.numeroDocumentoIntermediario2.setValue(sessionStorage.sosNroDocumentoIntermediario);
       this.registerForm.controls.nombreIntermediario.setValue(sessionStorage.sosNombreIntermediario);
-      this.registerForm.controls.requiereIntermediario.setValue(sessionStorage.sosSinoIntermediario === 'S' ? "SI" : "NO");
-      this.valoresConsulta.docIdIntermediario = sessionStorage.docIdIntermediario;
-      this.valoresConsulta.zonId = sessionStorage.zonId;
-      this.valoresConsulta.zopId = sessionStorage.zopId;
-
       this.service.ConsultarSolicitudxID(Number(sessionStorage.sosId)).subscribe(data => {
         if(data.success){
+          this.valoresConsulta.departamentoUbicacion = data.result.solicitud.sosZonPadreId.toString();
+          this.valoresConsulta.tipo_solicitante = data.result.solicitud.sosTipoPersonaId.toString().trim();
+          this.valoresConsulta.paisExpedicionIntermediario = data.result.solicitud.intZopId.toString();
+          this.registerForm.controls.ciudadIntermediario.setValue(data.result.intCiudad);
+          this.valoresConsulta.departamentoUbicacionIntermediario = data.result.solicitud.intUbicacionZopId.toString().padStart(2,"0");
+          this.valoresConsulta.municipioUbicacionIntermediario = data.result.solicitud.intUbicacionCiudad.toString();
+          this.registerForm.controls.telefonoUbicacionIntermediario.setValue(data.result.solicitud.sosTelefonoIntermediario);
+          this.registerForm.controls.ciudadIntermediario.setValue(data.result.solicitud.sosDireccionIntermediario);
+          this.registerForm.controls.correoUbicacionIntermediario.setValue(data.result.solicitud.intUbicacionEmail);
+          this.registerForm.controls.correoUbicacionIntermediario2.setValue(data.result.solicitud.intUbicacionEmail);
           this.valoresConsulta.destinoZopId = data.result.solicitud.destinoZopId.toString();
-          this.valoresConsulta.destinoFinExportacion = data.result.solicitud.destinoFinExportacion;
-          this.valoresConsulta.destinoTipoTiempoPermanencia = data.result.solicitud.destinoTipoTiempoPermanencia;
+          this.valoresConsulta.destinoFinExportacion = data.result.solicitud.destinoFinExportacion.toString();
+          this.valoresConsulta.municipio = data.result.solicitud.intZopId.toString();
+          this.valoresConsulta.DestinoTipoTiempoPermanencia = data.result.solicitud.destinoTipoTiempoPermanencia.toString();
           this.registerForm.controls.ciudadDestino.setValue(data.result.solicitud.destinoCiudad);
           this.registerForm.controls.direccionDestino.setValue(data.result.solicitud.destinoDireccion);
           this.registerForm.controls.entidadDestino.setValue(data.result.solicitud.destinoEntidad);
@@ -728,18 +821,23 @@ export class IngresarSolicitudComponent implements OnInit {
         }
       });
 
-      if(sessionStorage.sosSinoIntermediario == 'S')
-        this.service.ConsultarSolicitudxIntermediario(sessionStorage.sosId).subscribe(data => {
-          if(data.success){
-
+      this.service.ObtenerListaAnexos(Number(sessionStorage.sosId)).subscribe(data => {
+        if(data.result.listaAnexos){
+          for(let element of data.result.listaAnexos)
+          {
+            let archivo:ResponseFileModel = {
+              Description : element.descripcion,
+              FileContent : element.archivoBinario,
+              FileName : element.nombreArchivo.split('\\').pop().split('/').pop(),
+              Type : ''
+            } ;
+            if(element.seccionId === 1)
+              this.adjuntosSolicitante.push(archivo);
+            else
+              this.adjuntosIntermediario.push(archivo);
           }
-        });
-
-      this.service.ConsultarListaAnexosSolicitudesXSolicitud(sessionStorage.solicitud_id).subscribe(data => {
-
-      }
-
-      );
+        }
+      });
 
     }
   }

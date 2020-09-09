@@ -47,7 +47,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="form-group-govco">País de expedición*</label>
-                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.lugar_expedicion" formControlName="paisExpedicionSolicitante" [items]="data.paises">
+                            <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.paisExpedicionSolicitante" formControlName="paisExpedicionSolicitante" [items]="data.paises">
                             </app-dropdownlist>
                         </div>
                     </div>
@@ -142,14 +142,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Departamento *</label>
-                        <app-dropdownlist (change)="actualizarDepartamentoUbicacion()" [selected]="valoresConsulta?.zopId"  ngDefaultControl formControlName="departamentoUbicacion" [items]="data.departamentos">
+                        <app-dropdownlist (change)="actualizarDepartamentoUbicacion()" [selected]="valoresConsulta?.departamentoUbicacion"  ngDefaultControl formControlName="departamentoUbicacion" [items]="data.departamentos">
                         </app-dropdownlist>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-group-govco">Municipio *</label>
-                        <app-dropdownlist ngDefaultControl formControlName="municipioUbicacion" [selected]="valoresConsulta?.zonId" [items]="data.municipiosUbicacion">
+                        <app-dropdownlist ngDefaultControl formControlName="municipioUbicacion" [selected]="valoresConsulta?.municipioUbicacion" [items]="data.municipiosUbicacion">
                         </app-dropdownlist>
                     </div>
                 </div>
@@ -223,7 +223,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="radiobutton-govco">
-                            <input type="radio" name="radio" formControlName="requiereIntermediario"
+                            <input type="radio" name="requiereIntermediario" formControlName="requiereIntermediario"
                                 [(ngModel)]="requiereIntermediarioValor" value="SI" />
                             <span>SI</span>
                             <div class="radiobutton-govco__indicator"></div>
@@ -233,7 +233,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="radiobutton-govco">
-                            <input type="radio" name="radio" formControlName="requiereIntermediario"
+                            <input type="radio" name="requiereIntermediario" formControlName="requiereIntermediario"
                                 [(ngModel)]="requiereIntermediarioValor" value="NO" />
                             <span>NO</span>
                             <div class="radiobutton-govco__indicator"></div>
@@ -291,7 +291,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-group-govco">País de expedición</label>
-                                <app-dropdownlist ngDefaultControl formControlName="paisExpedicionIntermediario" [items]="data.paises">
+                                <app-dropdownlist ngDefaultControl formControlName="paisExpedicionIntermediario" [selected]="valoresConsulta?.paisExpedicionIntermediario"  [items]="data.paises">
                                 </app-dropdownlist>
                             </div>
                         </div>
@@ -393,14 +393,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-group-govco">Departamento</label>
-                                <app-dropdownlist (change)="actualizarDepartamentoUbicacionIntermediario()" ngDefaultControl formControlName="departamentoUbicacionIntermediario" [items]="data.departamentos">
+                                <app-dropdownlist (change)="actualizarDepartamentoUbicacionIntermediario()" [selected]="valoresConsulta?.departamentoUbicacionIntermediario" ngDefaultControl formControlName="departamentoUbicacionIntermediario" [items]="data.departamentos">
                                 </app-dropdownlist>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-group-govco">Municipio</label>
-                                <app-dropdownlist ngDefaultControl formControlName="municipioUbicacionIntermediario" [items]="data.municipiosUbicacionIntermediario">
+                                <app-dropdownlist ngDefaultControl formControlName="municipioUbicacionIntermediario" [selected]="valoresConsulta?.municipioUbicacionIntermediario" [items]="data.municipiosUbicacionIntermediario">
                                 </app-dropdownlist>
                             </div>
                         </div>
@@ -535,7 +535,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.destinoTipoTiempoPermanencia" formControlName="tipoPermanencia" [items]="data.tiposPermanencia">
+                        <app-dropdownlist ngDefaultControl [selected]="valoresConsulta?.DestinoTipoTiempoPermanencia" formControlName="tipoPermanencia" [items]="data.tiposPermanencia">
                         </app-dropdownlist>
                     </div>
                 </div>
